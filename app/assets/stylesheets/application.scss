@@ -17,6 +17,9 @@
 @import "*";
 @import "bootstrap";
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
+@import "bootstrap_overrides";
+
+$primary_color: #4d0000;
 
 body {
     background-image: url("grid.png");

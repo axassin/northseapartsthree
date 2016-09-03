@@ -11,4 +11,5 @@ html lang="en"
     = csrf_meta_tag
 
   body
-    == yieldg
+    == render template: "common/navigation_bar"
+    == yield
