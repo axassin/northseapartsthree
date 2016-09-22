@@ -24,7 +24,7 @@
       <file leaf-file-name="bootstrap_overrides.scss" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
+            <state relative-caret-position="0">
               <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
               <folding />
             </state>
@@ -34,8 +34,8 @@
       <file leaf-file-name="navigation_bar.html.slim" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/common/navigation_bar.html.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+            <state relative-caret-position="153">
+              <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -64,7 +64,7 @@
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="174">
+            <state relative-caret-position="272">
               <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
               <folding />
             </state>
@@ -112,6 +112,7 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss" />
         <option value="$PROJECT_DIR$/app/views/common/navigation_bar.html.slim" />
+        <option value="$PROJECT_DIR$/.idea/workspace.xml" />
       </list>
     </option>
   </component>
@@ -152,8 +153,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="RailsProjectView" />
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -316,12 +316,13 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="RailsProjectView" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="bootstrap.js&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/javascripts/bootstrap.js&#10;applicatio&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;boos&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/stylesheets/_bootstrap.scss&#10;gitignore&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/.gitignore&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;gemfi&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
+    <property name="SearchEverywhereHistoryKey" value="workspace.xml&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/.idea/workspace.xml&#10;bootstrap.js&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/javascripts/bootstrap.js&#10;applicatio&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;boos&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/stylesheets/_bootstrap.scss&#10;gitignore&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/.gitignore&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;gemfi&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RunManager" selected="Rails.Development: northseapartsthree">
@@ -505,11 +506,12 @@
       <workItem from="1473590021721" duration="946000" />
       <workItem from="1473594752974" duration="1049000" />
       <workItem from="1473925197113" duration="1400000" />
+      <workItem from="1474527242366" duration="175000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19863000" />
+    <option name="totallyTimeSpent" value="20038000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -524,7 +526,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26332623" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26599148" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32982087" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -578,6 +580,38 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="64" selection-start-line="9" selection-start-column="64" selection-end-line="9" selection-end-column="64" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2992">
+          <caret line="176" column="14" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -891,7 +925,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
+        <state relative-caret-position="272">
           <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
           <folding />
         </state>
@@ -901,7 +935,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -923,16 +956,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="0">
           <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="114" column="55" selection-start-line="114" selection-start-column="54" selection-end-line="114" selection-end-column="55" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/common/navigation_bar.html.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="19" selection-start-line="7" selection-start-column="19" selection-end-line="7" selection-end-column="19" />
+        <state relative-caret-position="153">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
           <folding />
         </state>
       </provider>
