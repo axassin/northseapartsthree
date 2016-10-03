@@ -14,12 +14,16 @@
  *= *require_self
  */
 
+// CONSTANTS
+$northseaparts_red: #660000;
+$primary_color: $northseaparts_red;
+
+// IMPORTS
+
 @import "*";
 @import "bootstrap";
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css";
 @import "bootstrap_overrides";
-$northseaparts: #660000;
-$primary_color: $northseaparts;
 
 body {
     background-image: url("grid.png");

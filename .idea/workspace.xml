@@ -2,9 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c33c0273-6069-4af4-9b11-2391cab457e8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/development_assets/northseaparts_logo/icon.ai" afterPath="$PROJECT_DIR$/development_assets/northseaparts_logo/icon.ai" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/development_assets/northseaparts_logo/nav_bar_header.ai" afterPath="$PROJECT_DIR$/development_assets/northseaparts_logo/nav_bar_header.ai" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/assets/stylesheets/navbar.scss" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/system_account.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/db/migrate/20160930041006_create_system_accounts.rb" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/fixtures/system_accounts.yml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/test/models/system_account_test.rb" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/development_assets/northseaparts_logo.ai" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/images/grid.png" afterPath="$PROJECT_DIR$/app/assets/images/grid.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/development_assets/grid.ai" afterPath="$PROJECT_DIR$/development_assets/grid.ai" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/northseapartsthree.iml" afterPath="$PROJECT_DIR$/.idea/northseapartsthree.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile.lock" afterPath="$PROJECT_DIR$/Gemfile.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/javascripts/application.js" afterPath="$PROJECT_DIR$/app/assets/javascripts/application.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss" afterPath="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/common/navigation_bar.html.slim" afterPath="$PROJECT_DIR$/app/views/common/navigation_bar.html.slim" />
     </list>
     <ignored path="northseapartsthree.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -25,8 +38,8 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="navigation_bar.html.slim" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/views/common/navigation_bar.html.slim">
+      <file leaf-file-name="system_account.rb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/models/system_account.rb">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
               <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
@@ -35,21 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.html.slim" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.slim">
+      <file leaf-file-name="20160930041006_create_system_accounts.rb" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/db/migrate/20160930041006_create_system_accounts.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="0" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="application.scss" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="425">
-              <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="170">
+              <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -58,28 +61,18 @@
       <file leaf-file-name="Gemfile" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Gemfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+            <state relative-caret-position="204">
+              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="application.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
+      <file leaf-file-name="database.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/database.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="91" selection-start-line="0" selection-start-column="91" selection-end-line="7" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Gemfile.lock" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2992">
-              <caret line="176" column="14" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="14" />
+            <state relative-caret-position="-221">
+              <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -99,7 +92,6 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
-        <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/views/home/index.html.erb" />
         <option value="$PROJECT_DIR$/app/views/layouts/application.html.slim" />
@@ -107,6 +99,9 @@
         <option value="$PROJECT_DIR$/app/assets/stylesheets/bootstrap_overrides.scss" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.scss" />
         <option value="$PROJECT_DIR$/app/views/common/navigation_bar.html.slim" />
+        <option value="$PROJECT_DIR$/app/models/system_account.rb" />
+        <option value="$PROJECT_DIR$/db/migrate/20160930041006_create_system_accounts.rb" />
+        <option value="$PROJECT_DIR$/Gemfile" />
       </list>
     </option>
   </component>
@@ -316,7 +311,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="css&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/app/assets/stylesheets/application.scss&#10;workspace&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;bootstrap.js&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/javascripts/bootstrap.js&#10;applicatio&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;boos&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/stylesheets/_bootstrap.scss&#10;gitignore&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/.gitignore&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;gemfi&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
+    <property name="SearchEverywhereHistoryKey" value="database.y&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/config/database.yml&#10;gemfi&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/Gemfile&#10;gemfil&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/Gemfile&#10;system_account&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/db/migrate/20160930041006_create_system_accounts.rb&#10;system_&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/app/models/system_account.rb&#10;css&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/app/assets/stylesheets/application.scss&#10;workspace&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;bootstrap.js&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/javascripts/bootstrap.js&#10;applicatio&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;boos&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/bootstrap-4.0.0.alpha3.1/assets/stylesheets/_bootstrap.scss&#10;gitignore&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/.gitignore&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
     <property name="js-jscs-nodeInterpreter" value="C:\Program Files\nodejs\node.exe" />
   </component>
   <component name="RunManager" selected="Rails.Development: northseapartsthree">
@@ -502,12 +497,12 @@
       <workItem from="1474420275505" duration="9000" />
       <workItem from="1473925197113" duration="1400000" />
       <workItem from="1474421320037" duration="6633000" />
-      <workItem from="1475466027693" duration="596000" />
+      <workItem from="1475466027693" duration="3891000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="27092000" />
+    <option name="totallyTimeSpent" value="30387000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -528,7 +523,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3265306" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -576,22 +571,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -851,13 +830,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/database.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/application_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="51">
@@ -911,6 +883,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -923,8 +896,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/common/navigation_bar.html.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="272">
+          <caret line="16" column="10" selection-start-line="16" selection-start-column="10" selection-end-line="16" selection-end-column="10" />
           <folding />
         </state>
       </provider>
@@ -939,32 +912,56 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/stylesheets/application.scss">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="30" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="35" selection-start-line="16" selection-start-column="35" selection-end-line="16" selection-end-column="35" />
+        <state relative-caret-position="464">
+          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/assets/javascripts/application.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="91" selection-start-line="0" selection-start-column="91" selection-end-line="7" selection-end-column="78" />
+        <state relative-caret-position="34">
+          <caret line="2" column="2" selection-start-line="0" selection-start-column="91" selection-end-line="7" selection-end-column="78" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Gemfile.lock">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2992">
+        <state relative-caret-position="371">
           <caret line="176" column="14" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/migrate/20160930041006_create_system_accounts.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-221">
+          <caret line="5" column="43" selection-start-line="5" selection-start-column="43" selection-end-line="5" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/system_account.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>

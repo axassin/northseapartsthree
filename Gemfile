@@ -16,8 +16,8 @@ gem 'coffee-rails', '~> 4.2'
 # Windows workaround for coffeescripting
 gem 'coffee-script-source', '1.8.0'
 # For Bootstrap JS Runtime; See https://github.com/rails/execjs#readme for more supported runtimes
-gem 'therubyracer'
-gem 'execjs'
+# gem 'therubyracer'
+# gem 'execjs'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -53,3 +53,6 @@ gem 'slim'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
+
+# UUID generator for producing universally unique identifiers based on RFC 4122
+gem 'uuidtools'
