@@ -1,5 +1,24 @@
 nav class="navbar navbar-default"
   div class="container-fluid"
     div class="navbar-header"
-      = image_tag("nav_bar_header.png")
-    ul class="nav navbar-nav"
+      = image_tag('nav_bar_header.png')
+    ul class="nav navbar-nav navbar-right"
+      - if 0 == 0
+        li
+          a href="" Human Resources
+        li
+          a href="" General
+        li
+          a href="" Operations
+        li
+          a href="" Marketing
+        li
+          a href="" Accounting and Finance
+        li
+          a href="" class='login_indicator' Signed In!
+      - else
+        li
+          a href="" About the Enterprise
+        li
+          a href="" Sign In
+  div class="container-fluid sub_navigation"

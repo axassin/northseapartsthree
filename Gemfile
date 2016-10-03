@@ -53,3 +53,6 @@ gem 'slim'
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
+
+# UUID generator for producing universally unique identifiers based on RFC 4122
+gem 'uuidtools'
