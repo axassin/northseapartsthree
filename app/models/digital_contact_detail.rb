@@ -1,2 +1,0 @@
-class DigitalContactDetail < ApplicationRecord
-end

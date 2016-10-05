@@ -1,9 +1,9 @@
-class CreateSystemAccounts < ActiveRecord::Migration[5.0]
+class CreateSystemAccounts < MainMigration
   def change
     create_table :system_accounts, id: false do |t|
-      t.string :id, primary_key: true
-      t.string :name, :limit => 64
-      t.string :description, :limit => 256
+      id_column(t)
+      name_column(t)
+      description_column(t)
       t.string :type, :limit => 64
       t.string :primary_image, :limit => 512
       t.timestamps

@@ -1,7 +1,9 @@
-class CreateContactDetails < ActiveRecord::Migration[5.0]
+class CreateContactDetails < MainMigration
   def change
-    create_table :contact_details do |t|
-      t.string :system_account_id
+    create_table :contact_details, id: false do |t|
+      id_column(t)
+      label_column(t)
+      description_column(t)
       t.timestamps
     end
   end
