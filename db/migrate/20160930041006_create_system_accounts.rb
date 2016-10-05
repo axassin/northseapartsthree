@@ -1,6 +1,7 @@
 class CreateSystemAccounts < ActiveRecord::Migration[5.0]
   def change
-    create_table :system_accounts do |t|
+    create_table :system_accounts, id: false do |t|
+      t.string :id, primary_key: true
       t.string :name, :limit => 64
       t.string :description, :limit => 256
       t.string :type, :limit => 64

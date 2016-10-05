@@ -56,3 +56,6 @@ gem 'rails-assets-tether', '>= 1.1.0'
 
 # UUID generator for producing universally unique identifiers based on RFC 4122
 gem 'uuidtools'
+
+# This gem is a port of Perl's Data::Faker library that generates fake data.
+gem 'faker'

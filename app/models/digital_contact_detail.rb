@@ -1,0 +1,2 @@
+class DigitalContactDetail < ApplicationRecord
+end
