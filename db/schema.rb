@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20160930041006) do
 
-  create_table "system_accounts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+  create_table "system_accounts", id: :string, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",          limit: 64
     t.string   "description",   limit: 256
     t.string   "type",          limit: 64
