@@ -4,7 +4,7 @@ class CreateLinks < MainMigration
       id_column(t)
       t.string :type, :limit => 64
       t.string :link, :limit => 256
-      system_account_id(t)
+      foreign_key_id(t, 'contact_detail')
       t.timestamps
     end
   end

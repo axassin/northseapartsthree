@@ -1,3 +1,5 @@
+# Provide helper functions for commonly used columns in migrations
+
 module CommonColumns
   extend ActiveSupport::Concern
 
@@ -14,11 +16,11 @@ module CommonColumns
   end
 
   def description_column(t)
-    t.string :description, :limit => 256
+    t.string :description, :limit => 512
   end
 
-  def system_account_id(t)
-    t.string :system_account_id, :limit => 36
+  def foreign_key_id(t, foreign_key)
+    t.string (foreign_key + '_id').to_sym, :limit => 36
   end
 
 end
