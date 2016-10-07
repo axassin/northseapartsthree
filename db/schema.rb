@@ -13,9 +13,9 @@
 ActiveRecord::Schema.define(version: 20161005051944) do
 
   create_table "contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",          limit: 36
-    t.string   "name",        limit: 64
-    t.string   "description", limit: 512
+    t.string   "id",                limit: 36
+    t.string   "name",              limit: 64
+    t.string   "system_account_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -23,8 +23,8 @@ ActiveRecord::Schema.define(version: 20161005051944) do
   create_table "links", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id",                limit: 36
     t.string   "type",              limit: 64
-    t.string   "link",              limit: 256
-    t.string   "system_account_id", limit: 36
+    t.string   "url",               limit: 256
+    t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(version: 20161005051944) do
     t.string   "longitude",         limit: 256
     t.string   "latitude",          limit: 256
     t.string   "address",           limit: 512
-    t.string   "system_account_id", limit: 36
+    t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20161005051944) do
   create_table "telephone_numbers", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "id",                limit: 36
     t.string   "digits",            limit: 64
-    t.string   "system_account_id", limit: 36
+    t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end

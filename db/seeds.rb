@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+puts " Initializing Database with Core Data for Production and Development Environment"
+
+
+
+if Rails.env.development?
+
+  puts " Generating Sample Data for Development Environment"
+
+  NUMBER_OF_SYSTEM_ACCOUNTS = 100
+
+  NUMBER_OF_SYSTEM_ACCOUNTS.each do |i|
+    puts SystemAccount.create()
+  end
+
+end

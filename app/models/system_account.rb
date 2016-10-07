@@ -5,4 +5,6 @@ class SystemAccount < ApplicationRecord
   has_many :locations, through: :contact_details
   has_many :links, through: :contact_details
 
+  validates :system_account_id, presence: true
+
 end
