@@ -4,7 +4,7 @@ module CommonColumns
   extend ActiveSupport::Concern
 
   def id_column(t)
-    t.string :id, :limit => 36
+    t.string :id, :limit => 36, primary_key: true
   end
 
   def name_column(t)
@@ -12,7 +12,7 @@ module CommonColumns
   end
 
   def label_column(t)
-    t.string :name, :limit => 64
+    t.string :label, :limit => 64
   end
 
   def description_column(t)

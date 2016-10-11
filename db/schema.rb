@@ -12,25 +12,22 @@
 
 ActiveRecord::Schema.define(version: 20161005051944) do
 
-  create_table "contact_details", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",                limit: 36
-    t.string   "name",              limit: 64
+  create_table "contact_details", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "label",             limit: 64
     t.string   "system_account_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "links", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",                limit: 36
-    t.string   "type",              limit: 64
-    t.string   "url",               limit: 256
+  create_table "links", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "service",           limit: 64
+    t.string   "url",               limit: 512
     t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "locations", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",                limit: 36
+  create_table "locations", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "longitude",         limit: 256
     t.string   "latitude",          limit: 256
     t.string   "address",           limit: 512
@@ -39,18 +36,16 @@ ActiveRecord::Schema.define(version: 20161005051944) do
     t.datetime "updated_at"
   end
 
-  create_table "system_accounts", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",            limit: 36
+  create_table "system_accounts", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name",          limit: 64
     t.string   "description",   limit: 512
-    t.string   "type",          limit: 64
+    t.string   "account_type",  limit: 64
     t.string   "primary_image", limit: 512
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "telephone_numbers", id: false, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string   "id",                limit: 36
+  create_table "telephone_numbers", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "digits",            limit: 64
     t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"

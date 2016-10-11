@@ -2,9 +2,9 @@ class Location < ApplicationRecord
 
   belongs_to :contact_detail
 
-  validates :longitude, length: {minimum: 5, maximum: 256}, presence: true
-  validates :latitude, length: {minimum: 5, maximum: 256}, presence: true
-  validates :address, length: {minimum: 5, maximum: 256}, presence: true
-  validates :contact_detail_id, presence: true
+  validates :longitude, length: { in: 2..256 }, presence: true
+  validates :latitude, length: { in: 2..256 }, presence: true
+  validates :address, length: { in: 2..256 }, presence: true
+  validates :contact_detail, presence: true
 
 end

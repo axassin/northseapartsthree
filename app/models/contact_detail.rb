@@ -5,4 +5,7 @@ class ContactDetail < ApplicationRecord
   has_many :locations
   has_many :links
 
+  validates :system_account, presence: true
+  validates :label, length: { in: 2..64 }
+
 end

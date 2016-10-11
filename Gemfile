@@ -1,4 +1,4 @@
-source 'https://rubygems.org'
+source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -37,6 +37,9 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'better_errors'
+
+  # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
+  gem 'rspec-rails', '~> 3.5'
 end
 
 group :development do
@@ -59,3 +62,9 @@ gem 'uuidtools'
 
 # This gem is a port of Perl's Data::Faker library that generates fake data.
 gem 'faker'
+
+#  provides a simple and extremely flexible way to upload files from Ruby applications
+gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
+
+# Probability gives you an easy way to perform code only every so often, based on your input.
+gem 'probability'

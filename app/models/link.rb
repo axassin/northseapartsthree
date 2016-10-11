@@ -2,7 +2,8 @@ class Link < ApplicationRecord
 
   belongs_to :contact_detail
 
-  validates :url, length: {minimum: 5, maximum: 256}, presence: true
-  validates :contact_detail_id, presence: true
+  validates :service, length: { in: 2..64 }, presence: true
+  validates :url, length: { in: 2..512 }, presence: true
+  validates :contact_detail, presence: true
 
 end
