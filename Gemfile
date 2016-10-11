@@ -40,6 +40,19 @@ group :development, :test do
 
   # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
   gem 'rspec-rails', '~> 3.5'
+
+  # factory_girl is a fixtures replacement with a straightforward definition syntax, support for multiple build
+  # strategies (saved instances, unsaved instances, attribute hashes, and stubbed objects), and support for
+  # multiple factories for the same class (user, admin_user, and so on), including factory inheritance.
+  gem 'factory_girl'
+
+  #Capybara helps you test web applications by simulating how a real user would interact with your app.
+  gem 'capybara'
+
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development do
@@ -68,3 +81,6 @@ gem 'carrierwave', '>= 1.0.0.beta', '< 2.0'
 
 # Probability gives you an easy way to perform code only every so often, based on your input.
 gem 'probability'
+
+# DRY (Don't Repeat Yourself) of require 'spec_helper'.
+gem 'dry_require_spec_helper'

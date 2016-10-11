@@ -48,8 +48,7 @@ if Rails.env.development?
   NUMBER_OF_SYSTEM_ACCOUNTS.times {
     current_system_account = SystemAccount.create!(name: Faker::Name.name,
                                                   description: Faker::Lorem.sentence,
-                                                  account_type: %w(BUSINESS INDIVIDUAL).sample,
-                                                  primary_image: 'default.png')
+                                                  account_type: %w(BUSINESS INDIVIDUAL).sample)
 
     # System Accounts with Contact Details
     PERCENT_SA_WITH_CD.in(100) do
