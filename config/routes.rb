@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Home Page route
   root 'home#index'
+  get 'development/', to: 'development#index'
   get 'development/documentation', to: 'development#documentation'
 
   # ----------------------------- Enterprise Information System -----------------------------

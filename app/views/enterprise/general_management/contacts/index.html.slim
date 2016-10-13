@@ -2,7 +2,42 @@ div.title_heading
   h1 =controller_name
   div.sub_heading &#9724 Contact Details of Registered System Accounts
 
-hr
+hr.hidden_spacer
 
-div class="container-fluid"
+
+div.container-fluid
+  table.contact_tree
+    thead
+      tr.main_heading
+        th  Account
+        th  Contact Details
+    tbody
+      - @system_accounts.each do |system_account|
+        tr
+          td
+            div =system_account.name
+          td
+            - system_account.contact_details.each do |contact_detail|
+              = contact_detail.label
+              table
+
+                thead
+                  tr
+                    th Telephone
+                    th Location
+                    th Links
+                tbody
+                  col width="33.33%"
+                  col width="33.33%"
+                  col width="33.33%"
+                  tr
+                    td
+                      - contact_detail.telephone_numbers.each do |telephone_number|
+                        div = telephone_number.digits
+                    td
+                      - contact_detail.locations.each do |location|
+                        div = location.address
+                    td
+                      - contact_detail.links.each do |link|
+                        div = link.url
 
