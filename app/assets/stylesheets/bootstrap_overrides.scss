@@ -1,17 +1,9 @@
-.navbar-header {
-  padding-right: 5px;
+body {
+  background-image: url("grid.png");
+  background-repeat: repeat;
 }
 
 .container-fluid
 {
   vertical-align: text-bottom;
-}
-
-.nav.navbar-nav.navbar-right > li
-{
-  text-transform: uppercase;
-  color: #999999;
-  font-family: "Verdana";
-  font-size: 13px;
-  letter-spacing: 2px;
 }

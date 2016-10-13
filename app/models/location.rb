@@ -5,6 +5,5 @@ class Location < ApplicationRecord
   validates :longitude, length: { in: 2..256 }, presence: true
   validates :latitude, length: { in: 2..256 }, presence: true
   validates :address, length: { in: 2..256 }, presence: true
-  validates :contact_detail, presence: true
 
 end
