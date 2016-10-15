@@ -2,12 +2,29 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-=cell
+%cell
   float: left
   padding: 5px
 
-.contact_tree
+table.contact_tree
   thead
-    tr.main_heading
+    tr
       th
         text-transform: uppercase
+        color: gray
+        border-bottom: gray medium solid
+        border-right: white thick solid
+  tbody
+    tr
+      border-bottom: solid #e6e6e6 thin
+      td
+        vertical-align: top
+        padding: 0.25em
+        fieldset
+          float: left
+          margin: 0.5em
+          legend
+            font-size: 0.75em
+          div
+            float: left
+            margin: 0.5em

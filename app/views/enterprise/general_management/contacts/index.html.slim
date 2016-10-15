@@ -8,36 +8,22 @@ hr.hidden_spacer
 div.container-fluid
   table.contact_tree
     thead
-      tr.main_heading
-        th  Account
-        th  Contact Details
+      tr
+        th
+          span Account
+        th
+          span Contact Details
     tbody
       - @system_accounts.each do |system_account|
         tr
-          td
-            div =system_account.name
+          td =system_account.name
           td
             - system_account.contact_details.each do |contact_detail|
-              = contact_detail.label
-              table
-
-                thead
-                  tr
-                    th Telephone
-                    th Location
-                    th Links
-                tbody
-                  col width="33.33%"
-                  col width="33.33%"
-                  col width="33.33%"
-                  tr
-                    td
-                      - contact_detail.telephone_numbers.each do |telephone_number|
-                        div = telephone_number.digits
-                    td
-                      - contact_detail.locations.each do |location|
-                        div = location.address
-                    td
-                      - contact_detail.links.each do |link|
-                        div = link.url
-
+              fieldset
+                legend =contact_detail.label
+                - contact_detail.telephone_numbers.each do |telephone_number|
+                  div = telephone_number.digits
+                - contact_detail.locations.each do |location|
+                  div = location.address
+                - contact_detail.links.each do |link|
+                  div = link.url

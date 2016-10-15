@@ -14,13 +14,21 @@
  *= *require_self
  */
 
+// ------------------------- IMPORTS -------------------------
+
+@import "compass"
+@import "bootstrap"
+@import "bootstrap_overrides"
+@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+
+
 // ------------------------- CONSTANTS -------------------------
 $NORTH_SEA_PARTS_RED: #660000
 $PRIMARY_COLOR: $NORTH_SEA_PARTS_RED
 $PRIMARY_FONT_COLOR: #666666
 $SECONDARY_FONT_COLOR: #666666
 
-=generic_sub_heading
+%generic_sub_heading
   font-family: "Verdana"
   font-size: 0.75em
   letter-spacing: 0.05em
@@ -28,15 +36,8 @@ $SECONDARY_FONT_COLOR: #666666
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto)
 
-// ------------------------- IMPORTS -------------------------
-
-@import "bootstrap"
-@import "bootstrap_overrides"
-@import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-@import "navbar"
-@import "page_heading"
-
 hr.hidden_spacer
   visibility: hidden
 
-
+@import "navbar"
+@import "page_heading"
