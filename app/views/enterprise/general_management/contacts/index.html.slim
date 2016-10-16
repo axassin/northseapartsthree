@@ -22,8 +22,12 @@ div.container-fluid
               fieldset
                 legend =contact_detail.label
                 - contact_detail.telephone_numbers.each do |telephone_number|
-                  div = telephone_number.digits
+                  div.contact_unit
+                    div =telephone_number.digits
+                    div.remark = '&#9724'.html_safe + telephone_number.remark
                 - contact_detail.locations.each do |location|
-                  div = location.address
+                  div.contact_unit = location.address
                 - contact_detail.links.each do |link|
-                  div = link.url
+                  div.contact_unit
+                    div = link.url
+                    div.remark = '&#9724'.html_safe + link.remark

@@ -1,0 +1,2 @@
+module Development::DocumentationHelper
+end

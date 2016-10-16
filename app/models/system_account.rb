@@ -9,4 +9,8 @@ class SystemAccount < ApplicationRecord
   validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }
   validates :description, length: { in: 2..512 }
 
+  def has_contact_detail?
+    ContactDetail.exists?(system_account_id: self.id)
+  end
+
 end

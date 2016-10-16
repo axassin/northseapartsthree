@@ -10,34 +10,26 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= *require_tree .
- *= *require_self
  */
 
-// ------------------------- IMPORTS -------------------------
+// ------------------------- VENDOR IMPORTS -------------------------
 
 @import "compass"
 @import "bootstrap"
-@import "bootstrap_overrides"
 @import "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 
-
 // ------------------------- CONSTANTS -------------------------
-$NORTH_SEA_PARTS_RED: #660000
-$PRIMARY_COLOR: $NORTH_SEA_PARTS_RED
-$PRIMARY_FONT_COLOR: #666666
-$SECONDARY_FONT_COLOR: #666666
 
-%generic_sub_heading
-  font-family: "Verdana"
-  font-size: 0.75em
-  letter-spacing: 0.05em
+// Compass Vertical Rhythm Settings
+$base-font-size: 15px // Sets the base font size
+$base-line-height: 30px // Sets the base line height
++establish-baseline
 
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto)
 
-hr.hidden_spacer
-  visibility: hidden
-
-@import "navbar"
-@import "page_heading"
+// ------------------------- PARTIAL IMPORTS -------------------------
+@import "main_partials/shared_controller_styles"
+@import "main_partials/bootstrap_overrides"
+@import "main_partials/navbar"
+@import "main_partials/page_heading"

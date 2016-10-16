@@ -5,6 +5,7 @@ class CreateTelephoneNumbers < MainMigration
       t.string :digits, :limit => 64
       foreign_key_id(t, 'contact_detail')
       t.timestamps
+      remark_column(t)
     end
   end
 end

@@ -10,18 +10,18 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.sass, and all non-JS/CSS in app/assets folder are already added.
 # Rails.application.config.assets.precompile += %w( search.js )
 
-=begin
-[DevelopmentController, HomeController].each do |controller|
-  Rails.application.config.assets.precompile += ["#{controller}.js.coffee", "#{controller}.css"]
-end
-=end
-
 js_prefix    = 'app/assets/javascripts/'
 style_prefix = 'app/assets/stylesheets/'
 image_prefix = 'app/assets/images/'
 
 javascripts = Dir["#{js_prefix}**/*.*"].map      { |x| x.gsub(js_prefix,    '') }
-css         = Dir["#{style_prefix}**/*.*"].map  { |x| x.gsub(style_prefix, '') }
+css         = Dir["#{style_prefix}application.sass"].map  { |x| x.gsub(style_prefix, '') }
+enterprise_controllers = Dir["#{style_prefix}enterprise/**/*.*"].map  { |x| x.gsub(style_prefix, '') }
+front_end_controllers = Dir["#{style_prefix}front_end/**/*.*"].map  { |x| x.gsub(style_prefix, '') }
+development_controllers = Dir["#{style_prefix}development/**/*.*"].map  { |x| x.gsub(style_prefix, '') }
 image       = Dir["#{image_prefix}**/*.*"].map { |x| x.gsub(image_prefix, '') }
 
-Rails.application.config.assets.precompile = (javascripts + css + image)
+puts "---------------------- START OF COMPILED ASSETS ----------------------"
+puts Rails.application.config.assets.precompile = (javascripts + css + image + enterprise_controllers + front_end_controllers + development_controllers)
+puts "----------------------- END OF COMPILED ASSETS -----------------------"
+puts '\n'

@@ -53,13 +53,14 @@ if Rails.env.development?
     # System Accounts with Contact Details
     PERCENT_SA_WITH_CD.in(100) do
       rand(CD_PER_SA).times do
-        current_contact_detail = ContactDetail.create!(label: Faker::Hipster.word,
+        current_contact_detail = ContactDetail.create!(label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
                                                        system_account: current_system_account)
 
         # Contact Details with Telephone Numbers
         PERCENT_CD_WITH_TEL.in(100) do
           rand(TEL_PER_CD).times do
             TelephoneNumber.create!(contact_detail: current_contact_detail,
+                                    remark: Faker::Company.name,
                                     digits: Faker::Number.number( rand(7..64)) )
           end
         end
@@ -69,7 +70,8 @@ if Rails.env.development?
           rand(LINK_PER_CD).times do
             Link.create!(contact_detail: current_contact_detail,
                          service: %w(EMAIL SKYPE VIBER).sample,
-                         url: Faker::Internet.user_name )
+                         url: Faker::Internet.user_name,
+                         remark: Faker::Company.name )
           end
         end
 

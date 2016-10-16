@@ -2,9 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-%cell
-  float: left
-  padding: 5px
+@import "main_partials/_shared_controller_styles"
 
 table.contact_tree
   thead
@@ -22,9 +20,12 @@ table.contact_tree
         padding: 0.25em
         fieldset
           float: left
-          margin: 0.5em
+          margin: 1em
+          margin-top: 0.25em
           legend
             font-size: 0.75em
-          div
-            float: left
+          div.contact_unit
             margin: 0.5em
+            div.remark
+              @extend %generic_sub_heading
+

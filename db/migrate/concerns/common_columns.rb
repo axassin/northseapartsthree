@@ -23,4 +23,8 @@ module CommonColumns
     t.string (foreign_key + '_id').to_sym, :limit => 36
   end
 
+  def remark_column(t)
+    t.string :remark, :limit => 64
+  end
+
 end

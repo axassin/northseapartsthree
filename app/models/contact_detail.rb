@@ -6,5 +6,6 @@ class ContactDetail < ApplicationRecord
   has_many :links
 
   validates :label, length: { in: 2..64 }
+  validates_presence_of :system_account
 
 end

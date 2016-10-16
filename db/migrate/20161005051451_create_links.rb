@@ -6,6 +6,7 @@ class CreateLinks < MainMigration
       t.string :url, :limit => 512
       foreign_key_id(t, 'contact_detail')
       t.timestamps
+      remark_column(t)
     end
   end
 end

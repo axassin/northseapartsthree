@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20161005051944) do
     t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remark",            limit: 64
   end
 
   create_table "locations", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -50,6 +51,7 @@ ActiveRecord::Schema.define(version: 20161005051944) do
     t.string   "contact_detail_id", limit: 36
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "remark",            limit: 64
   end
 
 end
