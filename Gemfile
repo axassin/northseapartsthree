@@ -8,7 +8,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails'
 # Compass rails is an adapter for the Compass Stylesheet Authoring Framework for Ruby on Rails.
 gem 'compass-rails'
 # Use Uglifier as compressor for JavaScript assets
@@ -86,3 +86,6 @@ gem 'probability'
 
 # DRY (Don't Repeat Yourself) of require 'spec_helper'.
 gem 'dry_require_spec_helper'
+
+# font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
+gem 'font-awesome-rails'

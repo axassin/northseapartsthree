@@ -6,11 +6,14 @@ html lang="en"
 
     title == content_for?(:title) ? yield(:title) : "North Sea Parts"
 
-    = stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => "reload"
-    = stylesheet_link_tag controller_path, media: "all", "data-turbolinks-track" => "reload"
-    = javascript_include_tag "application", "data-turbolinks-track" => "reload"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = csrf_meta_tag
 
   body
-    == render template: "common/navigation_bar"
+    == render template: 'common/navigation_bar'
+    == render template: 'common/resource_heading' if @resource_heading != false
+    == render template: 'common/resource_search_interface' if @resource_search_interface != false
+    hr.hidden_spacer
     == yield

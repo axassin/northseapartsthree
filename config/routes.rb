@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   namespace :enterprise do
     namespace :general_management do
       get 'contacts', to: 'contacts#index'
+
+      resources :vehicular_assets
     end
   end
 
