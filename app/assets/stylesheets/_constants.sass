@@ -1,7 +1,8 @@
 $NORTH_SEA_PARTS_RED: #660000
 $PRIMARY_COLOR: $NORTH_SEA_PARTS_RED
+$SECONDARY_COLOR: #BFBFBF
 $PRIMARY_FONT_COLOR: #666666
-$SECONDARY_FONT_COLOR: #404040
+
 
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto)
@@ -22,6 +23,10 @@ body
 
 .container-fluid
   vertical-align: text-bottom
+
+.form-control:focus
+  border-color: $SECONDARY_COLOR
+  box-shadow: inset 0 1px 1px $SECONDARY_COLOR, 0 0 8px $SECONDARY_COLOR
 
 hr.hidden_spacer
   visibility: hidden

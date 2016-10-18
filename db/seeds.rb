@@ -54,6 +54,7 @@ if Rails.env.development?
                      make: %w(TRUCK PICKUP VAN SEDAN).sample,
                      brand: Faker::Company.name,
                      plate_number: Faker::Address.postcode,
+                     fuel_type: %w(DIESEL GASOLINE).sample,
                      description: Faker::Lorem.paragraph,
                      date_of_registration: Faker::Time.between(Date.today - 1800, Date.today) )
   }

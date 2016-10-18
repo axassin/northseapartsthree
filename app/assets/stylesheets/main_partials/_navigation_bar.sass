@@ -1,0 +1,35 @@
+nav.navigation
+  border: 0
+  div.navigation-logo
+    padding: 0.25em
+    padding-right: 2.5em
+    float: left
+    border-right: $SECONDARY_COLOR thin solid
+  div.navigation-search
+    float: left
+    display: inline
+    span
+      width: 25%
+      float: left
+      button.navigation-search-button
+        background-color: $SECONDARY_COLOR
+        padding: 0.55em
+        color: white
+        &:hover
+          background-color: darken($SECONDARY_COLOR, 20%)
+    input.navigation-search-input
+      width: 75%
+      float: left
+      //border-bottom-right-radius: 0 !important
+      //border-top-right-radius: 0 !important
+  div.navigation-right-hand
+    float: right
+    li
+      margin-right: 2em
+      a.menu_button
+        color: white
+        background-color: $SECONDARY_COLOR
+        padding: 0.40em
+        width: 5em
+        &:hover
+          background-color: darken($SECONDARY_COLOR, 20%)

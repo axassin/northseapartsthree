@@ -1,9 +1,11 @@
 class Enterprise::GeneralManagement::VehicularAssetsController < ApplicationController
 
+  layout 'generic_resource'
+
   def index
+    @resource_glyphicon = 'fa fa-truck'
     @resource_subheading = 'Transportation Assets'
-    @resource_heading = false
-    @resource_search_interface = false
+    @vehicles = Vehicle.all
   end
 
 end

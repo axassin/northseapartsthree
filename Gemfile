@@ -74,8 +74,12 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
 gem 'bootstrap', '~> 4.0.0.alpha3.1'
+
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
+
+# font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
+gem 'font-awesome-rails'
 
 # UUID generator for producing universally unique identifiers based on RFC 4122
 gem 'uuidtools'
@@ -91,3 +95,4 @@ gem 'probability'
 
 # DRY (Don't Repeat Yourself) of require 'spec_helper'.
 gem 'dry_require_spec_helper'
+
