@@ -42,7 +42,21 @@ if Rails.env.development?
   # Possible Range of Locations per Contact Details
   LOC_PER_CD = (1..5)
 
+  # Possible Range of Locations per Contact Details
+  NUMBER_OF_VEHICLES = 50
+
+
   # --------------------- Generate Sample Data ---------------------
+
+  # Vehicles
+  NUMBER_OF_VEHICLES.times {
+    Vehicle.create!( color: Faker::Color.color_name,
+                     make: %w(TRUCK PICKUP VAN SEDAN).sample,
+                     brand: Faker::Company.name,
+                     plate_number: Faker::Address.postcode,
+                     description: Faker::Lorem.paragraph,
+                     date_of_registration: Faker::Time.between(Date.today - 1800, Date.today) )
+  }
 
   # System Accounts
   NUMBER_OF_SYSTEM_ACCOUNTS.times {

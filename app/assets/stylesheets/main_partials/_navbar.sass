@@ -1,19 +1,28 @@
-nav.navbar.navbar-default
-  padding: 0
-  min-height: 0
-  margin-bottom: 0.1em
-  border: none
-
-  div.navbar-header
-    padding: 0.5em
-
-  .nav.navbar-nav.navbar-right > li
-    text-transform: uppercase
-    @extend %generic_sub_heading
-    a
-      padding: 1em
-
-  .login_indicator
-    border-left: solid #DADADA 0.05em
-    padding-left: 5em
-
+nav.navigation
+  border: 0
+  div.navigation-logo
+    padding: 0.25em
+    padding-right: 2.5em
+    float: left
+  div.navigation-search
+    float: left
+    display: inline
+    width: 25%
+    input.navigation-search-input
+      font-size: 0.85em
+      padding: 0.25em
+      padding-left: 0.5em
+      border-left: solid medium #b3b3b3
+      display: inline
+      width: 75%
+    button.navigation-search-button
+      background-color: #b3b3b3
+      color: white
+      padding: 0
+  div.navigation-right-hand
+    padding: 0.25em
+    float: right
+    li
+      a
+        padding: 0em
+        margin-right: 2em

@@ -15,5 +15,6 @@ module Northseapartsthree
     config.active_record.default_timezone = :local
 
     config.autoload_paths += Dir["#{config.root}/db/migrate/concerns/**/"]
+
   end
 end

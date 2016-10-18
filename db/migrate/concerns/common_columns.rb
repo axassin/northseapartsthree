@@ -8,7 +8,7 @@ module CommonColumns
   end
 
   def name_column(t)
-    t.string :name, :limit => 64
+    t.string :name, :limit => 64, :required => true
   end
 
   def label_column(t)
@@ -20,7 +20,7 @@ module CommonColumns
   end
 
   def foreign_key_id(t, foreign_key)
-    t.string (foreign_key + '_id').to_sym, :limit => 36
+    t.string (foreign_key + '_id').to_sym, :limit => 36, :required => true
   end
 
   def remark_column(t)

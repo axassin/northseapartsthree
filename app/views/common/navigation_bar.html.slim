@@ -1,22 +1,11 @@
-nav class="navbar navbar-default"
-  div class="navbar-header" =image_tag('nav_bar_header.png')
-  div class="container-fluid"
-    ul class="nav navbar-nav navbar-right"
-      - if 0 == 0
-        li
-          a href="" Human Resources
-        li
-          a href="" General
-        li
-          a href="" Operations
-        li
-          a href="" Marketing
-        li
-          a href="" Accounting and Finance
-        li
-          a href="" class='login_indicator' Signed In!
-      - else
-        li
-          a href="" About the Enterprise
-        li
-          a href="" Sign In
+nav.navbar.navbar-default.navigation
+  div.navbar-header.navigation-logo =image_tag('nav_bar_header.png')
+  div.input_group.navigation-search
+    input.form-control.navigation-search-input type="text" placeholder=" #{"&#x1f50e;".html_safe} Search for #{controller_name.humanize.titleize} "
+    button.btn.btn-default.navigation-search-button type="button" Go!
+  div.navigation-right-hand
+    ul.nav.navbar-nav.navbar-right
+      li
+        a href='' ="MENU &#x2630;".html_safe
+      li
+        a href='' Login Placeholder

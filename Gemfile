@@ -8,9 +8,7 @@ gem 'mysql2', '>= 0.3.18', '< 0.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails'
-# Compass rails is an adapter for the Compass Stylesheet Authoring Framework for Ruby on Rails.
-gem 'compass-rails'
+gem 'sassc-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
@@ -60,6 +58,13 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
+
+  # Guard is a command line tool to easily handle events on file system modifications.
+  gem 'guard', '>= 2.2.2', :require => false
+  gem 'guard-livereload',  :require => false
+  gem 'rack-livereload'
+  gem 'rb-fsevent',        :require => false
+
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -86,6 +91,3 @@ gem 'probability'
 
 # DRY (Don't Repeat Yourself) of require 'spec_helper'.
 gem 'dry_require_spec_helper'
-
-# font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
-gem 'font-awesome-rails'
