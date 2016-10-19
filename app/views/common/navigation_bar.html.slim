@@ -1,10 +1,11 @@
 nav.navbar.navbar-default.navigation
-  div.navbar-header.navigation-logo.col-md-2 =image_tag('nav_bar_header.png')
-  div.input_group.navigation-search.col-md-7
+  div.navbar-header.navigation-logo.col-xs-2 =image_tag('nav_bar_header.png')
+  div.input_group.navigation-search.col-xs-7
     input.form-control.navigation-search-input type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
-  div.navigation-right-hand.col-md-3
-    ul.nav.navbar-nav.navbar-right
-      li
-        a.btn.btn-default.menu_button href=''
-          span.glyphicon.glyphicon-menu-hamburger
-      li Login Placeholder
+  div.navigation-menu-button.col-xs-1
+    a.btn.btn-default.menu_button href=''
+        span.fa.fa-bars
+  div.navigation-login-indicator.col-xs-2
+    span Login Placeholder
+
+
