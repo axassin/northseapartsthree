@@ -4,5 +4,22 @@ html lang="en"
   body
     == render template: 'common/navigation_bar'
     == render template: 'common/resource_heading'
+
     div.col-md-10.resource_body
+      table.resource_table
+        thead
+          tr
+            - @result_set.first.class.attribute_names.each do |attribute|
+              - unless @omitted_attributes.include?(attribute)
+                th
+                  div = attribute.humanize.titleize.upcase
+        tbody
+          - @result_set.each do |result|
+            tr
+            - result.attribute_names.each do |attribute|
+              - unless @omitted_attributes.include? attribute
+                td = result[attribute.to_sym]
+
+
+
       // == yield
