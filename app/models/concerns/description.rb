@@ -1,4 +1,5 @@
-module DescriptionConcern extend ActiveSupport::Concern
+module Description
+  extend ActiveSupport::Concern
 
   included do
     validates :description, length: { in: 2..512 }

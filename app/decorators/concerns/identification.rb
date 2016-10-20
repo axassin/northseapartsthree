@@ -1,4 +1,4 @@
-module Identification extend ActiveSupport::Concern
+module Decorators::Identification extend ActiveSupport::Concern
 
   def id
     object.id.upcase

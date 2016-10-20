@@ -1,4 +1,4 @@
-module Timestamps extend ActiveSupport::Concern
+module Decorators::Timestamps extend ActiveSupport::Concern
 
   def created_at
     object.created_at.strftime("%m/%d/%y %r")

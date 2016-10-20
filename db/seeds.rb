@@ -56,7 +56,7 @@ if Rails.env.development?
                      plate_number: Faker::Address.postcode,
                      fuel_type: %w(DIESEL GASOLINE).sample,
                      description: Faker::Lorem.paragraph,
-                     date_of_registration: Faker::Time.between(Date.today - 1800.days, Date.today) )
+                     date_of_registration: Faker::Time.between(DateTime.now - 3600, DateTime.now) )
   }
 
   # System Accounts

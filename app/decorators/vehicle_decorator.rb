@@ -1,11 +1,9 @@
 class VehicleDecorator < MasterDecorator
 
-  def color
-
-  end
+  include Decorators::Description
 
   def date_of_registration
-    object.created_at.strftime("%m/%d/%y")
+    object.date_of_registration.strftime('%m/%d/%y')
   end
 
 end

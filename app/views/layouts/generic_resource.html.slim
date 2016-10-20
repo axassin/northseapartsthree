@@ -17,7 +17,7 @@ html lang="en"
           - @result_set.each do |result|
             tr
             - result.attribute_names.each do |attribute|
-              - unless @omitted_attributes.include? attribute
+              - unless @omitted_attributes.include?(attribute)
                 td = result.decorate.send(attribute)
 
       == yield
