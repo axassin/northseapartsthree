@@ -24,4 +24,3 @@ image       = Dir["#{image_prefix}**/*.*"].map { |x| x.gsub(image_prefix, '') }
 puts "---------------------- START OF COMPILED ASSETS ----------------------"
 puts Rails.application.config.assets.precompile = (javascripts + css + image + enterprise_controllers + front_end_controllers + development_controllers)
 puts "----------------------- END OF COMPILED ASSETS -----------------------"
-puts '\n'

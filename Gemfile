@@ -100,4 +100,4 @@ gem 'dry_require_spec_helper'
 gem 'activemodel-serializers-xml'
 
 # Draper adds an object-oriented layer of presentation logic to your Rails application.
-gem 'draper'
+gem 'drape', '~> 1.0.0.beta1'

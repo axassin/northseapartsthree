@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20161017103832) do
     t.string   "make",                 limit: 64
     t.string   "brand",                limit: 64
     t.string   "plate_number",         limit: 64
+    t.string   "fuel_type",            limit: 64
     t.string   "description",          limit: 512
     t.date     "date_of_registration"
     t.string   "primary_image",        limit: 512
