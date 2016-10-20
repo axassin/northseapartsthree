@@ -18,8 +18,6 @@ html lang="en"
             tr
             - result.attribute_names.each do |attribute|
               - unless @omitted_attributes.include? attribute
-                td = result[attribute.to_sym]
+                td = result.decorate.send(attribute)
 
-
-
-      // == yield
+      == yield

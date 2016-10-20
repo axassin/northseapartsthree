@@ -96,3 +96,8 @@ gem 'probability'
 # DRY (Don't Repeat Yourself) of require 'spec_helper'.
 gem 'dry_require_spec_helper'
 
+# This gem provides XML serialization for your Active Model objects and Active Record models
+gem 'activemodel-serializers-xml'
+
+# Draper adds an object-oriented layer of presentation logic to your Rails application.
+gem 'draper'
