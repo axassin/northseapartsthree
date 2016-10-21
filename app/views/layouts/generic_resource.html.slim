@@ -3,15 +3,15 @@ html lang="en"
   == render template: 'common/generic_head'
   body.generic_resource
     == render template: 'common/navigation_bar'
-    div.resource_heading.col-md-2
+    div.resource_navigation.col-md-2
       - if defined? @resource_glyphicon
-        span class=(@resource_glyphicon + " resource_glyphicon")
-      h1.resource_title_heading = @resource_title_heading
+        div class=(@resource_glyphicon + " resource_glyphicon")
+      h1.title_heading = @resource_title_heading
       - if defined? @resource_sub_heading
         div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
       div.page_entries_info = page_entries_info @result_set
       div.paginator = paginate @result_set
-    div.resource_body.col-md-10
+    div.resource_representation.col-md-10
       table.resource_table
         thead
           tr
