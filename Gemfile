@@ -105,3 +105,9 @@ gem 'drape', '~> 1.0.0.beta1'
 # Sunspot is a Ruby library for expressive, powerful interaction with the Solr search engine.
 gem 'sunspot_rails'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+# A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs
+gem 'kaminari'
+
+# The ultimate text progress bar library for Ruby!
+gem 'progress_bar'

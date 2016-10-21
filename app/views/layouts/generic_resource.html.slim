@@ -3,9 +3,10 @@ html lang="en"
   == render template: 'common/generic_head'
   body
     == render template: 'common/navigation_bar'
-    == render template: 'common/resource_heading'
-
-    div.col-md-10.resource_body
+    div.resource_heading.col-md-2
+      == render template: 'common/resource_heading'
+      == render template: 'common/resource_search_interface'
+    div.resource_body.col-md-10
       table.resource_table
         thead
           tr

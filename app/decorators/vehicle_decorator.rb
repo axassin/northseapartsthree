@@ -1,6 +1,6 @@
 class VehicleDecorator < MasterDecorator
 
-  include Decorators::Description
+  include DescriptionDecorator
 
   def date_of_registration
     object.date_of_registration.strftime('%m/%d/%y')

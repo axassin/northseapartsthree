@@ -43,7 +43,7 @@ if Rails.env.development?
   LOC_PER_CD = (1..5)
 
   # Possible Range of Locations per Contact Details
-  NUMBER_OF_VEHICLES = 50
+  NUMBER_OF_VEHICLES = 500
 
 
   # --------------------- Generate Sample Data ---------------------

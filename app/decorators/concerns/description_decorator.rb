@@ -1,4 +1,5 @@
-module Decorators::Description extend ActiveSupport::Concern
+module DescriptionDecorator
+  extend ActiveSupport::Concern
 
   def description
     object.description || ' N/A '

@@ -2,7 +2,7 @@ class MasterDecorator < Drape::Decorator
 
   delegate_all
 
-  include Decorators::Timestamps
-  include Decorators::Identification
+  include TimestampDecorator
+  include IdentificationDecorator
 
 end
