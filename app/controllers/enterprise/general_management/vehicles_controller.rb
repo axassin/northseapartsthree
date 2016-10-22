@@ -9,7 +9,8 @@ class Enterprise::GeneralManagement::VehiclesController < ApplicationController
                 'Transportation Assets',
                 ['primary_image'],
                 params[:page],
-                params[:items_per_page] )
+                params[:per_page],
+                params[:search_query] )
   end
 
 end

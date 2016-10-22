@@ -153,7 +153,6 @@
     <orderEntry type="library" scope="PROVIDED" name="guard (v2.14.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-compat (v1.2.1, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="guard-livereload (v2.5.2, ruby-2.3.1-p112) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="highline (v1.7.8, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="http_parser.rb (v0.6.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v0.7.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.6.0, ruby-2.3.1-p112) [gem]" level="application" />
@@ -174,11 +173,9 @@
     <orderEntry type="library" scope="PROVIDED" name="nio4r (v1.2.1, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="nokogiri (v1.6.8, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="notiffany (v0.1.1, ruby-2.3.1-p112) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="options (v2.3.2, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pkg-config (v1.1.7, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pr_geohash (v1.0.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="probability (v1.0.0, ruby-2.3.1-p112) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="progress_bar (v1.0.5, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="pry (v0.10.4, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="puma (v3.6.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="rack (v2.0.1, ruby-2.3.1-p112) [gem]" level="application" />
@@ -201,6 +198,7 @@
     <orderEntry type="library" scope="PROVIDED" name="rspec-support (v3.5.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="ruby_dep (v1.5.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sass (v3.4.22, ruby-2.3.1-p112) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="sassc (v1.10.1, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="sassc-rails (v1.3.0, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="shellany (v0.0.1, ruby-2.3.1-p112) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="shoulda-matchers (v3.1.1, ruby-2.3.1-p112) [gem]" level="application" />

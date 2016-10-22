@@ -5,8 +5,12 @@ nav.navigation
     padding-right: 2.5em
     border-right: $SECONDARY_COLOR thin solid
   div.navigation-search
-    input.navigation-search-input
-      width: 50%
+    form
+      input.navigation-search-input
+        width: 50%
+      input.hidden_submit
+        position: absolute
+        left: -9999px
   div.navigation-menu-button
     .menu_button
       background-color: $SECONDARY_COLOR

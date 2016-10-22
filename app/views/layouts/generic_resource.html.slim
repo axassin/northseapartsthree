@@ -3,27 +3,6 @@ html lang="en"
   == render template: 'common/generic_head'
   body.generic_resource
     == render template: 'common/navigation_bar'
-    div.resource_navigation.col-md-2
-      - if defined? @resource_glyphicon
-        div class=(@resource_glyphicon + " resource_glyphicon")
-      h1.title_heading = @resource_title_heading
-      - if defined? @resource_sub_heading
-        div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
-      div.page_entries_info = page_entries_info @result_set
-      div.paginator = paginate @result_set
-    div.resource_representation.col-md-10
-      table.resource_table
-        thead
-          tr
-            - @result_set.first.class.attribute_names.each do |attribute|
-              - unless @omitted_attributes.include?(attribute)
-                th
-                  div = attribute.humanize.titleize.upcase
-        tbody
-          - @result_set.each do |result|
-            tr
-            - result.attribute_names.each do |attribute|
-              - unless @omitted_attributes.include?(attribute)
-                td = result.decorate.send(attribute)
-
-      == yield
+    - @result_set.each do |result|
+      div =result.id
+    == yield
