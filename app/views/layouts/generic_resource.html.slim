@@ -3,6 +3,38 @@ html lang="en"
   == render template: 'common/generic_head'
   body.generic_resource
     == render template: 'common/navigation_bar'
-    - @result_set.each do |result|
-      div =result.id
+    div.resource_navigation.col-md-2
+      - if defined? @resource_glyphicon
+        div class=(@resource_glyphicon + " resource_glyphicon")
+      h1.title_heading = @resource_title_heading
+      - if defined? @resource_sub_heading
+        div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
+      - unless @result_set.total_count == 0
+        div.page_entries_info =("Currently displaying #{@result_set.offset} out of #{@result_set.total_count}")
+        div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
+        div.results_per_page
+          = 'Results per Page : '
+          = select_tag(:per_page,
+                      options_for_select([[10,10],
+                                          [50,50],
+                                          [100,100],
+                                          [500,500],
+                                          [1000,1000],
+                                          [5000,5000]],
+                                          params[:per_page]) )
+    div.resource_representation.col-md-10
+      - unless @result_set.total_count == 0
+        table.resource_table
+          thead
+            tr
+              - @result_set.first.class.attribute_names.each do |attribute|
+                - unless @omitted_attributes.include?(attribute)
+                  th
+                    div = attribute.humanize.titleize.upcase
+          tbody
+            - @result_set.each do |result|
+              tr
+              - result.attribute_names.each do |attribute|
+                - unless @omitted_attributes.include?(attribute)
+                  td = result.decorate.send(attribute)
     == yield

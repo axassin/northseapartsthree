@@ -1,6 +1,7 @@
 class Vehicle < ApplicationRecord
 
   include Description
+  include UUIDConcern
 
   validates :color, length: { in: 2..64 }, presence: true
   validates :make, length: { in: 2..64 }, presence: true

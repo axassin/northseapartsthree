@@ -110,4 +110,4 @@ gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in developm
 gem 'kaminari'
 
 # The ultimate text progress bar library for Ruby!
-# gem 'progress_bar'
+gem 'progress_bar'

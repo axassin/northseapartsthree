@@ -6,9 +6,11 @@ module UUIDConcern extend ActiveSupport::Concern
     }
 
     searchable do
-      text :id
+      string :id
     end
 
   end
+
+
 
 end
