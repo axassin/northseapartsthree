@@ -111,3 +111,6 @@ gem 'kaminari'
 
 # The ultimate text progress bar library for Ruby!
 gem 'progress_bar'
+
+# URI.js for Rails.
+gem 'uri-js-rails'

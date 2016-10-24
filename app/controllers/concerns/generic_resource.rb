@@ -13,6 +13,7 @@ module GenericResource
     page ||= 1
     per_page ||= 10
 
+
     search_results = class_model.search do
       fulltext search_query
       paginate :page => page, :per_page => per_page

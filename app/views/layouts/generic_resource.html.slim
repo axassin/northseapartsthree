@@ -3,6 +3,7 @@ html lang="en"
   == render template: 'common/generic_head'
   body.generic_resource
     == render template: 'common/navigation_bar'
+    = javascript_include_tag 'generic_resource', 'data-turbolinks-track' => 'reload'
     div.resource_navigation.col-md-2
       - if defined? @resource_glyphicon
         div class=(@resource_glyphicon + " resource_glyphicon")
@@ -10,7 +11,7 @@ html lang="en"
       - if defined? @resource_sub_heading
         div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
       - unless @result_set.total_count == 0
-        div.page_entries_info =("Currently displaying #{@result_set.offset} out of #{@result_set.total_count}")
+        div.page_entries_info =("Currently displaying #{@result_set.offset + (params[:per_page] || 10)} out of #{@result_set.total_count}")
         div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
         div.results_per_page
           = 'Results per Page : '
