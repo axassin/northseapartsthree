@@ -1,2 +1,7 @@
-class Enterprise::GeneralManagementController < ApplicationController
+class Enterprise::GeneralManagementController < EnterpriseController
+
+  def index
+
+  end
+
 end

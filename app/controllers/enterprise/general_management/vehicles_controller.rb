@@ -1,4 +1,4 @@
-class Enterprise::GeneralManagement::VehiclesController < ApplicationController
+class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralManagementController
 
   layout 'generic_resource'
 

@@ -6,26 +6,22 @@ html lang="en"
     = javascript_include_tag 'generic_resource', 'data-turbolinks-track' => 'reload'
     div.resource_display
       div.resource_navigation.col-md-2
-
         div class=(@resource_glyphicon + " resource_glyphicon")
         div.title_group
           h1.title_heading = @resource_title_heading
           div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
-
         div.results_per_page
           = 'View Mode : '
           = select_tag(:view_mode, options_for_select([['TABLE', 'table'],['ICON', 'icon']],params[:view_mode]))
-
         - unless @result_set.total_count == 0
           ruby:
             offset_additional = 0
             params.has_key?(:per_page) ? offset_additional = params[:per_page].to_i : offset_additional = @DEFAULT_ITEMS_PER_PAGE
-            current_view_amount = @result_set.offset + offset_additional
+            offset_end = @result_set.offset + offset_additional
             total_count = @result_set.total_count
-            current_view_amount = total_count if current_view_amount > total_count
+            offset_end = total_count if total_count < offset_end
 
-          div.page_entries_info =("Displaying #{current_view_amount} out of #{total_count}")
-
+          div.page_entries_info =("Displaying from #{(@result_set.offset + 1).ordinalize} to the #{offset_end.ordinalize}")
           div.results_per_page
             = 'Results per Page : '
             = select_tag(:per_page,
@@ -39,6 +35,8 @@ html lang="en"
 
           div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
           div.button_options
+            button.btn.btn-default.resource_button_option RESET
+            br
             button.btn.btn-default.resource_button_option ADD ITEM
             br
             button.btn.btn-default.resource_button_option PRINTABLE FORM
@@ -63,14 +61,13 @@ html lang="en"
                   - unless @omitted_attributes.include?(attribute)
                     td = result.decorate.send(attribute)
         - else
-          h1 NO RESULTS FOUND
-          div Suggestions:
-          ul
-            li Check your spelling
-            li Try different keywords; more general or specific
-            li Try fewer keywords
-            li Information is non-existent; add more
+          div.no_results_message
+            h1 NO RESULTS FOUND
+            div Suggestions:
+            ul
+              li Check your spelling
+              li Try different keywords; more general or specific
+              li Try fewer keywords
+              li Information is non-existent; add more
 
 
-
-    == yield
