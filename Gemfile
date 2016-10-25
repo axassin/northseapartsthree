@@ -114,3 +114,15 @@ gem 'progress_bar'
 
 # URI.js for Rails.
 gem 'uri-js-rails'
+
+# Roo provides an interface to spreadsheets of several sorts.
+gem 'roo'
+
+# Use wicked to turn your controller into a wizard
+gem 'wicked'
+
+# Ancestry is a gem/plugin that allows the records of a Ruby on Rails ActiveRecord model to be organised as a tree structure (or hierarchy)
+gem 'ancestry'
+
+# This library provides integration of the money gem with Rails.
+gem 'money-rails'

@@ -72,3 +72,4 @@ solr/default/data
 /log/*.log.lck
 solr/pids
 solr/hsperfdata_own
+solr/hsperfdata_james

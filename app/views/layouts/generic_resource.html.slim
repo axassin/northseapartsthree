@@ -11,7 +11,14 @@ html lang="en"
       - if defined? @resource_sub_heading
         div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
       - unless @result_set.total_count == 0
-        div.page_entries_info =("Currently displaying #{@result_set.offset + (params[:per_page] || 10)} out of #{@result_set.total_count}")
+        ruby:
+          offset_additional = 0
+          params.has_key?(:per_page) ? offset_additional = params[:per_page].to_i : offset_additional = @DEFAULT_ITEMS_PER_PAGE
+          current_view_amount = @result_set.offset + offset_additional
+          total_count = @result_set.total_count
+          current_view_amount = total_count if current_view_amount > total_count
+
+        div.page_entries_info =("Currently displaying #{current_view_amount} out of #{total_count}")
         div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
         div.results_per_page
           = 'Results per Page : '
@@ -38,4 +45,15 @@ html lang="en"
               - result.attribute_names.each do |attribute|
                 - unless @omitted_attributes.include?(attribute)
                   td = result.decorate.send(attribute)
+      - else
+        h1 NO RESULTS FOUND
+        div Suggestions:
+        ul
+          li Check your spelling
+          li Try different keywords; more general or specific
+          li Try fewer keywords
+          li Information is non-existent; add more
+
+
+
     == yield

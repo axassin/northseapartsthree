@@ -10,9 +10,10 @@ module GenericResource
                    per_page,
                    search_query )
 
-    page ||= 1
-    per_page ||= 10
+    @DEFAULT_ITEMS_PER_PAGE = 10
 
+    page ||= 1
+    per_page ||= @DEFAULT_ITEMS_PER_PAGE
 
     search_results = class_model.search do
       fulltext search_query
