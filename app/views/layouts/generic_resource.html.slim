@@ -1,9 +1,13 @@
 doctype html
 html lang="en"
-  == render template: 'common/generic_head'
+  head
+    == render template: 'common/generic_head'
+    = javascript_include_tag 'generic_resource', 'data-turbolinks-track' => 'reload'
+
   body.generic_resource
     == render template: 'common/navigation_bar'
-    = javascript_include_tag 'generic_resource', 'data-turbolinks-track' => 'reload'
+    div#sample_result_set
+
     div.resource_display
       div.resource_navigation.col-md-2
         div class=(@resource_glyphicon + " resource_glyphicon")
@@ -47,6 +51,7 @@ html lang="en"
 
       div.resource_representation.col-md-10
         - unless @result_set.total_count == 0
+
           table.resource_table
             thead
               tr

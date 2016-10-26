@@ -14,7 +14,7 @@ js_prefix    = 'app/assets/javascripts/'
 style_prefix = 'app/assets/stylesheets/'
 image_prefix = 'app/assets/images/'
 
-javascripts = Dir["#{js_prefix}**/*.*"].map      { |x| x.gsub(js_prefix,    '') }
+javascripts = Dir["#{js_prefix}**/*.*"].map      { |x| x.gsub(js_prefix, '') }
 css         = Dir["#{style_prefix}application.sass"].map  { |x| x.gsub(style_prefix, '') }
 enterprise_controllers = Dir["#{style_prefix}enterprise/**/*.*"].map  { |x| x.gsub(style_prefix, '') }
 front_end_controllers = Dir["#{style_prefix}front_end/**/*.*"].map  { |x| x.gsub(style_prefix, '') }

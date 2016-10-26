@@ -73,3 +73,5 @@ solr/default/data
 solr/pids
 solr/hsperfdata_own
 solr/hsperfdata_james
+
+Gemfile.lock

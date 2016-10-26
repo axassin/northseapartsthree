@@ -28,7 +28,7 @@ module GenericResource
 
     respond_to do |format|
       format.html
-      format.json { render :json => @result_set }
+      format.json { render :json => class_model.all.as_json }
     end
 
   end
