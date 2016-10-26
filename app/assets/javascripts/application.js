@@ -17,4 +17,5 @@
 //= require bootstrap
 //= require URI
 //= require jquery.URI
+//= require twitter-typeahead-rails
 //= require_tree .

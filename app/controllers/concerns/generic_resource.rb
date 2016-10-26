@@ -19,11 +19,17 @@ module GenericResource
       fulltext search_query
       paginate :page => page, :per_page => per_page
     end
+
     @result_set = search_results.results
     @resource_glyphicon = resource_glyphicon
     @resource_title_heading = resource_title_heading || (controller_name).humanize
     @resource_sub_heading = resource_sub_heading
     @omitted_attributes = omitted_attributes || []
+
+    respond_to do |format|
+      format.html
+      format.json { render :json => @result_set }
+    end
 
   end
 

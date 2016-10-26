@@ -1,13 +1,13 @@
 nav.navbar.navbar-default.navigation
-  div.navbar-header.navigation-logo.col-xs-2 =image_tag('nav_bar_header.png')
-  div.input_group.navigation-search.col-xs-7
+  div.navbar-header.navigation-logo.col-md-2 =image_tag('nav_bar_header.png')
+  div.input_group.navigation-search.col-md-7
     form method="get"
-      input.form-control.navigation-search-input name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+      input.form-control.navigation-search-input id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
       input.hidden_submit type="submit"
-  div.navigation-menu-button.col-xs-1
+  div.navigation-menu-button.col-md-1
     a.btn.btn-default.menu_button href=''
         span.fa.fa-bars
-  div.navigation-login-indicator.col-xs-2
+  div.navigation-login-indicator.col-md-2
     span Login Placeholder
 
 
