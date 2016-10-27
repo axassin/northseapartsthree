@@ -1,6 +1,19 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
+  # ----------------------------- Concerns -----------------------------
+  concern :search_suggestionable do
+    collection do
+      get :search_suggestions
+    end
+  end
+
+  # ----------------------------- Aggregated Functions -----------------------------
+
+  def generate_logic_unit( unit )
+    resources unit, concerns: [:search_suggestionable]
+  end
+
   # ----------------------------- Front-End Website -----------------------------
 
   # Home Page route
@@ -14,7 +27,8 @@ Rails.application.routes.draw do
     namespace :general_management do
       get 'contacts', to: 'contacts#index'
 
-      resources :vehicles
+      generate_logic_unit( :vehicles )
+
     end
   end
 

@@ -11,10 +11,11 @@ module GenericResource
                    search_query )
 
     # Constants
+    default_start_page = 1
     @DEFAULT_ITEMS_PER_PAGE = 10
 
     # Defaults
-    page ||= 1
+    page ||= default_start_page
     per_page ||= @DEFAULT_ITEMS_PER_PAGE
 
     # Sunspot Search
@@ -29,14 +30,27 @@ module GenericResource
     @resource_title_heading = resource_title_heading || (controller_name).humanize
     @resource_sub_heading = resource_sub_heading
     @omitted_attributes = omitted_attributes || []
+  end
 
-    # Search Suggestion Setup
+  def setup_search_suggestions(class_model, search_query)
 
+    # Sunspot Search
+    search_suggestions = class_model.search do
+      fulltext search_query
+    end
 
-    # Response Settings
+    search_suggestions_array = []
+    search_suggestions.results.each do |result|
+      result.attribute_names.each do |attribute|
+        suggestion = result.send(attribute)
+        if suggestion.to_s.include? search_query
+          search_suggestions_array.push(suggestion)
+        end
+      end
+    end
+
     respond_to do |format|
-      format.html
-      format.json { render :json => class_model.all }
+      format.json { render :json => search_suggestions_array }
     end
 
   end

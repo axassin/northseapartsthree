@@ -13,4 +13,8 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
                 params[:search_query] )
   end
 
+  def search_suggestions
+    setup_search_suggestions(Vehicle, params[:search_query])
+  end
+
 end
