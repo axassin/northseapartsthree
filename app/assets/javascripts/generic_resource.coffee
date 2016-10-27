@@ -10,17 +10,18 @@ jQuery ($) ->
     window.location.href = new_URI
 
   # Autosuggest
-  $('#search_query').change ->
+###  $('#search_query').change ->
     search_query = $('#search_query').val()
     callback = (response) -> suggestion_array = response; alert(suggestion_array);
-    $.get window.location.href , {search_query}, callback, 'json'
+    $.get window.location.href , {search_query}, callback, 'json'###
 
-###
-  class_model_data = new Bloodhound({
-    datumTokenizer: Bloodhound.tokenizers.whitespace,
-    queryTokenizer: Bloodhound.tokenizers.whitespace,
-    prefetch: window.location.href
-  });
+jQuery ($) ->
+  class_model_data = new Bloodhound(
+    datumTokenizer: Bloodhound.tokenizers.whitespace('value')
+    queryTokenizer: Bloodhound.tokenizers.whitespace
+    remote: { url: window.location.href + '?search_query=%QUERY', wildcard: '%QUERY' })
+
+  class_model_data.initialize()
 
   $('#search_query').typeahead({
       hint: true,
@@ -29,6 +30,5 @@ jQuery ($) ->
     },
     {
       name: 'class_model_data',
-      source: class_model_data
+      source: class_model_data.ttAdapter()
     });
-###
