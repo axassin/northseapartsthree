@@ -37,7 +37,7 @@ html lang="en"
 
           div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
           div.button_options
-            button.btn.btn-default.resource_button_option RESET
+            button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
             br
             button.btn.btn-default.resource_button_option ADD ITEM
             br

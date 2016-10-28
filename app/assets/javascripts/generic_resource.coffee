@@ -9,17 +9,11 @@ jQuery ($) ->
     new_URI = current_URI.removeSearch('per_page').removeSearch('page').addSearch('per_page',per_page)
     window.location.href = new_URI
 
-  # Autosuggest
-###  $('#search_query').change ->
-    search_query = $('#search_query').val()
-    callback = (response) -> suggestion_array = response; alert(suggestion_array);
-    $.get window.location.href , {search_query}, callback, 'json'###
-
-jQuery ($) ->
+  # Search Suggestions
   class_model_data = new Bloodhound(
     datumTokenizer: Bloodhound.tokenizers.whitespace('value')
     queryTokenizer: Bloodhound.tokenizers.whitespace
-    remote: { url: window.location.href + '/search_suggestions?search_query=%QUERY', wildcard: '%QUERY' })
+    remote: { url: base_url + '/' + controller_path + '/search_suggestions?search_query=%QUERY', wildcard: '%QUERY' })
 
   class_model_data.initialize()
 
@@ -32,3 +26,7 @@ jQuery ($) ->
       name: 'class_model_data',
       source: class_model_data.ttAdapter()
     });
+
+  # Reset Parameters
+  $('#generic_resource_reset').click ->
+    window.location = window.location.pathname + window.location.hash;

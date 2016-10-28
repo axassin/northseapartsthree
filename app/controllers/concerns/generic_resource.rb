@@ -50,7 +50,7 @@ module GenericResource
     end
 
     respond_to do |format|
-      format.json { render :json => search_suggestions_array }
+      format.json { render :json => search_suggestions_array.uniq }
     end
 
   end
