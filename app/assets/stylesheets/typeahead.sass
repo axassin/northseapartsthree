@@ -1,13 +1,17 @@
+@import constants
+
 span.twitter-typeahead
   width: 100%
 
   .tt-menu
-    @extend .dropdown-menu
+    padding: 0.5em
     background-color: lightgrey
   .tt-suggestion
-    @extend .dropdown-item
+
   .tt-suggestion.tt-cursor
-    @extend .dropdown-item.active
+    color: white
+    background-color: $TERTIARY_COLOR
+
 
   .input-group &
     display: block !important

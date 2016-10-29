@@ -3,4 +3,6 @@ class ApplicationController < ActionController::Base
 
   include GenericResource
 
+
+
 end

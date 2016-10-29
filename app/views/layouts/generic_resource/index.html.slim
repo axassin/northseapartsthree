@@ -1,21 +1,20 @@
 doctype html
 html lang="en"
   head
-    == render template: 'common/generic_head'
-    = javascript_include_tag 'generic_resource', 'data-turbolinks-track' => 'reload'
-
-  body.generic_resource
-    == render template: 'common/navigation_bar'
+    = render template: 'common/generic_head'
+    = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
+  body
+    = render template: 'common/navigation_bar'
     div.resource_display
       div.resource_navigation.col-md-2
-        div class=(@resource_glyphicon + " resource_glyphicon")
-        div.title_group
-          h1.title_heading = @resource_title_heading
-          div.resource_sub_heading = '&#9724'.html_safe + ' ' + @resource_sub_heading
-        div.results_per_page
-          = 'View Mode : '
-          = select_tag(:view_mode, options_for_select([['TABLE', 'table'],['ICON', 'icon']],params[:view_mode]))
+        = render template: 'common/title_heading'
         - unless @result_set.total_count == 0
+          
+          div.results_per_page
+            = 'View Mode : '
+            = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['ICON', 'icon']], params[:view_mode]))
+
           ruby:
             offset_additional = 0
             params.has_key?(:per_page) ? offset_additional = params[:per_page].to_i : offset_additional = @DEFAULT_ITEMS_PER_PAGE
@@ -39,7 +38,8 @@ html lang="en"
           div.button_options
             button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
             br
-            button.btn.btn-default.resource_button_option ADD ITEM
+            a href="#{'/' + controller_path + '/new'}"
+              button.btn.btn-default.resource_button_option ADD ITEM
             br
             button.btn.btn-default.resource_button_option PRINTABLE FORM
             br
@@ -60,9 +60,9 @@ html lang="en"
             tbody
               - @result_set.each do |result|
                 tr
-                - result.attribute_names.each do |attribute|
-                  - unless @omitted_attributes.include?(attribute)
-                    td = result.decorate.send(attribute)
+                  - result.attribute_names.each_with_index do |attribute, index|
+                    - unless @omitted_attributes.include?(attribute)
+                      td = result.decorate.send(attribute)
         - else
           div.no_results_message
             h1 NO RESULTS FOUND

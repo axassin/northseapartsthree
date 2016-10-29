@@ -1,29 +1,14 @@
-@import typeahead
-
-%RESOURCE_NAVIGATION_ELEMENT_OFFSET
-  margin-top: 0.5em
+@import "typeahead"
+@import "constants"
+@import "../stylesheets/constants"
 
 div.resource_display
-  position: absolute
-  top: 5em
-  width: 100%
+  @extend %RESOURCE_DISPLAY
+
   div.resource_navigation
-    position: fixed
-    float: left
-    div.resource_glyphicon
-      font-size: 3em
-      color: white
-      background-color: $TERTIARY_COLOR
-      padding: 0.5em
-    div.title_group
-      @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
-      h1.title_heading
-        text-transform: uppercase
-        font-family: "Roboto Medium", "Arial"
-        letter-spacing: 0.05em
-        margin: 0
-      div.sub_heading
-        @extend %font_set_one
+    @extend %RESOURCE_NAVIGATION
+
+    @import "title"
 
     div.page_entries_info
       @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET

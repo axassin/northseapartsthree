@@ -7,9 +7,10 @@ title == content_for?(:title) ? yield(:title) : "North Sea Parts"
 = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag controller_path, 'data-turbolinks-track' => 'reload'
+= favicon_link_tag 'favicon.ico'
 = csrf_meta_tag
 
 javascript:
   var controller_path = "#{controller_path}";
   var controller_name = "#{controller_name}";
-  var base_url = "#{request.base_url}"
+  var base_url = "#{request.base_url}";

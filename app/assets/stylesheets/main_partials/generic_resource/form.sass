@@ -1,0 +1,13 @@
+@import "typeahead"
+@import "constants"
+@import "../stylesheets/constants"
+
+div.form_display
+  @extend %RESOURCE_DISPLAY
+
+  div.form_navigation
+    @extend %RESOURCE_NAVIGATION
+
+    @import "title"
+
+  div.resource_form
