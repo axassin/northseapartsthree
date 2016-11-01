@@ -1,6 +1,6 @@
 class Link < ApplicationRecord
 
-  include RemarkValidations
+  include Remark
   belongs_to :contact_detail
 
   validates :service, length: { in: 2..64 }, presence: true

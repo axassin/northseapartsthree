@@ -1,7 +1,8 @@
 class Vehicle < ApplicationRecord
 
-  include Description
   include UUIDConcern
+  include Description
+  include Timestamps
 
   validates :color, length: { in: 2..64 }, presence: true
   validates :make, length: { in: 2..64 }, presence: true
@@ -10,12 +11,15 @@ class Vehicle < ApplicationRecord
   validates :plate_number, length: { in: 2..64 }, presence: true
   validates :date_of_registration, presence: true
 
+  searchable_string(:color)
+  searchable_string(:make)
+  searchable_string(:brand)
+  searchable_string(:plate_number)
+  searchable_string(:fuel_type)
+
   searchable do
-    text :color
-    text :make
-    text :brand
-    text :plate_number
-    text :fuel_type
+    time :date_of_registration
+    string :date_of_registration
   end
 
 end

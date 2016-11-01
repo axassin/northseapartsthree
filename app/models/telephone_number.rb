@@ -1,6 +1,6 @@
 class TelephoneNumber < ApplicationRecord
 
-  include RemarkValidations
+  include Remark
   belongs_to :contact_detail
 
   validates_presence_of :contact_detail

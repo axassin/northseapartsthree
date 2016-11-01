@@ -6,6 +6,7 @@ module Description
 
     searchable do
       text :description
+      string :description
     end
 
   end

@@ -1,7 +1,7 @@
 module GenericResource
   extend ActiveSupport::Concern
 
-  def setup_table( omitted_attributes )
+  def setup_table( omitted_attributes = nil )
 
     # Constants
     default_start_page = 1
@@ -13,11 +13,15 @@ module GenericResource
     # Defaults
     page ||= default_start_page
     per_page ||= @DEFAULT_ITEMS_PER_PAGE
+    sort_by = params[:sort_by] || 'updated_at'
+    order_by = params[:order_by] || 'desc'
+    view_mode = params[view_mode] || 'icon'
 
     # Sunspot Search
     search_results = @@class_model.search do
       fulltext search_query
       paginate :page => page, :per_page => per_page
+      order_by sort_by.to_sym , order_by.to_sym
     end
 
     # Output Variables
@@ -26,6 +30,9 @@ module GenericResource
     @resource_title_heading = @@resource_title_heading
     @resource_sub_heading = @@resource_sub_heading
     @omitted_attributes = omitted_attributes || []
+    @sort_by = sort_by
+    @order_by = order_by
+    @view_mode = view_mode
 
     render layout: 'generic_resource/index'
 
@@ -45,9 +52,7 @@ module GenericResource
     search_suggestions.results.each do |result|
       result.attribute_names.each do |attribute|
         suggestion = result.send(attribute)
-        if suggestion.to_s.downcase.include? search_query.downcase
-          search_suggestions_array.push(suggestion)
-        end
+        search_suggestions_array.push(suggestion) if suggestion.to_s.downcase.include? search_query.downcase
       end
     end
 

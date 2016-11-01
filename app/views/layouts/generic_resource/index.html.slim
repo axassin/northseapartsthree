@@ -10,10 +10,25 @@ html lang="en"
       div.resource_navigation.col-md-2
         = render template: 'common/title_heading'
         - unless @result_set.total_count == 0
-          
+
           div.results_per_page
             = 'View Mode : '
             = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['ICON', 'icon']], params[:view_mode]))
+
+          div.sort_by
+            ruby:
+              options = []
+              @result_set.first.class.attribute_names.each do |attribute|
+                option_array = []
+                unless @omitted_attributes.include?(attribute)
+                  option_array = [attribute.to_s.humanize.upcase, attribute]
+                  options.push(option_array)
+                end
+              end
+
+            = 'Sort By : '
+            = select_tag(:order_by, options_for_select([['ASCENDING', 'asc'], ['DESCENDING', 'desc']], @order_by))
+            = select_tag(:sort_by, options_for_select(options, @sort_by ))
 
           ruby:
             offset_additional = 0
@@ -23,6 +38,7 @@ html lang="en"
             offset_end = total_count if total_count < offset_end
 
           div.page_entries_info =("Displaying from #{(@result_set.offset + 1).ordinalize} to the #{offset_end.ordinalize}")
+
           div.results_per_page
             = 'Results per Page : '
             = select_tag(:per_page,
@@ -35,34 +51,45 @@ html lang="en"
                             params[:per_page]))
 
           div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
-          div.button_options
-            button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
-            br
-            a href="#{'/' + controller_path + '/new'}"
-              button.btn.btn-default.resource_button_option ADD ITEM
-            br
+
+        div.button_options
+
+          button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
+          br
+
+          a href="#{'/' + controller_path + '/new'}"
+            button.btn.btn-default.resource_button_option ADD ITEM
+          br
+
+          - unless @result_set.total_count == 0
+
             button.btn.btn-default.resource_button_option PRINTABLE FORM
             br
             button.btn.btn-default.resource_button_option EXPORT TO CSV
             br
-            button.btn.btn-default.resource_button_option BACK TO PARENT
+
+          button.btn.btn-default.resource_button_option BACK TO PARENT
 
       div.resource_representation.col-md-10
         - unless @result_set.total_count == 0
+          - if @view_mode == 'table'
 
-          table.resource_table
-            thead
-              tr
-                - @result_set.first.class.attribute_names.each do |attribute|
-                  - unless @omitted_attributes.include?(attribute)
-                    th
-                      div = attribute.humanize.titleize.upcase
-            tbody
-              - @result_set.each do |result|
+            table.resource_table
+              thead
                 tr
-                  - result.attribute_names.each_with_index do |attribute, index|
+                  - @result_set.first.class.attribute_names.each do |attribute|
                     - unless @omitted_attributes.include?(attribute)
-                      td = result.decorate.send(attribute)
+                      th
+                        div = attribute.humanize.titleize.upcase
+              tbody
+                - @result_set.each do |result|
+                  tr
+                    - result.attribute_names.each_with_index do |attribute, index|
+                      - unless @omitted_attributes.include?(attribute)
+                        td = result.decorate.send(attribute)
+
+            else
+
         - else
           div.no_results_message
             h1 NO RESULTS FOUND
