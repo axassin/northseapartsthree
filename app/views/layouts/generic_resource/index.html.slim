@@ -13,7 +13,7 @@ html lang="en"
 
           div.results_per_page
             = 'View Mode : '
-            = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['ICON', 'icon']], params[:view_mode]))
+            = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['ICON', 'icon']], @view_mode))
 
           div.sort_by
             ruby:
@@ -92,8 +92,9 @@ html lang="en"
 
               div.grid
                 - @result_set.each do |result|
-                  div.grid-item
-                    = render partial: controller_path + '/cell', locals: {result: result}
+                  a href='#{'/'+controller_path+'/'+result.id}'
+                    div.grid-item
+                      = render partial: controller_path + '/cell', locals: {result: result}
 
         - else
           div.no_results_message

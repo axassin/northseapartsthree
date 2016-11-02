@@ -129,3 +129,6 @@ gem 'money-rails'
 
 # bootstrap-typeahead-rails project integrates the official typeahead plugin with Rails 3 assets pipeline.
 gem 'twitter-typeahead-rails'
+
+# Rails forms made easy.
+gem 'simple_form'

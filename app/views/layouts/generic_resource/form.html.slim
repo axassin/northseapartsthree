@@ -9,5 +9,15 @@ html lang="en"
     div.form_display
       div.form_navigation.col-md-2
         = render template: 'common/title_heading'
+
+        div.button_options
+
+          button.btn.btn-default.resource_button_option RESET
+          br
+
+          button.btn.btn-default.resource_button_option BACK
+          br
+
       div.form_representation.col-md-10
-        == yield
+        = simple_form_for @current_instance do |f|
+          == yield

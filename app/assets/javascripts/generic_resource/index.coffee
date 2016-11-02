@@ -34,7 +34,7 @@ jQuery ($) ->
     window.location = window.location.pathname + window.location.hash;
 
   # Initialize Grid - Packery
-  current_grid = $('.grid').packery({
+  $grid = $('.grid').packery({
     itemSelector: '.grid-item',
     gutter: 10
   });
@@ -42,7 +42,6 @@ jQuery ($) ->
   current_grid.find('.grid-item').each = (i, gridItem) ->
     draggie = new Draggabily(gridItem)
     $grid.packery( 'bindDraggabillyEvents', draggie );
-
 
 query_modifiers = (query_element, current_URI) ->
   $('#' + query_element).change ->
