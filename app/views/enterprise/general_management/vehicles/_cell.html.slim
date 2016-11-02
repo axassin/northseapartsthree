@@ -1,2 +1,5 @@
 img.primary_image
-span =result.plate_number
+span
+  =result.plate_number + ' | '
+span style='color: #{result.color}'
+  ="&#9632;".html_safe

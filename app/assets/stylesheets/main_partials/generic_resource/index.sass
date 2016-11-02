@@ -49,12 +49,28 @@ div.resource_display
   div.resource_representation
     float: right
     div.grid
-      div.grid-item
-        width: 23%
-        float: left
-        background-color: gainsboro
-        padding: 0.25em
-        margin: 0.25em
+      border: solid gainsboro thin
+      padding: 0.5em
+      a
+        %GRID_ITEM_ACTIVE
+          background-color: $TERTIARY_COLOR
+          color: white
+          border: none
+
+        div.grid-item
+          width: 23%
+          float: left
+          border: solid gainsboro thin
+          padding: 0.25em
+          margin: 0.25em
+          color: $TERTIARY_COLOR
+          &:hover
+            @extend %GRID_ITEM_ACTIVE
+
+        div.grid-item.is-dragging
+          @extend %GRID_ITEM_ACTIVE
+        div.grid-item.is-positioning-post-drag
+          @extend %GRID_ITEM_ACTIVE
 
     table.resource_table
       width: 100%

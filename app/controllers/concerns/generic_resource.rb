@@ -15,7 +15,7 @@ module GenericResource
     per_page ||= @DEFAULT_ITEMS_PER_PAGE
     sort_by = params[:sort_by] || 'updated_at'
     order_by = params[:order_by] || 'desc'
-    view_mode = params[view_mode] || 'icon'
+    view_mode = params[:view_mode] || 'icon'
 
     # Sunspot Search
     search_results = @@class_model.search do
@@ -68,6 +68,12 @@ module GenericResource
     @resource_glyphicon = @@resource_glyphicon
     @resource_title_heading = @@resource_title_heading
     @resource_sub_heading = @@resource_sub_heading
+
+    if params.has_key?(:id)
+
+    else
+      @current_instance = @@class_model.new
+    end
 
     render :form, layout: 'generic_resource/form'
   end

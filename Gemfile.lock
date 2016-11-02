@@ -250,6 +250,9 @@ GEM
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
+    simple_form (3.3.1)
+      actionpack (> 4, < 5.1)
+      activemodel (> 4, < 5.1)
     sixarm_ruby_unaccent (1.1.1)
     slim (3.0.7)
       temple (~> 0.7.6)
@@ -338,6 +341,7 @@ DEPENDENCIES
   rspec-rails (~> 3.5)
   sassc-rails
   shoulda-matchers (~> 3.1)
+  simple_form
   slim
   sunspot_rails
   sunspot_solr

@@ -7,7 +7,11 @@ div.form_display
 
   div.form_navigation
     @extend %RESOURCE_NAVIGATION
-
     @import "title"
+
+    div.button_options
+    button.resource_button_option
+      @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+
 
   div.resource_form
