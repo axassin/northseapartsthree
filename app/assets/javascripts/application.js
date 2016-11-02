@@ -19,4 +19,5 @@
 //= require jquery.URI
 //= require twitter/typeahead.min
 //= require packery.pkgd.min.js
+//= require draggabilly.pkgd.min.js
 //= //require_tree .
