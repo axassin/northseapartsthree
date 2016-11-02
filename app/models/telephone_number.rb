@@ -1,5 +1,6 @@
 class TelephoneNumber < ApplicationRecord
 
+  include UUIDConcern
   include Remark
   belongs_to :contact_detail
 

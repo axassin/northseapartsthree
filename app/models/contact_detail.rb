@@ -1,5 +1,7 @@
 class ContactDetail < ApplicationRecord
 
+  include UUIDConcern
+
   belongs_to :system_account
   has_many :telephone_numbers
   has_many :locations

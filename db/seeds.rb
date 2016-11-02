@@ -54,6 +54,12 @@ if Rails.env.development?
                      make: %w(TRUCK PICKUP VAN SEDAN).sample,
                      brand: Faker::Company.name,
                      plate_number: Faker::Address.postcode,
+                     primary_image: [nil,
+                                     'sample_vehicle_01.jpg',
+                                     'sample_vehicle_02.png',
+                                     'sample_vehicle_03.jpg',
+                                     'sample_vehicle_04.png',
+                                     'sample_vehicle_05.jpg'].sample,
                      fuel_type: %w(DIESEL GASOLINE).sample,
                      description: Faker::Lorem.paragraph,
                      date_of_registration: Faker::Time.between(DateTime.now - 3600, DateTime.now) )

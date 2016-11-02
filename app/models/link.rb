@@ -1,5 +1,6 @@
 class Link < ApplicationRecord
 
+  include UUIDConcern
   include Remark
   belongs_to :contact_detail
 

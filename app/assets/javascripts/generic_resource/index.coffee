@@ -33,6 +33,13 @@ jQuery ($) ->
   $('#generic_resource_reset').click ->
     window.location = window.location.pathname + window.location.hash;
 
+  # Initialize Grid
+
+  $('.grid').packery({
+    itemSelector: '.grid-item',
+    gutter: 10
+  });
+
 query_modifiers = (query_element, current_URI) ->
   $('#' + query_element).change ->
     per_page = $('#' + query_element).val()

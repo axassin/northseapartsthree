@@ -88,7 +88,12 @@ html lang="en"
                       - unless @omitted_attributes.include?(attribute)
                         td = result.decorate.send(attribute)
 
-            else
+          - else
+
+              div.grid
+                - @result_set.each do |result|
+                  div.grid-item
+                    = render partial: controller_path + '/cell', locals: {result: result}
 
         - else
           div.no_results_message
