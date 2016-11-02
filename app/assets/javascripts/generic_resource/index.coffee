@@ -40,7 +40,6 @@ jQuery ($) ->
   });
 
   current_grid.find('.grid-item').each = (i, gridItem) ->
-    alert 'dfafadf'
     draggie = new Draggabily(gridItem)
     $grid.packery( 'bindDraggabillyEvents', draggie );
 
