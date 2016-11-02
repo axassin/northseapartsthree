@@ -1,0 +1,9 @@
+div.col-md-3
+  = f.input :plate_number
+  = f.input :make
+  = f.input :brand
+  = f.input :fuel_type
+  = f.input :description, as: :text
+  = f.input :date_of_registration, as: :date
+  = f.input :primary_image, as: :file
+  = f.input :color, :input_html => { :type => 'color' }

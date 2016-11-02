@@ -34,7 +34,7 @@ module GenericResource
     @order_by = order_by
     @view_mode = view_mode
 
-    render layout: 'generic_resource/index'
+    render template: 'layouts/generic_resource/index', layout: false
 
   end
 
@@ -75,7 +75,7 @@ module GenericResource
       @current_instance = @@class_model.new
     end
 
-    render :form, layout: 'generic_resource/form'
+    render template: 'layouts/generic_resource/form', layout: false
   end
 
   def setup_resource_controller( class_model,

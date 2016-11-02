@@ -19,5 +19,5 @@ html lang="en"
           br
 
       div.form_representation.col-md-10
-        = simple_form_for @current_instance do |f|
-          == yield
+        = simple_form_for @current_instance, url: controller_path, multipart: true do |f|
+          = render partial: controller_path + '/form', locals: {f: f}

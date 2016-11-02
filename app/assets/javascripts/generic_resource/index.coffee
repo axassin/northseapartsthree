@@ -1,5 +1,3 @@
-
-
 jQuery ($) ->
 
   # Constants
@@ -39,9 +37,10 @@ jQuery ($) ->
     gutter: 10
   });
 
-  current_grid.find('.grid-item').each = (i, gridItem) ->
-    draggie = new Draggabily(gridItem)
-    $grid.packery( 'bindDraggabillyEvents', draggie );
+  $.each $grid.find('.grid-item'), (number, grid_item) ->
+    draggie = new Draggabilly( grid_item )
+    $grid.packery( 'bindDraggabillyEvents', draggie )
+
 
 query_modifiers = (query_element, current_URI) ->
   $('#' + query_element).change ->
