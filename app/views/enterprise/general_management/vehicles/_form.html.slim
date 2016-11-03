@@ -1,10 +1,10 @@
 div.col-md-4
-  = f.input :plate_number
-  = f.input :make
-  = f.input :brand
+  = input_word(f, :plate_number)
+  = input_word(f, :make)
+  = input_word(f, :brand)
 div.col-md-4
-  = f.input :fuel_type
-  = f.input :description, as: :text
+  = input_word(f, :fuel_type)
+  = input_description(f, :description)
   = f.input :date_of_registration, as: :date
 div.col-md-4
   = f.input :primary_image, as: :file

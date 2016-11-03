@@ -9,7 +9,6 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
 
   def index
     setup_table(['primary_image'])
-
   end
 
   def search_suggestions
@@ -21,7 +20,9 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def create
-
+    puts '------------ sherwin -------------'
+    puts params[controller_name.to_s.singularize.downcase][:plate_number]
+    redirect_to action: 'index'
   end
 
   def show

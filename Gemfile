@@ -132,3 +132,6 @@ gem 'twitter-typeahead-rails'
 
 # Rails forms made easy.
 gem 'simple_form'
+
+# Parsley.js is an awesome form validation library (documentation). This gem makes it easy to use it with Rails Asset Pipeline.
+gem 'parsley-rails'

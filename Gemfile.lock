@@ -166,6 +166,8 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     options (2.3.2)
+    parsley-rails (2.4.4.0)
+      railties (>= 3.0.0)
     pkg-config (1.1.7)
     pr_geohash (1.0.0)
     probability (1.0.0)
@@ -330,6 +332,7 @@ DEPENDENCIES
   kaminari
   money-rails
   mysql2 (>= 0.3.18, < 0.5)
+  parsley-rails
   probability
   progress_bar
   puma (~> 3.0)
