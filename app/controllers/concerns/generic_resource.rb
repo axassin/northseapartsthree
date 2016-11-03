@@ -1,6 +1,8 @@
 module GenericResource
   extend ActiveSupport::Concern
 
+  include Rails.application.routes.url_helpers
+
   def setup_table( omitted_attributes = nil )
 
     # Constants
@@ -68,6 +70,7 @@ module GenericResource
     @resource_glyphicon = @@resource_glyphicon
     @resource_title_heading = @@resource_title_heading
     @resource_sub_heading = @@resource_sub_heading
+    @main_resource_path = @@main_resource_path
 
     if params.has_key?(:id)
 

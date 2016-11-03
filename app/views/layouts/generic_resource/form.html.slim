@@ -4,6 +4,7 @@ html lang="en"
     = render template: 'common/generic_head'
     = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'generic_resource/search_suggestions', 'data-turbolinks-track' => 'reload'
   body
     = render template: 'common/navigation_bar'
     div.form_display
@@ -11,16 +12,15 @@ html lang="en"
         = render template: 'common/title_heading'
 
       div.form_representation.col-md-10
-
         = simple_form_for @current_instance, url: controller_path, multipart: true do |f|
-        div.form_title #{ (controller.action_name + ' ' + controller_name.to_s.singularize.capitalize + ' Form').upcase }
+          div.form_title #{ (controller.action_name + ' ' + controller_name.to_s.singularize.capitalize + ' Form').upcase }
 
-        div
-          = render partial: controller_path + '/form', locals: {f: f}
+          div
+            = render partial: controller_path + '/form', locals: {f: f}
 
         div.button_options.col-md-12
 
-          a href=@@main_resource_path
+          a href=' #{@main_resource_path}'
             button.btn.btn-default.resource_button_option BACK
 
           button.btn.btn-default.resource_button_option RESET
