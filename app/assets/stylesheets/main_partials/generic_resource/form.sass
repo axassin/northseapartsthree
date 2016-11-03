@@ -16,6 +16,15 @@ div.form_display
 
   div.form_representation
     float: right
+    div.form_title
+      font-family: "Roboto Medium"
+      color: $TERTIARY_COLOR
+      font-size: 2em
+      padding-left: 0.5em
+      padding-bottom: 0.15em
+      margin-bottom: 0.5em
+      border-bottom: solid thin gainsboro
+      letter-spacing: 0.05em
     form.simple_form
       div.form-group
         label.control-label
@@ -27,3 +36,10 @@ div.form_display
           font-size: 0.75em
         input.form-control
           border-radius: 0
+        input[type="color"]
+          height: 5em
+    div.button_options
+      border-top: solid gainsboro thin
+      padding: 0.5em
+      button
+        margin: 0.5em

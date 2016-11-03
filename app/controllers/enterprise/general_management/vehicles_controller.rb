@@ -3,7 +3,8 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   ApplicationController.new.setup_resource_controller(Vehicle,
                                                       'fa fa-bus',
                                                       'Vehicles',
-                                                      'Transportation Assets')
+                                                      'Transportation Assets',
+                                                      enterprise_general_management_vehicles_path)
 
   def index
     setup_table(['primary_image'])
