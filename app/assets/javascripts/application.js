@@ -21,4 +21,5 @@
 //= require packery.pkgd.min.js
 //= require draggabilly.pkgd.min.js
 //= require parsley
+//= require lightbox-bootstrap
 //= //require_tree .

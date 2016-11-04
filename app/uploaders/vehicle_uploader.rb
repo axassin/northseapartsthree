@@ -1,4 +1,4 @@
-class VehicleUploader < CarrierWave::Uploader::Base
+class VehicleUploader < MainUploader
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -43,7 +43,7 @@ class VehicleUploader < CarrierWave::Uploader::Base
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    model.id
+    "#{secure_token}.#{file.extension}" if original_filename.present?
   end
 
 end

@@ -135,3 +135,6 @@ gem 'simple_form'
 
 # Parsley.js is an awesome form validation library (documentation). This gem makes it easy to use it with Rails Asset Pipeline.
 gem 'parsley-rails'
+
+# Utilizes Bootstraps modal plugin to implement a lightbox gallery
+gem 'lightbox-bootstrap-rails'
