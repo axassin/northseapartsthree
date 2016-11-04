@@ -22,4 +22,5 @@
 //= require draggabilly.pkgd.min.js
 //= require parsley
 //= require lightbox-bootstrap
+//= require alert_modal
 //= //require_tree .

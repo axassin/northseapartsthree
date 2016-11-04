@@ -15,7 +15,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
 
   def process_form(my_vehicle, current_params)
 
-    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator"
+    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
 
     begin
       ActiveRecord::Base.transaction do
@@ -41,7 +41,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
     end
 
 
-    redirect_to @@main_resource_path
+    redirect_to @@main_resource_path, :flash => { :notice => modal_message }
   end
 
   def new

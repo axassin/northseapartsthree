@@ -8,6 +8,11 @@ html lang="en"
   body
     = render template: 'common/navigation_bar'
     div.resource_display
+
+      - if flash[:notice]
+        = render template: 'common/alert_modal'
+        = javascript_include_tag 'alert_modal', 'data-turbolinks-track' => 'reload'
+
       div.resource_navigation.col-md-2
         = render template: 'common/title_heading'
         - unless @result_set.total_count == 0
