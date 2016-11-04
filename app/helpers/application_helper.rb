@@ -21,5 +21,9 @@ module ApplicationHelper
                                            'data-parsley-validation-threshold': 0 }
   end
 
+  def input_date(f, name)
+    f.input name, as: :date, html5: true
+  end
+
 
 end

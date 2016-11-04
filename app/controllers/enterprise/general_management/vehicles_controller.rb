@@ -15,14 +15,30 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
     setup_search_suggestions
   end
 
+  def process_form(my_vehicle, current_params)
+    begin
+      my_vehicle.color = current_params[:color]
+      my_vehicle.make = current_params[:make]
+      my_vehicle.brand = current_params[:brand]
+      my_vehicle.plate_number = current_params[:plate_number]
+      my_vehicle.fuel_type = current_params[:fuel_type]
+      my_vehicle.description = current_params[:description]
+      my_vehicle.date_of_registration = current_params[:date_of_registration]
+      my_vehicle.primary_image = current_params[:primary_image]
+      my_vehicle.save!
+    rescue => ex
+      puts ex
+    end
+
+    redirect_to @@main_resource_path
+  end
+
   def new
     setup_form
   end
 
   def create
-    puts '------------ sherwin -------------'
-    puts params[controller_name.to_s.singularize.downcase][:plate_number]
-    redirect_to action: 'index'
+    process_form(Vehicle.new, params[:vehicle])
   end
 
   def show
@@ -34,7 +50,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def update
-
+    process_form(Vehicle.find(params[:id]), params[@@base_section])
   end
 
   def destroy

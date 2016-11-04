@@ -5,7 +5,7 @@ div.col-md-4
 div.col-md-4
   = input_word(f, :fuel_type)
   = input_description(f, :description)
-  = f.input :date_of_registration, as: :date
+  = input_date(f, :date_of_registration)
 div.col-md-4
   = f.input :primary_image, as: :file
   = f.input :color, :input_html => { :type => 'color' }
