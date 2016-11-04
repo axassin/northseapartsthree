@@ -1,4 +1,6 @@
-class VehicleDecorator < MasterDecorator
+class VehicleDecorator < ApplicationDecorator
+
+  delegate_all
 
   include DescriptionDecorator
 

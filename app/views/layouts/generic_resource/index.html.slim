@@ -19,7 +19,7 @@ html lang="en"
 
           div.results_per_page
             = 'View Mode : '
-            = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['ICON', 'icon']], @view_mode))
+            = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['GRID', 'grid']], @view_mode))
 
           div.sort_by
             ruby:
@@ -112,5 +112,5 @@ html lang="en"
               li Try fewer keywords
               li Information is non-existent; add more
 
-  = javascript_include_tag 'generic_resource/icon', 'data-turbolinks-track' => 'reload'
+  = javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
 

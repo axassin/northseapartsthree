@@ -17,7 +17,7 @@ module GenericResource
     per_page ||= @DEFAULT_ITEMS_PER_PAGE
     sort_by = params[:sort_by] || 'updated_at'
     order_by = params[:order_by] || 'desc'
-    view_mode = params[:view_mode] || 'icon'
+    view_mode = params[:view_mode] || 'grid'
 
     # Sunspot Search
     search_results = @@class_model.search do

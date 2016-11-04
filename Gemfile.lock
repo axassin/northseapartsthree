@@ -138,6 +138,7 @@ GEM
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
+    mab (0.0.3)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
     method_source (0.8.2)
@@ -333,6 +334,7 @@ DEPENDENCIES
   jquery-rails
   kaminari
   lightbox-bootstrap-rails
+  mab
   mini_magick
   money-rails
   mysql2 (>= 0.3.18, < 0.5)

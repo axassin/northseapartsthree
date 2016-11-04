@@ -127,6 +127,9 @@ gem 'ancestry'
 # This library provides integration of the money gem with Rails.
 gem 'money-rails'
 
+# Mab (Markup as Ruby)
+gem 'mab'
+
 # bootstrap-typeahead-rails project integrates the official typeahead plugin with Rails 3 assets pipeline.
 gem 'twitter-typeahead-rails'
 

@@ -20,6 +20,7 @@
 //= require twitter/typeahead.min
 //= require packery.pkgd.min.js
 //= require draggabilly.pkgd.min.js
+//= require imagesloaded.pkgd.min.js
 //= require parsley
 //= require lightbox-bootstrap
 //= require alert_modal
