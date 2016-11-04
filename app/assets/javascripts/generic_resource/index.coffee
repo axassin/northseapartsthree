@@ -13,16 +13,6 @@ jQuery ($) ->
   $('#generic_resource_reset').click ->
     window.location = window.location.pathname + window.location.hash;
 
-  # Initialize Grid - Packery
-  $grid = $('.grid').packery({
-    itemSelector: '.grid-item',
-    gutter: 10
-  });
-
-  $.each $grid.find('.grid-item'), (number, grid_item) ->
-    draggie = new Draggabilly( grid_item )
-    $grid.packery( 'bindDraggabillyEvents', draggie )
-
 
 query_modifiers = (query_element, current_URI) ->
   $('#' + query_element).change ->

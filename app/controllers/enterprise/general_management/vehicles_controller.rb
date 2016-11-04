@@ -27,8 +27,12 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
         my_vehicle.description = current_params[:description]
         my_vehicle.date_of_registration = current_params[:date_of_registration]
 
-        uploader = VehicleUploader.new
+=begin
+        uploader = PrimaryImageUploader.new
         uploader.store!(current_params[:primary_image])
+=end
+
+        my_vehicle.primary_image = current_params[:primary_image]
 
         my_vehicle.save!
         modal_message = 'Successful Operation! '

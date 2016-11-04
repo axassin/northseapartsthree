@@ -4,6 +4,8 @@ class Vehicle < ApplicationRecord
   include Description
   include Timestamps
 
+  mount_uploader :primary_image, PrimaryImageUploader
+
   validates :color, length: { in: 2..64 }, presence: true
   validates :make, length: { in: 2..64 }, presence: true
   validates :brand, length: { in: 2..64 }, presence: true

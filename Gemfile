@@ -138,3 +138,6 @@ gem 'parsley-rails'
 
 # Utilizes Bootstraps modal plugin to implement a lightbox gallery
 gem 'lightbox-bootstrap-rails'
+
+# A ruby wrapper for ImageMagick or GraphicsMagick command line.
+gem 'mini_magick'
