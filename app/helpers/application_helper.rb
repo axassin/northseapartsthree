@@ -1,5 +1,19 @@
 module ApplicationHelper
 
+  require 'mab/kernel_method'
+
+  def output_html_structure(html_structure)
+    html_structure.to_s.html_safe
+  end
+
+  def asset_exist?(path)
+    if Rails.configuration.assets.compile
+      Rails.application.precompiled_assets.include? path
+    else
+      Rails.application.assets_manifest.assets[path].present?
+    end
+  end
+
   def input_word(f, name)
     f.input name, input_html: { 'data-parsley-trigger': 'keyup',
                                 'data-parsley-minlength': 3,
@@ -24,6 +38,25 @@ module ApplicationHelper
   def input_date(f, name)
     f.input name, as: :date, html5: true
   end
+
+  def primary_image_default(result, fa_glyphicon_code)
+
+    puts '------ -------'
+    control_path = 'uploads/primary_image/vehicle/' + (result.primary_image_identifier).to_s
+    puts asset_exist?(control_path)
+    puts control_path
+
+    str = mab do
+      if result.primary_image.url.present?
+        img :src => result.primary_image.url, :style => 'width: 100%; height: 15%'
+      else
+        div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%'
+        br
+      end
+    end
+    output_html_structure(str)
+  end
+
 
 
 end
