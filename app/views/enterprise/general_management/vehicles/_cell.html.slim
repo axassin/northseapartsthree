@@ -1,5 +1,6 @@
 = primary_image_default(result, 'fa-bus')
-span
-  =result.plate_number + ' | '
-span style='color: #{result.color}'
-  ="&#9632;".html_safe
+div align='center'
+  span
+    =result.plate_number + ' | '
+  span style='color: #{result.color}'
+    ="&#9632;".html_safe

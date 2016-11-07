@@ -53,20 +53,18 @@ div.resource_display
       padding: 0.5em
       a
         %GRID_ITEM_ACTIVE
-          background-color: $TERTIARY_COLOR
-          color: white
-          border: none
+          border-color: $TERTIARY_COLOR
 
         div.grid-item
           width: 23%
           float: left
           border: solid gainsboro thin
-          padding: 0.25em
+          padding: 0.5em
           margin: 0.25em
           color: $TERTIARY_COLOR
 
           div.resource_glyphicon
-            @extend %RESOURCE_GLYPHICON
+            @extend %RESOURCE_GLYPHICON_INVERT
 
           &:hover
             @extend %GRID_ITEM_ACTIVE

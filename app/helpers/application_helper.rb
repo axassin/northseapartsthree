@@ -41,16 +41,11 @@ module ApplicationHelper
 
   def primary_image_default(result, fa_glyphicon_code)
 
-    puts '------ -------'
-    control_path = 'uploads/primary_image/vehicle/' + (result.primary_image_identifier).to_s
-    puts asset_exist?(control_path)
-    puts control_path
-
     str = mab do
-      if result.primary_image.url.present?
+      if (result.primary_image.url.present? && File.exist?(Rails.root + result.primary_image.current_path.to_s))
         img :src => result.primary_image.url, :style => 'width: 100%; height: 15%'
       else
-        div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%'
+        div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
         br
       end
     end
