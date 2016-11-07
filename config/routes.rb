@@ -14,6 +14,10 @@ Rails.application.routes.draw do
     resources unit, concerns: [:search_suggestionable]
   end
 
+  def define_index( indexable_controller )
+    get indexable_controller, to: indexable_controller + '#index'
+  end
+
   # ----------------------------- Front-End Website -----------------------------
 
   # Home Page route
@@ -23,10 +27,11 @@ Rails.application.routes.draw do
   end
 
   # ----------------------------- Enterprise Information System -----------------------------
+  define_index( 'enterprise' )
   namespace :enterprise do
+    define_index( 'general_management' )
     namespace :general_management do
-      get 'contacts', to: 'contacts#index'
-
+      define_index( 'contacts' )
       generate_logic_unit( :vehicles )
 
     end

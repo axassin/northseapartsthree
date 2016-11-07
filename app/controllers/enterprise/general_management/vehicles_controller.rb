@@ -6,7 +6,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
                                                       'Transportation Assets', @@routes.enterprise_general_management_vehicles_path)
 
   def index
-    setup_table(['primary_image'])
+    setup_index(['primary_image'], @@routes.enterprise_general_management_path)
   end
 
   def search_suggestions

@@ -3,7 +3,7 @@ module GenericResource
 
   include Rails.application.routes.url_helpers
 
-  def setup_table( omitted_attributes = nil )
+  def setup_index( omitted_attributes = nil, parent_controller_path)
 
     # Constants
     default_start_page = 1
@@ -35,6 +35,7 @@ module GenericResource
     @sort_by = sort_by
     @order_by = order_by
     @view_mode = view_mode
+    @parent_controller_path = parent_controller_path
 
     render template: 'layouts/generic_resource/index', layout: false
 

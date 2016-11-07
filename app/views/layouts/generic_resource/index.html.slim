@@ -69,12 +69,17 @@ html lang="en"
 
           - unless @result_set.total_count == 0
 
-            button.btn.btn-default.resource_button_option PRINTABLE FORM
-            br
-            button.btn.btn-default.resource_button_option EXPORT TO CSV
+
+            button.btn.btn-default.resource_button_option.printable_form PRINTABLE FORM
             br
 
-          button.btn.btn-default.resource_button_option BACK TO PARENT
+            - if @view_mode == 'table'
+              button.btn.btn-default.resource_button_option EXPORT TO CSV
+              br
+
+            a href= @parent_controller_path
+              button.btn.btn-default.resource_button_option BACK TO PARENT
+            br
 
       div.resource_representation.col-md-10
         - unless @result_set.total_count == 0
@@ -92,6 +97,8 @@ html lang="en"
                   tr
                     - result.attribute_names.each_with_index do |attribute, index|
                       - unless @omitted_attributes.include?(attribute)
+                        = puts '---------- - ------------ - ----'
+                        = puts attribute
                         td = result.decorate.send(attribute)
 
           - else
