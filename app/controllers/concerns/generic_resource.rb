@@ -36,6 +36,7 @@ module GenericResource
     @order_by = order_by
     @view_mode = view_mode
     @parent_controller_path = parent_controller_path
+    @current_instance = @@class_model.new
 
     render template: 'layouts/generic_resource/index', layout: false
 

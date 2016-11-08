@@ -17,8 +17,7 @@ html lang="en"
                           multipart: true,
                           method: 'POST',
                           html: { :'data-parsley-validate' => '' } do |f|
-          div.form_title #{ (controller.action_name + ' ' + controller_name.to_s.singularize.capitalize + ' Form').upcase }
-
+          = render partial: 'layouts/generic_resource/form_title'
           div
             = render partial: controller_path + '/form', locals: {f: f}
 

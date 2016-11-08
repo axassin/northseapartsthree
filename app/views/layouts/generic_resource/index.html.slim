@@ -63,7 +63,7 @@ html lang="en"
           button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
           br
 
-          a href="#{'/' + controller_path + '/new'}"
+          a.add_form_modal_button href="#{'/' + controller_path + '/new'}"
             button.btn.btn-default.resource_button_option ADD ITEM
           br
 
@@ -118,6 +118,19 @@ html lang="en"
               li Try different keywords; more general or specific
               li Try fewer keywords
               li Information is non-existent; add more
+
+    div.modal.hide.fade.add_form_modal role='dialog'
+      div.modal-dialog
+        div.modal-content
+          div.modal-header
+            = render partial: 'layouts/generic_resource/form_title'
+          div.modal-body.modal-form-body
+            = simple_form_for @current_instance,
+                    url: '/' + controller_path,
+                    multipart: true,
+                    method: 'POST',
+                    html: {:'data-parsley-validate' => ''} do |f|
+              = render partial: controller_path + '/form', locals: {f: f}
 
   = javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
 
