@@ -24,4 +24,5 @@
 //= require parsley
 //= require lightbox-bootstrap
 //= require alert_modal
+//= require remodal.min.js
 //= //require_tree .

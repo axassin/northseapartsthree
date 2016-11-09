@@ -73,7 +73,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 # Slim is a fast, lightweight templating engine
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
-gem 'bootstrap', '~> 4.0.0.alpha3.1'
+gem 'bootstrap', '~> 4.0.0.alpha5'
 
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
@@ -144,3 +144,4 @@ gem 'lightbox-bootstrap-rails'
 
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick'
+

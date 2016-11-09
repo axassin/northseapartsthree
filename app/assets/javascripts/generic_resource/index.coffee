@@ -22,14 +22,9 @@ jQuery ($) ->
     # $('body').html(resource_navigation)
 
   # Add form modal
-  $('.add_form_modal_button').click ->
+###  $('.add_form_modal_button').click ->
     event.preventDefault()
-    $('.add_form_modal').modal('show')
-###
-    $('.add_form_modal').on('shown.bs.modal', ->
-      $(this).find('.modal-body').css({ width:'auto', height:'auto', 'max-height':'95%'})
-    )
-###
+    $('.add_form_modal').modal('show')###
 
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->

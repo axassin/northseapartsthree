@@ -47,13 +47,13 @@ GEM
     ancestry (2.1.0)
       activerecord (>= 3.0.0)
     arel (7.1.1)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.5.2)
       execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
       rack (>= 0.9.0)
-    bootstrap (4.0.0.alpha3.1)
+    bootstrap (4.0.0.alpha5)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
     builder (3.2.2)
@@ -317,7 +317,7 @@ DEPENDENCIES
   activemodel-serializers-xml
   ancestry
   better_errors
-  bootstrap (~> 4.0.0.alpha3.1)
+  bootstrap (~> 4.0.0.alpha5)
   byebug
   capybara
   carrierwave (>= 1.0.0.beta, < 2.0)

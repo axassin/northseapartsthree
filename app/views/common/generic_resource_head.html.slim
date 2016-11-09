@@ -1,0 +1,15 @@
+= javascript_include_tag 'generic_resource/search_suggestions', 'data-turbolinks-track' => 'reload'
+= stylesheet_link_tag 'main_partials/generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
+
+- if controller_action == 'index'
+
+  = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
+  = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
+
+- elsif controller_action.to_s.include? ['add','edit','show']
+
+  = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
+  = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
+
+- else
+

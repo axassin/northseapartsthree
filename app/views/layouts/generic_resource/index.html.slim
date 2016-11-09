@@ -2,18 +2,19 @@ doctype html
 html lang="en"
   head
     = render template: 'common/generic_head'
+    = stylesheet_link_tag 'main_partials/generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
     = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'generic_resource/search_suggestions', 'data-turbolinks-track' => 'reload'
   body
     = render template: 'common/navigation_bar'
-    div.resource_display
+    div.generic_resource_display
 
       - if flash[:notice]
         = render template: 'common/alert_modal'
         = javascript_include_tag 'alert_modal', 'data-turbolinks-track' => 'reload'
 
-      div.resource_navigation.col-md-2
+      div.generic_resource_navigation.col-md-2
         = render template: 'common/title_heading'
         - unless @result_set.total_count == 0
 
@@ -63,7 +64,7 @@ html lang="en"
           button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
           br
 
-          a.add_form_modal_button href="#{'/' + controller_path + '/new'}"
+          a data-remodal-target='modal'
             button.btn.btn-default.resource_button_option ADD ITEM
           br
 
@@ -119,26 +120,17 @@ html lang="en"
               li Try fewer keywords
               li Information is non-existent; add more
 
-    div.modal.hide.fade.add_form_modal role='dialog'
-      div.modal-dialog
-        div.modal-content
-          div.modal-header
-            = render partial: 'layouts/generic_resource/form_title'
-          div.modal-body
-            = simple_form_for @current_instance,
-                    url: '/' + controller_path,
-                    multipart: true,
-                    method: 'POST',
-                    html: {:'data-parsley-validate' => ''} do |f|
-              = render partial: controller_path + '/form', locals: {f: f}
-          div.modal-footer
-            a href=' #{@main_resource_path}'
-              button.btn.btn-default.resource_button_option BACK
-
-            button.btn.btn-default.resource_button_option RESET
-            input.btn.btn-default.resource_button_option type='submit' value='SUBMIT'
-
-
+    div.remodal.add_form_modal data-remodal-id="modal"
+      div.title
+        = render partial: 'layouts/generic_resource/form_title'
+      div.proper
+        = simple_form_for @current_instance,
+                url: '/' + controller_path,
+                multipart: true,
+                method: 'POST',
+                html: {:'data-parsley-validate' => ''} do |f|
+          = render partial: controller_path + '/form', locals: {f: f}
+          = render partial: 'layouts/generic_resource/form_buttons'
 
   = javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
 

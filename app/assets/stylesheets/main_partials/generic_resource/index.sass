@@ -3,10 +3,32 @@
 @import "../stylesheets/constants"
 
 div.add_form_modal
-  .form_title
+  padding: 0.5em
+  .title
     @extend %font_set_two
-  .modal-body
-    height: 500px
+    float: left
+    border-left: medium solid $TERTIARY_COLOR
+    padding-left: 0.5em
+    margin-left: 0em
+    margin-bottom: 1em
+  .proper
+    float: left
+  form.simple_form
+    div.form-group
+      label.control-label
+        margin: 0
+        background-color: gainsboro
+        color: black
+        padding: 0.25em
+        text-transform: uppercase
+        font-size: 0.75em
+        float: left
+      input.form-control
+        border-radius: 0
+        display: flex
+      input[type="color"]
+        height: 5em
+
 
 div.resource_display
   @extend %RESOURCE_DISPLAY

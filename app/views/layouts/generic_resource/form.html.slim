@@ -18,13 +18,8 @@ html lang="en"
                           method: 'POST',
                           html: { :'data-parsley-validate' => '' } do |f|
           = render partial: 'layouts/generic_resource/form_title'
+
           div
             = render partial: controller_path + '/form', locals: {f: f}
 
-          div.button_options.col-md-12
-
-            a href=' #{@main_resource_path}'
-              button.btn.btn-default.resource_button_option BACK
-
-            button.btn.btn-default.resource_button_option RESET
-            input.btn.btn-default.resource_button_option type='submit' value='SUBMIT'
+          = render partial: 'layouts/generic_resource/form_buttons'

@@ -1,0 +1,29 @@
+@import "typeahead"
+@import '../stylesheets/constants'
+@import constants
+
+div.generic_resource_display
+  position: absolute
+  top: 5em
+  width: 100%
+
+  div.generic_resource_navigation
+    position: fixed
+    float: left
+
+    div.resource_glyphicon
+      font-size: 3em
+      color: white
+      background-color: $TERTIARY_COLOR
+      padding: 0.5em
+
+    div.title_group
+      margin-top: 0.5em
+
+      h1.title_heading
+        @extend %font_set_two
+        margin: 0
+        font-size: 2.5em
+      div.sub_heading
+        @extend %font_set_one
+
