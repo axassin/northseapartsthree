@@ -1,11 +1,12 @@
+= render partial: 'layouts/generic_resource/form_title'
 = simple_form_for @current_instance,
                   url: '/' + controller_path,
                   multipart: true,
                   method: 'POST',
                   html: { :'data-parsley-validate' => '' } do |f|
-  = render partial: 'layouts/generic_resource/form_title'
-
   div
     = render partial: controller_path + '/form', locals: {f: f}
+
+  div.col-md-12.footnote * Required
 
   = render partial: 'layouts/generic_resource/form_buttons'

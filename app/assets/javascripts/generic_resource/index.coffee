@@ -21,10 +21,11 @@ jQuery ($) ->
     jQuery ($) -> alert('Page will be optimized for printing. You may print on your device once you press OK.')
     # $('body').html(resource_navigation)
 
-  # Add form modal
-###  $('.add_form_modal_button').click ->
+  # Back button
+  $('.back_button_modal').click ->
     event.preventDefault()
-    $('.add_form_modal').modal('show')###
+    add_form_modal = $('.add_form_modal').remodal()
+    add_form_modal.close()
 
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->

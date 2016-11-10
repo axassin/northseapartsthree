@@ -145,3 +145,6 @@ gem 'lightbox-bootstrap-rails'
 # A ruby wrapper for ImageMagick or GraphicsMagick command line.
 gem 'mini_magick'
 
+# Paranoia is a re-implementation of acts_as_paranoid for Rails 3/4/5, using much, much, much less code.
+gem 'paranoia', '~> 2.2'
+

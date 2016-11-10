@@ -1,0 +1,33 @@
+@import "../../constants"
+
+div.main_content, .add_form_modal
+
+  div.form_title
+    @extend %font_set_two
+    font-size: 2em
+    margin-bottom: 0.5em
+
+  form.simple_form
+
+    div.form-group
+      label.control-label
+        float: left
+        margin: 0
+        background-color: gainsboro
+        color: black
+        padding: 0.25em
+        text-transform: uppercase
+        font-size: 0.75em
+      input.form-control
+        border-radius: 0
+      input[type="color"]
+        height: 5em
+
+    div.button_options
+      border-top: solid gainsboro thin
+      padding: 0.5em
+      button, input
+        margin: 0.5em
+
+    div.footnote
+      margin-bottom: 0.5em

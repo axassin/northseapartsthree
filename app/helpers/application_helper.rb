@@ -42,7 +42,7 @@ module ApplicationHelper
   def primary_image_default(result, fa_glyphicon_code)
 
     str = mab do
-      if (result.primary_image.url.present? && File.exist?(Rails.root + result.primary_image.current_path.to_s))
+      if (result.primary_image.url.present?)
         img :src => result.primary_image.url, :style => 'width: 100%; height: 15%'
       else
         div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
@@ -52,6 +52,8 @@ module ApplicationHelper
     output_html_structure(str)
   end
 
-
+  def rest_action?
+    action_name == 'new' || action_name == 'edit' || action_name == 'show'
+  end
 
 end

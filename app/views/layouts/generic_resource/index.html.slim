@@ -1,0 +1,41 @@
+- unless @result_set.total_count == 0
+  - if @view_mode == 'table'
+
+    table.resource_table
+      thead
+        tr
+          - @result_set.first.class.attribute_names.each do |attribute|
+            - unless @omitted_attributes.include?(attribute)
+              th
+                div = attribute.humanize.titleize.upcase
+      tbody
+        - @result_set.each do |result|
+          tr
+            - result.attribute_names.each_with_index do |attribute, index|
+              - unless @omitted_attributes.include?(attribute)
+                = puts '---------- - ------------ - ----'
+                = puts attribute
+                td = result.decorate.send(attribute)
+
+  - else
+
+    div.grid
+      - @result_set.each do |result|
+        a href='#{'/'+controller_path+'/'+result.id}'
+          div.grid-item
+            = render partial: controller_path + '/cell', locals: {result: result}
+
+- else
+  div.no_results_message
+    h1 NO RESULTS FOUND
+    div Suggestions:
+    ul
+      li Check your spelling
+      li Try different keywords; more general or specific
+      li Try fewer keywords
+      li Information is non-existent; add more
+
+= javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
+
+div.remodal.add_form_modal data-remodal-id='modal'
+  = render template: 'layouts/generic_resource/form'

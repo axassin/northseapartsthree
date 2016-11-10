@@ -50,19 +50,20 @@ if Rails.env.development?
 
   # Vehicles
   NUMBER_OF_VEHICLES.times {
-    Vehicle.create!( color: Faker::Color.color_name,
-                     make: %w(TRUCK PICKUP VAN SEDAN).sample,
-                     brand: Faker::Company.name,
-                     plate_number: Faker::Address.postcode,
-                     primary_image: [nil,
-                                     'sample_vehicle_01.jpg',
-                                     'sample_vehicle_02.png',
-                                     'sample_vehicle_03.jpg',
-                                     'sample_vehicle_04.png',
-                                     'sample_vehicle_05.jpg'].sample,
-                     fuel_type: %w(DIESEL GASOLINE).sample,
-                     description: Faker::Lorem.paragraph,
-                     date_of_registration: Faker::Time.between(DateTime.now - 3600, DateTime.now) )
+    current_vehicle = Vehicle.new
+    current_vehicle.color = Faker::Color.color_name
+    current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
+    current_vehicle.brand = Faker::Company.name
+    current_vehicle.plate_number = Faker::Address.postcode
+
+    # current_vehicle.remote_primary_image_url = 'http://localhost:3000/uploads/primary_image/vehicle/sample_vehicle_01.jpg'
+    current_image = ['sample_vehicle_01.jpg','sample_vehicle_02.png','sample_vehicle_03.jpg','sample_vehicle_04.png','sample_vehicle_05.jpg',''].sample
+    current_vehicle[:primary_image] = current_image
+
+    current_vehicle.fuel_type = %w(DIESEL GASOLINE).sample
+    current_vehicle.description = Faker::Lorem.paragraph
+    current_vehicle.date_of_registration = Faker::Time.between(DateTime.now - 3600, DateTime.now)
+    current_vehicle.save!
   }
 
   # System Accounts

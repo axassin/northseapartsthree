@@ -80,7 +80,8 @@ module GenericResource
       @current_instance = @@class_model.new
     end
 
-    render template: 'layouts/generic_resource/form', layout: false
+    render template: 'layouts/generic_resource/main', layout: false
+
   end
 
   def setup_resource_controller( class_model,

@@ -169,6 +169,8 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     options (2.3.2)
+    paranoia (2.2.0)
+      activerecord (>= 4.0, < 5.1)
     parsley-rails (2.4.4.0)
       railties (>= 3.0.0)
     pkg-config (1.1.7)
@@ -338,6 +340,7 @@ DEPENDENCIES
   mini_magick
   money-rails
   mysql2 (>= 0.3.18, < 0.5)
+  paranoia (~> 2.2)
   parsley-rails
   probability
   progress_bar

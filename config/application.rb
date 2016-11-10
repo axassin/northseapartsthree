@@ -19,6 +19,6 @@ module Northseapartsthree
 
     # Automatic Loading for Decorator Concerns
     config.autoload_paths += Dir["#{config.root}/app/decorators/concerns/**/"]
-
+    config.assets.enabled = true
   end
 end
