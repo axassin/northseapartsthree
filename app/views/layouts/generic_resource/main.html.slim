@@ -5,3 +5,27 @@ html lang="en"
     = render template: 'common/generic_resource_head'
 
   body
+    = render template: 'common/navigation_bar'
+    div.main_display
+
+      // Replace this soon
+      - if flash[:notice]
+        = render template: 'common/alert_modal'
+        = javascript_include_tag 'alert_modal', 'data-turbolinks-track' => 'reload'
+
+      div.side_bar.col-md-2
+
+        = render partial: 'layouts/generic_resource/title_heading'
+        - if action_name == 'index'
+          // Side Bar Options
+          = render partial: 'layouts/generic_resource/resource_options'
+          = render partial: 'layouts/generic_resource/navigation'
+
+      div.main_content.col-md-10
+
+        - if action_name == 'index'
+          = render template: 'layouts/generic_resource/index'
+        - elsif action_name.to_s.include? ['add','edit','show']
+          = render template: 'layouts/generic_resource/form'
+        - else
+          div align='center' NO CONTENT AVAILABLE

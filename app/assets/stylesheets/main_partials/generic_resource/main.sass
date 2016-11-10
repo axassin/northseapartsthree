@@ -1,13 +1,12 @@
 @import "typeahead"
-@import '../stylesheets/constants'
-@import constants
+@import "../../constants"
 
-div.generic_resource_display
+div.main_display
   position: absolute
   top: 5em
   width: 100%
 
-  div.generic_resource_navigation
+  div.side_bar
     position: fixed
     float: left
 
@@ -27,3 +26,5 @@ div.generic_resource_display
       div.sub_heading
         @extend %font_set_one
 
+  div.main_content
+    float: right

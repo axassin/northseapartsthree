@@ -1,0 +1,40 @@
+@import "main"
+
+%RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  margin-top: 0.5em
+
+div.sort_by
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  select
+    margin: 0.25em
+
+div.page_entries_info
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+
+div.button_options
+  button.resource_button_option
+    @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+
+div.paginator
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  nav.pagination
+    background-color: $TERTIARY_COLOR
+    color: white
+    margin: 0
+    border-radius: 0
+    padding: 0.5em
+    a
+      %font_set_one
+      color: white
+
+div.view_type
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  border-top: solid gray thin
+  border-bottom: solid gray thin
+  div
+    float: left
+    padding: 1em
+    width: 50%
+
+div.results_per_page
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET

@@ -1,25 +1,11 @@
-doctype html
-html lang="en"
-  head
-    = render template: 'common/generic_head'
-    = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'generic_resource/search_suggestions', 'data-turbolinks-track' => 'reload'
-  body
-    = render template: 'common/navigation_bar'
-    div.form_display
-      div.form_navigation.col-md-2
-        = render template: 'common/title_heading'
+= simple_form_for @current_instance,
+                  url: '/' + controller_path,
+                  multipart: true,
+                  method: 'POST',
+                  html: { :'data-parsley-validate' => '' } do |f|
+  = render partial: 'layouts/generic_resource/form_title'
 
-      div.form_representation.col-md-10
-        = simple_form_for @current_instance,
-                          url: '/' + controller_path,
-                          multipart: true,
-                          method: 'POST',
-                          html: { :'data-parsley-validate' => '' } do |f|
-          = render partial: 'layouts/generic_resource/form_title'
+  div
+    = render partial: controller_path + '/form', locals: {f: f}
 
-          div
-            = render partial: controller_path + '/form', locals: {f: f}
-
-          = render partial: 'layouts/generic_resource/form_buttons'
+  = render partial: 'layouts/generic_resource/form_buttons'

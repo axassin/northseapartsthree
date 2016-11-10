@@ -38,7 +38,7 @@ module GenericResource
     @parent_controller_path = parent_controller_path
     @current_instance = @@class_model.new
 
-    render template: 'layouts/generic_resource/index', layout: false
+    render template: 'layouts/generic_resource/main', layout: false
 
   end
 
