@@ -9,7 +9,8 @@ div.button_options
 
   - unless @result_set.total_count == 0
 
-    button.btn.btn-default.resource_button_option.printable_form PRINTABLE FORM
+    a.printable_form target='_blank'
+      button.btn.btn-default.resource_button_option.printable_form PRINTABLE FORM
     br
 
     - if @view_mode == 'table'

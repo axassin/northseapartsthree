@@ -42,7 +42,7 @@ module ApplicationHelper
   def primary_image_default(result, fa_glyphicon_code)
 
     str = mab do
-      if (result.primary_image.url.present?)
+      if ( result.primary_image.url.present? && public_file_exists?(result.primary_image.url) )
         img :src => result.primary_image.url, :style => 'width: 100%; height: 15%'
       else
         div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
@@ -54,6 +54,19 @@ module ApplicationHelper
 
   def rest_action?
     action_name == 'new' || action_name == 'edit' || action_name == 'show'
+  end
+
+  def asset_exist?(path)
+    if Rails.configuration.assets.compile
+      Rails.application.precompiled_assets.include? path
+    else
+      Rails.application.assets_manifest.assets[path].present?
+    end
+  end
+
+  def public_file_exists?(path)
+    current_path = Rails.root.to_s + '/public' + path
+    File.exists?(current_path)
   end
 
 end

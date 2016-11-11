@@ -43,9 +43,11 @@ module GenericResource
   end
 
   def setup_search_suggestions
+
     # Constants
     search_query = params[:search_query]
 
+    puts search_query
     # Sunspot Search
     search_suggestions = @@class_model.search do
       fulltext search_query
@@ -75,7 +77,7 @@ module GenericResource
     @main_resource_path = @@main_resource_path
 
     if params.has_key?(:id)
-
+      @current_instance = @@class_model.find(params[:id])
     else
       @current_instance = @@class_model.new
     end
@@ -95,6 +97,25 @@ module GenericResource
     @@resource_title_heading = resource_title_heading
     @@resource_sub_heading = resource_sub_heading
     @@main_resource_path = main_resource_path
+
+  end
+
+  def setup_process( process_block )
+
+    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
+
+    begin
+      ActiveRecord::Base.transaction do
+        process_block.call
+        modal_message = 'Successful Operation! '
+      end
+    rescue => ex
+      puts ' --------- PROCESS ERROR START --------- '
+      puts ex
+      puts ' ---------- PROCESS ERROR END ---------- '
+    end
+
+    redirect_to @@main_resource_path, :flash => { :notice => modal_message }
 
   end
 

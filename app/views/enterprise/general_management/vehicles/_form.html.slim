@@ -6,6 +6,9 @@ div.col-md-4
   = input_word(f, :fuel_type)
   = input_description(f, :description)
   = input_date(f, :date_of_registration)
+  = f.input :color, :input_html => {:type => 'color'}
 div.col-md-4
+  - if params.has_key?(:id)
+    = primary_image_default(@current_instance, 'fa-bus')
+
   = f.input :primary_image, as: :file
-  = f.input :color, :input_html => { :type => 'color' }

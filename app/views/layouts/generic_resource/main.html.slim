@@ -8,7 +8,6 @@ html lang="en"
     = render template: 'common/navigation_bar'
     div.main_display
 
-      // Replace this soon
       - if flash[:notice]
         = render template: 'common/alert_modal'
         = javascript_include_tag 'alert_modal', 'data-turbolinks-track' => 'reload'
