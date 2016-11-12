@@ -21,7 +21,9 @@ jQuery ($) ->
 
   # Printable Form Cycle
   $('.printable_form').click ->
-    alert URI(window.location.href).addSearch('lala')
+    window.location =  URI(window.location.href).addSearch("printable", "true")
+
+
 
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->
@@ -30,6 +32,7 @@ query_modifiers = (query_element, current_URI) ->
     new_URI = current_URI.removeSearch(query_element).addSearch(query_element,per_page)
     window.location.href = new_URI
 
+# Remove all the parameters
 remove_all_params = (url) ->
   oldURL = url
   index = 0

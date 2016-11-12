@@ -28,7 +28,7 @@ div.remodal.add_form_modal data-remodal-id='modal'
 
     div.grid
       - @result_set.each do |result|
-        a href='#{'/'+controller_path+'/'+result.id}'
+        a.grid-item-link href='#{'/'+controller_path+'/'+result.id}'
           div.grid-item
             = render partial: controller_path + '/cell', locals: {result: result}
 
@@ -45,3 +45,6 @@ div.remodal.add_form_modal data-remodal-id='modal'
 = javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag 'remodal.min.js', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag 'grid_fade', 'data-turbolinks-track' => 'reload'
+
+- if params[:printable] == 'true'
+  = javascript_include_tag 'generic_resource/printable', 'data-turbolinks-track' => 'reload'

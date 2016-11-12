@@ -36,6 +36,7 @@ module GenericResource
     @order_by = order_by
     @view_mode = view_mode
     @parent_controller_path = parent_controller_path
+    @main_resource_path = @@main_resource_path
     @current_instance = @@class_model.new
 
     render template: 'layouts/generic_resource/main', layout: false
@@ -101,9 +102,7 @@ module GenericResource
   end
 
   def setup_process( process_block )
-
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
-
     begin
       ActiveRecord::Base.transaction do
         process_block.call
@@ -114,9 +113,13 @@ module GenericResource
       puts ex
       puts ' ---------- PROCESS ERROR END ---------- '
     end
-
     redirect_to @@main_resource_path, :flash => { :notice => modal_message }
+  end
 
+  def image_handling(model_image, params_image)
+    unless action_name == 'update' && params_image.blank? == true
+      model_image = params_image
+    end
   end
 
 end

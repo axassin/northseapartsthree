@@ -23,7 +23,9 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
       my_vehicle.fuel_type = current_params[:fuel_type]
       my_vehicle.description = current_params[:description]
       my_vehicle.date_of_registration = current_params[:date_of_registration]
-      my_vehicle.primary_image = current_params[:primary_image]
+      unless action_name == 'update' && current_params[:primary_image].blank? == true
+        my_vehicle.primary_image = current_params[:primary_image]
+      end
       my_vehicle.save!
     end
 
@@ -43,11 +45,12 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def edit
+    puts ' --------------- HUeh huehhhhhhhhh 000 -------------------------------'
     setup_form
   end
 
   def update
-    process_form(Vehicle.find(params[:id]), params[@@base_section])
+    process_form(Vehicle.find(params[:id]), params[:vehicle])
   end
 
   def destroy

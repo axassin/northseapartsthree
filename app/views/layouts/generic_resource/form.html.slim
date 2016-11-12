@@ -1,8 +1,22 @@
 = render partial: 'layouts/generic_resource/form_title'
+
+ruby:
+  method = ''
+  url_path = ''
+  case action_name
+  when 'new'
+    method = 'POST'
+    url_path =  '/' + controller_path
+  when 'edit'
+    method = 'PATCH'
+    url_path =  '/' + controller_path + '/' + params[:id]
+  when 'show'
+  end
+
 = simple_form_for @current_instance,
-                  url: '/' + controller_path,
+                  url: url_path,
                   multipart: true,
-                  method: 'POST',
+                  method: method,
                   html: { :'data-parsley-validate' => '' } do |f|
   div
     = render partial: controller_path + '/form', locals: {f: f}
