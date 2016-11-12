@@ -54,7 +54,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def destroy
-
+    puts 'sample'
   end
 
 end

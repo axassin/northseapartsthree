@@ -13,17 +13,19 @@ jQuery ($) ->
   $('#generic_resource_reset').click ->
     window.location = remove_all_params(window.location.href)
 
+  add_form_modal = $('.add_form_modal').remodal()
+
   # Back button
   $('.back_button_modal').click ->
     event.preventDefault()
-    add_form_modal = $('.add_form_modal').remodal()
+    add_form_modal.close()
+
+  $('.modal_submit').click ->
     add_form_modal.close()
 
   # Printable Form Cycle
   $('.printable_form').click ->
     window.location =  URI(window.location.href).addSearch("printable", "true")
-
-
 
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->
