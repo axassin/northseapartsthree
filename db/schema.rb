@@ -55,6 +55,9 @@ ActiveRecord::Schema.define(version: 20161017103832) do
   end
 
   create_table "vehicles", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "color",                limit: 64
     t.string   "make",                 limit: 64
     t.string   "brand",                limit: 64
@@ -63,8 +66,7 @@ ActiveRecord::Schema.define(version: 20161017103832) do
     t.string   "description",          limit: 512
     t.date     "date_of_registration"
     t.string   "primary_image",        limit: 512
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.index ["deleted_at"], name: "index_vehicles_on_deleted_at", using: :btree
   end
 
 end

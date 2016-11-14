@@ -27,4 +27,14 @@ module CommonColumns
     t.string :remark, :limit => 64
   end
 
+  def deleted_at(t)
+    t.datetime :deleted_at, :required => true, :index => true
+  end
+
+  def common_set(t)
+    id_column(t)
+    deleted_at(t)
+    t.timestamps
+  end
+
 end
