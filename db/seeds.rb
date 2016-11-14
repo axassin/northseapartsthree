@@ -54,7 +54,11 @@ if Rails.env.development?
     current_vehicle.color = Faker::Color.color_name
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
     current_vehicle.brand = Faker::Company.name
-    current_vehicle.plate_number = Faker::Address.postcode
+    current_vehicle.plate_number = Faker::Lorem.characters(10)
+=begin
+    until Vehicle.exists?(:plate_number => plate_number) == false
+    end
+=end
 
     # current_vehicle.remote_primary_image_url = 'http://localhost:3000/uploads/primary_image/vehicle/sample_vehicle_01.jpg'
     current_image = ['sample_vehicle_01.jpg','sample_vehicle_02.png','sample_vehicle_03.jpg','sample_vehicle_04.png','sample_vehicle_05.jpg',''].sample

@@ -3,7 +3,22 @@ module GenericResource
 
   include Rails.application.routes.url_helpers
 
-  def setup_index( omitted_attributes = nil, parent_controller_path)
+  # setups variables needed for the controller
+  def setup_resource_controller( class_model,
+                                 resource_glyphicon,
+                                 resource_title_heading,
+                                 resource_sub_heading,
+                                 main_resource_path)
+
+    @@class_model = class_model
+    @@resource_glyphicon = resource_glyphicon
+    @@resource_title_heading = resource_title_heading
+    @@resource_sub_heading = resource_sub_heading
+    @@main_resource_path = main_resource_path
+
+  end
+
+  def setup_index( omitted_attributes = [], parent_controller_path)
 
     # Constants
     default_start_page = 1
@@ -31,7 +46,7 @@ module GenericResource
     @resource_glyphicon = @@resource_glyphicon
     @resource_title_heading = @@resource_title_heading
     @resource_sub_heading = @@resource_sub_heading
-    @omitted_attributes = omitted_attributes || []
+    @omitted_attributes = omitted_attributes.push('deleted_at')
     @sort_by = sort_by
     @order_by = order_by
     @view_mode = view_mode
@@ -87,19 +102,7 @@ module GenericResource
 
   end
 
-  def setup_resource_controller( class_model,
-                                 resource_glyphicon,
-                                 resource_title_heading,
-                                 resource_sub_heading,
-                                 main_resource_path)
 
-    @@class_model = class_model
-    @@resource_glyphicon = resource_glyphicon
-    @@resource_title_heading = resource_title_heading
-    @@resource_sub_heading = resource_sub_heading
-    @@main_resource_path = main_resource_path
-
-  end
 
   def setup_process( process_block )
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
@@ -120,6 +123,18 @@ module GenericResource
     unless action_name == 'update' && params_image.blank? == true
       model_image = params_image
     end
+  end
+
+  def setup_delete
+    modal_message = 'Deleted'
+    begin
+      ActiveRecord::Base.transaction do
+        @@class_model.find(params[:id]).destroy
+      end
+    rescue => ex
+      puts ex
+    end
+    redirect_to @@main_resource_path, :flash => { :notice =>  modal_message}
   end
 
 end

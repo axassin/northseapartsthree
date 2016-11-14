@@ -45,7 +45,6 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def edit
-    puts ' --------------- HUeh huehhhhhhhhh 000 -------------------------------'
     setup_form
   end
 
@@ -54,7 +53,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   end
 
   def destroy
-    puts 'sample'
+    setup_delete
   end
 
 end
