@@ -1,7 +1,7 @@
 jQuery ($) ->
   if action_name == 'show'
-    $('input').prop('disabled', true);
-    $('textarea').prop('disabled', true);
+    $('.main_content form input').prop('disabled', true);
+    $('.main_content form textarea').prop('disabled', true);
 
 ###  $('.delete_button_modal').click ->
     e.preventDefault();

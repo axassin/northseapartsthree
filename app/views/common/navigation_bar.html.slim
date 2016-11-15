@@ -9,3 +9,6 @@ nav.navbar.navbar-default.navigation
         span.fa.fa-bars
   div.navigation-login-indicator.col-md-2
     span Login Placeholder
+
+- if action_name == 'index' || rest_action?
+  = javascript_include_tag 'generic_resource/search_suggestions'
