@@ -5,10 +5,24 @@ nav.navbar.navbar-default.navigation
       input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
       input.hidden_submit type="submit"
   div.navigation-menu-button.col-md-1
-    a.btn.btn-default.menu_button href=''
+    button.btn.btn-default.menu_button
         span.fa.fa-bars
+        p &nbsp; MENU
   div.navigation-login-indicator.col-md-2
     span Login Placeholder
 
 - if action_name == 'index' || rest_action?
   = javascript_include_tag 'generic_resource/search_suggestions'
+
+div.main_menu
+  div.container
+    div.row
+      div.col-md-1
+        ul
+          li dafsdfasf
+      div.col-md-2
+        ul
+          li dafsdfasf
+          ul
+            li dfasfa
+      div.col-md-1
