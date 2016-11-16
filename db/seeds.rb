@@ -9,9 +9,9 @@
 puts " Initializing Database with Core Data for Production and Development Environment"
 
 # Execute only in a Development Environment; This is "fake" sample data
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
 
-  puts " Generating Sample Data for Development Environment"
+  puts " Generating Sample Data for Development and Test Environment"
 
   # --------------------- Associated Constants ---------------------
 

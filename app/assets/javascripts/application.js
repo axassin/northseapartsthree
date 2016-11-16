@@ -24,6 +24,7 @@
 //= require parsley
 //= require lightbox-bootstrap
 //= require alert_modal
+//= require jquery.TableCSVExport.js
 //= //require remodal.min.js
 
 //= //require_tree .

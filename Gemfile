@@ -49,10 +49,12 @@ group :development, :test do
   #Capybara helps you test web applications by simulating how a real user would interact with your app.
   gem 'capybara'
 
-end
-
-group :test do
   gem 'shoulda-matchers', '~> 3.1'
+
+  gem 'cucumber-rails', :require => false
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
+
 end
 
 group :development do
@@ -105,6 +107,9 @@ gem 'drape', '~> 1.0.0.beta1'
 # Sunspot is a Ruby library for expressive, powerful interaction with the Solr search engine.
 gem 'sunspot_rails'
 gem 'sunspot_solr' # optional pre-packaged Solr distribution for use in development
+
+# This gem allows you to "turn on" solr for certain portions of your tests.
+gem 'sunspot-rails-tester'
 
 # A Scope & Engine based, clean, powerful, customizable and sophisticated paginator for modern web app frameworks and ORMs
 gem 'kaminari'

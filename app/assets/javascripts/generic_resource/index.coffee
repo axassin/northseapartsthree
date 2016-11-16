@@ -27,6 +27,11 @@ jQuery ($) ->
   $('.printable_form').click ->
     window.location =  URI(window.location.href).addSearch("printable", "true")
 
+  $('.export_to_csv').click ->
+    $('.resource_table').TableCSVExport
+      delivery: 'download',
+      filename: controller_name + '.csv'
+
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->
   $('#' + query_element).change ->
