@@ -34,8 +34,11 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 group :development, :test do
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+
+  # Better Errors replaces the standard Rails error page with a much better and more useful error page.
   gem 'better_errors'
 
   # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
@@ -46,14 +49,20 @@ group :development, :test do
   # multiple factories for the same class (user, admin_user, and so on), including factory inheritance.
   gem 'factory_girl'
 
-  #Capybara helps you test web applications by simulating how a real user would interact with your app.
+  # Capybara helps you test web applications by simulating how a real user would interact with your app.
   gem 'capybara'
 
+  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
   gem 'shoulda-matchers', '~> 3.1'
 
+  # Cucumber-Rails brings Cucumber to Rails 3.x, 4.x and 5.x.
   gem 'cucumber-rails', :require => false
+
   # database_cleaner is not required, but highly recommended
   gem 'database_cleaner'
+
+  # This gem brings back assigns to your controller tests as well as assert_template to both controller and integration tests.
+  gem 'rails-controller-testing'
 
 end
 

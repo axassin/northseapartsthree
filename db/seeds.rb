@@ -54,7 +54,7 @@ if Rails.env.development? || Rails.env.test?
     current_vehicle.color = Faker::Color.color_name
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
     current_vehicle.brand = Faker::Company.name
-    current_vehicle.plate_number = Faker::Lorem.characters(10)
+    current_vehicle.plate_number = Faker::Lorem.characters(6)
 =begin
     until Vehicle.exists?(:plate_number => plate_number) == false
     end
