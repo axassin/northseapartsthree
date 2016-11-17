@@ -61,7 +61,12 @@ if Rails.env.development? || Rails.env.test?
 =end
 
     # current_vehicle.remote_primary_image_url = 'http://localhost:3000/uploads/primary_image/vehicle/sample_vehicle_01.jpg'
-    current_image = ['sample_vehicle_01.jpg','sample_vehicle_02.png','sample_vehicle_03.jpg','sample_vehicle_04.png','sample_vehicle_05.jpg',''].sample
+    current_image = ['sample_vehicle_01.jpg',
+                     'sample_vehicle_02.png',
+                     'sample_vehicle_03.jpg',
+                     'sample_vehicle_04.png',
+                     'sample_vehicle_05.jpg',
+                     ''].sample
     current_vehicle[:primary_image] = current_image
 
     current_vehicle.fuel_type = %w(DIESEL GASOLINE).sample

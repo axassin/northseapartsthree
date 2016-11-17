@@ -16,7 +16,16 @@ RSpec.describe Enterprise::GeneralManagement::ContactsController, type: :control
     end
 
     it 'loads initial data' do
-      vehicle_01 = FactoryGirl.create :vehicle
+      vehicle_array = []
+
+      10.times {
+        vehicle_array.push(FactoryGirl.create :vehicle)
+      }
+      # vehicle_01 = FactoryGirl.create :vehicle
+
+      get :index
+      expect(assigns(:result_set)).to match_array(vehicle_array)
+
     end
 
   end
