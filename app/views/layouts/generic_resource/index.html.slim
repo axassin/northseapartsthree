@@ -11,13 +11,19 @@ div.remodal.add_form_modal data-remodal-id='modal'
             - unless @omitted_attributes.include?(attribute)
               th
                 div = attribute.humanize.titleize.upcase
+          - if @admitted_attributes.present?
+            - @admitted_attributes.each do |attribute|
+              th
+                div = attribute.humanize.titleize.upcase
+
       tbody
         - @result_set.each do |result|
           tr
             - result.attribute_names.each_with_index do |attribute, index|
               - unless @omitted_attributes.include?(attribute)
-                = puts '---------- - ------------ - ----'
-                = puts attribute
+                td = result.decorate.send(attribute)
+            - if @admitted_attributes.present?
+              - @admitted_attributes.each do |attribute|
                 td = result.decorate.send(attribute)
 
   - else

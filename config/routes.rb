@@ -31,7 +31,7 @@ Rails.application.routes.draw do
   namespace :enterprise do
     define_index( 'general_management' )
     namespace :general_management do
-      define_index( 'contacts' )
+      define_index( 'contact_details' )
       namespace :contact_details do
         generate_logic_unit( :telephone_numbers )
         generate_logic_unit( :links )

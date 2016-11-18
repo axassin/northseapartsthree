@@ -8,5 +8,6 @@ class Location < ApplicationRecord
   validates :latitude, length: { in: 2..256 }, presence: true
   validates :address, length: { in: 2..256 }, presence: true
 
+  searchable_string(:address)
 
 end

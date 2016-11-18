@@ -8,17 +8,21 @@ module GenericResource
                                  resource_glyphicon,
                                  resource_title_heading,
                                  resource_sub_heading,
-                                 main_resource_path)
+                                 main_resource_path,
+                                 omitted_attributes,
+                                 admitted_attributes)
 
     @@class_model = class_model
     @@resource_glyphicon = resource_glyphicon
     @@resource_title_heading = resource_title_heading
     @@resource_sub_heading = resource_sub_heading
     @@main_resource_path = main_resource_path
+    @@omitted_attributes = omitted_attributes
+    @@admitted_attributes = admitted_attributes
 
   end
 
-  def setup_index( omitted_attributes = [], parent_controller_path)
+  def setup_index(parent_controller_path)
 
     # Constants
     default_start_page = 1
@@ -42,11 +46,13 @@ module GenericResource
     end
 
     # Output Variables
+    @total = search_results.total
     @result_set = search_results.results
     @resource_glyphicon = @@resource_glyphicon
     @resource_title_heading = @@resource_title_heading
     @resource_sub_heading = @@resource_sub_heading
-    @omitted_attributes = omitted_attributes.push('deleted_at')
+    @omitted_attributes = @@omitted_attributes.push('deleted_at')
+    @admitted_attributes = @@admitted_attributes
     @sort_by = sort_by
     @order_by = order_by
     @view_mode = view_mode
@@ -63,7 +69,6 @@ module GenericResource
     # Constants
     search_query = params[:search_query]
 
-    puts search_query
     # Sunspot Search
     search_suggestions = @@class_model.search do
       fulltext search_query
@@ -72,10 +77,19 @@ module GenericResource
     # Push searched models into a suggestions array
     search_suggestions_array = []
     search_suggestions.results.each do |result|
+
       result.attribute_names.each do |attribute|
         suggestion = result.send(attribute)
         search_suggestions_array.push(suggestion) if suggestion.to_s.downcase.include? search_query.downcase
       end
+
+      if @@admitted_attributes.present?
+        @@admitted_attributes.each do |attribute|
+          suggestion = result.send(attribute)
+          search_suggestions_array.push(suggestion) if suggestion.to_s.downcase.include? search_query.downcase
+        end
+      end
+
     end
 
     # Respond

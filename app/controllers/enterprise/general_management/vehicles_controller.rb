@@ -3,10 +3,12 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
   ApplicationController.new.setup_resource_controller(Vehicle,
                                                       'fa fa-bus',
                                                       'Vehicles',
-                                                      'Transportation Assets', @@routes.enterprise_general_management_vehicles_path)
+                                                      'Transportation Assets',
+                                                      @@routes.enterprise_general_management_vehicles_path,
+                                                      ['primary_image'],[])
 
   def index
-    setup_index(['primary_image'], @@routes.enterprise_general_management_path)
+    setup_index(@@routes.enterprise_general_management_path)
   end
 
   def search_suggestions
