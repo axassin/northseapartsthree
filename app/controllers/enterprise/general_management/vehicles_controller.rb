@@ -1,14 +1,18 @@
 class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralManagementController
 
-  ApplicationController.new.setup_resource_controller(Vehicle,
-                                                      'fa fa-bus',
-                                                      'Vehicles',
-                                                      'Transportation Assets',
-                                                      @@routes.enterprise_general_management_vehicles_path,
-                                                      ['primary_image'],[])
+  def setup_controller
+    setup_variables( Vehicle,
+                     'fa fa-bus',
+                     'Vehicles',
+                     'Transportation Assets',
+                     ['primary_image'],
+                     [],
+                     @@routes.enterprise_general_management_path,
+                     @@routes.enterprise_general_management_vehicles_path )
+  end
 
   def index
-    setup_index(@@routes.enterprise_general_management_path)
+    setup_index
   end
 
   def search_suggestions

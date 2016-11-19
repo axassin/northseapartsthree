@@ -1,15 +1,20 @@
 class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < Enterprise::GeneralManagement::ContactDetailsController
 
-  ApplicationController.new.setup_resource_controller(TelephoneNumber,
-                                                      'fa fa-phone',
-                                                      'Telephone Numbers',
-                                                      'Communication Assets',
-                                                      @@routes.enterprise_general_management_contact_details_telephone_numbers_path,
-                                                      [],
-                                                      ['label','owner'])
+  def setup_controller
+
+    setup_variables( TelephoneNumber,
+                     'fa fa-phone',
+                     'Telephone Numbers',
+                     'Communication Assets',
+                     [],
+                     ['label','owner'],
+                     @@routes.enterprise_general_management_contact_details_path,
+                     @@routes.enterprise_general_management_contact_details_telephone_numbers_path )
+
+  end
 
   def index
-    setup_index( @@routes.enterprise_general_management_contact_details_path)
+    setup_index
   end
 
   def search_suggestions
