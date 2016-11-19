@@ -1,7 +1,6 @@
 class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < Enterprise::GeneralManagement::ContactDetailsController
 
   def setup_controller
-
     setup_variables( TelephoneNumber,
                      'fa fa-phone',
                      'Telephone Numbers',
@@ -10,7 +9,6 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
                      ['label','owner'],
                      @@routes.enterprise_general_management_contact_details_path,
                      @@routes.enterprise_general_management_contact_details_telephone_numbers_path )
-
   end
 
   def index

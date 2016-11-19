@@ -2,11 +2,19 @@ class TelephoneNumberDecorator < ApplicationDecorator
   delegate_all
 
   def label
-    object.label
+    label = object.label.to_s
+    str = mab do
+      a label, :class => 'btn btn-default btn-xs grid-item-button', :href => ''
+    end
+    output_html_structure(str)
   end
 
   def owner
-    object.owner
+    owner = object.owner.to_s
+    str = mab do
+      a owner, :class => 'btn btn-default btn-xs grid-item-button', :href => ''
+    end
+    output_html_structure(str)
   end
 
   # Define presentation-specific methods here. Helpers are accessed through
