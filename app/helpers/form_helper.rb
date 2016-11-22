@@ -32,4 +32,14 @@ module FormHelper
     output_html_structure(str)
   end
 
+  def contactable_selector(f, selected)
+    f.input :contact_detail,
+            collection: ContactDetail.all,
+            label_method: :labeled_account,
+            value_method: :id,
+            prompt: 'Select System Account',
+            selected: selected,
+            input_html: { class: 'surewin'}
+  end
+
 end

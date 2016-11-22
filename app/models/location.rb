@@ -1,6 +1,8 @@
 class Location < ApplicationRecord
 
   include UUIDConcern
+  include Contactable
+
   belongs_to :contact_detail
 
   validates_presence_of :contact_detail

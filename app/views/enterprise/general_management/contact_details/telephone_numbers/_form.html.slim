@@ -1,10 +1,15 @@
 div.col-md-6
   = input_word(f, :digits)
   = input_word(f, :remark)
+  = contactable_selector(f, current_instance.contact_detail_id)
+
 div.col-md-6
   - if rest_existing_model_action?
-      div.primary_image_form_display
-        = primary_image_default(current_instance.contact_detail.system_account, 'fa user')
-        div.primary_image_info
+    div.contact_detail_display
+      img src="#{current_instance.contact_detail.system_account.primary_image.url}"
+      div.detail
+        a.btn.btn-default.detail_link.name href="#{'/enterprise/general_management/system_accounts/' + current_instance.contact_detail.system_account.id}"
           = current_instance.contact_detail.system_account.name
+        br
+        a.btn.btn-default.detail_link href="#{'/enterprise/general_management/contact_details/' + current_instance.contact_detail.id}"
           = current_instance.contact_detail.label

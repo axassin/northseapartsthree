@@ -1,14 +1,11 @@
 = stylesheet_link_tag 'main_partials/generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
+= javascript_include_tag 'generic_resource/main', 'data-turbolinks-track' => 'reload'
 
 - if action_name == 'index'
-
   = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
-  = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
 
 - elsif rest_action?
-
   = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
-  = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
 
 - else
 
