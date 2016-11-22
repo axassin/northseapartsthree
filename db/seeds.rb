@@ -55,12 +55,6 @@ if Rails.env.development? || Rails.env.test?
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
     current_vehicle.brand = Faker::Company.name
     current_vehicle.plate_number = Faker::Lorem.characters(6)
-=begin
-    until Vehicle.exists?(:plate_number => plate_number) == false
-    end
-=end
-
-    # current_vehicle.remote_primary_image_url = 'http://localhost:3000/uploads/primary_image/vehicle/sample_vehicle_01.jpg'
     current_image = ['sample_vehicle_01.jpg',
                      'sample_vehicle_02.png',
                      'sample_vehicle_03.jpg',
@@ -77,9 +71,21 @@ if Rails.env.development? || Rails.env.test?
 
   # System Accounts
   NUMBER_OF_SYSTEM_ACCOUNTS.times {
+
+    current_image = ['sample_system_account_01.jpg',
+                     'sample_system_account_02.jpg',
+                     'sample_system_account_03.jpg',
+                     'sample_system_account_04.jpg',
+                     'sample_system_account_05.jpg',
+                     ''].sample
+
+
+
     current_system_account = SystemAccount.create!(name: Faker::Name.name,
                                                   description: Faker::Lorem.sentence,
                                                   account_type: %w(BUSINESS INDIVIDUAL).sample)
+    current_system_account[:primary_image] = current_image
+    current_system_account.save!
 
     # System Accounts with Contact Details
     PERCENT_SA_WITH_CD.in(100) do

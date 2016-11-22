@@ -3,6 +3,8 @@ class SystemAccount < ApplicationRecord
   include UUIDConcern
   include Description
 
+  mount_uploader :primary_image, PrimaryImageUploader
+
   has_many :contact_details
   has_many :telephone_numbers, through: :contact_details
   has_many :locations, through: :contact_details

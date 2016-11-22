@@ -19,7 +19,7 @@ ruby:
                   method: method,
                   html: { :'data-parsley-validate' => '' } do |f|
   div
-    = render partial: controller_path + '/form', locals: {f: f}
+    = render partial: controller_path + '/form', locals: {f: f, current_instance: @current_instance}
 
   div.col-md-12.footnote * Required
 

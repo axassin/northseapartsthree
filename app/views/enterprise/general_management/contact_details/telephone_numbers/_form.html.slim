@@ -2,3 +2,9 @@ div.col-md-6
   = input_word(f, :digits)
   = input_word(f, :remark)
 div.col-md-6
+  - if rest_existing_model_action?
+      div.primary_image_form_display
+        = primary_image_default(current_instance.contact_detail.system_account, 'fa user')
+        div.primary_image_info
+          = current_instance.contact_detail.system_account.name
+          = current_instance.contact_detail.label
