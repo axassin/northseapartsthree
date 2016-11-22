@@ -1,4 +1,4 @@
 - if controller.action_name == 'index'
-    div.form_title.col-md-12 #{ ('ADD ' + controller_name.to_s.singularize.capitalize + ' Form').upcase }
+    div.form_title.col-md-12 #{ ('ADD ' + controller_name.to_s.humanize.singularize.capitalize + ' Form').upcase }
 - else
-    div.form_title.col-md-12 #{ (controller.action_name + ' ' + controller_name.to_s.singularize.capitalize + ' Form').upcase }
+    div.form_title.col-md-12 #{ (controller.action_name + ' ' + controller_name.humanize.to_s.singularize.capitalize + ' Form').upcase }

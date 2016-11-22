@@ -36,6 +36,7 @@ div.remodal.add_form_modal data-remodal-id='modal'
       - @result_set.each do |result|
         a.grid-item-link href='#{'/'+controller_path+'/'+result.id}'
           div.grid-item
+            // do not render links inside a cell
             = render partial: controller_path + '/cell', locals: {result: result}
 
 - else

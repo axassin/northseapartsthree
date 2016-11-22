@@ -39,6 +39,13 @@ module ApplicationHelper
     f.input name, as: :date, html5: true
   end
 
+  def system_account_preview(id)
+    str = mab do
+
+    end
+    output_html_structure(str)
+  end
+
   def primary_image_default(result, fa_glyphicon_code)
 
     str = mab do
