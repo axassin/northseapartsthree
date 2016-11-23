@@ -278,6 +278,7 @@ GEM
       sprockets (> 2.11)
       sprockets-rails
       tilt
+    selectize-rails (0.12.4)
     shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
@@ -382,6 +383,7 @@ DEPENDENCIES
   roo
   rspec-rails (~> 3.5)
   sassc-rails
+  selectize-rails
   shoulda-matchers (~> 3.1)
   simple_form
   slim

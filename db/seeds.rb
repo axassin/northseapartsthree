@@ -16,28 +16,28 @@ if Rails.env.development? || Rails.env.test?
   # --------------------- Associated Constants ---------------------
 
   # Number of SystemAccounts
-  NUMBER_OF_SYSTEM_ACCOUNTS = 100
+  NUMBER_OF_SYSTEM_ACCOUNTS = 50
 
   # Percent of System Accounts to have ContactDetails
-  PERCENT_SA_WITH_CD = 75
+  PERCENT_SA_WITH_CD = 25
 
   # Possible Range of Contact Details per System Account
   CD_PER_SA = (1..5)
 
   # Percent of Contact Details to have Telephones
-  PERCENT_CD_WITH_TEL = 75
+  PERCENT_CD_WITH_TEL = 25
 
   # Possible Range of Telephone Numbers per Contact Details
   TEL_PER_CD = (1..5)
 
   # Percent of Contact Details to have Links
-  PERCENT_CD_WITH_LINK = 75
+  PERCENT_CD_WITH_LINK = 25
 
   # Possible Range of Links per Contact Details
   LINK_PER_CD = (1..5)
 
   # Percent of Contact Details to have Locations
-  PERCENT_CD_WITH_LOC = 75
+  PERCENT_CD_WITH_LOC = 25
 
   # Possible Range of Locations per Contact Details
   LOC_PER_CD = (1..5)
@@ -88,13 +88,13 @@ if Rails.env.development? || Rails.env.test?
     current_system_account.save!
 
     # System Accounts with Contact Details
-    PERCENT_SA_WITH_CD.in(100) do
+    PERCENT_SA_WITH_CD.in(50) do
       rand(CD_PER_SA).times do
         current_contact_detail = ContactDetail.create!(label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
                                                        system_account: current_system_account)
 
         # Contact Details with Telephone Numbers
-        PERCENT_CD_WITH_TEL.in(100) do
+        PERCENT_CD_WITH_TEL.in(50) do
           rand(TEL_PER_CD).times do
             TelephoneNumber.create!(contact_detail: current_contact_detail,
                                     remark: Faker::Company.name,
@@ -103,7 +103,7 @@ if Rails.env.development? || Rails.env.test?
         end
 
         # Contact Details with Links
-        PERCENT_CD_WITH_LINK.in(100) do
+        PERCENT_CD_WITH_LINK.in(50) do
           rand(LINK_PER_CD).times do
             Link.create!(contact_detail: current_contact_detail,
                          service: %w(EMAIL SKYPE VIBER).sample,
@@ -113,7 +113,7 @@ if Rails.env.development? || Rails.env.test?
         end
 
         # Contact Details with Location
-        PERCENT_CD_WITH_LOC.in(100) do
+        PERCENT_CD_WITH_LOC.in(50) do
           rand(LOC_PER_CD).times do
             aggregated_address = Faker::Address.street_address + Faker::Address.city + Faker::Address.state
             Location.create!(contact_detail: current_contact_detail,

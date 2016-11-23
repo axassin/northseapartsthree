@@ -9,12 +9,33 @@ div.main_content, .add_form_modal
     border-bottom: solid thin
 
   form.simple_form
+    label.outside_label
+      margin: 0
+      background-color: gainsboro
+      padding: 0.25em
+      font-size: 0.75em
+      float: left
 
-    div.contact_detail_display
+    .contactable_selector
+      float: left
+
+    .form-control
+      border-radius: 0
+
+    img.primary_image
+      width: 100%
+
+    div.contactable_preview
+      display: none
+
       img
         width: 45%
         max-height: 15%
         float: left
+        margin-top: 0.25em
+        padding: 0.25em
+        border: thin gainsboro solid
+
       div.detail
         float: left
         background: gainsboro
@@ -51,7 +72,7 @@ div.main_content, .add_form_modal
         margin: 0.5em
 
     div.footnote
-      margin-bottom: 0.5em
+      margin: 1em
 
     div.supplementary_text
       background-color: gainsboro

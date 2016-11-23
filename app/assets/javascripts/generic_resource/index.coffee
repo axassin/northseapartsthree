@@ -1,6 +1,6 @@
 jQuery ($) ->
 
-  # Constants
+# Constants
   current_URI = URI(window.location.href)
 
   # Query Modifiers
@@ -31,13 +31,6 @@ jQuery ($) ->
     $('.resource_table').TableCSVExport
       delivery: 'download',
       filename: controller_name + '.csv'
-
-  # Form
-  if action_name == 'show'
-    $('.main_content form input').prop('disabled', true);
-    $('.main_content form textarea').prop('disabled', true);
-
-  # Form Inputs
 
 # Modifies params then refreshes the page for a modified query
 query_modifiers = (query_element, current_URI) ->

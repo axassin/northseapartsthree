@@ -25,6 +25,8 @@
 //= require lightbox-bootstrap
 //= require alert_modal
 //= require jquery.TableCSVExport.js
+//= require selectize
+//= //require select2-full
 //= //require remodal.min.js
 
 //= //require_tree .

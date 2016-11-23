@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         generate_logic_unit( :links )
         generate_logic_unit( :locations )
       end
+      get 'contact_details/contactable', to: 'contact_details#contactable'
       generate_logic_unit( :contact_details )
 
       generate_logic_unit( :vehicles )

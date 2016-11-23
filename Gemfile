@@ -162,3 +162,6 @@ gem 'mini_magick'
 # Paranoia is a re-implementation of acts_as_paranoid for Rails 3/4/5, using much, much, much less code.
 gem 'paranoia', '~> 2.2'
 
+# Selectize is the hybrid of a textbox and <select> box.
+gem 'selectize-rails'
+

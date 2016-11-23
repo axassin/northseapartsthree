@@ -33,13 +33,30 @@ module FormHelper
   end
 
   def contactable_selector(f, selected)
-    f.input :contact_detail,
-            collection: ContactDetail.all,
-            label_method: :labeled_account,
-            value_method: :id,
-            prompt: 'Select System Account',
-            selected: selected,
-            input_html: { class: 'surewin'}
+
+    label_element = mab do
+      label :class => 'outside_label string required', :for => 'contactable' do
+        'Owner | Contact Detail Set *'.upcase
+      end
+    end
+
+    input_element = f.input :contact_detail_id,
+                            collection: ContactDetail.all,
+                            label_method: :labeled_account,
+                            value_method: :id,
+                            prompt: 'Select System Account',
+                            selected: selected,
+                            input_html: { class: 'contactable_selector', id: 'contactable'},
+                            label: false,
+                            required: true
+
+    image_element = mab do
+      div :class => 'contactable_preview' do
+        img :class => 'contactable_image'
+      end
+    end
+
+    (label_element + input_element + image_element).html_safe
   end
 
 end
