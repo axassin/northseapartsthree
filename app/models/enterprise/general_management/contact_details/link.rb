@@ -1,8 +1,8 @@
-class Link < ApplicationRecord
+class Enterprise::GeneralManagement::ContactDetails::Link < ApplicationRecord
 
-  include UUIDConcern
-  include Remark
+  include GenericResourceCommon
   include Contactable
+  include Remark
 
   belongs_to :contact_detail
 

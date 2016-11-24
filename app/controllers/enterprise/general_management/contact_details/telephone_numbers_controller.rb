@@ -1,22 +1,16 @@
 class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < Enterprise::GeneralManagement::ContactDetailsController
 
+  include GenericResource
+
   def setup_controller
-    setup_variables( TelephoneNumber,
+    setup_variables( Enterprise::GeneralManagement::ContactDetails::TelephoneNumber,
                      'fa fa-phone',
                      'Telephone Numbers',
                      'Communication Assets',
-                     [],
+                     ['contact_detail_id'],
                      ['label','owner'],
                      @@routes.enterprise_general_management_contact_details_path,
                      @@routes.enterprise_general_management_contact_details_telephone_numbers_path )
-  end
-
-  def index
-    setup_index
-  end
-
-  def search_suggestions
-    setup_search_suggestions
   end
 
   def process_form(my_telephone, current_params)
@@ -29,30 +23,6 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
     end
 
     setup_process(telephone_processing)
-  end
-
-  def new
-    setup_form
-  end
-
-  def create
-    process_form(TelephoneNumber.new, params[:telephone_number])
-  end
-
-  def show
-    setup_form
-  end
-
-  def edit
-    setup_form
-  end
-
-  def update
-    process_form(TelephoneNumber.find(params[:id]), params[:telephone_number])
-  end
-
-  def destroy
-    setup_delete
   end
 
 end

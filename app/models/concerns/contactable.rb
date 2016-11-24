@@ -4,20 +4,20 @@ module Contactable
   included do
 
     def label
-      ContactDetail.find_by_id(contact_detail_id).label
+      Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).label
     end
 
     def label_id
-      ContactDetail.find_by_id(contact_detail_id).id
+      Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).id
     end
 
     def owner
-      owner_account = ContactDetail.find_by_id(contact_detail_id).system_account
+      owner_account = Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).system_account
       SystemAccount.find_by_id(owner_account.id).name
     end
 
     def owner_id
-      owner_account = ContactDetail.find_by_id(contact_detail_id).system_account
+      owner_account = Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).system_account
       SystemAccount.find_by_id(owner_account.id).id
     end
 

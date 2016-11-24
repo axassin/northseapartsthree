@@ -1,4 +1,4 @@
-class VehicleDecorator < ApplicationDecorator
+class Enterprise::GeneralManagement::VehicleDecorator < ApplicationDecorator
 
   delegate_all
 

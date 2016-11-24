@@ -1,7 +1,12 @@
 module GenericResource
   extend ActiveSupport::Concern
 
+  included do
+    before_action :setup_controller
+  end
+
   include Rails.application.routes.url_helpers
+  @@routes = Rails.application.routes.url_helpers
 
   def setup_variables( class_model,
                        resource_glyphicon,
@@ -21,6 +26,20 @@ module GenericResource
     @parent_controller_path = parent_controller_path
     @main_resource_path = main_resource_path
     @current_instance = class_model.new
+    @class_model_symbolized = class_model.to_s.underscore.gsub('/','_').to_sym
+
+    puts '------------ VARIABLES INITIALIZED ---------------- '
+    puts '@class_model: ' + @class_model.to_s
+    puts '@resource_glyphicon: ' + @resource_glyphicon.to_s
+    puts '@resource_title_heading: ' + @resource_title_heading.to_s
+    puts '@resource_sub_heading: ' + @resource_sub_heading.to_s
+    puts '@omitted_attributes: ' + @omitted_attributes.to_s
+    puts '@admitted_attributes: ' + @admitted_attributes.to_s
+    puts '@parent_controller_path: ' + @parent_controller_path.to_s
+    puts '@main_resource_path: ' + @main_resource_path.to_s
+    puts '@current_instance: ' + @current_instance.to_s
+    puts '@class_model_symbolized: ' + @class_model_symbolized.to_s
+    puts '--------------------------------------------------- '
 
   end
 
@@ -65,7 +84,45 @@ module GenericResource
 
   end
 
-  def setup_search_suggestions
+  def setup_form
+
+    @resource_glyphicon = @resource_glyphicon
+    @resource_title_heading = @resource_title_heading
+    @resource_sub_heading = @resource_sub_heading
+    @main_resource_path = @main_resource_path
+
+    if params.has_key?(:id)
+      @current_instance = @class_model.find(params[:id])
+    else
+      @current_instance = @class_model.new
+    end
+
+    render template: 'layouts/generic_resource/main', layout: false
+
+  end
+
+  def setup_process( process_block )
+    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
+    begin
+      ActiveRecord::Base.transaction do
+        process_block.call
+        modal_message = 'Successful Operation! '
+      end
+    rescue => ex
+      puts ' --------- PROCESS ERROR START --------- '
+      puts ex
+      puts ' ---------- PROCESS ERROR END ---------- '
+    end
+    redirect_to @main_resource_path, :flash => { :notice => modal_message }
+  end
+
+  def image_handling(model_image, params_image)
+    unless action_name == 'update' && params_image.blank? == true
+      model_image = params_image
+    end
+  end
+
+  def search_suggestions
 
     # Constants
     search_query = params[:search_query]
@@ -100,47 +157,24 @@ module GenericResource
 
   end
 
-  def setup_form
-
-    @resource_glyphicon = @resource_glyphicon
-    @resource_title_heading = @resource_title_heading
-    @resource_sub_heading = @resource_sub_heading
-    @main_resource_path = @main_resource_path
-
-    if params.has_key?(:id)
-      @current_instance = @class_model.find(params[:id])
-    else
-      @current_instance = @class_model.new
-    end
-
-    render template: 'layouts/generic_resource/main', layout: false
-
+  def index
+    setup_index
   end
 
-
-
-  def setup_process( process_block )
-    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
-    begin
-      ActiveRecord::Base.transaction do
-        process_block.call
-        modal_message = 'Successful Operation! '
-      end
-    rescue => ex
-      puts ' --------- PROCESS ERROR START --------- '
-      puts ex
-      puts ' ---------- PROCESS ERROR END ---------- '
-    end
-    redirect_to @main_resource_path, :flash => { :notice => modal_message }
+  def new
+    setup_form
   end
 
-  def image_handling(model_image, params_image)
-    unless action_name == 'update' && params_image.blank? == true
-      model_image = params_image
-    end
+  def show
+    setup_form
   end
 
-  def setup_delete
+  def edit
+    setup_form
+  end
+
+  def destroy
+
     modal_message = 'Deleted'
     begin
       ActiveRecord::Base.transaction do
@@ -150,6 +184,15 @@ module GenericResource
       puts ex
     end
     redirect_to @main_resource_path, :flash => { :notice =>  modal_message}
+
+  end
+
+  def create
+    process_form(@class_model.new, params[@class_model_symbolized])
+  end
+
+  def update
+    process_form(@class_model.find(params[:id]), params[@class_model_symbolized])
   end
 
 end

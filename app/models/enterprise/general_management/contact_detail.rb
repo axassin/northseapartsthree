@@ -1,6 +1,6 @@
-class ContactDetail < ApplicationRecord
+class Enterprise::GeneralManagement::ContactDetail < ApplicationRecord
 
-  include UUIDConcern
+  include GenericResourceCommon
 
   belongs_to :system_account
   has_many :telephone_numbers

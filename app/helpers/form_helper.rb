@@ -28,7 +28,7 @@ module FormHelper
   def contactable_selector(f, selected)
 
     input_element = f.input :contact_detail_id,
-                            collection: ContactDetail.all,
+                            collection: Enterprise::GeneralManagement::ContactDetail.all,
                             label_method: :labeled_account,
                             value_method: :id,
                             prompt: 'Select System Account',

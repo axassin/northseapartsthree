@@ -1,8 +1,7 @@
-class Vehicle < ApplicationRecord
+class Enterprise::GeneralManagement::Vehicle < ApplicationRecord
 
-  include UUIDConcern
+  include GenericResourceCommon
   include Description
-  include Timestamps
 
   mount_uploader :primary_image, PrimaryImageUploader
 

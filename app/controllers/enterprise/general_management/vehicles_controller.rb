@@ -1,7 +1,9 @@
 class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralManagementController
 
+  include GenericResource
+
   def setup_controller
-    setup_variables( Vehicle,
+    setup_variables( Enterprise::GeneralManagement::Vehicle,
                      'fa fa-bus',
                      'Vehicles',
                      'Transportation Assets',
@@ -9,14 +11,6 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
                      [],
                      @@routes.enterprise_general_management_path,
                      @@routes.enterprise_general_management_vehicles_path )
-  end
-
-  def index
-    setup_index
-  end
-
-  def search_suggestions
-    setup_search_suggestions
   end
 
   def process_form(my_vehicle, current_params)
@@ -36,30 +30,6 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
     end
 
     setup_process(vehicle_processing)
-  end
-
-  def new
-    setup_form
-  end
-
-  def create
-    process_form(Vehicle.new, params[:vehicle])
-  end
-
-  def show
-    setup_form
-  end
-
-  def edit
-    setup_form
-  end
-
-  def update
-    process_form(Vehicle.find(params[:id]), params[:vehicle])
-  end
-
-  def destroy
-    setup_delete
   end
 
 end

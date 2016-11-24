@@ -1,6 +1,6 @@
 class SystemAccount < ApplicationRecord
 
-  include UUIDConcern
+  include GenericResourceCommon
   include Description
 
   mount_uploader :primary_image, PrimaryImageUploader
