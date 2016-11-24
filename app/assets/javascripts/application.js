@@ -26,6 +26,7 @@
 //= require alert_modal
 //= require jquery.TableCSVExport.js
 //= require selectize
+//= require jquery.turbolinks
 //= //require select2-full
 //= //require remodal.min.js
 

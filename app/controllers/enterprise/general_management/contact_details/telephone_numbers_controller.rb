@@ -23,6 +23,7 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
 
     telephone_processing = Proc.new do
       my_telephone.digits = current_params[:digits]
+      my_telephone.remark = current_params[:remark]
       my_telephone.contact_detail_id = current_params[:contact_detail_id]
       my_telephone.save!
     end

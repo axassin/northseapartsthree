@@ -17,7 +17,7 @@ class Enterprise::GeneralManagement::ContactDetailsController < ApplicationContr
 
   def contactable
     picture_url = SystemAccount.find_by_id(ContactDetail.find_by_id(params[:id]).system_account_id).primary_image.url
-    render text: picture_url
+    render text: picture_url.to_s
   end
 
 end

@@ -1,14 +1,19 @@
 @import "../../constants"
 
+// Styles for Forms in Modal and Content
 div.main_content, .add_form_modal
 
+  // Title
   div.form_title
     @extend %font_set_two
     font-size: 2em
     margin-bottom: 1em
     border-bottom: solid thin
 
+  // Form Proper
   form.simple_form
+
+    // for labels outside their input group
     label.outside_label
       margin: 0
       background-color: gainsboro
@@ -16,41 +21,26 @@ div.main_content, .add_form_modal
       font-size: 0.75em
       float: left
 
-    .contactable_selector
-      float: left
-
-    .form-control
-      border-radius: 0
-
-    img.primary_image
-      width: 100%
-
-    div.contactable_preview
-      display: none
-
-      img
-        width: 45%
-        max-height: 15%
+    // for contact selector
+    div.contactable_selector
+      div.contactable_element
         float: left
+        border-radius: 0
+      img.contactable_element
+        float: left
+        display: none
+        width: 50%
+        max-height: 15%
         margin-top: 0.25em
         padding: 0.25em
         border: thin gainsboro solid
+        border-radius: 0
 
-      div.detail
-        float: left
-        background: gainsboro
-        padding: 0.5em
-        margin-left: 0.5em
+    // for primary image display
+    img.primary_image
+      width: 100%
 
-        .detail_link
-          margin-bottom: 0.25em
-
-        a.name
-          font-size: 2em
-
-    div.primary_image_info
-      float: left
-
+    // for each input group
     div.form-group
       label.control-label
         float: left
@@ -65,16 +55,13 @@ div.main_content, .add_form_modal
       input[type="color"]
         height: 5em
 
+    // button option
     div.button_options
       border-top: solid gainsboro thin
       padding: 0.5em
       button, input
         margin: 0.5em
 
+    // for footnote
     div.footnote
       margin: 1em
-
-    div.supplementary_text
-      background-color: gainsboro
-      color: black
-      padding: 0.25em

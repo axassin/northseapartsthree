@@ -25,20 +25,7 @@ module FormHelper
     f.input name, as: :date, html5: true
   end
 
-  def system_account_preview(id)
-    str = mab do
-
-    end
-    output_html_structure(str)
-  end
-
   def contactable_selector(f, selected)
-
-    label_element = mab do
-      label :class => 'outside_label string required', :for => 'contactable' do
-        'Owner | Contact Detail Set *'.upcase
-      end
-    end
 
     input_element = f.input :contact_detail_id,
                             collection: ContactDetail.all,
@@ -46,17 +33,25 @@ module FormHelper
                             value_method: :id,
                             prompt: 'Select System Account',
                             selected: selected,
-                            input_html: { class: 'contactable_selector', id: 'contactable'},
+                            input_html: { class: 'contactable_selector_select contactable_element', id: 'contactable'},
                             label: false,
                             required: true
 
-    image_element = mab do
-      div :class => 'contactable_preview' do
-        img :class => 'contactable_image'
+    main_element = mab do
+      div :class => 'contactable_selector' do
+
+        label :class => 'outside_label string required contactable_element', :for => 'contactable' do
+          'Owner | Contact Detail Set *'.upcase
+        end
+
+        text! input_element.to_s
+
+        img :class => 'contactable_element'
+
       end
     end
 
-    (label_element + input_element + image_element).html_safe
+    main_element.html_safe
   end
 
 end

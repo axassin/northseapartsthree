@@ -165,3 +165,5 @@ gem 'paranoia', '~> 2.2'
 # Selectize is the hybrid of a textbox and <select> box.
 gem 'selectize-rails'
 
+# It's easy and fast way to improve user experience of surfing on your website.
+gem 'jquery-turbolinks'
