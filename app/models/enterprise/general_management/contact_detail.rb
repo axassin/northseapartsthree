@@ -8,7 +8,7 @@ class Enterprise::GeneralManagement::ContactDetail < ApplicationRecord
   has_many :links
 
   def labeled_account
-    SystemAccount.find_by_id(system_account_id).name.to_s + ' | ' + label.to_s
+    Enterprise::SystemAccount.find_by_id(system_account_id).name.to_s + ' | ' + label.to_s
   end
 
   validates :label, length: { in: 2..64 }

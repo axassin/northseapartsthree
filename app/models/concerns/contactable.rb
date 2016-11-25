@@ -13,12 +13,12 @@ module Contactable
 
     def owner
       owner_account = Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).system_account
-      SystemAccount.find_by_id(owner_account.id).name
+      Enterprise::SystemAccount.find_by_id(owner_account.id).name
     end
 
     def owner_id
       owner_account = Enterprise::GeneralManagement::ContactDetail.find_by_id(contact_detail_id).system_account
-      SystemAccount.find_by_id(owner_account.id).id
+      Enterprise::SystemAccount.find_by_id(owner_account.id).id
     end
 
     searchable do

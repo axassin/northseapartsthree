@@ -196,5 +196,9 @@ module GenericResource
     process_form(@class_model.find(params[:id]), params[@class_model_symbolized])
   end
 
+  def uniqueness_validation
+    render :text => @class_model.exists?(params[:attribute].to_sym => params[:value])
+  end
+
 
 end

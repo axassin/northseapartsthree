@@ -1,4 +1,4 @@
-class SystemAccount < ApplicationRecord
+class Enterprise::SystemAccount < ApplicationRecord
 
   include GenericResourceCommon
   include Description

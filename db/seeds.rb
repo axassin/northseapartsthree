@@ -50,7 +50,7 @@ if Rails.env.development? || Rails.env.test?
 
   # Vehicles
   NUMBER_OF_VEHICLES.times {
-    current_vehicle = Vehicle.new
+    current_vehicle = Enterprise::GeneralManagement::Vehicle.new
     current_vehicle.color = Faker::Color.color_name
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
     current_vehicle.brand = Faker::Company.name
@@ -81,22 +81,23 @@ if Rails.env.development? || Rails.env.test?
 
 
 
-    current_system_account = SystemAccount.create!(name: Faker::Name.name,
-                                                  description: Faker::Lorem.sentence,
-                                                  account_type: %w(BUSINESS INDIVIDUAL).sample)
+    current_system_account = Enterprise::SystemAccount.create!(name: Faker::Name.name,
+                                                               description: Faker::Lorem.sentence,
+                                                               account_type: %w(BUSINESS INDIVIDUAL).sample)
     current_system_account[:primary_image] = current_image
     current_system_account.save!
 
     # System Accounts with Contact Details
     PERCENT_SA_WITH_CD.in(50) do
       rand(CD_PER_SA).times do
-        current_contact_detail = ContactDetail.create!(label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
-                                                       system_account: current_system_account)
+        current_contact_detail = Enterprise::GeneralManagement::ContactDetail.create!(
+            label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
+            system_account: current_system_account)
 
         # Contact Details with Telephone Numbers
         PERCENT_CD_WITH_TEL.in(50) do
           rand(TEL_PER_CD).times do
-            TelephoneNumber.create!(contact_detail: current_contact_detail,
+            Enterprise::GeneralManagement::ContactDetails::TelephoneNumber.create!(contact_detail: current_contact_detail,
                                     remark: Faker::Company.name,
                                     digits: Faker::Number.number( rand(7..64)) )
           end
@@ -105,10 +106,10 @@ if Rails.env.development? || Rails.env.test?
         # Contact Details with Links
         PERCENT_CD_WITH_LINK.in(50) do
           rand(LINK_PER_CD).times do
-            Link.create!(contact_detail: current_contact_detail,
-                         service: %w(EMAIL SKYPE VIBER).sample,
-                         url: Faker::Internet.user_name,
-                         remark: Faker::Company.name )
+            Enterprise::GeneralManagement::ContactDetails::Link.create!(contact_detail: current_contact_detail,
+                                                                        service: %w(EMAIL SKYPE VIBER).sample,
+                                                                        url: Faker::Internet.user_name,
+                                                                        remark: Faker::Company.name )
           end
         end
 
@@ -116,10 +117,10 @@ if Rails.env.development? || Rails.env.test?
         PERCENT_CD_WITH_LOC.in(50) do
           rand(LOC_PER_CD).times do
             aggregated_address = Faker::Address.street_address + Faker::Address.city + Faker::Address.state
-            Location.create!(contact_detail: current_contact_detail,
-                             latitude: Faker::Address.latitude,
-                             longitude: Faker::Address.longitude,
-                             address: aggregated_address)
+            Enterprise::GeneralManagement::ContactDetails::Location.create!(contact_detail: current_contact_detail,
+                                                                            latitude: Faker::Address.latitude,
+                                                                            longitude: Faker::Address.longitude,
+                                                                            address: aggregated_address)
             end
         end
       end

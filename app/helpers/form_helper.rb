@@ -1,10 +1,18 @@
 module FormHelper
 
-  def input_word(f, name)
-    f.input name, input_html: { 'data-parsley-trigger': 'keyup',
-                                'data-parsley-minlength': 3,
-                                'data-parsley-maxlength': 64,
-                                'data-parsley-validation-threshold': 0 }
+  def custom_validator_hash(hash, custom_validator)
+    if custom_validator != nil
+      hash.store('data-parsley-remote',custom_validator)
+    end
+    hash
+  end
+
+  def input_word(f, name, custom_validator = nil)
+    data_parsley_hash = { 'data-parsley-trigger': 'keyup',
+                          'data-parsley-minlength': 3,
+                          'data-parsley-maxlength': 64,
+                          'data-parsley-validation-threshold': 0 }
+    f.input name, input_html: custom_validator_hash(data_parsley_hash, custom_validator)
   end
 
   def input_sentence(f, name)
