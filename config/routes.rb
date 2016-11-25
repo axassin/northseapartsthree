@@ -2,16 +2,23 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   # ----------------------------- Concerns -----------------------------
+
   concern :search_suggestionable do
     collection do
       get :search_suggestions
     end
   end
 
+  concern :uniqueness_validation do
+    collection do
+      get :uniqueness_validation
+    end
+  end
+
   # ----------------------------- Aggregated Functions -----------------------------
 
   def generate_logic_unit( unit )
-    resources unit, concerns: [:search_suggestionable]
+    resources unit, concerns: [:search_suggestionable, :uniqueness_validation]
   end
 
   def define_index( indexable_controller )

@@ -117,8 +117,6 @@ module GenericResource
 
   end
 
-
-
   def setup_process( process_block )
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
     begin
@@ -151,5 +149,6 @@ module GenericResource
     end
     redirect_to @main_resource_path, :flash => { :notice =>  modal_message}
   end
+
 
 end
