@@ -1,4 +1,4 @@
-jQuery ($) ->
+$(document).on 'turbolinks:load', ->
 
 # Constants
   current_URI = URI(window.location.href)

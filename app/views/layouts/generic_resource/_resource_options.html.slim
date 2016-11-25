@@ -26,7 +26,7 @@
     total_count = @result_set.total_count
     offset_end = total_count if total_count < offset_end
 
-  div.page_entries_info =("Displaying from #{(@result_set.offset + 1).ordinalize} to the #{offset_end.ordinalize}")
+  div.page_entries_info =("Displaying from #{(@result_set.offset + 1).ordinalize} to the #{offset_end.ordinalize} out of #{@total}")
 
   div.results_per_page
     = 'Results per Page : '

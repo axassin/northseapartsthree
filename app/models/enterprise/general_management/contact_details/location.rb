@@ -1,6 +1,6 @@
-class Location < ApplicationRecord
+class Enterprise::GeneralManagement::ContactDetails::Location < ApplicationRecord
 
-  include UUIDConcern
+  include GenericResourceCommon
   include Contactable
 
   belongs_to :contact_detail

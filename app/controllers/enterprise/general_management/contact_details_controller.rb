@@ -1,7 +1,7 @@
 class Enterprise::GeneralManagement::ContactDetailsController < ApplicationController
 
   def setup_controller
-    setup_variables( ContactDetail,
+    setup_variables( Enterprise::GeneralManagement::ContactDetail,
                      'fa-address-card-o',
                      'Contact Details',
                      'Communication Assets',
@@ -16,7 +16,9 @@ class Enterprise::GeneralManagement::ContactDetailsController < ApplicationContr
   end
 
   def contactable
-    picture_url = SystemAccount.find_by_id(ContactDetail.find_by_id(params[:id]).system_account_id).primary_image.url
+    picture_url = SystemAccount.find_by_id(Enterprise::GeneralManagement::ContactDetail
+                                               .find_by_id(params[:id])
+                                               .system_account_id).primary_image.url
     render text: picture_url.to_s
   end
 

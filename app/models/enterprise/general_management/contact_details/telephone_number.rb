@@ -1,9 +1,8 @@
-class TelephoneNumber < ApplicationRecord
+class Enterprise::GeneralManagement::ContactDetails::TelephoneNumber < ApplicationRecord
 
-  include UUIDConcern
-  include Remark
-  include Timestamps
+  include GenericResourceCommon
   include Contactable
+  include Remark
 
   belongs_to :contact_detail
 

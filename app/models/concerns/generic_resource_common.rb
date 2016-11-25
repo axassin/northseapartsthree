@@ -1,4 +1,5 @@
-module UUIDConcern extend ActiveSupport::Concern
+module GenericResourceCommon
+  extend ActiveSupport::Concern
 
   included do
     before_create {
@@ -8,7 +9,11 @@ module UUIDConcern extend ActiveSupport::Concern
     searchable do
       string :id
       text :id
+
+      time :created_at
+      time :updated_at
     end
+    
   end
 
   module ClassMethods

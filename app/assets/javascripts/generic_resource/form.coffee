@@ -1,4 +1,4 @@
-jQuery ($) ->
+$(document).on 'turbolinks:load', ->
 
   # Disables all fields for 'show' action
   if action_name == 'show'

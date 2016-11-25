@@ -11,7 +11,7 @@ class PrimaryImageUploader < MainUploader
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "uploads/primary_image/#{model.class.to_s.underscore}"
+    "uploads/primary_image/#{model.class.to_s.underscore.gsub('/','_')}"
   end
 
   process resize_to_fit: [250, 250]
