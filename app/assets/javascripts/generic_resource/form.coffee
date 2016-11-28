@@ -7,28 +7,17 @@ $(document).on 'turbolinks:load', ->
     $('.main_content form select').prop('disabled', true);
 
   # CONTACTABLE SELECTOR
-  # Initialize
-  contactable_selector_select = $('.contactable_selector_select')
-  contactable_selector_select.selectize();
+  if $('.contactable_selector_select').length
 
-  # Refresh Preview
-  contactable_selector_select.change ->
-    refresh_contactable_select( contactable_selector_select.val() )
-  if contactable_selector_select.val() != ''
-    refresh_contactable_select( contactable_selector_select.val())
+    # Initialize
+    contactable_selector_select = $('.contactable_selector_select')
+    contactable_selector_select.selectize();
 
-  # Uniqueness Validtor
-  window.Parsley.addValidator('unique', {
-    validateNumber: (value, requirement) ->
-      return true
-    ,
-    requirementType: 'string',
-    messages: {
-      en: 'This value should be a multiple of %s.'
-    }
-  });
-
-
+    # Refresh Preview
+    contactable_selector_select.change ->
+      refresh_contactable_select( contactable_selector_select.val() )
+    if contactable_selector_select.val() != ''
+      refresh_contactable_select( contactable_selector_select.val())
 
 # Refreshes Contactable Selector
 refresh_contactable_select = ( contactable_id ) ->

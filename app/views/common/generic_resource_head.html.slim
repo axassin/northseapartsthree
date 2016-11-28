@@ -1,6 +1,5 @@
 = stylesheet_link_tag 'main_partials/generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
 
-
 - if action_name == 'index'
   = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
   = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
@@ -21,3 +20,7 @@
 - else
     javascript:
       var printable = false
+
+javascript:
+  var class_model = '#{@class_model.to_s}'
+  var main_resource_path = '#{@main_resource_path.to_s}'

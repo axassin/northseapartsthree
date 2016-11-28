@@ -2,7 +2,8 @@ module FormHelper
 
   def add_uniqueness_validator(hash, attribute)
     if attribute != nil
-      hash.store('data-parsley-unique',attribute)
+      hash.store('data-parsley-remote', @main_resource_path + '/uniqueness_validation?attribute='+attribute+'&value={value}')
+      hash.store('data-parsley-remote-reverse', 'true')
     end
     hash
   end

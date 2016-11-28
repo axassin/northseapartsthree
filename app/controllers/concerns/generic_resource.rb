@@ -197,7 +197,13 @@ module GenericResource
   end
 
   def uniqueness_validation
-    render :text => @class_model.exists?(params[:attribute].to_sym => params[:value])
+    puts @class_model
+    puts params[:attribute]
+    puts params[:value]
+
+    if @class_model.exists?(params[:attribute].to_sym => params[:value])
+
+    end
   end
 
 
