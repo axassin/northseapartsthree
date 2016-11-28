@@ -17,6 +17,18 @@ $(document).on 'turbolinks:load', ->
   if contactable_selector_select.val() != ''
     refresh_contactable_select( contactable_selector_select.val())
 
+  # Uniqueness Validtor
+  window.Parsley.addValidator('unique', {
+    validateNumber: (value, requirement) ->
+      return true
+    ,
+    requirementType: 'string',
+    messages: {
+      en: 'This value should be a multiple of %s.'
+    }
+  });
+
+
 
 # Refreshes Contactable Selector
 refresh_contactable_select = ( contactable_id ) ->

@@ -1,18 +1,18 @@
 module FormHelper
 
-  def custom_validator_hash(hash, custom_validator)
-    if custom_validator != nil
-      hash.store('data-parsley-remote',custom_validator)
+  def add_uniqueness_validator(hash, attribute)
+    if attribute != nil
+      hash.store('data-parsley-unique',attribute)
     end
     hash
   end
 
-  def input_word(f, name, custom_validator = nil)
+  def input_word(f, name, attribute = nil)
     data_parsley_hash = { 'data-parsley-trigger': 'keyup',
                           'data-parsley-minlength': 3,
                           'data-parsley-maxlength': 64,
                           'data-parsley-validation-threshold': 0 }
-    f.input name, input_html: custom_validator_hash(data_parsley_hash, custom_validator)
+    f.input name, input_html: add_uniqueness_validator(data_parsley_hash, attribute)
   end
 
   def input_sentence(f, name)
