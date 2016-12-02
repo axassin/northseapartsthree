@@ -39,4 +39,4 @@
                     [5000, 5000]],
                     params[:per_page]))
 
-  div.paginator = (paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe
+  div =(paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe

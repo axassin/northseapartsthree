@@ -56,6 +56,9 @@ GEM
     bootstrap (4.0.0.alpha5)
       autoprefixer-rails (>= 6.0.3)
       sass (>= 3.4.19)
+    bootstrap-kaminari-views (0.0.5)
+      kaminari (>= 0.13)
+      rails (>= 3.1)
     builder (3.2.2)
     capybara (2.10.1)
       addressable
@@ -351,6 +354,7 @@ DEPENDENCIES
   ancestry
   better_errors
   bootstrap (~> 4.0.0.alpha5)
+  bootstrap-kaminari-views
   byebug
   capybara
   carrierwave (>= 1.0.0.beta, < 2.0)

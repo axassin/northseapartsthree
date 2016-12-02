@@ -200,10 +200,14 @@ module GenericResource
     puts @class_model
     puts params[:attribute]
     puts params[:value]
+    puts @class_model.exists?(params[:attribute].to_sym => params[:value])
 
     if @class_model.exists?(params[:attribute].to_sym => params[:value])
-
+      head 400
+    else
+      head :ok
     end
+
   end
 
 

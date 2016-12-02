@@ -167,3 +167,6 @@ gem 'selectize-rails'
 
 # It's easy and fast way to improve user experience of surfing on your website.
 gem 'jquery-turbolinks'
+
+# Basic Gem for quick default inclusion of Kaminari theme compatible with Twitter Bootstrap 2.0 and Twitter Bootstrap 3.0
+gem 'bootstrap-kaminari-views'

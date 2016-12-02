@@ -1,22 +1,15 @@
-div.button_options
+div.button_options.btn-group-vertical
 
-  button.btn.btn-default.resource_button_option id="generic_resource_reset" RESET
-  br
+  a.btn.btn-default id="generic_resource_reset" RESET
 
-  a data-remodal-target='modal'
-    button.btn.btn-default.resource_button_option ADD ITEM
-  br
+  a.btn.btn-default data-remodal-target='modal' ADD ITEM
 
   - unless @result_set.total_count == 0
 
-    a.printable_form target='_blank'
-      button.btn.btn-default.resource_button_option.printable_form PRINTABLE FORM
-    br
+    a.btn.btn-default.printable_form target='_blank' PRINTABLE FORM
 
     - if @view_mode == 'table'
-      button.btn.btn-default.resource_button_option.export_to_csv EXPORT TO CSV
-      br
 
-    a href= @parent_controller_path
-      button.btn.btn-default.resource_button_option BACK TO PARENT
-    br
+      a.btn.btn-default.export_to_csv EXPORT TO CSV
+
+      a.btn.btn-default href=@parent_controller_path BACK TO PARENT

@@ -1,19 +1,17 @@
 module FormHelper
 
-  def add_uniqueness_validator(hash, attribute)
-    if attribute != nil
-      hash.store('data-parsley-remote', @main_resource_path + '/uniqueness_validation?attribute='+attribute+'&value={value}')
-      hash.store('data-parsley-remote-reverse', 'true')
-    end
+  def validation_modifiers(hash, name, unique)
+    name = name.to_s
+    hash.store('data-parsley-remote', @main_resource_path + '/uniqueness_validation?attribute='+name+'&value={value}') if unique == true && action_name == 'add' || 'index'
     hash
   end
 
-  def input_word(f, name, attribute = nil)
+  def input_word(f, name, unique = false)
     data_parsley_hash = { 'data-parsley-trigger': 'keyup',
                           'data-parsley-minlength': 3,
                           'data-parsley-maxlength': 64,
                           'data-parsley-validation-threshold': 0 }
-    f.input name, input_html: add_uniqueness_validator(data_parsley_hash, attribute)
+    f.input name, input_html: validation_modifiers(data_parsley_hash, name, unique)
   end
 
   def input_sentence(f, name)
