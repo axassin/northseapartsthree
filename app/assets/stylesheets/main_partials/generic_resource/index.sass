@@ -6,40 +6,45 @@
   background-color: white
   padding: 0.5em
 
+%GRID_ITEM_ACTIVE
+  border-color: $TERTIARY_COLOR
+
+
 div.main_content
   div.grid
     visibility: hidden
     border: solid gainsboro thin
     padding: 0.5em
 
-    img.primary_image
-      width: 100%
-      height: 15%
-      max-height: 15%
+    div.grid-item
+      width: 23%
+      float: left
+      border: solid gainsboro thin
+      padding: 0.5em
+      margin: 0.25em
+      color: $TERTIARY_COLOR
+      word-wrap: break-word
+      word-break: break-all
+      cursor: pointer
 
-    a
-      %GRID_ITEM_ACTIVE
-        border-color: $TERTIARY_COLOR
+      img.primary_image
+        width: 100%
+        height: 15%
+        max-height: 15%
 
-      div.grid-item
-        width: 23%
-        float: left
-        border: solid gainsboro thin
-        padding: 0.5em
-        margin: 0.25em
-        color: $TERTIARY_COLOR
-        word-wrap: break-word
-        word-break: break-all
+      div.options
+        float: right
+        border: thin solid $QUATERNARY_COLOR
+        a
+          padding: 0.2em
+          margin: 0.2em
+          //visibility: hidden
 
-        .grid-item-button
-          font-size: 0.25em
-          margin: 1em
+      div.resource_glyphicon
+        @extend %RESOURCE_GLYPHICON_INVERT
 
-        div.resource_glyphicon
-          @extend %RESOURCE_GLYPHICON_INVERT
-
-        &:hover
-          @extend %GRID_ITEM_ACTIVE
+      &:hover
+        @extend %GRID_ITEM_ACTIVE
 
       div.grid-item.is-dragging
         @extend %GRID_ITEM_ACTIVE

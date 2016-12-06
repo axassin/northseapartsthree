@@ -1,8 +1,16 @@
 $(document).on 'turbolinks:load', ->
 
-# Constants
+  # Constants
   current_URI = URI(window.location.href)
 
+  # Hide Options based on Grid Data Cell Hover State
+  $('.grid-item > .options').css('visibility', 'hidden')
+  $('.grid-item').hover(
+    ->
+      $(this).find('div.options').css('visibility', 'visible')
+    ->
+      $(this).find('div.options').css('visibility', 'hidden')
+  )
   # Query Modifiers
   query_modifiers('view_mode', current_URI)
   query_modifiers('order_by', current_URI)

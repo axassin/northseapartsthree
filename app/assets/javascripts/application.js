@@ -29,5 +29,6 @@
 //= require jquery.turbolinks
 //= //require select2-full
 //= require remodal.min.js
+//= require jquery.restfulizer.js
 
 //= //require_tree .
