@@ -1,12 +1,14 @@
 // Google Fonts
 @import url(https://fonts.googleapis.com/css?family=Roboto)
 
+// Colors
 $NORTH_SEA_PARTS_RED: #660000
 $PRIMARY_COLOR: $NORTH_SEA_PARTS_RED
 $SECONDARY_COLOR: #BFBFBF
 $TERTIARY_COLOR: #666666
 $QUATERNARY_COLOR: gainsboro
 
+// Font Sets
 %font_set_one
   font-family: "Verdana"
   font-size: 0.75em
@@ -18,6 +20,7 @@ $QUATERNARY_COLOR: gainsboro
   letter-spacing: 0.05em
   color: $TERTIARY_COLOR
 
+// Bootstrap Overrides
 html
   font-family: Verdana, Arial
   font-size: 14px
@@ -59,3 +62,6 @@ a:active
   color: white
   &:hover
     background-color: darken($TERTIARY_COLOR, 20%)
+
+a.btn.btn-default
+  color: white

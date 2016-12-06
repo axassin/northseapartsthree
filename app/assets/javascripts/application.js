@@ -28,6 +28,6 @@
 //= require selectize
 //= require jquery.turbolinks
 //= //require select2-full
-//= //require remodal.min.js
+//= require remodal.min.js
 
 //= //require_tree .

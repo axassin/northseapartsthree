@@ -32,3 +32,5 @@ refresh_contactable_select = ( contactable_id ) ->
       if data != '' || data != null || data != undefined
         $('img.contactable_element').attr('src', data)
         $('img.contactable_element').show()
+        if data == ''
+          $('img.contactable_element').hide()

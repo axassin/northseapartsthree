@@ -11,7 +11,7 @@ div.sort_by
 div.page_entries_info
   @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
 
-div.button_options
+div.resource_button_options
   color: white
   a
     border-bottom: solid medium lighten($TERTIARY_COLOR, 5%)
@@ -19,11 +19,17 @@ div.button_options
     border-bottom: none
 
 nav.pagination
+  border: gainsboro solid thin
+  padding: 0.5em
+
   span.page
-    margin: 0.25em
-    border: solid thin gray
+    color: white
+    background-color: $TERTIARY_COLOR
     padding: 0.25em
+    &:hover
+      background-color: darken($TERTIARY_COLOR, 20%)
   span.current
+    background-color: $QUATERNARY_COLOR
 
 div.view_type
   @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
