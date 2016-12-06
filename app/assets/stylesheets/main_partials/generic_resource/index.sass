@@ -11,6 +11,20 @@
 
 
 div.main_content
+
+  div.resource_item_options
+    float: right
+    border: thin solid $QUATERNARY_COLOR
+    a
+      padding: 0.2em
+      margin: 0.2em
+
+  a.index-data-button
+    margin: 0.05em
+    padding: 0.25em
+    word-wrap: break-word
+    word-break: break-all
+
   div.grid
     visibility: hidden
     border: solid gainsboro thin
@@ -31,14 +45,6 @@ div.main_content
         width: 100%
         height: 15%
         max-height: 15%
-
-      div.options
-        float: right
-        border: thin solid $QUATERNARY_COLOR
-        a
-          padding: 0.2em
-          margin: 0.2em
-          //visibility: hidden
 
       div.resource_glyphicon
         @extend %RESOURCE_GLYPHICON_INVERT

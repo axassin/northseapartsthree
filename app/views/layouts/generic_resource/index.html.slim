@@ -15,6 +15,7 @@ div.remodal.add_form_modal data-remodal-id='modal'
             - @admitted_attributes.each do |attribute|
               th
                 div = attribute.humanize.titleize.upcase
+          th
 
       tbody
         - @result_set.each do |result|
@@ -25,6 +26,7 @@ div.remodal.add_form_modal data-remodal-id='modal'
             - if @admitted_attributes.present?
               - @admitted_attributes.each do |attribute|
                 td = result.decorate.send(attribute)
+            td = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
 
   - else
 
@@ -36,10 +38,7 @@ div.remodal.add_form_modal data-remodal-id='modal'
       - @result_set.each do |result|
         div.grid-item
           = render partial: controller_path + '/cell', locals: {result: result}
-          div.options
-            a.btn.btn-default.btn-xs.fa.fa-eye href='#{@main_resource_path + '/' + result.id}'
-            a.btn.btn-default.btn-xs.fa.fa-pencil href='#{@main_resource_path + '/' + result.id + '/edit'}'
-            a.btn.btn-default.btn-xs.fa.fa-trash href='#{@main_resource_path + '/' + result.id}' data-method="DELETE"
+          = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
 
 
 - else
