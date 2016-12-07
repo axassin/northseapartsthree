@@ -3,4 +3,8 @@ class Enterprise::GeneralManagement::ContactDetails::LinkDecorator < Application
 
   include ContactableDecorator
 
+  def link
+    
+  end
+
 end
