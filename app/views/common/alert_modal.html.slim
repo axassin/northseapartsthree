@@ -2,7 +2,9 @@ div.modal.hide.fade.alert_modal role='dialog'
   div.modal-content
     div.modal-alert-content
       span.alert_message
-        = flash[:notice]
+        = flash[:setup_process_message]
         br
         button.btn.btn-default.alert_modal_button.btn-sm type='button' data-dismiss="modal" &#10006;
         br
+
+= javascript_include_tag 'alert_modal'

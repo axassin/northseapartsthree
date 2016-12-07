@@ -22,5 +22,10 @@
       var printable = false
 
 javascript:
-  var class_model = '#{@class_model.to_s}'
-  var main_resource_path = '#{@main_resource_path.to_s}'
+  var class_model = '#{@class_model.to_s}';
+  var main_resource_path = '#{@main_resource_path.to_s}';
+  var current_id = '#{params[:id].to_s}';
+
+ruby:
+  @current_resource_id = 'new'
+  @current_resource_id = params[:id] if params.has_key?(:id)

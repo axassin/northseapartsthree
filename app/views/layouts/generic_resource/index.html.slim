@@ -1,3 +1,6 @@
+- if flash[:setup_process_message]
+  = render template: 'common/alert_modal'
+
 div.remodal.add_form_modal data-remodal-id='modal'
   = render template: 'layouts/generic_resource/form'
 

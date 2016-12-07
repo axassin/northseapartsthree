@@ -1,0 +1,54 @@
+div.col-md-6
+
+  // Element ID's
+  ruby:
+
+
+  // Map Label
+  label.outside_label
+    = 'Map Display'.upcase
+
+  // Map Display
+  div.map-display id='#{ 'map-display-' + @current_resource_id }'
+
+  = input_long_decimal(f, :latitude, 'latitude-map-' + @current_resource_id )
+  = input_long_decimal(f, :longitude, 'longitude-map-' + @current_resource_id )
+  = input_description(f, :address, 'address-map-' + @current_resource_id )
+
+  // Map Behaviour
+  javascript:
+    $(document).ready(function () {
+      map_display_id = '#map-display-' + '#{@current_resource_id}'
+      latitude_map_id = '#latitude-map-' + '#{@current_resource_id}'
+      longitude_map_id = '#longitude-map-' + '#{@current_resource_id}'
+      address_map_id = '#address-map-' + '#{@current_resource_id}'
+
+      current_lat = $(latitude_map_id).val();
+      current_long = $(longitude_map_id).val();
+
+      if (current_lat == '')
+      {
+        current_lat = 14.621914
+      }
+
+      if (current_long == '')
+      {
+        current_long = 121.1044833
+      }
+
+      $(map_display_id).locationpicker({
+        radius: 0,
+        location: {
+          latitude: current_lat,
+          longitude: current_long
+        },
+        inputBinding: {
+          latitudeInput: $(latitude_map_id),
+          longitudeInput: $(longitude_map_id),
+          locationNameInput: $(address_map_id)
+        }
+      });
+    });
+
+div.col-md-6
+  = contactable_selector(f, current_instance.contact_detail_id)

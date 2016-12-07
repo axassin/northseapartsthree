@@ -30,5 +30,6 @@
 //= //require select2-full
 //= require remodal.min.js
 //= require jquery.restfulizer.js
+//= require application_page_load.coffee
 
 //= //require_tree .

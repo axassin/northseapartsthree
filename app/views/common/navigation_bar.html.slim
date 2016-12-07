@@ -5,7 +5,7 @@ nav.navbar.navbar-default.navigation
       input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
       input.hidden_submit type="submit"
   div.navigation-menu-button.col-md-1
-    button.btn.btn-default.menu_button
+    button.btn.btn-default.menu_button data-toggle="tooltip" data-placement="bottom" title="Menu"
         span.fa.fa-bars
   div.navigation-login-indicator.col-md-2
     span Login Placeholder

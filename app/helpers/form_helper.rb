@@ -2,7 +2,9 @@ module FormHelper
 
   def validation_modifiers(hash, name, unique)
     name = name.to_s
-    hash.store('data-parsley-remote', @main_resource_path + '/uniqueness_validation?attribute='+name+'&value={value}') if unique == true && action_name == 'add' || 'index'
+    if (unique == true) && ((action_name == 'add') || (action_name == 'index'))
+      hash.store('data-parsley-remote', @main_resource_path + '/uniqueness_validation?attribute='+name+'&value={value}')
+    end
     hash
   end
 
@@ -21,15 +23,34 @@ module FormHelper
                                 'data-parsley-validation-threshold': 0 }
   end
 
-  def input_description(f, name)
+  def input_description(f, name, id = nil)
     f.input name, as: :text, input_html: { 'data-parsley-trigger': 'keyup',
                                            'data-parsley-minlength': 3,
                                            'data-parsley-maxlength': 512,
-                                           'data-parsley-validation-threshold': 0 }
+                                           'data-parsley-validation-threshold': 0,
+                                            id: id}
+  end
+
+  def input_long_decimal(f, name, id = nil)
+    f.input name, as: :float, input_html: { 'data-parsley-trigger': 'keyup',
+                                           'data-parsley-minlength': 3,
+                                           'data-parsley-maxlength': 512,
+                                           'data-parsley-validation-threshold': 0,
+                                            id: id}
   end
 
   def input_date(f, name)
     f.input name, as: :date, html5: true
+  end
+
+  def selector(f, name, collection, selected)
+
+    f.input name,
+            collection: collection,
+            prompt: 'Select Link Service',
+            selected: selected,
+            required: true
+
   end
 
   def contactable_selector(f, selected)

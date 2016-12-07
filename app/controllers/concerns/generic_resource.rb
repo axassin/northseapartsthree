@@ -158,7 +158,7 @@ module GenericResource
       puts ex
       puts ' ---------- PROCESS ERROR END ---------- '
     end
-    redirect_to @main_resource_path, :flash => { :notice => modal_message }
+    redirect_to @main_resource_path, :flash => { :setup_process_message => modal_message }
   end
 
   def new

@@ -3,7 +3,7 @@ $(document).on 'turbolinks:load', ->
   # Constants
   current_URI = URI(window.location.href)
 
-  # Hide Options based on Grid Data Cell Hover State
+  # Hide Options based on Item Cell Hover State
   $('.resource_item_options').css('visibility', 'hidden')
   $('.grid-item').hover(
     ->
