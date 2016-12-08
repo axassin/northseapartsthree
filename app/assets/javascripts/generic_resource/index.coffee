@@ -35,8 +35,7 @@ $(document).on 'turbolinks:load', ->
     event.preventDefault()
     add_form_modal.close()
 
-  $('.modal_submit').click ->
-    add_form_modal.close()
+
 
   # Printable Form Cycle
   $('.printable_form').click ->
