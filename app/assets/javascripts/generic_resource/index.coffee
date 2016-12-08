@@ -35,9 +35,21 @@ $(document).on 'turbolinks:load', ->
     event.preventDefault()
     add_form_modal.close()
 
+  # Submit Button
+  $('.modal_submit').click ->
+    $('form').on('submit', (e) ->
+      form = $(this);
+      if form.parsley().isValid()
+        add_form_modal.close()
+    )
+
+  $(document).on('opened', '.remodal', ->
+    $('.map-display').locationpicker('autosize');
+  )
 
 
-  # Printable Form Cycle
+
+# Printable Form Cycle
   $('.printable_form').click ->
     window.location =  URI(window.location.href).addSearch("printable", "true")
 

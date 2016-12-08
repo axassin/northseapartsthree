@@ -207,8 +207,17 @@ module GenericResource
     else
       head :ok
     end
-
   end
 
+  def update_primary_image(instance_primary_image, current_params)
+
+    puts action_name
+    puts current_params.has_key?(:primary_image)
+    puts 'value' + current_params[:primary_image].to_s
+
+    if (action_name == 'update') && (current_params.has_key?(:primary_image) == true)
+      instance_primary_image.primary_image = current_params[:primary_image]
+    end
+  end
 
 end

@@ -23,9 +23,7 @@ class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralMan
       my_vehicle.fuel_type = current_params[:fuel_type]
       my_vehicle.description = current_params[:description]
       my_vehicle.date_of_registration = current_params[:date_of_registration]
-      unless action_name == 'update' && current_params[:primary_image].blank? == true
-        my_vehicle.primary_image = current_params[:primary_image]
-      end
+      update_primary_image(my_vehicle, current_params)
       my_vehicle.save!
     end
 

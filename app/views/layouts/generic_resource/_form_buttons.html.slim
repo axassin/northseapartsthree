@@ -8,6 +8,9 @@ div.form_button_options.col-md-12
   - if action_name == 'show'
       a.btn.btn-default href='#{@main_resource_path + '/' + params[:id] + '/edit'}' SET EDITABLE
 
-  - elsif action_name == 'edit' || action_name == 'add' || action_name == 'index'
+  - elsif action_name == 'edit' || action_name == 'add'
       input.btn.btn-default type='reset' value='RESET'
+      input.btn.btn-default.modal_submit type='submit' value='SUBMIT'
+
+  - elsif action_name == 'index'
       input.btn.btn-default.modal_submit type='submit' value='SUBMIT'
