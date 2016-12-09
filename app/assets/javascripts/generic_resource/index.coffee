@@ -28,6 +28,7 @@ $(document).on 'turbolinks:load', ->
   $('#generic_resource_reset').click ->
     window.location = remove_all_params(window.location.href)
 
+  # ----- ADD FORM MODAL -----
   add_form_modal = $('.add_form_modal').remodal()
 
   # Back button
@@ -36,7 +37,7 @@ $(document).on 'turbolinks:load', ->
     add_form_modal.close()
 
   # Submit Button
-  $('.modal_submit').click ->
+  $('.add_form_modal_submit').click ->
     $('form').on('submit', (e) ->
       form = $(this);
       if form.parsley().isValid()

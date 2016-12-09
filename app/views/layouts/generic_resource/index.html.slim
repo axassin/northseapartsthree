@@ -1,7 +1,7 @@
 - if flash[:setup_process_message]
-  = render template: 'common/alert_modal'
+  = render template: 'layouts/generic_resource/setup_process_modal'
 
-div.remodal.add_form_modal data-remodal-id='modal'
+div.remodal.add_form_modal data-remodal-id='add_form_modal'
   = render template: 'layouts/generic_resource/form'
 
 - unless @result_set.total_count == 0

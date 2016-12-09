@@ -23,7 +23,6 @@
 //= require imagesloaded.pkgd.min.js
 //= require parsley
 //= require lightbox-bootstrap
-//= require alert_modal
 //= require jquery.TableCSVExport.js
 //= require selectize
 //= require jquery.turbolinks
