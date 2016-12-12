@@ -39,8 +39,7 @@ $(document).on 'turbolinks:load', ->
   $('.modal_submit').click ->
     $('form').on('submit', (e) ->
       form = $(this);
-      if form.parsley().isValid()
-        add_form_modal.close()
+      add_form_modal.close()
     )
 
   $(document).on('opened', '.remodal', ->

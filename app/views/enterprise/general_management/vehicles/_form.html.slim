@@ -8,6 +8,4 @@ div.col-md-4
   = input_date(f, :date_of_registration)
   = f.input :color, :input_html => {:type => 'color'}
 div.col-md-4
-  = f.input :primary_image, as: :file
-  - if params.has_key?(:id)
-    = primary_image_default(@current_instance, 'fa-bus')
+  = primary_image_file_upload_element(f, params, @current_instance)

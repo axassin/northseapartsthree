@@ -47,11 +47,11 @@ Rails.application.routes.draw do
       end
       get 'contact_details/contactable', to: 'contact_details#contactable'
       generate_logic_unit( :contact_details )
-
       generate_logic_unit( :vehicles )
-      generate_logic_unit( :system_accounts )
-
     end
+
+    generate_logic_unit( :system_accounts )
+
   end
 
   # ----------------------------- Developer Management and Testing -----------------------------

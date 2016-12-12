@@ -1,0 +1,7 @@
+div.col-md-6
+  = input_word(f, :name)
+  = input_description(f, :description)
+  = selector(f, :account_type, ['INDIVIDUAL','BUSINESS'], current_instance.account_type)
+div.col-md-6
+  = f.input :primary_image, as: :file
+  = primary_image_default(@current_instance)

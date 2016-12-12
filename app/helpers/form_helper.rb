@@ -90,4 +90,12 @@ module FormHelper
     main_element.html_safe
   end
 
+  def primary_image_file_upload_element(f, params, current_instance)
+
+    primary_image_input = f.input :primary_image, as: :file
+    main = primary_image_input + primary_image_default(current_instance)
+    main
+
+  end
+
 end

@@ -14,7 +14,7 @@ module ContactableDecorator
 
   def owner
     owner = object.owner
-    contact_details_owner = '/enterprise/general_management/system_accounts/' + object.owner_id
+    contact_details_owner = '/enterprise/system_accounts/' + object.owner_id
     main_element = mab do
       a :class => 'btn btn-default index-data-button', :href => contact_details_owner do
         owner

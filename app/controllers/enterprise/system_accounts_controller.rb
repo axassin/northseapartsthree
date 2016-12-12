@@ -1,16 +1,16 @@
-class Enterprise::SystemAccountController < EnterpriseController
+class Enterprise::SystemAccountsController < EnterpriseController
 
   include GenericResource
 
   def setup_controller
-    setup_variables( Enterprise::SystemAccountController,
+    setup_variables( Enterprise::SystemAccount,
                      'fa fa-user ',
                      'System Accounts',
                      'User Entities',
+                     ['primary_image'],
                      nil,
-                     nil,
-                     @@routes.enterprise_general_management_path,
-                     @@routes.enterprise_general_management_system_account_path )
+                     @@routes.enterprise_path,
+                     @@routes.enterprise_system_accounts_path )
   end
 
   def process_form(my_system_account, current_params)
