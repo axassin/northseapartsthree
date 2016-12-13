@@ -1,4 +1,4 @@
-﻿Merge branch 'james_development' of https://github.com/joojieman/northseapartsthree into james_development
+Merge branch 'james_development' of https://github.com/joojieman/northseapartsthree into james_development
 
 # Conflicts:
 #	app/assets/javascripts/generic_resource/index.coffee
