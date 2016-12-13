@@ -4,26 +4,23 @@ ruby:
   method = ''
   url_path = ''
   case action_name
-  when 'new'
-    method = 'POST'
-    url_path =  '/' + controller_path
-  when 'edit'
-    method = 'PATCH'
-    url_path =  '/' + controller_path + '/' + params[:id]
-  when 'show'
+    when 'new'
+      method = 'POST'
+      url_path =  '/' + controller_path
+    when 'edit'
+      method = 'PATCH'
+      url_path =  '/' + controller_path + '/' + params[:id]
+    when 'show'
   end
 
 = simple_form_for @current_instance,
                   url: url_path,
                   multipart: true,
                   method: method,
-                  html: { :'data-parsley-validate' => '' } do |f|
+                  html: {:'data-parsley-validate' => ''} do |f|
   div
     = render partial: controller_path + '/form', locals: {f: f, current_instance: @current_instance}
 
   div.col-md-12.footnote * Required
 
   = render partial: 'layouts/generic_resource/form_buttons'
-
-javascript:
-  // $('form').parsley();

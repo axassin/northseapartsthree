@@ -7,9 +7,18 @@ div.main_content, .add_form_modal
   div.form_title
     @extend %font_set_two
     font-size: 2em
-    margin-bottom: 1em
+    margin-bottom: 0.5em
     border-bottom: solid thin
 
+
+  // Alternative Title for Modal Header
+  div.modal-header
+    padding: 1em
+    padding-bottom: 0em
+    border: 0
+
+  div.modal-body
+    padding-top: 0.25em
 
   // Form Proper
   form.simple_form
@@ -45,11 +54,6 @@ div.main_content, .add_form_modal
       .add-contactable-button
         margin: 0.5em
         float: left
-
-
-    // for primary image display
-    img.primary_image
-      width: 100%
 
     // for each input group
     div.form-group

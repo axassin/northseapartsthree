@@ -1,8 +1,7 @@
 div.resource_button_options.btn-group-vertical
 
   a.btn.btn-default id="generic_resource_reset" RESET
-
-  a.btn.btn-default data-remodal-target='add_form_modal' ADD ITEM
+  a.btn.btn-default data-toggle="modal" id='add_form_button' data-target="#add_form_modal" ADD ITEM
 
   - unless @result_set.total_count == 0
 

@@ -45,9 +45,11 @@ module FormHelper
 
   def selector(f, name, collection, selected)
 
+    prompt_text_label = name.to_s.humanize.split.map(&:capitalize)*' '
+
     f.input name,
             collection: collection,
-            prompt: 'Select Link Service',
+            prompt: 'Select ' + prompt_text_label,
             selected: selected,
             required: true
 
@@ -88,6 +90,14 @@ module FormHelper
     end
 
     main_element.html_safe
+  end
+
+  def primary_image_file_upload_element(f, params, current_instance)
+
+    primary_image_input = f.input :primary_image, as: :file
+    main = primary_image_input + primary_image_default(current_instance)
+    main
+
   end
 
 end

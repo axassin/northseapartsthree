@@ -1,0 +1,58 @@
+﻿Merge branch 'james_development' of https://github.com/joojieman/northseapartsthree into james_development
+
+# Conflicts:
+#	app/assets/javascripts/generic_resource/index.coffee
+#	app/views/common/main_notification.html.slim
+#	app/views/layouts/generic_resource/_form_buttons.html.slim
+#	app/views/layouts/generic_resource/_resource_button_options.html.slim
+#	app/views/layouts/generic_resource/index.html.slim
+#
+# It looks like you may be committing a merge.
+# If this is not correct, please remove the file
+#	.git/MERGE_HEAD
+# and try again.
+
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch james_development
+# Your branch and 'origin/james_development' have diverged,
+# and have 1 and 2 different commits each, respectively.
+#   (use "git pull" to merge the remote branch into yours)
+#
+# All conflicts fixed but you are still merging.
+#
+# Changes to be committed:
+#	renamed:    app/assets/javascripts/enterprise/system_account.coffee -> app/assets/javascripts/enterprise/system_accounts.coffee
+#	modified:   app/assets/javascripts/generic_resource/index.coffee
+#	renamed:    app/assets/stylesheets/main_partials/generic_resource/form_proper.sass -> app/assets/stylesheets/enterprise/system_accounts.sass
+#	modified:   app/assets/stylesheets/main_partials/generic_resource/form.sass
+#	modified:   app/controllers/concerns/generic_resource.rb
+#	renamed:    app/controllers/enterprise/system_account_controller.rb -> app/controllers/enterprise/system_accounts_controller.rb
+#	modified:   app/decorators/concerns/contactable_decorator.rb
+#	deleted:    app/helpers/enterprise/system_account_helper.rb
+#	new file:   app/helpers/enterprise/system_accounts_helper.rb
+#	modified:   app/helpers/form_helper.rb
+#	modified:   app/helpers/generic_resource_helper.rb
+#	new file:   app/views/common/main_notification.html.slim
+#	deleted:    app/views/enterprise/general_management/contacts/index.html.slim
+#	modified:   app/views/enterprise/general_management/vehicles/_cell.html.slim
+#	modified:   app/views/enterprise/general_management/vehicles/_form.html.slim
+#	new file:   app/views/enterprise/system_accounts/_cell.html.slim
+#	new file:   app/views/enterprise/system_accounts/_form.html.slim
+#	modified:   app/views/layouts/generic_resource/_form_buttons.html.slim
+#	modified:   app/views/layouts/generic_resource/_form_title.html.slim
+#	modified:   app/views/layouts/generic_resource/_resource_button_options.html.slim
+#	modified:   app/views/layouts/generic_resource/form.html.slim
+#	modified:   app/views/layouts/generic_resource/index.html.slim
+#	modified:   app/views/layouts/generic_resource/main.html.slim
+#	modified:   config/routes.rb
+#	new file:   public/uploads/primary_image/enterprise_general_management_vehicle/923be224-dd41-49bf-8dbf-ebb68aad6b22.png
+#	new file:   public/uploads/primary_image/enterprise_system_account/80baba40-6818-4f2a-8ba0-5e73b59a5176.jpg
+#	new file:   public/uploads/primary_image/enterprise_system_account/a357bfad-ccf6-4cd0-9b3b-884564298c22.jpg
+#	new file:   public/uploads/primary_image/enterprise_system_account/eab499fd-4780-471e-b028-8b6c84b0208a.jpg
+#	deleted:    spec/controllers/enterprise/system_account_controller_spec.rb
+#	new file:   spec/controllers/enterprise/system_accounts_controller_spec.rb
+#	renamed:    spec/helpers/enterprise/system_account_helper_spec.rb -> spec/helpers/enterprise/system_accounts_helper_spec.rb
+#
+

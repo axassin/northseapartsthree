@@ -1,6 +1,6 @@
 module GenericResourceHelper
 
-  def primary_image_default(result, fa_glyphicon_code)
+  def primary_image_default(result)
 
     str = mab do
       if ( result.primary_image.url.present? && public_file_exists?(result.primary_image.url) )
@@ -8,7 +8,7 @@ module GenericResourceHelper
         puts public_file_exists?(result.primary_image.url)
         img.primary_image :src => result.primary_image.url
       else
-        div :class => 'fa ' + fa_glyphicon_code + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
+        div :class => 'fa ' + @resource_glyphicon + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
         br
       end
     end
