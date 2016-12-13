@@ -45,9 +45,11 @@ module FormHelper
 
   def selector(f, name, collection, selected)
 
+    prompt_text_label = name.to_s.humanize.split.map(&:capitalize)*' '
+
     f.input name,
             collection: collection,
-            prompt: 'Select Link Service',
+            prompt: 'Select ' + prompt_text_label,
             selected: selected,
             required: true
 

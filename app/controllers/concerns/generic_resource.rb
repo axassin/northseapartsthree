@@ -158,7 +158,7 @@ module GenericResource
       puts ex
       puts ' ---------- PROCESS ERROR END ---------- '
     end
-    redirect_to @main_resource_path, :flash => { :setup_process_message => modal_message }
+    redirect_to @main_resource_path, :flash => { :main_notification => modal_message }
   end
 
   def new
@@ -215,7 +215,7 @@ module GenericResource
     puts current_params.has_key?(:primary_image)
     puts 'value' + current_params[:primary_image].to_s
 
-    if (action_name == 'update') && (current_params.has_key?(:primary_image) == true)
+    if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(:primary_image) == true)
       instance_primary_image.primary_image = current_params[:primary_image]
     end
   end

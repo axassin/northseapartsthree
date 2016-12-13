@@ -1,8 +1,11 @@
-- if flash[:setup_process_message]
-  = render template: 'common/alert_modal'
-
-div.remodal.add_form_modal data-remodal-id='modal'
-  = render template: 'layouts/generic_resource/form'
+div.fade.modal.add_form_modal id='add_form_modal'
+  div.modal-dialog role='document'
+    div.modal-content
+      div.modal-header
+        div.form_title #{ ('ADD ' + controller_name.to_s.humanize.singularize.capitalize + ' Form').upcase }
+      div.modal-body
+        div.row
+          = render template: 'layouts/generic_resource/form'
 
 - unless @result_set.total_count == 0
   - if @view_mode == 'table'
