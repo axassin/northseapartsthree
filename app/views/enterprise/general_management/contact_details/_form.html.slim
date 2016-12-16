@@ -1,3 +1,4 @@
 div.col-md-6
   = input_word(f, :label)
 div.col-md-6
+  = model_selector(f, Enterprise::SystemAccount, :system_account, current_instance.system_account_id)

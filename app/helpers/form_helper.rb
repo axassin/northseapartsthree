@@ -55,21 +55,29 @@ module FormHelper
 
   end
 
-  def model_selector(f,model,name,selected)
+  def model_selector(f,model,name,selected, text_attributes, primary_image = false)
 
-    input_element =  f.input name.to_sym,
-                             collection: model,
-                             input_html: { class: 'system_account_select', id: 'system_accountable'},
-                             prompt: 'Select System Account',
-                             selected: selected,
-                             required: true
+    current_id = 'new' if (selected == nil || selected == '')
+    input_element_id = name.to_s + current_id
 
-    main_element = mab do
-      div :class => '' do
+    input_element = f.input name,
+                            collection: model.all,
+                            input_html: { id: input_element_id, class: name.to_s + '_select'},
+                            prompt: 'Select ' + name.to_s.humanize.split.map(&:capitalize)*' ',
+                            selected: selected,
+                            required: true
 
-    end
+=begin
 
-    main_element.html_safe
+    input_element = f.input name,
+                            collection: model,
+                            input_html: { class: 'system_account_select', id: 'system_accountable'},
+                            prompt: 'Select System Account',
+                            selected: selected,
+                            required: true
+=end
+
+    input_element
 
   end
 
