@@ -36,10 +36,9 @@ Rails.application.routes.draw do
   # ----------------------------- Enterprise Information System -----------------------------
   define_index( 'enterprise' )
   namespace :enterprise do
+
     define_index( 'general_management' )
     namespace :general_management do
-
-
       namespace :contact_details do
         generate_logic_unit( :telephone_numbers )
         generate_logic_unit( :links )
@@ -51,6 +50,22 @@ Rails.application.routes.draw do
     end
 
     generate_logic_unit( :system_accounts )
+
+    define_index( 'accounting_and_finance' )
+    namespace :accounting_and_finance do
+    end
+
+    define_index( 'human_resources' )
+    namespace :human_resources do
+    end
+
+    define_index( 'operations' )
+    namespace :operations do
+    end
+
+    define_index( 'strategic_marketing' )
+    namespace :strategic_marketing do
+    end
 
   end
 

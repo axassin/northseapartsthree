@@ -28,19 +28,19 @@ if Rails.env.development? || Rails.env.test?
   PERCENT_CD_WITH_TEL = 25
 
   # Possible Range of Telephone Numbers per Contact Details
-  TEL_PER_CD = (1..5)
+  TEL_PER_CD = (3..5)
 
   # Percent of Contact Details to have Links
   PERCENT_CD_WITH_LINK = 25
 
   # Possible Range of Links per Contact Details
-  LINK_PER_CD = (1..5)
+  LINK_PER_CD = (2..5)
 
   # Percent of Contact Details to have Locations
   PERCENT_CD_WITH_LOC = 25
 
   # Possible Range of Locations per Contact Details
-  LOC_PER_CD = (1..5)
+  LOC_PER_CD = (2..5)
 
   # Possible Range of Locations per Contact Details
   NUMBER_OF_VEHICLES = 500

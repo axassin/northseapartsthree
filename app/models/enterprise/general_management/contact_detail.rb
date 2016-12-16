@@ -14,4 +14,16 @@ class Enterprise::GeneralManagement::ContactDetail < ApplicationRecord
   validates :label, length: { in: 2..64 }
   validates_presence_of :system_account
 
+  def associated_telephone_numbers
+    Enterprise::GeneralManagement::ContactDetails::TelephoneNumber.where(contact_detail_id: id)
+  end
+
+  def associated_links
+    Enterprise::GeneralManagement::ContactDetails::Link.where(contact_detail_id: id)
+  end
+
+  def associated_locations
+    Enterprise::GeneralManagement::ContactDetails::Location.where(contact_detail_id: id)
+  end
+
 end

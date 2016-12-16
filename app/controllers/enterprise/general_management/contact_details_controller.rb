@@ -1,8 +1,10 @@
 class Enterprise::GeneralManagement::ContactDetailsController < ApplicationController
 
+  include GenericResource
+
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetail,
-                     'fa-address-card-o',
+                     'fa fa-book',
                      'Contact Details',
                      'Communication Assets',
                      [],
@@ -11,8 +13,8 @@ class Enterprise::GeneralManagement::ContactDetailsController < ApplicationContr
                      @@routes.enterprise_general_management_contact_details_path )
   end
 
-  def index
-    setup_index
+  def process_form(my_contact_details, current_params)
+
   end
 
   def contactable

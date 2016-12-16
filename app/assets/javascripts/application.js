@@ -26,8 +26,9 @@
 //= require jquery.TableCSVExport.js
 //= require selectize
 //= require jquery.turbolinks
-//= //require select2-full
 //= require jquery.restfulizer.js
 //= require application_page_load.coffee
-
+//= require velocity.min.js
+//= require velocity.ui.min.js
+//= require jquery.func_toggle.js
 //= //require_tree .

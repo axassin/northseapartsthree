@@ -1,5 +1,6 @@
 nav.navbar.navbar-default.navigation
-  div.navbar-header.navigation-logo.col-md-2 =image_tag('nav_bar_header.png')
+  div.navbar-header.navigation-logo.col-md-2
+    a href='#{root_path}' =image_tag('nav_bar_header.png')
   div.input_group.navigation-search.col-md-7
     form method="get" action="#{@main_resource_path}"
       input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
@@ -14,16 +15,49 @@ nav.navbar.navbar-default.navigation
   = javascript_include_tag 'generic_resource/search_suggestions'
 
 div.main_menu
-  div.container
-    div.row
-      div.col-md-1
-        ul
-          li dafsdfasf
-      div.col-md-2
-        ul
-          li dafsdfasf
-          ul
-            li dfasfa
-      div.col-md-1
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_system_accounts_path}' System Accounts
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_general_management_path}' General Management
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_contact_details_path}' Contact Details
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_links_path}' Links
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_locations_path}' Locations
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_telephone_numbers_path}' Telephone Numbers
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_vehicles_path}' Vehicles
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_human_resources_path}' Human Resources
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_accounting_and_finance_path}' Accounting and Finance
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_operations_path}' Operations
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      a.main_menu_link href='#{enterprise_strategic_marketing_path}' Strategic Marketing
+
 
 = javascript_include_tag 'navigation_bar', media: 'all'
