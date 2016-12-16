@@ -26,4 +26,9 @@ class Enterprise::SystemAccountsController < EnterpriseController
     setup_process(system_account_processing)
   end
 
+  def get_image
+    picture_url = Enterprise::SystemAccount.find_by_id(params[:id]).primary_image.url
+    render text: picture_url.to_s
+  end
+
 end

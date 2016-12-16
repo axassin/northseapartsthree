@@ -55,6 +55,24 @@ module FormHelper
 
   end
 
+  def model_selector(f,model,name,selected)
+
+    input_element =  f.input name.to_sym,
+                             collection: model,
+                             input_html: { class: 'system_account_select', id: 'system_accountable'},
+                             prompt: 'Select System Account',
+                             selected: selected,
+                             required: true
+
+    main_element = mab do
+      div :class => '' do
+
+    end
+
+    main_element.html_safe
+
+  end
+
   def contactable_selector(f, selected)
 
     input_element = f.input :contact_detail_id,

@@ -49,6 +49,7 @@ Rails.application.routes.draw do
       generate_logic_unit( :vehicles )
     end
 
+    get 'system_accounts/get_image', to: 'system_accounts#get_image'
     generate_logic_unit( :system_accounts )
 
     define_index( 'accounting_and_finance' )
