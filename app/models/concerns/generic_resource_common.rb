@@ -25,6 +25,10 @@ module GenericResourceCommon
       end
     end
 
+    def main_resource_path
+      self.to_s.underscore.downcase.gsub('::','/')
+    end
+
   end
 
 end

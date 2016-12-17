@@ -55,29 +55,46 @@ module FormHelper
 
   end
 
-  def model_selector(f,model,name,selected, text_attributes, primary_image = false)
+  def model_selector(f,model,name,selected, text_attributes = nil , primary_image = false)
 
     current_id = 'new' if (selected == nil || selected == '')
-    input_element_id = name.to_s + current_id
+    input_element_id = name.to_s + '_' +  current_id.to_s
+    humanized_name = 'Select ' + name.to_s.humanize.split.map(&:capitalize)*' '
 
     input_element = f.input name,
                             collection: model.all,
                             input_html: { id: input_element_id, class: name.to_s + '_select'},
-                            prompt: 'Select ' + name.to_s.humanize.split.map(&:capitalize)*' ',
+                            prompt: 'Select ' + humanized_name,
                             selected: selected,
+                            label: false,
                             required: true
 
-=begin
+    hidden_model_path = f.input :model_path,
+                                :as => :hidden,
+                                :input_html => { :value => model.main_resource_path, class: 'model_path' }
 
-    input_element = f.input name,
-                            collection: model,
-                            input_html: { class: 'system_account_select', id: 'system_accountable'},
-                            prompt: 'Select System Account',
-                            selected: selected,
-                            required: true
-=end
+    collective_elements = mab do
+      div :class => name.to_s + '_collective model_select_group' do
 
-    input_element
+        label :class => 'outside_label string required', :for => input_element_id do
+          humanized_name.upcase + ' *'
+        end
+
+        text! input_element.to_s
+
+        if primary_image == true
+          img :class => 'primary_image'
+        end
+
+        div :class => 'text_attributes' do
+
+        end
+        text! hidden_model_path.to_s
+
+      end
+    end
+
+    collective_elements.html_safe
 
   end
 

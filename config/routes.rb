@@ -3,22 +3,22 @@ Rails.application.routes.draw do
 
   # ----------------------------- Concerns -----------------------------
 
-  concern :search_suggestionable do
-    collection do
-      get :search_suggestions
+  def declare_concern( concern_name )
+    concern concern_name do
+      collection do
+        get concern_name
+      end
     end
   end
 
-  concern :uniqueness_validation do
-    collection do
-      get :uniqueness_validation
-    end
-  end
+  declare_concern( :search_suggestion )
+  declare_concern( :uniqueness_validation )
+  declare_concern( :retrieve_resource )
 
   # ----------------------------- Aggregated Functions -----------------------------
 
   def generate_logic_unit( unit )
-    resources unit, concerns: [:search_suggestionable, :uniqueness_validation]
+    resources unit, concerns: [:search_suggestion, :uniqueness_validation, :retrieve_resource]
   end
 
   def define_index( indexable_controller )
@@ -49,7 +49,6 @@ Rails.application.routes.draw do
       generate_logic_unit( :vehicles )
     end
 
-    get 'system_accounts/get_image', to: 'system_accounts#get_image'
     generate_logic_unit( :system_accounts )
 
     define_index( 'accounting_and_finance' )

@@ -107,7 +107,7 @@ module GenericResource
     end
   end
 
-  def search_suggestions
+  def search_suggestion
 
     # Constants
     search_query = params[:search_query]
@@ -207,6 +207,10 @@ module GenericResource
     else
       head :ok
     end
+  end
+
+  def retrieve_resource
+    render json: @class_model.find(params[:id])
   end
 
   def update_primary_image(instance_primary_image, current_params)

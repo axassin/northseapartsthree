@@ -17,16 +17,24 @@ $(document).on 'turbolinks:load', ->
     if contactable_selector_select.val() != ''
       refresh_contactable_select( contactable_selector_select.val())
 
-  # SYSTEM ACCOUNT SELECTOR
-  if $('.system_account_select').length
-  # Initialize
-    system_account_select = $('.system_account_select')
-    system_account_select.selectize();
-    # Refresh Preview
-    system_account_select.change ->
-      refresh_system_account_select( system_account_select.val() )
-    if system_account_select.val() != ''
-      refresh_system_account_select( system_account_select.val())
+  # Model Selector
+  $('.model_select_group').each (index, element) =>
+    main_select = $(element).find('select')
+    model_path = $(element).find("input[type='hidden'].model_path").val()
+    main_select.selectize();
+    main_select.change ->
+      refresh_model_selector(model_path, main_select.val() )
+
+
+# Refreshes Model Selector
+refresh_model_selector = (model_path, model_id) ->
+  $.ajax
+    url: '/' + model_path + '/retrieve_resource' + '?id=' + model_id
+    dataType: 'json'
+    error: (jqXHR, textStatus, errorThrown) ->
+      console.log "AJAX Error: #{errorThrown}"
+    success: (data, textStatus, jqXHR) ->
+      alert data
 
 # Refreshes Contactable Selector
 refresh_contactable_select = ( contactable_id ) ->
@@ -42,19 +50,3 @@ refresh_contactable_select = ( contactable_id ) ->
         $('img.contactable_element').show()
         if data == ''
           $('img.contactable_element').hide()
-
-# Refreshes System Account Select
-refresh_system_account_select = ( system_account_id ) ->
-  $.ajax
-    url: "/enterprise/system_account/get_image?id=" + system_account_id
-    dataType: "text"
-    error: (jqXHR, textStatus, errorThrown) ->
-      console.log "AJAX Error: #{errorThrown}"
-    success: (data, textStatus, jqXHR) ->
-      $('img.system_account_primary_image').hide()
-      if data != '' || data != null || data != undefined
-        $('img.system_account_primary_image').attr('src', data)
-        $('img.system_account_primary_image').show()
-        if data == ''
-          $('img.system_account_primary_image').hide()
-

@@ -4,7 +4,7 @@ jQuery ($) ->
   class_model_data = new Bloodhound(
     datumTokenizer: Bloodhound.tokenizers.whitespace('value')
     queryTokenizer: Bloodhound.tokenizers.whitespace
-    remote: { url: base_url + '/' + controller_path + '/search_suggestions?search_query=%QUERY', wildcard: '%QUERY' })
+    remote: { url: base_url + '/' + controller_path + '/search_suggestion?search_query=%QUERY', wildcard: '%QUERY' })
 
   class_model_data.initialize()
 
