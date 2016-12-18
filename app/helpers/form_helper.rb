@@ -55,7 +55,7 @@ module FormHelper
 
   end
 
-  def model_selector(f,model,name,selected, text_attributes = nil , primary_image = false)
+  def model_selector(f,model,name,selected, displayable_attributes = nil , primary_image = false, label_method = nil, value_method = 'id')
 
     current_id = 'new' if (selected == nil || selected == '')
     input_element_id = name.to_s + '_' +  current_id.to_s
@@ -67,7 +67,9 @@ module FormHelper
                             prompt: 'Select ' + humanized_name,
                             selected: selected,
                             label: false,
-                            required: true
+                            required: true,
+                            label_method: label_method.to_sym,
+                            value_method: value_method.to_sym
 
     hidden_model_path = f.input :model_path,
                                 :as => :hidden,
@@ -81,15 +83,27 @@ module FormHelper
         end
 
         text! input_element.to_s
-
-        if primary_image == true
-          img :class => 'primary_image'
-        end
-
-        div :class => 'text_attributes' do
-
-        end
         text! hidden_model_path.to_s
+
+        img :class => 'selector_primary_image' if primary_image == true
+
+        if displayable_attributes != nil
+          div :class => 'attribute_display' do
+            displayable_attributes.each do |attribute|
+              div do
+                span do
+                  attribute.to_s.humanize.split.map(&:capitalize)*' ' + ' : '
+                end
+                span :class => 'displayable_attribute current_model_' + attribute do
+                end
+              end
+            end
+          end
+        end
+
+        a :class => 'btn btn-default add_model_select', :href => '/' + model.main_resource_path + '/new' do
+          'Add New ' + name.to_s.humanize.split.map(&:capitalize)*' '
+        end
 
       end
     end

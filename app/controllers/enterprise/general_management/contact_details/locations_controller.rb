@@ -1,6 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetails::LocationsController < Enterprise::GeneralManagement::ContactDetailsController
-
-  include GenericResource
+class Enterprise::GeneralManagement::ContactDetails::LocationsController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetails::Location,

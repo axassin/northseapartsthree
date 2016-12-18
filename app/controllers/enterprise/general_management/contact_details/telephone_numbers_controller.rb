@@ -1,6 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < Enterprise::GeneralManagement::ContactDetailsController
-
-  include GenericResource
+class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetails::TelephoneNumber,

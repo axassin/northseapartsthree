@@ -1,6 +1,4 @@
-class Enterprise::SystemAccountsController < EnterpriseController
-
-  include GenericResource
+class Enterprise::SystemAccountsController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::SystemAccount,

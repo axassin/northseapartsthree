@@ -1,6 +1,4 @@
-class Enterprise::GeneralManagement::VehiclesController < Enterprise::GeneralManagementController
-
-  include GenericResource
+class Enterprise::GeneralManagement::VehiclesController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::Vehicle,

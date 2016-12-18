@@ -1,10 +1,15 @@
 nav.navbar.navbar-default.navigation
   div.navbar-header.navigation-logo.col-md-2
     a href='#{root_path}' =image_tag('nav_bar_header.png')
-  div.input_group.navigation-search.col-md-7
-    form method="get" action="#{@main_resource_path}"
-      input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
-      input.hidden_submit type="submit"
+
+  - if @class_model != nil
+    div.input_group.navigation-search.col-md-7
+      form method="get" action="#{@main_resource_path}"
+        input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+        input.hidden_submit type="submit"
+  - else
+    div.col-md-7
+
   div.navigation-menu-button.col-md-1
     button.btn.btn-default.menu_button data-toggle="tooltip" data-placement="bottom" title="Menu"
         span.fa.fa-bars

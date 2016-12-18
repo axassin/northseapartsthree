@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     define_index( 'general_management' )
     namespace :general_management do
       namespace :contact_details do
+        resources :contact_wizard
         generate_logic_unit( :telephone_numbers )
         generate_logic_unit( :links )
         generate_logic_unit( :locations )

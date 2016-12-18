@@ -1,12 +1,6 @@
-module GenericResource
-  extend ActiveSupport::Concern
+class GenericResourceController < ApplicationController
 
-  included do
-    before_action :setup_controller
-  end
-
-  include Rails.application.routes.url_helpers
-  @@routes = Rails.application.routes.url_helpers
+  before_action :setup_controller
 
   def setup_variables( class_model,
                        resource_glyphicon,
@@ -210,7 +204,7 @@ module GenericResource
   end
 
   def retrieve_resource
-    render json: @class_model.find(params[:id])
+    render json: @class_model.find(params[:model_id])
   end
 
   def update_primary_image(instance_primary_image, current_params)

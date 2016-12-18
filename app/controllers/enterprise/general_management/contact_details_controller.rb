@@ -1,6 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetailsController < ApplicationController
-
-  include GenericResource
+class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetail,
@@ -14,6 +12,14 @@ class Enterprise::GeneralManagement::ContactDetailsController < ApplicationContr
   end
 
   def process_form(my_contact_details, current_params)
+
+    contact_detail_processing = Proc.new do
+      my_contact_details.label = current_params[:label]
+      my_contact_details.system_account_id = current_params[:system_account_id]
+      my_contact_details.save!
+    end
+
+    setup_process(contact_detail_processing)
 
   end
 
