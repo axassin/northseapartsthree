@@ -1,6 +1,9 @@
 doctype html
 html lang="en"
-  == render template: 'common/generic_head'
+  head
+    = render template: 'common/generic_head'
+    = stylesheet_link_tag 'main_partials/wizard', media: 'all', 'data-turbolinks-track' => 'reload'
   body
-    == render template: 'common/navigation_bar'
-    == yield
+    = render template: 'common/navigation_bar'
+    div.main_display
+      == yield

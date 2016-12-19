@@ -1,1 +1,5 @@
-div.main_display BACKSEAT ON THE REOVER
+div.wizard_heading
+  h1 BACKSEAT ON THE ROVER
+  div.wizard_progress_bar
+    - @step_count.each do |step|
+      div.progress_cell = totally_humanize(step)

@@ -45,7 +45,7 @@ module FormHelper
 
   def selector(f, name, collection, selected)
 
-    prompt_text_label = name.to_s.humanize.split.map(&:capitalize)*' '
+    prompt_text_label = totally_humanize(name)
 
     f.input name,
             collection: collection,
@@ -59,7 +59,7 @@ module FormHelper
 
     current_id = 'new' if (selected == nil || selected == '')
     input_element_id = name.to_s + '_' +  current_id.to_s
-    humanized_name = 'Select ' + name.to_s.humanize.split.map(&:capitalize)*' '
+    humanized_name = 'Select ' + totally_humanize(name)
 
     input_element = f.input name,
                             collection: model.all,
@@ -92,7 +92,7 @@ module FormHelper
             displayable_attributes.each do |attribute|
               div do
                 span do
-                  attribute.to_s.humanize.split.map(&:capitalize)*' ' + ' : '
+                  totally_humanize(attribute)
                 end
                 span :class => 'displayable_attribute current_model_' + attribute do
                 end
@@ -102,7 +102,7 @@ module FormHelper
         end
 
         a :class => 'btn btn-default add_model_select', :href => '/' + model.main_resource_path + '/new' do
-          'Add New ' + name.to_s.humanize.split.map(&:capitalize)*' '
+          'Add New ' + totally_humanize(name)
         end
 
       end

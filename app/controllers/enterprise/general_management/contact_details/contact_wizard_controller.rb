@@ -11,15 +11,16 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   def show
     @user = Enterprise::SystemAccount.new
     case step
-    when :start
-    when :setup_system_account
-    when :setup_contact_detail
-    when :setup_telephone
-    when :setup_link
-    when :setup_location
-    when :end
+      when :start
+      when :setup_system_account
+      when :setup_contact_detail
+      when :setup_telephone
+      when :setup_link
+      when :setup_location
+      when :end
+      else
     end
-    render_wizard
+    render_step(params[:id])
   end
 
   def update
@@ -32,6 +33,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     when :setup_link
     when :setup_location
     when :end
+    else
     end
     render_wizard @user
   end

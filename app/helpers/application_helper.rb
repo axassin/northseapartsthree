@@ -19,4 +19,8 @@ module ApplicationHelper
     File.exists?(current_path)
   end
 
+  def totally_humanize(target_string)
+    target_string.to_s.humanize.split.map(&:capitalize)*' '
+  end
+
 end

@@ -6,10 +6,9 @@ html lang="en"
 
   body
 
-    - if flash[:main_notification]
-      = render template: 'common/main_notification'
-
+    = render template: 'common/main_notification'
     = render template: 'common/navigation_bar'
+
     div.main_display
 
       div.side_bar.col-md-2

@@ -6,7 +6,11 @@ class WizardController < ApplicationController
   before_action :setup_wizard
 
   def setup_wizard
-    @step_count = 'dfasdfafddf dfa'
+    @step_count = wizard_steps
+  end
+
+  def redirect_setup_update
+
   end
 
 end
