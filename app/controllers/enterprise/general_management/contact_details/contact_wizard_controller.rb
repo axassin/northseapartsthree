@@ -9,6 +9,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
         :end
 
   def show
+    @user = Enterprise::SystemAccount.new
     case step
     when :start
     when :setup_system_account
@@ -19,6 +20,20 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     when :end
     end
     render_wizard
+  end
+
+  def update
+    @user = Enterprise::SystemAccount.new
+    case step
+    when :start
+    when :setup_system_account
+    when :setup_contact_detail
+    when :setup_telephone
+    when :setup_link
+    when :setup_location
+    when :end
+    end
+    render_wizard @user
   end
 
 end
