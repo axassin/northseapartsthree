@@ -1,9 +1,17 @@
 div.main_display
-  div.wizard_heading
+  div.wizard_head
     padding-left: 0.5em
+    border-left: thick solid gray
+    h1.wizard_heading
+
     div.wizard_progress_bar
-      div.progress_cell
-        margin: 0.25em
+      display: table
+      width: 100%
+      span.progress_cell
         border-bottom: solid gainsboro thick
-        display: inline-block
+        display: table-cell
+      span.current
+        background-color: gainsboro
+        color: white
+
   div.wizard_content

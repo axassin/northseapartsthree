@@ -1,5 +1,10 @@
-div.wizard_heading
-  h1 BACKSEAT ON THE ROVER
+div.wizard_head
+  h1.wizard_heading SETUP CONTACT WIZARD
   div.wizard_progress_bar
-    - @step_count.each do |step|
-      div.progress_cell = totally_humanize(step)
+    - @wizard_steps.each do |step|
+      - if step == params[:id]
+        span.progress_cell.current = totally_humanize(step)
+      - else
+        span.progress_cell = totally_humanize(step)
+
+= @current_step
