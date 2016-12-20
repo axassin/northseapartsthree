@@ -6,4 +6,29 @@ html lang="en"
   body
     = render template: 'common/navigation_bar'
     div.main_display
-      == yield
+      div.wizard_head
+        h1.wizard_heading = totally_humanize(controller_name)
+        div.wizard_progress_bar
+          ruby:
+            past_step = true
+          - @wizard_steps.each do |step|
+            - if step.to_s == params[:id].to_s
+              span.progress_cell.current = totally_humanize(step)
+              ruby:
+                past_step = false
+            - else
+              - if past_step
+                span.progress_cell.past_cell = totally_humanize(step)
+              - else
+                span.progress_cell = totally_humanize(step)
+      div.wizard_content
+        - if @form
+          = render template: @form
+          div.col-md-12.footnote * Required
+        - else
+          == yield
+        hr
+        div
+          a.btn.btn-default href='' BACK
+          span &nbsp;
+          a.btn.btn-default NEXT

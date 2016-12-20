@@ -1,10 +1,1 @@
-div.wizard_head
-  h1.wizard_heading SETUP CONTACT WIZARD
-  div.wizard_progress_bar
-    - @wizard_steps.each do |step|
-      - if step == params[:id]
-        span.progress_cell.current = totally_humanize(step)
-      - else
-        span.progress_cell = totally_humanize(step)
-
-= @current_step
+p This wizard will setup a System Account with some Contact Information.
