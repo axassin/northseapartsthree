@@ -18,7 +18,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :start
         setup_step(false)
       when :setup_system_account
-        setup_step(false, '/enterprise/system_account', Enterprise::SystemAccount)
+        setup_step(false, '/enterprise/system_accounts', Enterprise::SystemAccount)
       when :setup_contact_detail
         setup_step(false)
       when :setup_telephone_numbers

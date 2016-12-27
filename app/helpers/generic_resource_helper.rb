@@ -8,7 +8,8 @@ module GenericResourceHelper
         puts public_file_exists?(result.primary_image.url)
         img.primary_image :src => result.primary_image.url
       else
-        div :class => 'fa ' + @resource_glyphicon + ' resource_glyphicon', :style => 'width: 100%', :align => 'center'
+        div :class => 'fa ' + result.class.class_variable_get(:@@resource_glyphicon) + ' resource_glyphicon',
+            :style => 'width: 100%', :align => 'center'
         br
       end
     end

@@ -13,7 +13,7 @@ module GenericResourceCommon
       time :created_at
       time :updated_at
     end
-    
+
   end
 
   module ClassMethods
@@ -27,6 +27,10 @@ module GenericResourceCommon
 
     def main_resource_path
       self.to_s.pluralize.underscore.downcase.gsub('::','/')
+    end
+
+    def self.resource_glyphicon
+      @@resource_glyphicon
     end
 
   end
