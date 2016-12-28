@@ -2,7 +2,6 @@ class Enterprise::SystemAccountsController < GenericResourceController
 
   def setup_controller
     setup_variables( Enterprise::SystemAccount,
-                     'fa fa-user ',
                      'System Accounts',
                      'User Entities',
                      ['primary_image'],

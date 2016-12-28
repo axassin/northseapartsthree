@@ -2,7 +2,6 @@ class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericRe
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetails::Link,
-                     'fa fa-external-link',
                      'Link',
                      'Communication Assets',
                      ['contact_detail_id'],

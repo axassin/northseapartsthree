@@ -2,7 +2,6 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::Vehicle,
-                     'fa fa-bus',
                      'Vehicles',
                      'Transportation Assets',
                      ['primary_image'],

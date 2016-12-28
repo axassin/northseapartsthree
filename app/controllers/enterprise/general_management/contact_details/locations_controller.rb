@@ -2,7 +2,6 @@ class Enterprise::GeneralManagement::ContactDetails::LocationsController < Gener
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetails::Location,
-                     'fa fa-map-marker',
                      'Location',
                      'Communication Assets',
                      ['contact_detail_id'],

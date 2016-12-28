@@ -1,6 +1,8 @@
 class Enterprise::GeneralManagement::Vehicle < ApplicationRecord
 
   include GenericResourceCommon
+  setup_model('fa-bus')
+
   include Description
 
   mount_uploader :primary_image, PrimaryImageUploader

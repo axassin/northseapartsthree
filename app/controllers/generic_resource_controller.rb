@@ -3,7 +3,6 @@ class GenericResourceController < ApplicationController
   before_action :setup_controller
 
   def setup_variables( class_model,
-                       resource_glyphicon,
                        resource_title_heading,
                        resource_sub_heading,
                        omitted_attributes,
@@ -12,7 +11,7 @@ class GenericResourceController < ApplicationController
                        main_resource_path )
 
     @class_model = class_model
-    @resource_glyphicon = resource_glyphicon
+    @resource_glyphicon = class_model.class_variable_get(:@@resource_glyphicon)
     @resource_title_heading = resource_title_heading
     @resource_sub_heading = resource_sub_heading
     @omitted_attributes = omitted_attributes.push('deleted_at')

@@ -2,7 +2,6 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetail,
-                     'fa fa-book',
                      'Contact Details',
                      'Communication Assets',
                      [],

@@ -25,12 +25,12 @@ module GenericResourceCommon
       end
     end
 
-    def main_resource_path
-      self.to_s.pluralize.underscore.downcase.gsub('::','/')
+    def setup_model(resource_glyphicon)
+      self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
     end
 
-    def self.resource_glyphicon
-      @@resource_glyphicon
+    def main_resource_path
+      self.to_s.pluralize.underscore.downcase.gsub('::','/')
     end
 
   end

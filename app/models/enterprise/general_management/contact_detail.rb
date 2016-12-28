@@ -1,6 +1,7 @@
 class Enterprise::GeneralManagement::ContactDetail < ApplicationRecord
 
   include GenericResourceCommon
+  setup_model('fa-book')
 
   belongs_to :system_account
   has_many :telephone_numbers

@@ -1,6 +1,8 @@
 class Enterprise::SystemAccount < ApplicationRecord
 
   include GenericResourceCommon
+  setup_model('fa-user')
+
   include Description
 
   mount_uploader :primary_image, PrimaryImageUploader
@@ -13,10 +15,6 @@ class Enterprise::SystemAccount < ApplicationRecord
   validates :name, presence: true, length: { in: 2..64 }
   validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }
   validates :description, length: { in: 2..512 }
-
-  @@resource_glyphicon = 'fa-user'
-
-  setup_model
 
   def has_contact_detail?
     ContactDetail.exists?(system_account_id: self.id)

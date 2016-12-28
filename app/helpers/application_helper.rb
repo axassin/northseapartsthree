@@ -23,4 +23,8 @@ module ApplicationHelper
     target_string.to_s.humanize.split.map(&:capitalize)*' '
   end
 
+  def model_to_path(class_model)
+
+  end
+
 end

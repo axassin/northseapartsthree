@@ -2,7 +2,6 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
 
   def setup_controller
     setup_variables( Enterprise::GeneralManagement::ContactDetails::TelephoneNumber,
-                     'fa fa-phone',
                      'Telephone Numbers',
                      'Communication Assets',
                      ['contact_detail_id'],

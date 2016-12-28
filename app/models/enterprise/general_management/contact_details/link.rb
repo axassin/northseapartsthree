@@ -1,6 +1,8 @@
 class Enterprise::GeneralManagement::ContactDetails::Link < ApplicationRecord
 
   include GenericResourceCommon
+  setup_model('fa-external-link')
+
   include Contactable
   include Remark
 
