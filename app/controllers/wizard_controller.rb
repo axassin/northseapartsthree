@@ -1,6 +1,6 @@
 class WizardController < ApplicationController
 
-  layout 'wizard'
+  layout 'wizard/main'
   before_action :setup_wizard_controller
 
   def setup_variables(parent_path)
@@ -8,9 +8,9 @@ class WizardController < ApplicationController
     @parent_path = parent_path
   end
 
-  def setup_step(skippable = false, form = false, class_model)
+  def setup_step(skippable = false, class_model = nil)
     @skippable = skippable
-    @form = form
+    @form = class_model.form_path if class_model
     @current_instance = class_model.new if class_model
   end
 

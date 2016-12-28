@@ -23,8 +23,8 @@ module ApplicationHelper
     target_string.to_s.humanize.split.map(&:capitalize)*' '
   end
 
-  def model_to_path(class_model)
-
+  def class_to_path(current_class)
+    current_class.to_s.pluralize.underscore.gsub('::','/')
   end
 
 end

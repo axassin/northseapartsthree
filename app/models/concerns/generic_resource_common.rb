@@ -29,6 +29,18 @@ module GenericResourceCommon
       self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
     end
 
+    def view_path
+      self.to_s.pluralize.underscore.gsub('::','/')
+    end
+
+    def form_path
+      view_path + '/form'
+    end
+
+    def cell_path
+      view_path + '/cell'
+    end
+
     def main_resource_path
       self.to_s.pluralize.underscore.downcase.gsub('::','/')
     end

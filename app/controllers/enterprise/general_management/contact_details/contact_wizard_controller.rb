@@ -14,19 +14,29 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   end
 
   def show
+    puts '-------------- ----------'
+    puts 'iakw na ba s mr right?: ' + step.to_s
     case step
       when :start
         setup_step(false)
       when :setup_system_account
-        setup_step(false, '/enterprise/system_accounts', Enterprise::SystemAccount)
+        setup_step(false, Enterprise::SystemAccount)
+
+        puts '----------- - - ----------------- - '
+        puts ' SHOW - setup_system_account '
+
       when :setup_contact_detail
-        setup_step(false)
+
+        puts '----------- - - ----------------- - '
+        puts ' SHOW - CONTACT DETAIL '
+
+        setup_step(false, Enterprise::GeneralManagement::ContactDetail)
       when :setup_telephone_numbers
-        setup_step(true)
+        setup_step(true, Enterprise::GeneralManagement::TelephoneNumber)
       when :setup_link
-        setup_step(true)
+        setup_step(true, Enterprise::GeneralManagement::Link)
       when :setup_location
-        setup_step(true)
+        setup_step(true, Enterprise::GeneralManagement::Location)
       when :end
         setup_step(false)
       else
@@ -35,10 +45,11 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   end
 
   def update
-    @user = Enterprise::SystemAccount.new
     case step
       when :start
       when :setup_system_account
+        puts '----------- - - ----------------- - '
+        puts ' UPDATE - SETUP SYSTEM ACCOUNT '
       when :setup_contact_detail
       when :setup_telephone
       when :setup_link
@@ -46,7 +57,8 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :end
       else
     end
-    render_wizard @user
+
+    redirect_to self.to_s.pluralize.underscore.gsub('::','/') + '/setup_contact_detail'
   end
 
 end

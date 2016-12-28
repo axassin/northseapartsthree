@@ -135,11 +135,11 @@ module FormHelper
 
         img :class => 'contactable_element'
 
-        a :class => 'btn btn-default add-contactable-button', :href => new_enterprise_system_account_path do
+        a :class => 'btn btn-default add-contactable-button', :target => '_new', :href => new_enterprise_system_account_path do
           'Add New System Account'
         end
 
-        a :class => 'btn btn-default add-contactable-button', :href => new_enterprise_general_management_contact_detail_path do
+        a :class => 'btn btn-default add-contactable-button', :target => '_new', :href => new_enterprise_general_management_contact_detail_path do
           'Add New Contact Detail'
         end
 
