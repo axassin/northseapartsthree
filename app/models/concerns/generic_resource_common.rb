@@ -45,6 +45,14 @@ module GenericResourceCommon
       self.to_s.pluralize.underscore.downcase.gsub('::','/')
     end
 
+    def associated_controller
+      (self.to_s.pluralize + 'Controller').constantize
+    end
+
+    def associated_params
+      self.to_s.gsub('::','_').underscore.downcase.to_sym
+    end
+
   end
 
 end

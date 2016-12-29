@@ -55,7 +55,12 @@ module FormHelper
 
   end
 
-  def model_selector(f,model,name,selected, displayable_attributes = nil , primary_image = false, label_method = nil, value_method = 'id')
+  def model_selector(f,
+                     model,
+                     name,
+                     selected,
+                     displayable_attributes = nil,
+                     primary_image = false, label_method = nil, value_method = 'id', disabled = false)
 
     current_id = 'new' if (selected == nil || selected == '')
     input_element_id = name.to_s + '_' +  current_id.to_s
@@ -69,7 +74,8 @@ module FormHelper
                             label: false,
                             required: true,
                             label_method: label_method.to_sym,
-                            value_method: value_method.to_sym
+                            value_method: value_method.to_sym,
+                            disabled: disabled
 
     hidden_model_path = f.input :model_path,
                                 :as => :hidden,
@@ -101,7 +107,7 @@ module FormHelper
           end
         end
 
-        a :class => 'btn btn-default add_model_select', :href => '/' + model.main_resource_path + '/new' do
+        a :class => 'btn btn-default add_model_select', :target => '_new', :href => '/' + model.main_resource_path + '/new' do
           'Add New ' + totally_humanize(name)
         end
 

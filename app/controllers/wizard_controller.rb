@@ -7,7 +7,7 @@ class WizardController < ApplicationController
     @wizard_steps = wizard_steps
     @parent_path = parent_path
     @current_path = current_path
-    @parameters = nil
+    @passable_parameters = Hash.new
   end
 
   def setup_step(skippable = false, class_model = nil)
@@ -16,8 +16,11 @@ class WizardController < ApplicationController
     @current_instance = class_model.new if class_model
   end
 
-  def parameter_add(key, value)
-
+  def process_step( current_model, hash_key)
+    model_id = current_model.associated_controller.new.process_form(current_model.new,
+                                                                    params[current_model.associated_params],
+                                                                    true)
+    @passable_parameters.store(hash_key,model_id)
   end
 
 end

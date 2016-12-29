@@ -1,4 +1,21 @@
 div.col-md-6
   = input_word(f, :label)
 div.col-md-6
-  = model_selector(f, Enterprise::SystemAccount, :system_account_id, current_instance.system_account_id, nil, true, 'name')
+  - unless @wizard_steps
+    = model_selector( f,
+                      Enterprise::SystemAccount,
+                      :system_account_id,
+                      current_instance.system_account_id,
+                      nil,
+                      true,
+                      'name')
+  - else
+    = model_selector( f,
+                      Enterprise::SystemAccount,
+                      :system_account_id,
+                      params[:enterprise_system_account_id],
+                      nil,
+                      true,
+                      'name',
+                      'id',
+                      true )

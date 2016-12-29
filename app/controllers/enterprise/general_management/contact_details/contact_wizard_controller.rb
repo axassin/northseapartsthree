@@ -39,17 +39,16 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        saved_id = Enterprise::SystemAccountsController.new.process_form(Enterprise::SystemAccount.new, params[:enterprise_system_account], true)
-        parameters = 'system_account=' + saved_id
+        process_step( Enterprise::SystemAccount, 'enterprise_system_account_id')
       when :setup_contact_detail
+
       when :setup_telephone
       when :setup_link
       when :setup_location
       when :end
       else
     end
-
-    redirect_to @current_path + '/' + next_step.to_s + '?' + parameters
+    redirect_to @current_path + '/' + next_step.to_s + '?' + @passable_parameters.to_query
   end
 
 end

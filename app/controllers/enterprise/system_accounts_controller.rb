@@ -12,9 +12,6 @@ class Enterprise::SystemAccountsController < GenericResourceController
 
   def process_form(my_system_account, current_params, wizard_mode = nil)
 
-    puts '===================='
-    puts current_params
-
     system_account_processing = Proc.new do
       my_system_account.name = current_params[:name]
       my_system_account.description = current_params[:description]
