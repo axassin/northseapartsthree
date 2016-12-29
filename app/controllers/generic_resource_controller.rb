@@ -139,11 +139,12 @@ class GenericResourceController < ApplicationController
     setup_index
   end
 
-  def setup_process( process_block )
+  def setup_process( process_block, wizard_mode = nil )
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
+    saved_id = nil
     begin
       ActiveRecord::Base.transaction do
-        process_block.call
+        saved_id = process_block.call
         modal_message = 'Successful Operation! '
       end
     rescue => ex
@@ -151,7 +152,13 @@ class GenericResourceController < ApplicationController
       puts ex
       puts ' ---------- PROCESS ERROR END ---------- '
     end
-    redirect_to @main_resource_path, :flash => { :main_notification => modal_message }
+
+    if wizard_mode
+      saved_id
+    else
+      redirect_to @main_resource_path, :flash => { :main_notification => modal_message }
+    end
+
   end
 
   def new
@@ -207,11 +214,6 @@ class GenericResourceController < ApplicationController
   end
 
   def update_primary_image(instance_primary_image, current_params)
-
-    puts action_name
-    puts current_params.has_key?(:primary_image)
-    puts 'value' + current_params[:primary_image].to_s
-
     if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(:primary_image) == true)
       instance_primary_image.primary_image = current_params[:primary_image]
     end

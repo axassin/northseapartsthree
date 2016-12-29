@@ -10,26 +10,17 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
         :end
 
   def setup_wizard_controller
-    setup_variables(@@routes.enterprise_general_management_path)
+    setup_variables(@@routes.enterprise_general_management_contact_details_path,
+                    @@routes.enterprise_general_management_contact_details_contact_wizard_index_path)
   end
 
   def show
-    puts '-------------- ----------'
-    puts 'iakw na ba s mr right?: ' + step.to_s
     case step
       when :start
         setup_step(false)
       when :setup_system_account
         setup_step(false, Enterprise::SystemAccount)
-
-        puts '----------- - - ----------------- - '
-        puts ' SHOW - setup_system_account '
-
       when :setup_contact_detail
-
-        puts '----------- - - ----------------- - '
-        puts ' SHOW - CONTACT DETAIL '
-
         setup_step(false, Enterprise::GeneralManagement::ContactDetail)
       when :setup_telephone_numbers
         setup_step(true, Enterprise::GeneralManagement::TelephoneNumber)
@@ -48,8 +39,8 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        puts '----------- - - ----------------- - '
-        puts ' UPDATE - SETUP SYSTEM ACCOUNT '
+        saved_id = Enterprise::SystemAccountsController.new.process_form(Enterprise::SystemAccount.new, params[:enterprise_system_account], true)
+        parameters = 'system_account=' + saved_id
       when :setup_contact_detail
       when :setup_telephone
       when :setup_link
@@ -58,7 +49,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       else
     end
 
-    redirect_to self.to_s.pluralize.underscore.gsub('::','/') + '/setup_contact_detail'
+    redirect_to @current_path + '/' + next_step.to_s + '?' + parameters
   end
 
 end
