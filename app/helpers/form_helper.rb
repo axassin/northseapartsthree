@@ -156,7 +156,7 @@ module FormHelper
     main_element.html_safe
   end
 
-  def contactable_selector_wizardable(f, params, current_instance)
+  def wizardable_contactable_selector(f, params, current_instance)
     main = contactable_selector(f, current_instance.contact_detail_id)
     if @wizard_steps
       hidden_element = mab do

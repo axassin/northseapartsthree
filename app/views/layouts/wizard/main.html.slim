@@ -29,6 +29,7 @@ html lang="en"
                   multipart: true,
                   method: :put,
                   html: {:'data-parsley-validate' => ''} do |f|
+            input type='hidden' name='mother_model' value='#{params[:mother_model]}'
             div.form_proper
               = render partial: @form, locals: {f: f, current_instance: @current_instance}
             div.col-md-12.footnote * Required

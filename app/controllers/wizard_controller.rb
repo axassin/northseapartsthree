@@ -7,7 +7,7 @@ class WizardController < ApplicationController
     @wizard_steps = wizard_steps
     @parent_path = parent_path
     @current_path = current_path
-    @passable_parameters = Hash.new
+    @mother_model = Hash.new
     @current_resource_id = 'new'
   end
 
@@ -18,7 +18,8 @@ class WizardController < ApplicationController
     @class_model = class_model
   end
 
-  def process_step(current_model)
+  def process_step(current_model, mother_model = true)
+    @mother_model.store('mother_model',params[:mother_model]) if mother_model
     current_model.associated_controller.new.process_form(current_model.new,
                                                          params[current_model.associated_params],
                                                          true)

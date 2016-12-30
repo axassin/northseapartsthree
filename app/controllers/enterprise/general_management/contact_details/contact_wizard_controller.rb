@@ -36,30 +36,24 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   end
 
   def update
+
     case step
       when :start
       when :setup_system_account
         model_id = process_step(Enterprise::SystemAccount)
-        @passable_parameters.store('enterprise_system_account_id',model_id)
+        @mother_model.store('enterprise_system_account_id',model_id)
       when :setup_contact_detail
-        model_id = process_step(Enterprise::GeneralManagement::ContactDetail)
-        @passable_parameters.store('enterprise_general_management_contact_detail_id',model_id)
+        process_step(Enterprise::GeneralManagement::ContactDetail)
       when :setup_telephone
         process_step(Enterprise::GeneralManagement::ContactDetails::TelephoneNumber)
-        @passable_parameters.store('enterprise_general_management_contact_detail_id',
-                                   params[:enterprise_general_management_contact_details_telephone_number][:contact_detail_id])
       when :setup_link
         process_step(Enterprise::GeneralManagement::ContactDetails::Link)
-        @passable_parameters.store('enterprise_general_management_contact_detail_id',
-                                   params[:enterprise_general_management_contact_details_link][:contact_detail_id])
       when :setup_location
         process_step(Enterprise::GeneralManagement::ContactDetails::Location)
-        @passable_parameters.store('enterprise_general_management_contact_detail_id',
-                                   params[:enterprise_general_management_contact_details_location][:contact_detail_id])
       when :end
       else
     end
-    redirect_to @current_path + '/' + next_step.to_s + '?' + @passable_parameters.to_query
+    redirect_to @current_path + '/' + next_step.to_s + '?' + @mother_model.to_query
   end
 
 end
