@@ -10,15 +10,17 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
                      @@routes.enterprise_general_management_contact_details_path )
   end
 
-  def process_form(my_contact_details, current_params)
+  def process_form(my_contact_details, current_params, wizard_mode = nil)
 
     contact_detail_processing = Proc.new do
       my_contact_details.label = current_params[:label]
       my_contact_details.system_account_id = current_params[:system_account_id]
       my_contact_details.save!
+      puts my_contact_details.id
+      return my_contact_details.id
     end
 
-    setup_process(contact_detail_processing)
+    setup_process(contact_detail_processing, wizard_mode)
 
   end
 

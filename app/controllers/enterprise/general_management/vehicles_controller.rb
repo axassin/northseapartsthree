@@ -10,7 +10,7 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
                      @@routes.enterprise_general_management_vehicles_path )
   end
 
-  def process_form(my_vehicle, current_params)
+  def process_form(my_vehicle, current_params, wizard_mode = nil)
 
     vehicle_processing = Proc.new do
       my_vehicle.color = current_params[:color]
@@ -22,9 +22,10 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
       my_vehicle.date_of_registration = current_params[:date_of_registration]
       update_primary_image(my_vehicle, current_params)
       my_vehicle.save!
+      return my_vehicle.id
     end
 
-    setup_process(vehicle_processing)
+    setup_process(vehicle_processing, wizard_mode)
   end
 
 end

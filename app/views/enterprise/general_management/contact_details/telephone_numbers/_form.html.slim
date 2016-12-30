@@ -3,4 +3,4 @@ div.col-md-6
   = input_word(f, :remark)
 
 div.col-md-6
-  = contactable_selector(f, current_instance.contact_detail_id)
+  = contactable_selector_wizardable(f, params, current_instance)

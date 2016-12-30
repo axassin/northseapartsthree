@@ -19,7 +19,7 @@ span &nbsp;
   span &nbsp;
 
 - if @skippable
-  a.btn.btn-default href='#{previous_wizard_path}' SKIP
+  a.btn.btn-default href='#{next_wizard_path}' SKIP
 
   span &nbsp;
 
@@ -30,3 +30,6 @@ span &nbsp;
 
 - unless ((step.to_s == 'start') || (step.to_s == 'end'))
   input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'
+
+- if ((step.to_s == 'end'))
+  a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD

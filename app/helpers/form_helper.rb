@@ -118,7 +118,7 @@ module FormHelper
 
   end
 
-  def contactable_selector(f, selected)
+  def contactable_selector(f, selected, disabled = false)
 
     input_element = f.input :contact_detail_id,
                             collection: Enterprise::GeneralManagement::ContactDetail.all,
@@ -128,7 +128,8 @@ module FormHelper
                             selected: selected,
                             input_html: { class: 'contactable_selector_select contactable_element', id: 'contactable'},
                             label: false,
-                            required: true
+                            required: true,
+                            disabled: disabled
 
     main_element = mab do
       div :class => 'contactable_selector' do
@@ -153,6 +154,20 @@ module FormHelper
     end
 
     main_element.html_safe
+  end
+
+  def contactable_selector_wizardable(f, params, current_instance)
+    main = contactable_selector(f, current_instance.contact_detail_id)
+    if @wizard_steps
+      hidden_element = mab do
+        input :type => 'hidden',
+              :name => @class_model.associated_params.to_s + '[contact_detail_id]',
+              :value => params[:enterprise_general_management_contact_detail_id]
+      end
+      contactable_selector(f, params[:enterprise_general_management_contact_detail_id], true) + hidden_element.html_safe
+    else
+      main
+    end
   end
 
   def primary_image_file_upload_element(f, params, current_instance)

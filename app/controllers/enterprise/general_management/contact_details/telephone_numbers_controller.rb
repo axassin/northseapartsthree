@@ -10,7 +10,7 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
                      @@routes.enterprise_general_management_contact_details_telephone_numbers_path )
   end
 
-  def process_form(my_telephone, current_params)
+  def process_form(my_telephone, current_params, wizard_mode = nil)
 
     telephone_processing = Proc.new do
       my_telephone.digits = current_params[:digits]
@@ -19,7 +19,7 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
       my_telephone.save!
     end
 
-    setup_process(telephone_processing)
+    setup_process(telephone_processing, wizard_mode)
   end
 
 end

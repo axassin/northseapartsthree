@@ -10,7 +10,7 @@ class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericRe
                      @@routes.enterprise_general_management_contact_details_links_path )
   end
 
-  def process_form(my_link, current_params)
+  def process_form(my_link, current_params, wizard_mode = nil)
 
     link_processing = Proc.new do
       my_link.service = current_params[:service]
@@ -20,7 +20,7 @@ class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericRe
       my_link.save!
     end
 
-    setup_process(link_processing)
+    setup_process(link_processing, wizard_mode)
   end
 
 end

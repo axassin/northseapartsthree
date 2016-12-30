@@ -10,7 +10,7 @@ class Enterprise::GeneralManagement::ContactDetails::LocationsController < Gener
                      @@routes.enterprise_general_management_contact_details_locations_path )
   end
 
-  def process_form(my_location, current_params)
+  def process_form(my_location, current_params, wizard_mode = nil)
 
     location_processing = Proc.new do
       my_location.longitude = current_params[:longitude]
@@ -20,7 +20,7 @@ class Enterprise::GeneralManagement::ContactDetails::LocationsController < Gener
       my_location.save!
     end
 
-    setup_process(location_processing)
+    setup_process(location_processing, wizard_mode)
   end
 
 
