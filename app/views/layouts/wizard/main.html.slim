@@ -6,6 +6,7 @@ html lang="en"
     = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
   body
     = render template: 'common/navigation_bar'
+    = render template: 'common/main_notification'
     div.main_display
       div.wizard_head
         h1.wizard_heading = totally_humanize(controller_name)
@@ -29,7 +30,8 @@ html lang="en"
                   multipart: true,
                   method: :put,
                   html: {:'data-parsley-validate' => ''} do |f|
-            input type='hidden' name='mother_model' value='#{params[:mother_model]}'
+            input type='hidden' name='mother_model_type' value='#{params[:mother_model_type]}'
+            input type='hidden' name='mother_model_id' value='#{params[:mother_model_id]}'
             div.form_proper
               = render partial: @form, locals: {f: f, current_instance: @current_instance}
             div.col-md-12.footnote * Required

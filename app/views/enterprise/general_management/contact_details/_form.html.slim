@@ -2,24 +2,6 @@ div.col-md-6
   = input_word(f, :label)
 div.col-md-6
   - if @wizard_steps
-
-    = model_selector( f,
-            Enterprise::SystemAccount,
-            :system_account_id,
-            params[:enterprise_system_account_id],
-            nil,
-            true,
-            'name',
-            'id',
-            true )
-    input type='hidden' name='#{@class_model.associated_params}[system_account_id]' value='#{params[:enterprise_system_account_id]}'
-
+    = model_selector(f, params[:mother_model_type].constantize, :system_account_id, params[:mother_model_id], nil, true, 'name', 'id', true )
   - else
-
-    = model_selector(f,
-            Enterprise::SystemAccount,
-            :system_account_id,
-            current_instance.system_account_id,
-            nil,
-            true,
-            'name')
+    = model_selector(f, Enterprise::SystemAccount, :system_account_id, current_instance.system_account_id, nil, true, 'name')

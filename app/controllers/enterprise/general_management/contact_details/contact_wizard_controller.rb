@@ -32,7 +32,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
         setup_step(false)
       else
     end
-    render_step(params[:id])
+    show_finish
   end
 
   def update
@@ -40,8 +40,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        model_id = process_step(Enterprise::SystemAccount)
-        @mother_model.store('enterprise_system_account_id',model_id)
+        process_step(Enterprise::SystemAccount)
       when :setup_contact_detail
         process_step(Enterprise::GeneralManagement::ContactDetail)
       when :setup_telephone
@@ -53,7 +52,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :end
       else
     end
-    redirect_to @current_path + '/' + next_step.to_s + '?' + @mother_model.to_query
+    update_finish
   end
 
 end

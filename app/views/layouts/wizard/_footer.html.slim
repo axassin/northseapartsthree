@@ -1,6 +1,8 @@
-hr
-= render partial: 'associated_models'
-hr
+- if @mother_model
+  label.outside_label.string.required ASSOCIATED MODELS
+  = render partial: 'associated_models'
+  hr
+
 ruby:
   back_path = previous_wizard_path
   forward_path = next_wizard_path
