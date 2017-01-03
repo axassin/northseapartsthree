@@ -17,19 +17,22 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   def show
     case step
       when :start
-        setup_step(false)
+        setup_step(nil, false)
       when :setup_system_account
-        setup_step(false, Enterprise::SystemAccount)
+        setup_step(Enterprise::SystemAccount, false)
       when :setup_contact_detail
-        setup_step(false, Enterprise::GeneralManagement::ContactDetail)
+        setup_step(Enterprise::GeneralManagement::ContactDetail, false)
       when :setup_telephone
-        setup_step(true, Enterprise::GeneralManagement::ContactDetails::TelephoneNumber)
+        setup_step(Enterprise::GeneralManagement::ContactDetails::TelephoneNumber, true, true)
+        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :setup_link
-        setup_step(true, Enterprise::GeneralManagement::ContactDetails::Link)
+        setup_step(Enterprise::GeneralManagement::ContactDetails::Link, true, true)
+        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :setup_location
-        setup_step(true, Enterprise::GeneralManagement::ContactDetails::Location)
+        setup_step(Enterprise::GeneralManagement::ContactDetails::Location, true, true)
+        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :end
-        setup_step(false)
+        setup_step(nil, false)
       else
     end
     show_finish
@@ -40,7 +43,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        process_step(Enterprise::SystemAccount)
+        process_step(Enterprise::SystemAccount, true)
       when :setup_contact_detail
         process_step(Enterprise::GeneralManagement::ContactDetail)
       when :setup_telephone
@@ -50,6 +53,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :setup_location
         process_step(Enterprise::GeneralManagement::ContactDetails::Location)
       when :end
+        process_step(nil, false, true)
       else
     end
     update_finish

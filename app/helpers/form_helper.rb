@@ -162,9 +162,9 @@ module FormHelper
       hidden_element = mab do
         input :type => 'hidden',
               :name => @class_model.associated_params.to_s + '[contact_detail_id]',
-              :value => params[:enterprise_general_management_contact_detail_id]
+              :value => @contact_detail_id
       end
-      contactable_selector(f, params[:enterprise_general_management_contact_detail_id], true) + hidden_element.html_safe
+      contactable_selector(f, @contact_detail_id, true) + hidden_element.html_safe
     else
       main
     end

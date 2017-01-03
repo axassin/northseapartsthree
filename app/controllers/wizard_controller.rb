@@ -13,11 +13,12 @@ class WizardController < ApplicationController
 
   end
 
-  def setup_step(skippable = false, class_model = nil)
+  def setup_step(class_model = nil, skippable = false, repeatable = false)
     @skippable = skippable
     @form = class_model.form_path if class_model
     @current_instance = class_model.new if class_model
     @class_model = class_model
+    @repeatable = repeatable
 
 
     # Check if Mother Model Exists
@@ -37,11 +38,13 @@ class WizardController < ApplicationController
     @restart == true ? (redirect_to @current_path + '/start') : (render_step(params[:id]))
   end
 
-  def process_step(current_model, mother_model = true)
+  def process_step(current_model, mother_model = false, finish_step = false)
     # Process request through respective Resource Controller
-    model_id = current_model.associated_controller.new.process_form(current_model.new,
-                                                                    params[current_model.associated_params],
-                                                                    true)
+    unless finish_step
+      model_id = current_model.associated_controller.new.process_form(current_model.new,
+                                                                      params[current_model.associated_params],
+                                                                      true)
+    end
 
     # Put as Marker
     if mother_model
@@ -52,12 +55,12 @@ class WizardController < ApplicationController
       @mother_parameters.store('mother_model_id',params[:mother_model_id])
     end
 
-
-
   end
 
   def update_finish
-    redirect_to @current_path + '/' + next_step.to_s + '?' + @mother_parameters.to_query
+    main_step = nil
+    params.has_key?('repeatable') ? main_step = step.to_s : main_step = next_step.to_s
+    redirect_to @current_path + '/' + main_step + '?' + @mother_parameters.to_query
   end
 
 end

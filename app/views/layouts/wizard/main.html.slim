@@ -34,7 +34,9 @@ html lang="en"
             input type='hidden' name='mother_model_id' value='#{params[:mother_model_id]}'
             div.form_proper
               = render partial: @form, locals: {f: f, current_instance: @current_instance}
+            div.float-clearing
             div.col-md-12.footnote * Required
+            div.float-clearing
             = render partial: 'layouts/wizard/footer'
         - else
           == yield

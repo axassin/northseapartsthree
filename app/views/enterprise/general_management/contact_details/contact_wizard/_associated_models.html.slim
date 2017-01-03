@@ -6,5 +6,18 @@ div.grid-item
   = render partial: Enterprise::SystemAccount.cell_path, locals: { result: mother_model_instance }
 
 - if mother_model_instance.has_contact_detail?
-  - mother_model_instance.all_contact_details.each do |instance|
-    p fasfadsf
+  - mother_model_instance.all_contact_details.each do |contact_detail|
+    div.grid-item
+      = render partial: contact_detail.class.cell_path, locals: {result: contact_detail}
+
+    - contact_detail.associated_telephone_numbers.each do |telephone_number|
+      div.grid-item
+        = render partial: telephone_number.class.cell_path, locals: {result: telephone_number}
+
+    - contact_detail.associated_links.each do |link|
+      div.grid-item
+        = render partial: link.class.cell_path, locals: {result: link}
+
+    - contact_detail.associated_locations.each do |location|
+      div.grid-item
+        = render partial: location.class.cell_path, locals: {result: location}

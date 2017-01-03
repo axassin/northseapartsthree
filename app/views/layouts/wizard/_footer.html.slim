@@ -1,8 +1,9 @@
 - if @mother_model
   div.col-md-12.associated_models
-    label.outside_label.string.required style='float: left'ASSOCIATED MODELS
+    label.outside_label.string.required style='float: left' ASSOCIATED MODELS
     br
-    = render partial: 'associated_models'
+    div.associated_model_container
+      = render partial: 'associated_models'
 
 ruby:
   back_path = previous_wizard_path
@@ -16,11 +17,11 @@ ruby:
   else
   end
 
-div.col-md-12
-  hr
+br
+div.float-clearing
+hr
 
 div.col-md-12
-
   a.btn.btn-default href='#{back_path}' #{back_text}
   span &nbsp;
 
@@ -39,8 +40,16 @@ div.col-md-12
 
     span &nbsp;
 
+  - if @repeatable
+    input.btn.btn-default type='SUBMIT' name='repeatable' value='CONFIRM AND REPEAT'
+
+    span &nbsp;
+
   - unless ((step.to_s == 'start') || (step.to_s == 'end'))
     input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'
 
   - if ((step.to_s == 'end'))
     a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD
+
+br
+div.float-clearing
