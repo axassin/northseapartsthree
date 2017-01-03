@@ -35,8 +35,7 @@ html lang="en"
             div.form_proper
               = render partial: @form, locals: {f: f, current_instance: @current_instance}
             div.col-md-12.footnote * Required
-            div.col-md-12
-              = render partial: 'layouts/wizard/footer'
+            = render partial: 'layouts/wizard/footer'
         - else
           == yield
           = render partial: 'layouts/wizard/footer'

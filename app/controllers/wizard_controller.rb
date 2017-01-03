@@ -10,6 +10,7 @@ class WizardController < ApplicationController
     @mother_parameters = Hash.new
     @current_resource_id = 'new'
     @restart = false
+
   end
 
   def setup_step(skippable = false, class_model = nil)
@@ -17,6 +18,7 @@ class WizardController < ApplicationController
     @form = class_model.form_path if class_model
     @current_instance = class_model.new if class_model
     @class_model = class_model
+
 
     # Check if Mother Model Exists
     if params.has_key?('mother_model_id') && params.has_key?('mother_model_type')
@@ -36,9 +38,12 @@ class WizardController < ApplicationController
   end
 
   def process_step(current_model, mother_model = true)
+    # Process request through respective Resource Controller
     model_id = current_model.associated_controller.new.process_form(current_model.new,
                                                                     params[current_model.associated_params],
                                                                     true)
+
+    # Put as Marker
     if mother_model
       @mother_parameters.store('mother_model_type',current_model.to_s)
       @mother_parameters.store('mother_model_id',model_id)
@@ -46,6 +51,8 @@ class WizardController < ApplicationController
       @mother_parameters.store('mother_model_type',params[:mother_model_type])
       @mother_parameters.store('mother_model_id',params[:mother_model_id])
     end
+
+
 
   end
 

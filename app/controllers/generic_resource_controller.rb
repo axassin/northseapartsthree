@@ -140,11 +140,13 @@ class GenericResourceController < ApplicationController
   end
 
   def setup_process( process_block, wizard_mode = nil )
+
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
-    saved_id = nil
+    @saved_id = nil
+
     begin
       ActiveRecord::Base.transaction do
-        saved_id = process_block.call
+        process_block.call
         modal_message = 'Successful Operation! '
       end
     rescue => ex
@@ -153,11 +155,7 @@ class GenericResourceController < ApplicationController
       puts ' ---------- PROCESS ERROR END ---------- '
     end
 
-    if wizard_mode
-      saved_id
-    else
-      redirect_to @main_resource_path, :flash => { :main_notification => modal_message }
-    end
+    wizard_mode ? (@saved_id) : (redirect_to @main_resource_path, :flash => { :main_notification => modal_message })
 
   end
 
@@ -213,10 +211,15 @@ class GenericResourceController < ApplicationController
     render json: @class_model.find(params[:model_id])
   end
 
-  def update_primary_image(instance_primary_image, current_params)
+  def update_primary_image(instance_primary_image, current_params, wizard_mode = nil)
+    puts '---------------- UPDATING ONE ----------------'
     if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(:primary_image) == true)
+      puts '---------------- UPDATING TWO ----------------'
       instance_primary_image.primary_image = current_params[:primary_image]
     end
+
+    (instance_primary_image.primary_image = current_params[:primary_image]) if wizard_mode
+
   end
 
 end

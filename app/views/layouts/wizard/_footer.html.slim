@@ -1,7 +1,8 @@
 - if @mother_model
-  label.outside_label.string.required ASSOCIATED MODELS
-  = render partial: 'associated_models'
-  hr
+  div.col-md-12.associated_models
+    label.outside_label.string.required style='float: left'ASSOCIATED MODELS
+    br
+    = render partial: 'associated_models'
 
 ruby:
   back_path = previous_wizard_path
@@ -15,26 +16,31 @@ ruby:
   else
   end
 
-a.btn.btn-default href='#{back_path}' #{back_text}
-span &nbsp;
+div.col-md-12
+  hr
 
-- if @form
-  input.btn.btn-default href='#{forward_path}' type='RESET' value='RESET'
+div.col-md-12
 
+  a.btn.btn-default href='#{back_path}' #{back_text}
   span &nbsp;
 
-- if @skippable
-  a.btn.btn-default href='#{next_wizard_path}' SKIP
+  - if @form
+    input.btn.btn-default href='#{forward_path}' type='RESET' value='RESET'
 
-  span &nbsp;
+    span &nbsp;
 
-- if ((step.to_s == 'start') || (step.to_s == 'end'))
-  a.btn.btn-default href='#{next_wizard_path}' #{forward_text}
+  - if @skippable
+    a.btn.btn-default href='#{next_wizard_path}' SKIP
 
-  span &nbsp;
+    span &nbsp;
 
-- unless ((step.to_s == 'start') || (step.to_s == 'end'))
-  input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'
+  - if ((step.to_s == 'start') || (step.to_s == 'end'))
+    a.btn.btn-default href='#{next_wizard_path}' #{forward_text}
 
-- if ((step.to_s == 'end'))
-  a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD
+    span &nbsp;
+
+  - unless ((step.to_s == 'start') || (step.to_s == 'end'))
+    input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'
+
+  - if ((step.to_s == 'end'))
+    a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD

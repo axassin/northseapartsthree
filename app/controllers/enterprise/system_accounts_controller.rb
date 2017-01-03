@@ -16,9 +16,9 @@ class Enterprise::SystemAccountsController < GenericResourceController
       my_system_account.name = current_params[:name]
       my_system_account.description = current_params[:description]
       my_system_account.account_type = current_params[:account_type]
-      update_primary_image(my_system_account, current_params)
+      update_primary_image(my_system_account, current_params, wizard_mode)
       my_system_account.save!
-      return my_system_account.id
+      @saved_id = my_system_account.id
     end
 
     setup_process(system_account_processing, wizard_mode)

@@ -1,0 +1,10 @@
+ruby:
+  mother_model_id = params[:mother_model_id]
+  mother_model_instance = Enterprise::SystemAccount.find_by_id(mother_model_id)
+
+div.grid-item
+  = render partial: Enterprise::SystemAccount.cell_path, locals: { result: mother_model_instance }
+
+- if mother_model_instance.has_contact_detail?
+  - mother_model_instance.all_contact_details.each do |instance|
+    p fasfadsf
