@@ -3,20 +3,22 @@ span
   = ' | '
 span
   a.btn.btn-default href='#{'/enterprise/general_management/contact_details/' + result.id}' = result.label
-div
-  - unless result.associated_telephone_numbers.blank?
-    hr
-    - result.associated_telephone_numbers.each do |telephone_number|
-      = telephone_number.decorate.digits
-      br
-  - unless result.associated_links.blank?
-    hr
-    - result.associated_links.each do |link|
-      = link.decorate.url
-      br
-  - unless result.associated_locations.blank?
-    hr
-    - result.associated_locations.each do |location|
-      a.btn.btn-default href='#{'/enterprise/general_management/contact_details/locations/' + location.id}'
-        = location.address.slice(0,24) + '...'
-      br
+
+- unless @wizard_steps
+  div
+    - unless result.associated_telephone_numbers.blank?
+      hr
+      - result.associated_telephone_numbers.each do |telephone_number|
+        = telephone_number.decorate.digits
+        br
+    - unless result.associated_links.blank?
+      hr
+      - result.associated_links.each do |link|
+        = link.decorate.url
+        br
+    - unless result.associated_locations.blank?
+      hr
+      - result.associated_locations.each do |location|
+        a.btn.btn-default href='#{'/enterprise/general_management/contact_details/locations/' + location.id}'
+          = location.address.slice(0,24) + '...'
+        br

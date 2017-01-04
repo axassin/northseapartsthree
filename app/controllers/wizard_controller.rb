@@ -6,7 +6,7 @@ class WizardController < ApplicationController
   def setup_variables(parent_path, current_path)
     @wizard_steps = wizard_steps
     @parent_path = parent_path
-    @current_path = current_path
+    @main_resource_path = current_path
     @mother_parameters = Hash.new
     @current_resource_id = 'new'
     @restart = false
@@ -35,7 +35,7 @@ class WizardController < ApplicationController
   end
 
   def show_finish
-    @restart == true ? (redirect_to @current_path + '/start') : (render_step(params[:id]))
+    @restart == true ? (redirect_to @main_resource_path + '/start') : (render_step(params[:id]))
   end
 
   def process_step(current_model, mother_model = false, finish_step = false)
@@ -60,7 +60,7 @@ class WizardController < ApplicationController
   def update_finish
     main_step = nil
     params.has_key?('repeatable') ? main_step = step.to_s : main_step = next_step.to_s
-    redirect_to @current_path + '/' + main_step + '?' + @mother_parameters.to_query
+    redirect_to @main_resource_path + '/' + main_step + '?' + @mother_parameters.to_query
   end
 
 end

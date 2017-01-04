@@ -29,10 +29,14 @@ div.main_menu
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_general_management_path}' General Management
+      div.main_category
+        a.main_menu_link href='#{enterprise_general_management_path}' General Management
 
       div.main_menu_item
         a.main_menu_link href='#{enterprise_general_management_contact_details_path}' Contact Details
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_contact_wizard_index_path}' Contact Wizard
 
         div.main_menu_item
           a.main_menu_link href='#{enterprise_general_management_contact_details_links_path}' Links
@@ -47,22 +51,25 @@ div.main_menu
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_human_resources_path}' Human Resources
+      div.main_category
+        a.main_menu_link href='#{enterprise_human_resources_path}' Human Resources
 
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_accounting_and_finance_path}' Accounting and Finance
+      div.main_category
+        a.main_menu_link href='#{enterprise_accounting_and_finance_path}' Accounting / Finance
 
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_operations_path}' Operations
+      div.main_category
+        a.main_menu_link href='#{enterprise_operations_path}' Operations
 
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_strategic_marketing_path}' Strategic Marketing
-
+      div.main_category
+        a.main_menu_link href='#{enterprise_strategic_marketing_path}' Strategic Marketing
 
 = javascript_include_tag 'navigation_bar', media: 'all'

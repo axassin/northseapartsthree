@@ -1,6 +1,7 @@
 $(document).on 'turbolinks:load', ->
 
   $('.main_menu').hide()
+
   $('.menu_button').funcToggle( 'click',
     ->
       $('.main_menu').velocity("fadeIn", { duration: 250 })
@@ -10,11 +11,7 @@ $(document).on 'turbolinks:load', ->
       $('.main_display').velocity({ opacity: 1 }, { duration: 250 })
   )
 
-  $('a.main_menu_link').hover(
-    ->
-      $(this).css('background-color','gray')
-      $(this).css('color','white')
-    ->
-      $(this).css('background-color', 'transparent')
-      $(this).css('color', 'inherit')
-  )
+  $("div.main_menu a[href='" + main_resource_path + "']")
+    .prepend(' 	&#8594; ')
+    .css('background-color','#666666')
+    .css('color','white')

@@ -38,6 +38,10 @@ html lang="en"
             div.col-md-12.footnote * Required
             div.float-clearing
             = render partial: 'layouts/wizard/footer'
+        - elsif step.to_s == 'end'
+          p Operation Successful!
+          div.float-clearing
+          = render partial: 'layouts/wizard/footer'
         - else
           == yield
           = render partial: 'layouts/wizard/footer'

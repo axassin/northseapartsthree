@@ -6,4 +6,3 @@ div.col-md-6
     input type='hidden' name='enterprise_general_management_contact_detail[system_account_id]' value='#{params[:mother_model_id]}'
   - else
     = model_selector(f, Enterprise::SystemAccount, :system_account_id, current_instance.system_account_id, nil, true, 'name')
-

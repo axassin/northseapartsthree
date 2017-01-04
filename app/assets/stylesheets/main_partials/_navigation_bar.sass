@@ -29,21 +29,31 @@ div.main_menu
   display: none
   background-color: lightgray
   width: 100%
+  height: 30%
   position: fixed
   top: 3.5em
   z-index: 2
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
-  max-height: 50%
-  padding: 0.5em
+  padding: 1em
+  padding-bottom: 2em
   ul
     list-style-type: none
 
   div.main_menu_item
-    padding-left: 1em
+    padding-left: 1.25em
+    div.main_category
+      border-bottom: solid gray thin
+      padding-bottom: 0.15em
+      text-transform: uppercase
+      margin-bottom: 0.25em
+
   a.main_menu_link
-    %font_set_two
     padding-left: 0.25em
     padding-right: 0.25em
+    &:hover
+      background-color: gray
+      color: white
+
   div.main_menu_segment
     border-right: solid thin $SECONDARY_COLOR
     height: 10em
