@@ -31,7 +31,7 @@ div.col-md-12
     span &nbsp;
 
   - if @skippable
-    a.btn.btn-default href='#{next_wizard_path}' SKIP
+    a.btn.btn-default href='#{next_wizard_path}?mother_model_id=#{params[:mother_model_id]}&mother_model_type=#{params[:mother_model_type]}' SKIP
 
     span &nbsp;
 
