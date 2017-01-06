@@ -1,7 +1,7 @@
 class ContactDetail < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-book')
+  setup_model('fa-book', 'label')
 
   belongs_to :contactable, polymorphic: true
   has_many :telephone_numbers
@@ -20,6 +20,10 @@ class ContactDetail < ApplicationRecord
   end
 
   validates :label, length: { in: 2..64 }
+
+  def contactable_representative
+    self.contactable_type.constantize.find_by_id(contactable_id).represent
+  end
 
   def associated_telephone_numbers
     TelephoneNumber.where(contact_detail_id: id)

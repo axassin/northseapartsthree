@@ -1,7 +1,7 @@
 class SystemAccount < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-user')
+  setup_model('fa-user','name')
 
   include Description
 

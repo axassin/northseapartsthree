@@ -1,8 +1,8 @@
 span
-  // a.btn.btn-default href='#{'/enterprise/system_accounts/' + result.system_account.id}' = result.system_account.name.to_s
+  a.btn.btn-default href='#{}' = result.contactable_representative
   = ' | '
 span
-  // a.btn.btn-default href='#{'/enterprise/general_management/contact_details/' + result.id}' = result.label
+  a.btn.btn-default href='#{'/enterprise/general_management/contact_details/' + result.id}' = result.label
 
 - unless @wizard_steps
   div

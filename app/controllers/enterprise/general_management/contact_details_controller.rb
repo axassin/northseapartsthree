@@ -18,6 +18,8 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
 
       puts '--------------------- - - - -- ------'
       puts contactable_array
+      puts contactable_array[0]
+      puts contactable_array[1]
       puts '--------------------- - - - -- ------'
 
       my_contact_details.contactable_type = contactable_array[0]

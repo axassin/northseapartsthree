@@ -18,4 +18,4 @@ div.polymorphic_selector_group
 
   select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}"
     - option_array.each do |option|
-      option value='#{[option[0],option[1]] }' #{option[0] + ' | ' + option[2]}
+      option value='#{option[0] + ',' + option[1]}' #{option[0] + ' | ' + option[2]}

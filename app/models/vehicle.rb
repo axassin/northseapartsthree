@@ -1,7 +1,7 @@
 class Vehicle < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-bus')
+  setup_model('fa-bus', 'plate_number')
 
   include Description
 

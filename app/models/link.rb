@@ -1,7 +1,7 @@
 class Link < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-external-link')
+  setup_model('fa-external-link', 'url')
 
   include ContactArticulation
   include Remark

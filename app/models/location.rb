@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-map-marker')
+  setup_model('fa-map-marker', 'address')
 
   include ContactArticulation
 

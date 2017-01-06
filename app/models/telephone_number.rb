@@ -1,7 +1,7 @@
 class TelephoneNumber < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-phone')
+  setup_model('fa-phone', 'digits')
 
   include ContactArticulation
   include Remark
