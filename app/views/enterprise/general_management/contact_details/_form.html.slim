@@ -2,7 +2,8 @@ div.col-md-6
   = input_word(f, :label)
 div.col-md-6
   - if @wizard_steps
-    = model_selector(f, params[:mother_model_type].constantize, :system_account_id, params[:mother_model_id], nil, true, 'name', 'id', true )
-    input type='hidden' name='enterprise_general_management_contact_detail[system_account_id]' value='#{params[:mother_model_id]}'
+    // = model_selector(f, params[:mother_model_type].constantize, :system_account_id, params[:mother_model_id], nil, true, 'name', 'id', true )
+    input type='hidden' name='contact_detail[contactable_id]' value='#{params[:mother_model_id]}'
+    input type='hidden' name='contact_detail[contactable_type]' value='#{params[:mother_model_type]}'
   - else
-    = model_selector(f, Enterprise::SystemAccount, :system_account_id, current_instance.system_account_id, nil, true, 'name')
+    = polymorphic_selector(f, current_instance, 'contactable', [[SystemAccount, :name],[Branch, :name]], false)

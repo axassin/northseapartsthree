@@ -3,7 +3,9 @@ class CreateContactDetails < MainMigration
     create_table :contact_details, id: false do |t|
       common_set(t)
       t.string :label, :limit => 64, :required => true
-      foreign_key_id(t, 'system_account')
+      t.string :contactable_id, :limit => 36
+      t.string  :contactable_type
     end
+    add_index :contact_details, [:contactable_type, :contactable_id]
   end
 end

@@ -1,4 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetails::ContactWizardDecorator < ApplicationDecorator
+class SystemAccountDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

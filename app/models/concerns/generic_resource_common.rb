@@ -53,6 +53,10 @@ module GenericResourceCommon
       self.to_s.gsub('::','_').underscore.downcase.to_sym
     end
 
+    def parameterized
+      self.to_s.underscore
+    end
+
   end
 
 end

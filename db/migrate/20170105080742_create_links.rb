@@ -1,4 +1,5 @@
 class CreateLinks < MainMigration
+
   def change
     create_table :links, id: false  do |t|
       common_set(t)
@@ -8,4 +9,5 @@ class CreateLinks < MainMigration
       remark_column(t)
     end
   end
+
 end

@@ -1,4 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetails::LinkDecorator < ApplicationDecorator
+class LinkDecorator < ApplicationDecorator
   delegate_all
 
   include ContactableDecorator

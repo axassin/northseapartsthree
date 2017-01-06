@@ -17,8 +17,19 @@ $(document).on 'turbolinks:load', ->
     if contactable_selector_select.val() != ''
       refresh_contactable_select( contactable_selector_select.val())
 
+  # Polymorphic Selector
+  $('.polymorphic_selector_group').each( (index, element) ->
+    main_select = $(element).find('select')
+    main_select.selectize();
+    hidden_element = $(element).find("input[type='hidden']")
+    main_select.change ->
+      # option = $('option:selected', main_select).attr('secondary_value')
+      # alert option
+      # hidden_element.val(main_select.attr('secondary_value'))
+  )
+
   # Model Selector
-  $('.model_select_group').each (index, element) =>
+  $('.model_select_group').each (index, element) ->
     main_select = $(element).find('select')
     model_path = $(element).find("input[type='hidden'].model_path").val()
     main_select.selectize();
@@ -45,7 +56,7 @@ refresh_model_selector = (model_path, model_id, current_group) ->
           $(current_group).find('img.selector_primary_image').attr('src', data['primary_image']['url'])
           $(current_group).find('img.selector_primary_image').show()
 
-# Refreshes Contactable Selector
+# Refreshes ContactArticulation Selector
 refresh_contactable_select = ( contactable_id ) ->
   $.ajax
     url: "/enterprise/general_management/contact_details/contactable?id=" + contactable_id

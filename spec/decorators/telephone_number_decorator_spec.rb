@@ -1,4 +1,4 @@
 require 'spec_helper'
 
-describe TelephoneNumberDecorator do
+describe Enterprise::GeneralManagement::ContactDetails::TelephoneNumberDecorator do
 end

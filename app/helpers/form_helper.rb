@@ -1,5 +1,6 @@
 module FormHelper
 
+  # support function for input_*
   def validation_modifiers(hash, name, unique)
     name = name.to_s
     if (unique == true) && ((action_name == 'add') || (action_name == 'index'))
@@ -8,6 +9,7 @@ module FormHelper
     hash
   end
 
+  # input type text with word default
   def input_word(f, name, unique = false)
     data_parsley_hash = { 'data-parsley-trigger': 'keyup',
                           'data-parsley-minlength': 3,
@@ -16,6 +18,7 @@ module FormHelper
     f.input name, input_html: validation_modifiers(data_parsley_hash, name, unique)
   end
 
+  # input type text with sentence default
   def input_sentence(f, name)
     f.input name, input_html: { 'data-parsley-trigger': 'keyup',
                                 'data-parsley-minlength': 3,
@@ -23,6 +26,7 @@ module FormHelper
                                 'data-parsley-validation-threshold': 0 }
   end
 
+  # input type text with description default
   def input_description(f, name, id = nil)
     f.input name, as: :text, input_html: { 'data-parsley-trigger': 'keyup',
                                            'data-parsley-minlength': 3,
@@ -31,6 +35,7 @@ module FormHelper
                                             id: id}
   end
 
+  # input type float
   def input_long_decimal(f, name, id = nil)
     f.input name, as: :float, input_html: { 'data-parsley-trigger': 'keyup',
                                            'data-parsley-minlength': 3,
@@ -39,10 +44,12 @@ module FormHelper
                                             id: id}
   end
 
+  # date selector
   def input_date(f, name)
     f.input name, as: :date, html5: true
   end
 
+  # simple Selector with explicit selection array
   def selector(f, name, collection, selected)
 
     prompt_text_label = totally_humanize(name)
@@ -55,6 +62,14 @@ module FormHelper
 
   end
 
+  # primary image uploader element
+  def primary_image_file_upload_element(f, params, current_instance)
+    primary_image_input = f.input :primary_image, as: :file
+    main = primary_image_input + primary_image_default(current_instance)
+    main
+  end
+
+  # Selector for a single model
   def model_selector(f,
                      model,
                      name,
@@ -118,10 +133,22 @@ module FormHelper
 
   end
 
+  # multiple model selector for polymorphic types - manual render partial due to complicated logic
+  def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled = false)
+    render partial: 'common/form/polymorphic_selector', locals: {
+        f: f,
+        selected: selected,
+        polymorphic_name: polymorphic_name,
+        polymorphic_hash: polymorphic_hash,
+        disabled: disabled
+    }
+  end
+
+  # Contactable Selector
   def contactable_selector(f, selected, disabled = false)
 
     input_element = f.input :contact_detail_id,
-                            collection: Enterprise::GeneralManagement::ContactDetail.all,
+                            collection: ContactDetail.all,
                             label_method: :labeled_account,
                             value_method: :id,
                             prompt: 'Select System Account',
@@ -170,12 +197,6 @@ module FormHelper
     end
   end
 
-  def primary_image_file_upload_element(f, params, current_instance)
 
-    primary_image_input = f.input :primary_image, as: :file
-    main = primary_image_input + primary_image_default(current_instance)
-    main
-
-  end
 
 end

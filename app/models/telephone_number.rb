@@ -1,9 +1,9 @@
-class Enterprise::GeneralManagement::ContactDetails::TelephoneNumber < ApplicationRecord
+class TelephoneNumber < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('fa-phone')
 
-  include Contactable
+  include ContactArticulation
   include Remark
 
   belongs_to :contact_detail

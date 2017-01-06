@@ -1,4 +1,4 @@
-class Enterprise::GeneralManagement::Vehicle < ApplicationRecord
+class Vehicle < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('fa-bus')

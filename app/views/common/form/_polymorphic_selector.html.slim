@@ -1,0 +1,21 @@
+ruby:
+  parameterized_class = selected.class.parameterized
+  selectable_name = parameterized_class + '[' + polymorphic_name + ']'
+  selectable_id = parameterized_class + '_' + polymorphic_name.downcase
+
+  option_array = []
+  polymorphic_hash.each do |pair|
+    model = pair[0]
+    method = pair[1]
+
+    model.all.each do |instance|
+      option_array.push([model.to_s,instance.id, instance[method]])
+    end
+  end
+
+div.polymorphic_selector_group
+  label.outside_label.string.required for="#{selectable_id}" #{polymorphic_name.upcase}
+
+  select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}"
+    - option_array.each do |option|
+      option value='#{[option[0],option[1]] }' #{option[0] + ' | ' + option[2]}

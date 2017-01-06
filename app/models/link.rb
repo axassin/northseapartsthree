@@ -1,9 +1,9 @@
-class Enterprise::GeneralManagement::ContactDetails::Link < ApplicationRecord
+class Link < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('fa-external-link')
 
-  include Contactable
+  include ContactArticulation
   include Remark
 
   belongs_to :contact_detail

@@ -1,7 +1,7 @@
 class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceController
 
   def setup_controller
-    setup_variables( Enterprise::GeneralManagement::ContactDetail,
+    setup_variables( ContactDetail,
                      'Contact Details',
                      'Communication Assets',
                      [],
@@ -14,10 +14,16 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
 
     contact_detail_processing = Proc.new do
       my_contact_details.label = current_params[:label]
-      my_contact_details.system_account_id = current_params[:system_account_id]
+      contactable_array = current_params[:contactable].to_s.split(",")
+
+      puts '--------------------- - - - -- ------'
+      puts contactable_array
+      puts '--------------------- - - - -- ------'
+
+      my_contact_details.contactable_type = contactable_array[0]
+      my_contact_details.contactable_id = contactable_array[1]
       my_contact_details.save!
-      puts my_contact_details.id
-      return my_contact_details.id
+      @saved_id = my_contact_details.id
     end
 
     setup_process(contact_detail_processing, wizard_mode)

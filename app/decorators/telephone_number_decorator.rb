@@ -1,4 +1,4 @@
-class Enterprise::GeneralManagement::ContactDetails::TelephoneNumberDecorator < ApplicationDecorator
+class TelephoneNumberDecorator < ApplicationDecorator
   delegate_all
 
   include ContactableDecorator

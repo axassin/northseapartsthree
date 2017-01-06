@@ -1,7 +1,7 @@
 class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController < GenericResourceController
 
   def setup_controller
-    setup_variables( Enterprise::GeneralManagement::ContactDetails::TelephoneNumber,
+    setup_variables( TelephoneNumber,
                      'Telephone Numbers',
                      'Communication Assets',
                      ['contact_detail_id'],

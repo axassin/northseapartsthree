@@ -14,43 +14,61 @@ if Rails.env.development? || Rails.env.test?
   puts " Generating Sample Data for Development and Test Environment"
 
   # --------------------- Associated Constants ---------------------
+  def establish_contact_details(model, id)
 
-  # Number of SystemAccounts
-  NUMBER_OF_SYSTEM_ACCOUNTS = 50
+    rand(0..10).times do
 
-  # Percent of System Accounts to have ContactDetails
-  PERCENT_SA_WITH_CD = 25
+      # Contact Detail
+      current_contact_detail = ContactDetail.create!(
+          label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
+          contactable_type: model,
+          contactable_id: id)
 
-  # Possible Range of Contact Details per System Account
-  CD_PER_SA = (1..5)
+      current_contact_detail.save!
 
-  # Percent of Contact Details to have Telephones
-  PERCENT_CD_WITH_TEL = 25
+      # Telephone Number
+      rand(0..5).times do
+        TelephoneNumber.create!(contact_detail: current_contact_detail,
+                                remark: Faker::Company.name,
+                                digits: Faker::Number.number( rand(7..64)) )
+      end
 
-  # Possible Range of Telephone Numbers per Contact Details
-  TEL_PER_CD = (3..5)
+      # Link
+      rand(0..5).times do
+        Link.create!(contact_detail: current_contact_detail,
+                     service: %w(EMAIL SKYPE VIBER).sample,
+                     url: Faker::Internet.user_name,
+                     remark: Faker::Company.name )
+      end
 
-  # Percent of Contact Details to have Links
-  PERCENT_CD_WITH_LINK = 25
+      # Address
+      rand(0..5).times do
+        aggregated_address = Faker::Address.street_address + Faker::Address.city + Faker::Address.state
+        Location.create!(contact_detail: current_contact_detail,
+                         latitude: Faker::Address.latitude,
+                         longitude: Faker::Address.longitude,
+                         address: aggregated_address)
+      end
 
-  # Possible Range of Links per Contact Details
-  LINK_PER_CD = (2..5)
-
-  # Percent of Contact Details to have Locations
-  PERCENT_CD_WITH_LOC = 25
-
-  # Possible Range of Locations per Contact Details
-  LOC_PER_CD = (2..5)
-
-  # Possible Range of Locations per Contact Details
-  NUMBER_OF_VEHICLES = 500
-
+    end
+  end
 
   # --------------------- Generate Sample Data ---------------------
 
+  # Branches
+  25.times {
+    current_branch = Branch.create!(
+        name: Faker::Company.name,
+        description: Faker::Lorem.sentence
+    )
+
+    current_branch.save
+    establish_contact_details(Branch, current_branch.id)
+  }
+
   # Vehicles
-  NUMBER_OF_VEHICLES.times {
-    current_vehicle = Enterprise::GeneralManagement::Vehicle.new
+  50.times {
+    current_vehicle = Vehicle.new
     current_vehicle.color = Faker::Color.color_name
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
     current_vehicle.brand = Faker::Company.name
@@ -70,7 +88,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # System Accounts
-  NUMBER_OF_SYSTEM_ACCOUNTS.times {
+  150.times {
 
     current_image = ['sample_system_account_01.jpg',
                      'sample_system_account_02.jpg',
@@ -79,52 +97,16 @@ if Rails.env.development? || Rails.env.test?
                      'sample_system_account_05.jpg',
                      ''].sample
 
+    current_name = [Faker::Company.name,Faker::Name.name ].sample
 
+    current_system_account = SystemAccount.create!(name: current_name,
+                                                   description: Faker::Lorem.sentence,
+                                                   account_type: %w(BUSINESS INDIVIDUAL).sample)
 
-    current_system_account = Enterprise::SystemAccount.create!(name: Faker::Name.name,
-                                                               description: Faker::Lorem.sentence,
-                                                               account_type: %w(BUSINESS INDIVIDUAL).sample)
     current_system_account[:primary_image] = current_image
     current_system_account.save!
+    establish_contact_details(SystemAccount, current_system_account.id)
 
-    # System Accounts with Contact Details
-    PERCENT_SA_WITH_CD.in(50) do
-      rand(CD_PER_SA).times do
-        current_contact_detail = Enterprise::GeneralManagement::ContactDetail.create!(
-            label: %w(HOME MAIN-BRANCH SUB-BRANCH WAREHOUSE DELIVERY).sample,
-            system_account: current_system_account)
-
-        # Contact Details with Telephone Numbers
-        PERCENT_CD_WITH_TEL.in(50) do
-          rand(TEL_PER_CD).times do
-            Enterprise::GeneralManagement::ContactDetails::TelephoneNumber.create!(contact_detail: current_contact_detail,
-                                    remark: Faker::Company.name,
-                                    digits: Faker::Number.number( rand(7..64)) )
-          end
-        end
-
-        # Contact Details with Links
-        PERCENT_CD_WITH_LINK.in(50) do
-          rand(LINK_PER_CD).times do
-            Enterprise::GeneralManagement::ContactDetails::Link.create!(contact_detail: current_contact_detail,
-                                                                        service: %w(EMAIL SKYPE VIBER).sample,
-                                                                        url: Faker::Internet.user_name,
-                                                                        remark: Faker::Company.name )
-          end
-        end
-
-        # Contact Details with Location
-        PERCENT_CD_WITH_LOC.in(50) do
-          rand(LOC_PER_CD).times do
-            aggregated_address = Faker::Address.street_address + Faker::Address.city + Faker::Address.state
-            Enterprise::GeneralManagement::ContactDetails::Location.create!(contact_detail: current_contact_detail,
-                                                                            latitude: Faker::Address.latitude,
-                                                                            longitude: Faker::Address.longitude,
-                                                                            address: aggregated_address)
-            end
-        end
-      end
-    end
   }
 
 

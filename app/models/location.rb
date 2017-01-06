@@ -1,9 +1,9 @@
-class Enterprise::GeneralManagement::ContactDetails::Location < ApplicationRecord
+class Location < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('fa-map-marker')
 
-  include Contactable
+  include ContactArticulation
 
   belongs_to :contact_detail
 

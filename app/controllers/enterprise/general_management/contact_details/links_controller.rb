@@ -1,7 +1,7 @@
 class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericResourceController
 
   def setup_controller
-    setup_variables( Enterprise::GeneralManagement::ContactDetails::Link,
+    setup_variables( Link,
                      'Link',
                      'Communication Assets',
                      ['contact_detail_id'],

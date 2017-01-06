@@ -1,7 +1,7 @@
 class Enterprise::GeneralManagement::VehiclesController < GenericResourceController
 
   def setup_controller
-    setup_variables( Enterprise::GeneralManagement::Vehicle,
+    setup_variables( Vehicle,
                      'Vehicles',
                      'Transportation Assets',
                      ['primary_image'],

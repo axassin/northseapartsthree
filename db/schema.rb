@@ -10,14 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017103832) do
+ActiveRecord::Schema.define(version: 20170105081605) do
+
+  create_table "branches", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",              limit: 64
+    t.string   "description",       limit: 512
+    t.string   "system_account_id", limit: 36
+    t.index ["deleted_at"], name: "index_branches_on_deleted_at", using: :btree
+  end
 
   create_table "contact_details", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "label",             limit: 64
-    t.string   "system_account_id", limit: 36
+    t.string   "label",            limit: 64
+    t.string   "contactable_id",   limit: 36
+    t.string   "contactable_type"
+    t.index ["contactable_type", "contactable_id"], name: "index_contact_details_on_contactable_type_and_contactable_id", using: :btree
     t.index ["deleted_at"], name: "index_contact_details_on_deleted_at", using: :btree
   end
 
