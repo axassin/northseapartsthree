@@ -5,8 +5,4 @@ class ApplicationRecord < ActiveRecord::Base
   
   require 'carrierwave/orm/activerecord'
 
-  def setup_model
-
-  end
-
 end

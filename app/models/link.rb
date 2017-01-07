@@ -1,7 +1,10 @@
 class Link < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-external-link', 'url')
+  setup_model('fa-external-link',
+              'url',
+              @@routes.enterprise_general_management_contact_details_links_path,
+              Enterprise::GeneralManagement::ContactDetails::LinksController)
 
   include ContactArticulation
   include Remark

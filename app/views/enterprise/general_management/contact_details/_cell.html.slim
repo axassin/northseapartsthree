@@ -1,5 +1,5 @@
 span
-  a.btn.btn-default href='#{}' = result.contactable_representative
+  a.btn.btn-default href='#{result.contactable_link}' = result.contactable_representative
   = ' | '
 span
   a.btn.btn-default href='#{'/enterprise/general_management/contact_details/' + result.id}' = result.label

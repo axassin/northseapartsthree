@@ -6,8 +6,7 @@ class Enterprise::SystemAccountsController < GenericResourceController
                      'User Entities',
                      ['primary_image'],
                      nil,
-                     @@routes.enterprise_path,
-                     @@routes.enterprise_system_accounts_path )
+                     @@routes.enterprise_path)
   end
 
   def process_form(my_system_account, current_params, wizard_mode = nil)

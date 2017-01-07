@@ -19,18 +19,18 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :start
         setup_step(nil, false)
       when :setup_system_account
-        setup_step(Enterprise::SystemAccount, false)
+        setup_step(SystemAccount, false)
       when :setup_contact_detail
-        setup_step(Enterprise::GeneralManagement::ContactDetail, false)
+        setup_step(ContactDetail, false)
       when :setup_telephone
-        setup_step(Enterprise::GeneralManagement::ContactDetails::TelephoneNumber, true, true)
-        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
+        setup_step(TelephoneNumber, true, true)
+        @contact_detail_id = ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :setup_link
-        setup_step(Enterprise::GeneralManagement::ContactDetails::Link, true, true)
-        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
+        setup_step(Link, true, true)
+        @contact_detail_id = ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :setup_location
-        setup_step(Enterprise::GeneralManagement::ContactDetails::Location, true, true)
-        @contact_detail_id = Enterprise::GeneralManagement::ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
+        setup_step(Location, true, true)
+        @contact_detail_id = ContactDetail.find_by_system_account_id(params[:mother_model_id]).id
       when :end
         setup_step(nil, false)
       else
@@ -43,15 +43,15 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        process_step(Enterprise::SystemAccount, true)
+        process_step(SystemAccount, true)
       when :setup_contact_detail
-        process_step(Enterprise::GeneralManagement::ContactDetail)
+        process_step(ContactDetail)
       when :setup_telephone
-        process_step(Enterprise::GeneralManagement::ContactDetails::TelephoneNumber)
+        process_step(TelephoneNumber)
       when :setup_link
-        process_step(Enterprise::GeneralManagement::ContactDetails::Link)
+        process_step(Link)
       when :setup_location
-        process_step(Enterprise::GeneralManagement::ContactDetails::Location)
+        process_step(Location)
       when :end
         process_step(nil, false, true)
       else

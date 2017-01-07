@@ -1,7 +1,10 @@
 class SystemAccount < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-user','name')
+  setup_model('fa-user',
+              'name',
+              @@routes.enterprise_system_accounts_path,
+              Enterprise::SystemAccountsController)
 
   include Description
 
@@ -17,11 +20,11 @@ class SystemAccount < ApplicationRecord
   validates :description, length: { in: 2..512 }
 
   def has_contact_detail?
-    ContactDetail.exists?(system_account_id: self.id)
+    ContactDetail.exists?(contactable_id: self.id, contactable_type: 'SystemAccount')
   end
 
   def all_contact_details
-    ContactDetail.where('system_account_id = ?', self.id)
+    ContactDetail.where(contactable_id: self.id, contactable_type: 'SystemAccount')
   end
 
 end

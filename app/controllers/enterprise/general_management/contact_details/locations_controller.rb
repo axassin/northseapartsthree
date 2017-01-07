@@ -6,8 +6,7 @@ class Enterprise::GeneralManagement::ContactDetails::LocationsController < Gener
                      'Communication Assets',
                      ['contact_detail_id'],
                      ['label','owner'],
-                     @@routes.enterprise_general_management_contact_details_path,
-                     @@routes.enterprise_general_management_contact_details_locations_path )
+                     @@routes.enterprise_general_management_contact_details_path)
   end
 
   def process_form(my_location, current_params, wizard_mode = nil)

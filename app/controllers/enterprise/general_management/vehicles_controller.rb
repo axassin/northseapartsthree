@@ -6,8 +6,7 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
                      'Transportation Assets',
                      ['primary_image'],
                      [],
-                     @@routes.enterprise_general_management_path,
-                     @@routes.enterprise_general_management_vehicles_path )
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_vehicle, current_params, wizard_mode = nil)

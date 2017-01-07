@@ -6,8 +6,7 @@ class Enterprise::BranchesController < GenericResourceController
                      'Establishment Nodes',
                      nil,
                      nil,
-                     @@routes.enterprise_path,
-                     @@routes.enterprise_branches_path )
+                     @@routes.enterprise_path)
   end
 
   def process_form(my_branch, current_params, wizard_mode = nil)

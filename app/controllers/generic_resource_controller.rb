@@ -7,8 +7,7 @@ class GenericResourceController < ApplicationController
                        resource_sub_heading,
                        omitted_attributes,
                        admitted_attributes,
-                       parent_controller_path,
-                       main_resource_path )
+                       parent_controller_path )
 
     @class_model = class_model
     @resource_glyphicon = class_model.class_variable_get(:@@resource_glyphicon)
@@ -17,7 +16,7 @@ class GenericResourceController < ApplicationController
     @omitted_attributes = omitted_attributes.push('deleted_at')
     @admitted_attributes = admitted_attributes
     @parent_controller_path = parent_controller_path
-    @main_resource_path = main_resource_path
+    @main_resource_path = class_model.class_variable_get(:@@resource_path)
     @current_instance = class_model.new
     @class_model_symbolized = class_model.to_s.underscore.gsub('/','_').to_sym
 

@@ -6,8 +6,7 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
                      'Communication Assets',
                      ['contact_detail_id'],
                      ['label','owner'],
-                     @@routes.enterprise_general_management_contact_details_path,
-                     @@routes.enterprise_general_management_contact_details_telephone_numbers_path )
+                     @@routes.enterprise_general_management_contact_details_path)
   end
 
   def process_form(my_telephone, current_params, wizard_mode = nil)

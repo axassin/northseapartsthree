@@ -6,8 +6,7 @@ class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericRe
                      'Communication Assets',
                      ['contact_detail_id'],
                      ['label','owner'],
-                     @@routes.enterprise_general_management_contact_details_path,
-                     @@routes.enterprise_general_management_contact_details_links_path )
+                     @@routes.enterprise_general_management_contact_details_path)
   end
 
   def process_form(my_link, current_params, wizard_mode = nil)
