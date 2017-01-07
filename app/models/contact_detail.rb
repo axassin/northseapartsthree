@@ -11,15 +11,8 @@ class ContactDetail < ApplicationRecord
   has_many :locations
   has_many :links
 
-  def labeled_account
-    case contactable_type
-      when SystemAccount
-        SystemAccount.find_by_id(contactable_id).name.to_s + ' | ' + label.to_s
-      when Branch
-        Branch.find_by_id(contactable_id).name.to_s + ' | ' + label.to_s
-      else
-        'N/A'
-    end
+  def selector_option_label
+    label + ' | ' + contactable_type.constantize.find_by_id(contactable_id).represent
   end
 
   validates :label, length: { in: 2..64 }

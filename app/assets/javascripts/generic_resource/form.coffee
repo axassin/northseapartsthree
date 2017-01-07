@@ -6,17 +6,6 @@ $(document).on 'turbolinks:load', ->
     $('.main_content form textarea').prop('disabled', true);
     $('.main_content form select').prop('disabled', true);
 
-  # CONTACTABLE SELECTOR
-  if $('.contactable_selector_select').length
-    # Initialize
-    contactable_selector_select = $('.contactable_selector_select')
-    contactable_selector_select.selectize();
-    # Refresh Preview
-    contactable_selector_select.change ->
-      refresh_contactable_select( contactable_selector_select.val() )
-    if contactable_selector_select.val() != ''
-      refresh_contactable_select( contactable_selector_select.val())
-
   # Polymorphic Selector
   $('.polymorphic_selector_group').each( (index, element) ->
     main_select = $(element).find('select')

@@ -23,6 +23,11 @@ module GenericResourceCommon
     self.send(self.class.class_variable_get(:@@representative_attribute))
   end
 
+  def show_path
+    resource_path = self.class.class_variable_get(:@@resource_path)
+    resource_path + '/' + self.id
+  end
+
   module ClassMethods
 
     def searchable_string(attribute)

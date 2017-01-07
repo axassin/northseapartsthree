@@ -2,25 +2,35 @@ module ContactableDecorator
   extend ActiveSupport::Concern
 
   def label
+
     label = object.label
-    contact_details_link = '/enterprise/general_management/contact_details/' + object.label_id
+    contact_details_link = object.contact_detail.show_path
+
     main_element = mab do
-      a :class => 'btn btn-default index-data-button', :href => contact_details_link do
+      a :class => 'btn btn-default', :href => contact_details_link, :target => '_new' do
         label
       end
     end
+
     main_element.html_safe
+
   end
 
   def owner
-    owner = object.owner
-    contact_details_owner = '/enterprise/system_accounts/' + object.owner_id
+
+    owner = object.owner.represent
+    owner_link = object.owner.show_path
+
     main_element = mab do
-      a :class => 'btn btn-default index-data-button', :href => contact_details_owner do
+      a :class => 'btn btn-default', :href => owner_link, :target => '_new' do
         owner
       end
     end
+
     main_element.html_safe
+
   end
+
+
 
 end

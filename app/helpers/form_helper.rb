@@ -134,7 +134,7 @@ module FormHelper
   end
 
   # multiple model selector for polymorphic types - manual render partial due to complicated logic
-  def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled = false)
+  def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled)
     render partial: 'common/form/polymorphic_selector', locals: {
         f: f,
         selected: selected,
@@ -144,14 +144,13 @@ module FormHelper
     }
   end
 
-  # Contactable Selector
-  def contactable_selector(f, selected, disabled = false)
+  # Contact Detail Selector for Contact Articles
+  def contact_detail_selector(f, selected, disabled = false)
 
     input_element = f.input :contact_detail_id,
                             collection: ContactDetail.all,
-                            label_method: :labeled_account,
-                            value_method: :id,
-                            prompt: 'Select System Account',
+                            label_method: :selector_option_label,
+                            prompt: 'Select Contact Detail',
                             selected: selected,
                             input_html: { class: 'contactable_selector_select contactable_element', id: 'contactable'},
                             label: false,
@@ -159,7 +158,7 @@ module FormHelper
                             disabled: disabled
 
     main_element = mab do
-      div :class => 'contactable_selector' do
+      div :class => 'contactable_selector_group' do
 
         label :class => 'outside_label string required contactable_element', :for => 'contactable' do
           'Owner | Contact Detail Set *'.upcase

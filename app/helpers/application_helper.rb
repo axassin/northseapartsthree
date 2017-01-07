@@ -23,6 +23,10 @@ module ApplicationHelper
     target_string.to_s.humanize.split.map(&:capitalize)*' '
   end
 
+  def camel_to_human(target_string)
+    target_string.to_s.underscore.humanize.split.map(&:capitalize).join(' ')
+  end
+
   def class_to_path(current_class)
     current_class.to_s.pluralize.underscore.gsub('::','/')
   end

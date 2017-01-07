@@ -21,13 +21,13 @@ ruby:
 
 div.polymorphic_selector_group
   label.outside_label.string.required for="#{selectable_id}" #{polymorphic_name.upcase}
-
-  select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}"
+  select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}" disabled=('true' if disabled)
     - option_array.each do |option|
       ruby:
         option_value = option[0] + ',' + option[1]
 
+
       - if option_value == instance_value
-        option selected='selected' value='#{option_value}' #{option[0] + ' | ' + option[2]}
+        option selected='selected' value='#{option_value}' #{camel_to_human(option[0]) + ' | ' + option[2]}
       - else
-        option value='#{option_value}' #{option[0] + ' | ' + option[2]}
+        option value='#{option_value}' #{camel_to_human(option[0]) + ' | ' + option[2]}
