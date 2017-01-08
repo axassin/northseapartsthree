@@ -134,7 +134,7 @@ module FormHelper
   end
 
   # multiple model selector for polymorphic types - manual render partial due to complicated logic
-  def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled)
+  def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled = false)
     render partial: 'common/form/polymorphic_selector', locals: {
         f: f,
         selected: selected,
@@ -144,42 +144,12 @@ module FormHelper
     }
   end
 
-  # Contact Detail Selector for Contact Articles
-  def contact_detail_selector(f, selected, disabled = false)
-
-    input_element = f.input :contact_detail_id,
-                            collection: ContactDetail.all,
-                            label_method: :selector_option_label,
-                            prompt: 'Select Contact Detail',
-                            selected: selected,
-                            input_html: { class: 'contactable_selector_select contactable_element', id: 'contactable'},
-                            label: false,
-                            required: true,
-                            disabled: disabled
-
-    main_element = mab do
-      div :class => 'contactable_selector_group' do
-
-        label :class => 'outside_label string required contactable_element', :for => 'contactable' do
-          'Owner | Contact Detail Set *'.upcase
-        end
-
-        text! input_element.to_s
-
-        img :class => 'contactable_element'
-
-        a :class => 'btn btn-default add-contactable-button', :target => '_new', :href => new_enterprise_system_account_path do
-          'Add New System Account'
-        end
-
-        a :class => 'btn btn-default add-contactable-button', :target => '_new', :href => new_enterprise_general_management_contact_detail_path do
-          'Add New Contact Detail'
-        end
-
-      end
-    end
-
-    main_element.html_safe
+  # Contact Detail Selector for Contact Articles; incorporates wizard functionality
+  def contact_detail_selector(f, current_instance)
+    render partial: 'common/form/contact_detail_selector', locals: {
+        f: f,
+        current_instance: current_instance,
+    }
   end
 
   def wizardable_contactable_selector(f, params, current_instance)

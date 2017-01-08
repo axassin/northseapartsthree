@@ -12,7 +12,7 @@ class ContactDetail < ApplicationRecord
   has_many :links
 
   def selector_option_label
-    label + ' | ' + contactable_type.constantize.find_by_id(contactable_id).represent
+    label + ' | ' + self.contactable_type.to_s.constantize.find_by_id(self.contactable_id).represent
   end
 
   validates :label, length: { in: 2..64 }

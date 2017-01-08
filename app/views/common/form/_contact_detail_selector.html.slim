@@ -1,0 +1,29 @@
+div.contact_detail_selector_group
+
+  ruby:
+    action_name == 'new' || action_name == 'index' ? selected = nil : selected = current_instance.contact_detail_id
+
+    disabled_status = false
+    if @contact_detail_id.present?
+      disabled_status = true
+      selected = @contact_detail_id
+    end
+
+  label.outside_label.string.required for='contact_detail_id_select' #{'Owner | Contact Detail Set *'.upcase}
+
+  = f.input :contact_detail_id,
+            collection: ContactDetail.all,
+            label_method: :selector_option_label,
+            value_method: :id,
+            prompt: 'Select Contact Detail',
+            selected: selected,
+            input_html: { id: 'contact_detail_id_select'},
+            label: false,
+            required: true,
+            disabled: disabled_status
+
+  div.button_container
+    a.btn.btn-default.add-contactable-button target='_new' href='#{new_enterprise_system_account_path}' Add New System Account
+
+  div.button_container
+    a.btn.btn-default.add-contactable-button target='_new' href='#{new_enterprise_general_management_contact_detail_path}' Add New Contact Detail
