@@ -14,20 +14,12 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
     contact_detail_processing = Proc.new do
       my_contact_details.label = current_params[:label]
       contactable_array = current_params[:contactable].to_s.split(",")
-
-      puts '--------------------- - - - -- ------'
-      puts contactable_array
-      puts contactable_array[0]
-      puts contactable_array[1]
-      puts '--------------------- - - - -- ------'
-
       my_contact_details.contactable_type = contactable_array[0]
       my_contact_details.contactable_id = contactable_array[1]
       my_contact_details.save!
-      @saved_id = my_contact_details.id
     end
 
-    setup_process(contact_detail_processing, wizard_mode)
+    setup_process(my_contact_details, contact_detail_processing, wizard_mode)
 
   end
 

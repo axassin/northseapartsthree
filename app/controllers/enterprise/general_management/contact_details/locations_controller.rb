@@ -19,7 +19,7 @@ class Enterprise::GeneralManagement::ContactDetails::LocationsController < Gener
       my_location.save!
     end
 
-    setup_process(location_processing, wizard_mode)
+    setup_process(my_location, location_processing, wizard_mode)
   end
 
 

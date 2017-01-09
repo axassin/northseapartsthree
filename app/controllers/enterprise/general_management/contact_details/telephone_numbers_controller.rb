@@ -18,7 +18,7 @@ class Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController 
       my_telephone.save!
     end
 
-    setup_process(telephone_processing, wizard_mode)
+    setup_process(my_telephone, telephone_processing, wizard_mode)
   end
 
 end

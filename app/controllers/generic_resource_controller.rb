@@ -138,24 +138,25 @@ class GenericResourceController < ApplicationController
     setup_index
   end
 
-  def setup_process( process_block, wizard_mode = nil )
+  def setup_process( model_instance, process_block, wizard_mode = nil )
 
     modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
-    @saved_id = nil
+    @wizard_response = nil
 
     begin
       ActiveRecord::Base.transaction do
         process_block.call
+        @wizard_response
         modal_message = 'Successful Operation! '
       end
     rescue => ex
       puts ' --------- PROCESS ERROR START --------- '
       puts ex
+      @wizard_response = ex
       puts ' ---------- PROCESS ERROR END ---------- '
     end
 
-    wizard_mode ? (@saved_id) : (redirect_to @main_resource_path, :flash => { :main_notification => modal_message })
-
+    wizard_mode ? (@wizard_response) : (redirect_to @main_resource_path, :flash => { :main_notification => modal_message })
   end
 
   def new
@@ -211,14 +212,20 @@ class GenericResourceController < ApplicationController
   end
 
   def update_primary_image(instance_primary_image, current_params, wizard_mode = nil)
-    puts '---------------- UPDATING ONE ----------------'
+    puts '---------------- Primary Image Update Evaluation: ----------------'
     if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(:primary_image) == true)
-      puts '---------------- UPDATING TWO ----------------'
+      puts '---------------- Updating Primary Image ----------------'
       instance_primary_image.primary_image = current_params[:primary_image]
+    else
+      puts '---------------- Not Updating Primary Image ----------------'
     end
-
     (instance_primary_image.primary_image = current_params[:primary_image]) if wizard_mode
+  end
 
+  def polymorphic_reference_process(polymorphic_instance,polymorphic_attribute,current_params)
+    raw_polymorphic_array = current_params[polymorphic_attribute.to_sym].to_s.split(",")
+    polymorphic_instance.send("#{polymorphic_attribute + '_type='}", raw_polymorphic_array[0])
+    polymorphic_instance.send("#{polymorphic_attribute + '_id='}", raw_polymorphic_array[1])
   end
 
 end

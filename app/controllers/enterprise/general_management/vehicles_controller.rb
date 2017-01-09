@@ -21,10 +21,9 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
       my_vehicle.date_of_registration = current_params[:date_of_registration]
       update_primary_image(my_vehicle, current_params)
       my_vehicle.save!
-      return my_vehicle.id
     end
 
-    setup_process(vehicle_processing, wizard_mode)
+    setup_process(my_vehicle, vehicle_processing, wizard_mode)
   end
 
 end

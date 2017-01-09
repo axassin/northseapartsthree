@@ -3,3 +3,5 @@ div.col-md-6
 div.col-md-6
   - unless @wizard_steps.present?
     = polymorphic_selector(f, current_instance, 'contactable', [[SystemAccount, :name],[Branch, :name]], false)
+  - else
+    = f.input :contactable, :as => :hidden, :input_html => { :value => params[:mother_model_type] + ',' + params[:mother_model_id]}

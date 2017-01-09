@@ -17,10 +17,9 @@ class Enterprise::SystemAccountsController < GenericResourceController
       my_system_account.account_type = current_params[:account_type]
       update_primary_image(my_system_account, current_params, wizard_mode)
       my_system_account.save!
-      @saved_id = my_system_account.id
     end
 
-    setup_process(system_account_processing, wizard_mode)
+    setup_process(my_system_account, system_account_processing, wizard_mode)
   end
 
   def get_image

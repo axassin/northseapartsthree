@@ -148,7 +148,7 @@ module FormHelper
   def contact_detail_selector(f, current_instance)
     render partial: 'common/form/contact_detail_selector', locals: {
         f: f,
-        current_instance: current_instance,
+        current_instance: current_instance
     }
   end
 

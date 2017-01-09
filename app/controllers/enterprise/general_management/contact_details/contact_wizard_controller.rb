@@ -24,13 +24,13 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
         setup_step(ContactDetail, false)
       when :setup_telephone
         setup_step(TelephoneNumber, true, true)
-        # @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last.id
       when :setup_link
         setup_step(Link, true, true)
-        # @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last.id
       when :setup_location
         setup_step(Location, true, true)
-        # @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id], contactable_type: 'SystemAccount').last.id
       when :end
         setup_step(nil, false)
       else

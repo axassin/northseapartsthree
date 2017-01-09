@@ -19,7 +19,7 @@ class Enterprise::GeneralManagement::ContactDetails::LinksController < GenericRe
       my_link.save!
     end
 
-    setup_process(link_processing, wizard_mode)
+    setup_process(my_link, link_processing, wizard_mode)
   end
 
 end
