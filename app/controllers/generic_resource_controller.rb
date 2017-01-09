@@ -146,7 +146,7 @@ class GenericResourceController < ApplicationController
     begin
       ActiveRecord::Base.transaction do
         process_block.call
-        @wizard_response
+        @wizard_response = model_instance.id
         modal_message = 'Successful Operation! '
       end
     rescue => ex
