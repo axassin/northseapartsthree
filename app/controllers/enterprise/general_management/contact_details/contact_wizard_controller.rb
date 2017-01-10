@@ -3,6 +3,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
 
   steps :start,
         :setup_system_account,
+        :setup_branch,
         :setup_contact_detail,
         :setup_telephone,
         :setup_link,
@@ -17,9 +18,11 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   def show
     case step
       when :start
-        setup_step(nil, false)
+        setup_step(nil, false, false, true)
       when :setup_system_account
         setup_step(SystemAccount, false)
+      when :setup_branch
+        setup_step(Branch, false)
       when :setup_contact_detail
         setup_step(ContactDetail, false)
       when :setup_telephone
@@ -43,7 +46,9 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
       when :setup_system_account
-        process_step(SystemAccount, true)
+        process_step(SystemAccount, true, false, 'setup_contact_detail')
+      when :setup_branch
+        process_step(Branch, true, false, 'setup_contact_detail')
       when :setup_contact_detail
         process_step(ContactDetail)
       when :setup_telephone

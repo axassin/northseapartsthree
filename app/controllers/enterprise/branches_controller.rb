@@ -4,8 +4,8 @@ class Enterprise::BranchesController < GenericResourceController
     setup_variables( Branch,
                      'Branch',
                      'Establishment Nodes',
-                     nil,
-                     nil,
+                     [],
+                     [],
                      @@routes.enterprise_path)
   end
 
