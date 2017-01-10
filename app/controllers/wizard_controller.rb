@@ -13,12 +13,13 @@ class WizardController < ApplicationController
 
   end
 
-  def setup_step(class_model = nil, skippable = false, repeatable = false)
+  def setup_step(class_model = nil, skippable = false, repeatable = false, choice = false)
     @skippable = skippable
     @form = class_model.form_path if class_model
     @current_instance = class_model.new if class_model
     @class_model = class_model
     @repeatable = repeatable
+    @choice = choice
 
     # Check if Mother Model Exists
     if params.has_key?('mother_model_id') && params.has_key?('mother_model_type')
@@ -37,7 +38,7 @@ class WizardController < ApplicationController
     @restart == true ? (redirect_to @main_resource_path + '/start') : (render_step(params[:id]))
   end
 
-  def process_step(current_model, mother_model = false, finish_step = false)
+  def process_step(current_model, mother_model = false, finish_step = false, next_step = nil)
 
     # Process request through respective Resource Controller
     unless finish_step
@@ -61,6 +62,8 @@ class WizardController < ApplicationController
         @mother_parameters.store('mother_model_id',params[:mother_model_id])
       end
 
+      @next_step = next_step unless next_step.nil?
+
     end
 
 
@@ -68,16 +71,23 @@ class WizardController < ApplicationController
   end
 
   def update_finish
-    puts '----------- - ----'
-    puts @mother_parameters.inspect
 
+    # check for errors
     if @error_flag
       flash[:main_notification] = ' There was an error processing your request. Wizard has restarted. '
-      update_redirection_path = @main_resource_path
+      update_redirection_path = @main_resource_path # if there is one, go back to the start of wizard
     else
+
+      # for repeating steps
       params.has_key?('repeatable') ? main_step = step.to_s : main_step = next_step.to_s
+
+      # for steps with skips
+      main_step = @next_step if @next_step.present?
+
+      # redirect path finalization
       update_redirection_path = @main_resource_path + '/' + main_step + '?' + @mother_parameters.to_query
     end
+
     redirect_to update_redirection_path
 
   end

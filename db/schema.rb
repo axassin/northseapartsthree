@@ -16,9 +16,8 @@ ActiveRecord::Schema.define(version: 20170105081605) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",              limit: 64
-    t.string   "description",       limit: 512
-    t.string   "system_account_id", limit: 36
+    t.string   "name",        limit: 64
+    t.string   "description", limit: 512
     t.index ["deleted_at"], name: "index_branches_on_deleted_at", using: :btree
   end
 

@@ -5,7 +5,7 @@ class Enterprise::SystemAccountsController < GenericResourceController
                      'System Accounts',
                      'User Entities',
                      ['primary_image'],
-                     nil,
+                     [],
                      @@routes.enterprise_path)
   end
 

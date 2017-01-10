@@ -10,11 +10,12 @@ $(document).on 'turbolinks:load', ->
   $('.polymorphic_selector_group').each( (index, element) ->
     main_select = $(element).find('select')
     main_select.selectize();
-    hidden_element = $(element).find("input[type='hidden']")
-    main_select.change ->
-      # option = $('option:selected', main_select).attr('secondary_value')
-      # alert option
-      # hidden_element.val(main_select.attr('secondary_value'))
+  )
+
+  # Contact Detail Selector
+  $('.contact_detail_selector_group').each( (index, element) ->
+    main_select = $(element).find('select')
+    main_select.selectize();
   )
 
   # Model Selector

@@ -35,7 +35,7 @@ div.col-md-12
 
     span &nbsp;
 
-  - if ((step.to_s == 'start') || (step.to_s == 'end'))
+  - if (((step.to_s == 'start') || (step.to_s == 'end')) && @choice == false)
     a.btn.btn-default href='#{next_wizard_path}' #{forward_text}
 
     span &nbsp;

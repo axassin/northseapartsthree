@@ -54,6 +54,7 @@ Rails.application.routes.draw do
     end
 
     generate_logic_unit( :system_accounts )
+    generate_logic_unit( :branches )
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
