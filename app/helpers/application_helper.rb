@@ -31,4 +31,8 @@ module ApplicationHelper
     current_class.to_s.pluralize.underscore.gsub('::','/')
   end
 
+  def class_to_human
+
+  end
+
 end

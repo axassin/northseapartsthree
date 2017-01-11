@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170105081605) do
+ActiveRecord::Schema.define(version: 20170111052623) do
 
   create_table "branches", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -63,6 +63,16 @@ ActiveRecord::Schema.define(version: 20170105081605) do
     t.string   "account_type",  limit: 64
     t.string   "primary_image", limit: 512
     t.index ["deleted_at"], name: "index_system_accounts_on_deleted_at", using: :btree
+  end
+
+  create_table "system_constants", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "label",         limit: 64
+    t.string   "category_type", limit: 256
+    t.string   "value",         limit: 256
+    t.index ["deleted_at"], name: "index_system_constants_on_deleted_at", using: :btree
   end
 
   create_table "telephone_numbers", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

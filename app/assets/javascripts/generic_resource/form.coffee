@@ -19,15 +19,9 @@ $(document).on 'turbolinks:load', ->
   )
 
   # Model Selector
-  $('.model_select_group').each (index, element) ->
+  $('.model_selector_group').each (index, element) ->
     main_select = $(element).find('select')
-    model_path = $(element).find("input[type='hidden'].model_path").val()
     main_select.selectize();
-    main_select.change ->
-      refresh_model_selector(model_path, main_select.val(), element)
-    if main_select.val() != ''
-      refresh_model_selector(model_path, main_select.val(), element)
-
 
 # Refreshes Model Selector
 refresh_model_selector = (model_path, model_id, current_group) ->

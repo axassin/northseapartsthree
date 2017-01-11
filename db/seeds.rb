@@ -6,14 +6,12 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-puts " Initializing Database with Core Data for Production and Development Environment"
+puts " Initializing Database with Sample Data for Production and Development Environment"
 
 # Execute only in a Development Environment; This is "fake" sample data
 if Rails.env.development? || Rails.env.test?
 
-  puts " Generating Sample Data for Development and Test Environment"
-
-  # --------------------- Associated Constants ---------------------
+  # --------------------- Shorthand Functions ---------------------
   def establish_contact_details(model, id)
 
     rand(0..10).times do

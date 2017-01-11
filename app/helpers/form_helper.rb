@@ -70,67 +70,16 @@ module FormHelper
   end
 
   # Selector for a single model
-  def model_selector(f,
-                     model,
-                     name,
-                     selected,
-                     displayable_attributes = nil,
-                     primary_image = false, label_method = nil, value_method = 'id', disabled = false)
-
-    current_id = 'new' if (selected == nil || selected == '')
-    input_element_id = name.to_s + '_' +  current_id.to_s
-    humanized_name = 'Select ' + totally_humanize(name)
-
-    input_element = f.input name,
-                            collection: model.all,
-                            input_html: { id: input_element_id, class: name.to_s + '_select'},
-                            prompt: 'Select ' + humanized_name,
-                            selected: selected,
-                            label: false,
-                            required: true,
-                            label_method: label_method.to_sym,
-                            value_method: value_method.to_sym,
-                            disabled: disabled
-
-    hidden_model_path = f.input :model_path,
-                                :as => :hidden,
-                                :input_html => { :value => model.main_resource_path, class: 'model_path' }
-
-    collective_elements = mab do
-      div :class => name.to_s + '_collective model_select_group' do
-
-        label :class => 'outside_label string required', :for => input_element_id do
-          humanized_name.upcase + ' *'
-        end
-
-        text! input_element.to_s
-        text! hidden_model_path.to_s
-
-        img :class => 'selector_primary_image' if primary_image == true
-
-        if displayable_attributes != nil
-          div :class => 'attribute_display' do
-            displayable_attributes.each do |attribute|
-              div do
-                span do
-                  totally_humanize(attribute)
-                end
-                span :class => 'displayable_attribute current_model_' + attribute do
-                end
-              end
-            end
-          end
-        end
-
-        a :class => 'btn btn-default add_model_select', :target => '_new', :href => '/' + model.main_resource_path + '/new' do
-          'Add New ' + totally_humanize(name)
-        end
-
-      end
-    end
-
-    collective_elements.html_safe
-
+  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
+    render partial: 'common/form/model_selector', locals: {
+        f: f,
+        model: model,
+        name: name,
+        selected: selected,
+        label_method: label_method,
+        value_method: value_method,
+        disabled: disabled
+    }
   end
 
   # multiple model selector for polymorphic types - manual render partial due to complicated logic

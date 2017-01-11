@@ -6,7 +6,8 @@
       = render partial: 'associated_models'
 
 ruby:
-  back_path = previous_wizard_path
+  current_parameters = '?mother_model_id=' + params[:mother_model_id].to_s + '&mother_model_type=' + params[:mother_model_type].to_s
+  back_path = previous_wizard_path + @mother_parameters.to_query
   forward_path = next_wizard_path
   back_text = 'BACK'
   forward_text = 'NEXT'
@@ -31,7 +32,7 @@ div.col-md-12
     span &nbsp;
 
   - if @skippable
-    a.btn.btn-default href='#{next_wizard_path}?mother_model_id=#{params[:mother_model_id]}&mother_model_type=#{params[:mother_model_type]}' SKIP
+    a.btn.btn-default href='#{forward_path + current_parameters}' SKIP
 
     span &nbsp;
 
@@ -53,3 +54,5 @@ div.col-md-12
 
 br
 div.float-clearing
+br
+br
