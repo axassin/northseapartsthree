@@ -85,7 +85,7 @@ class WizardController < ApplicationController
       main_step = @next_step if @next_step.present?
 
       # redirect path finalization
-      update_redirection_path = @main_resource_path + '/' + main_step + '?' + @mother_parameters.to_query
+      update_redirection_path = @main_resource_path + '/' + main_step.to_s + '?' + @mother_parameters.to_query
     end
 
     redirect_to update_redirection_path
