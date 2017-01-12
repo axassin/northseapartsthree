@@ -107,5 +107,13 @@ if Rails.env.development? || Rails.env.test?
 
   }
 
+  # Employees
+  employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(25)
+  employee_associated_system_accounts.each do |system_account|
+    current_employee = Employee.create!(system_account: system_account)
+    current_employee.save
+  end
+
+
 
 end
