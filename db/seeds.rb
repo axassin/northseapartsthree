@@ -14,7 +14,7 @@ if Rails.env.development? || Rails.env.test?
   # --------------------- Shorthand Functions ---------------------
   def establish_contact_details(model, id)
 
-    rand(0..10).times do
+    rand(0..2).times do
 
       # Contact Detail
       current_contact_detail = ContactDetail.create!(
@@ -25,14 +25,14 @@ if Rails.env.development? || Rails.env.test?
       current_contact_detail.save!
 
       # Telephone Number
-      rand(0..5).times do
+      rand(0..2).times do
         TelephoneNumber.create!(contact_detail: current_contact_detail,
                                 remark: Faker::Company.name,
                                 digits: Faker::Number.number( rand(7..64)) )
       end
 
       # Link
-      rand(0..5).times do
+      rand(0..2).times do
         Link.create!(contact_detail: current_contact_detail,
                      service: %w(EMAIL SKYPE VIBER).sample,
                      url: Faker::Internet.user_name,
@@ -40,7 +40,7 @@ if Rails.env.development? || Rails.env.test?
       end
 
       # Address
-      rand(0..5).times do
+      rand(0..2).times do
         aggregated_address = Faker::Address.street_address + Faker::Address.city + Faker::Address.state
         Location.create!(contact_detail: current_contact_detail,
                          latitude: Faker::Address.latitude,
@@ -54,7 +54,8 @@ if Rails.env.development? || Rails.env.test?
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
-  25.times {
+  NO_OF_BRANCHES = 17
+  NO_OF_BRANCHES.times {
     current_branch = Branch.create!(
         name: Faker::Company.name,
         description: Faker::Lorem.sentence
@@ -65,7 +66,8 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Vehicles
-  50.times {
+  NO_OF_VEHICLES = 25
+  NO_OF_VEHICLES.times {
     current_vehicle = Vehicle.new
     current_vehicle.color = Faker::Color.color_name
     current_vehicle.make = %w(TRUCK PICKUP VAN SEDAN).sample
@@ -86,7 +88,8 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # System Accounts
-  150.times {
+  NO_OF_SYSTEM_ACCOUNTS = 70
+  NO_OF_SYSTEM_ACCOUNTS.times {
 
     current_image = ['sample_system_account_01.jpg',
                      'sample_system_account_02.jpg',
@@ -108,19 +111,19 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Employees
-  NO_OF_EMPLOYEES = 25
+  NO_OF_EMPLOYEES = 30
   employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(NO_OF_EMPLOYEES)
   employee_associated_system_accounts.each do |system_account|
     current_employee = Employee.create!(system_account: system_account)
     current_employee.save
 
     50.in(100) do
-      current_biodata = Biodata.create!(
+      current_biodata = Biodatum.create!(
           system_account_id: current_employee.system_account.id,
           name_of_mother: Faker::Name.name,
           name_of_father: Faker::Name.name,
           dependents: Faker::Lorem.sentence(10),
-          complexion: Faker::Lorem.sentence(10),
+          complexion: Faker::Lorem.word,
           height: %w(5'7" 32cm 3234cm 5m 3cm).sample,
           sex: %w(MALE FEMALE).sample,
           blood_type: %w(O A B AB).sample,

@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::EmployeesController < GenericResourceController
+class Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController < GenericResourceController
 
   def setup_controller
     setup_variables( Employee,
@@ -6,7 +6,7 @@ class Enterprise::HumanResources::EmployeesController < GenericResourceControlle
                      'Workforce',
                      ['system_account_id'],
                      ['account_name'],
-                     @@routes.enterprise_human_resources_path)
+                     @@routes.enterprise_human_resources_employee_accounts_management_path)
   end
 
   def process_form(my_employee, current_params, wizard_mode = nil)

@@ -57,7 +57,7 @@ module GenericResourceCommon
     end
 
     def main_resource_path
-      self.to_s.pluralize.underscore.downcase.gsub('::','/')
+      self.class_variable_get(:@@resource_path)
     end
 
     def associated_controller
