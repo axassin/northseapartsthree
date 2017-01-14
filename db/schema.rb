@@ -10,7 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170112015221) do
+ActiveRecord::Schema.define(version: 20170113025932) do
+
+  create_table "biodata", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "system_account_id",      limit: 36
+    t.string   "name_of_mother",         limit: 256
+    t.string   "name_of_father",         limit: 256
+    t.string   "dependents",             limit: 256
+    t.string   "complexion",             limit: 64
+    t.string   "height",                 limit: 64
+    t.string   "sex",                    limit: 64
+    t.string   "blood_type",             limit: 64
+    t.date     "date_of_birth"
+    t.string   "education",              limit: 256
+    t.string   "experience",             limit: 256
+    t.string   "notable_accomplishment", limit: 256
+    t.string   "description",            limit: 512
+    t.index ["date_of_birth"], name: "index_biodata_on_date_of_birth", using: :btree
+    t.index ["deleted_at"], name: "index_biodata_on_deleted_at", using: :btree
+  end
 
   create_table "branches", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"

@@ -108,10 +108,30 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Employees
-  employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(25)
+  NO_OF_EMPLOYEES = 25
+  employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(NO_OF_EMPLOYEES)
   employee_associated_system_accounts.each do |system_account|
     current_employee = Employee.create!(system_account: system_account)
     current_employee.save
+
+    50.in(100) do
+      current_biodata = Biodata.create!(
+          system_account_id: current_employee.system_account.id,
+          name_of_mother: Faker::Name.name,
+          name_of_father: Faker::Name.name,
+          dependents: Faker::Lorem.sentence(10),
+          complexion: Faker::Lorem.sentence(10),
+          height: %w(5'7" 32cm 3234cm 5m 3cm).sample,
+          sex: %w(MALE FEMALE).sample,
+          blood_type: %w(O A B AB).sample,
+          education: Faker::Lorem.sentence(10),
+          experience: Faker::Lorem.sentence(10),
+          notable_accomplishment: Faker::Lorem.sentence(10),
+          description: Faker::Lorem.sentence(10),
+      )
+      current_biodata.save
+    end
+
   end
 
 

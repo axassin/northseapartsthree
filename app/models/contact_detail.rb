@@ -11,6 +11,10 @@ class ContactDetail < ApplicationRecord
   has_many :locations
   has_many :links
 
+  validates :label, length: { in: 2..64 }
+  validates_presence_of :contactable_id
+  validates :contactable_type, presence: true, inclusion: { in: %w(SystemAccount Branch)}
+
   def selector_option_label
     # Represent won't work for some reason; Workaround Method till it does
     begin
@@ -23,10 +27,6 @@ class ContactDetail < ApplicationRecord
 
     contactable_type.constantize.find_by_id(contactable_id).represent + ' | ' + label
   end
-
-  validates :label, length: { in: 2..64 }
-  validates_presence_of :contactable_id
-  validates :contactable_type, presence: true, inclusion: { in: %w(SystemAccount Branch)}
 
   def contactable_representative
     self.contactable_type.constantize.find_by_id(contactable_id).represent

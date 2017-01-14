@@ -1,0 +1,8 @@
+div.col-md-12
+  div.form_element_tip Create an Employee from a corresponding System Account
+  br
+  = model_selector(f,
+          SystemAccount,
+          :system_account_id,
+          current_instance.system_account,
+          'name')
