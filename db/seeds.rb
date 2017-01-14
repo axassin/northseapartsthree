@@ -123,7 +123,7 @@ if Rails.env.development? || Rails.env.test?
           name_of_mother: Faker::Name.name,
           name_of_father: Faker::Name.name,
           dependents: Faker::Lorem.sentence(10),
-          complexion: Faker::Lorem.word,
+          complexion: %w(light medium dark eurasia).sample,
           height: %w(5'7" 32cm 3234cm 5m 3cm).sample,
           sex: %w(MALE FEMALE).sample,
           blood_type: %w(O A B AB).sample,
@@ -131,6 +131,7 @@ if Rails.env.development? || Rails.env.test?
           experience: Faker::Lorem.sentence(10),
           notable_accomplishment: Faker::Lorem.sentence(10),
           description: Faker::Lorem.sentence(10),
+          date_of_birth: 
       )
       current_biodata.save
     end
