@@ -12,7 +12,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController 
   def process_form(my_biodatum, current_params, wizard_mode = nil)
 
     biodatum_processing = Proc.new do
-      my_biodatum.employee_id = current_params[:employee_id]
+      my_biodatum.employee = Employee.find(current_params[:employee_id])
       my_biodatum.name_of_mother = current_params[:name_of_mother]
       my_biodatum.name_of_father = current_params[:name_of_father]
       my_biodatum.dependents = current_params[:dependents]

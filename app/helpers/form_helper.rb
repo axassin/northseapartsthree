@@ -50,7 +50,7 @@ module FormHelper
   end
 
   # simple Selector with explicit selection array
-  def selector(f, name, collection, selected)
+  def selector(f, name, collection, selected, required = true)
 
     prompt_text_label = totally_humanize(name)
 
@@ -58,7 +58,7 @@ module FormHelper
             collection: collection,
             prompt: 'Select ' + prompt_text_label,
             selected: selected,
-            required: true
+            required: required
 
   end
 

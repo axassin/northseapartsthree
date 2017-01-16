@@ -10,8 +10,8 @@ div.col-md-6
   = input_date(f, :date_of_birth)
   = input_word(f, :complexion)
   = input_word(f, :height)
-  = selector(f, :sex, ['MALE','FEMALE'], current_instance.sex)
-  = selector(f, :blood_type, ['O+','O-','A+','A-','B+','B-','AB+','AB-'], current_instance.blood_type)
+  = selector(f, :sex, ['MALE','FEMALE'], current_instance.sex, false)
+  = selector(f, :blood_type, ['O+','O-','A+','A-','B+','B-','AB+','AB-'], current_instance.blood_type, false)
 
   = input_description(f, :description)
 div.col-md-6

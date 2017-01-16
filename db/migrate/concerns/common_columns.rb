@@ -19,8 +19,8 @@ module CommonColumns
     t.string :description, :limit => 512
   end
 
-  def foreign_key_id(t, foreign_key)
-    t.string (foreign_key + '_id').to_sym, :limit => 36, :required => true
+  def foreign_key_id(t, foreign_key, index = false)
+    t.string (foreign_key + '_id').to_sym, :limit => 36, :required => true, index: index
   end
 
   def remark_column(t)
