@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20170113025932) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "system_account_id",      limit: 36
+    t.string   "employee_id",            limit: 36
     t.string   "name_of_mother",         limit: 256
     t.string   "name_of_father",         limit: 256
     t.string   "dependents",             limit: 256

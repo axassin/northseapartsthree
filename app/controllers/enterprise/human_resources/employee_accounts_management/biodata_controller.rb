@@ -12,7 +12,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController 
   def process_form(my_biodatum, current_params, wizard_mode = nil)
 
     biodatum_processing = Proc.new do
-      my_biodatum.system_account_id = current_params[:system_account_id]
+      my_biodatum.employee_id = current_params[:employee_id]
       my_biodatum.name_of_mother = current_params[:name_of_mother]
       my_biodatum.name_of_father = current_params[:name_of_father]
       my_biodatum.dependents = current_params[:dependents]
@@ -25,6 +25,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController 
       my_biodatum.experience = current_params[:experience]
       my_biodatum.notable_accomplishment = current_params[:notable_accomplishment]
       my_biodatum.description = current_params[:description]
+      my_biodatum.save!
     end
 
     setup_process(my_biodatum, biodatum_processing, wizard_mode)

@@ -2,7 +2,7 @@ class CreateBiodata < MainMigration
   def change
     create_table :biodata, id: false do |t|
       common_set(t)
-      foreign_key_id(t, 'system_account')
+      foreign_key_id(t, 'employee')
       t.string :name_of_mother, :limit => 256, :required => true
       t.string :name_of_father, :limit => 256, :required => true
       t.string :dependents, :limit => 256, :required => true

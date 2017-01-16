@@ -1,5 +1,9 @@
-class Enterprise::HumanResources::EmployeeDecorator < ApplicationDecorator
+class BiodatumDecorator < ApplicationDecorator
   delegate_all
+
+  def date_of_birth
+    object.created_at.strftime("%m/%d/%Y")
+  end
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:

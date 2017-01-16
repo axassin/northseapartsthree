@@ -119,7 +119,7 @@ if Rails.env.development? || Rails.env.test?
 
     50.in(100) do
       current_biodata = Biodatum.create!(
-          system_account_id: current_employee.system_account.id,
+          employee_id: current_employee.id,
           name_of_mother: Faker::Name.name,
           name_of_father: Faker::Name.name,
           dependents: Faker::Lorem.sentence(10),
@@ -131,7 +131,7 @@ if Rails.env.development? || Rails.env.test?
           experience: Faker::Lorem.sentence(10),
           notable_accomplishment: Faker::Lorem.sentence(10),
           description: Faker::Lorem.sentence(10),
-          date_of_birth: 
+          date_of_birth: Faker::Date.between(80.years.ago, 10.years.ago)
       )
       current_biodata.save
     end

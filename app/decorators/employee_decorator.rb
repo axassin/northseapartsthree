@@ -1,4 +1,4 @@
-class EmployeeDecorator < ApplicationDecorator
+class Enterprise::HumanResources::EmployeeDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
