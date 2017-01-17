@@ -4,7 +4,7 @@ class Enterprise::GeneralManagement::VehiclesController < GenericResourceControl
     setup_variables( Vehicle,
                      'Vehicles',
                      'Transportation Assets',
-                     ['primary_image'],
+                     [],
                      [],
                      @@routes.enterprise_general_management_path)
   end

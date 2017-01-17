@@ -114,7 +114,7 @@ if Rails.env.development? || Rails.env.test?
   NO_OF_EMPLOYEES = 30
   employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(NO_OF_EMPLOYEES)
   employee_associated_system_accounts.each do |system_account|
-    current_employee = Employee.create!(system_account: system_account)
+    current_employee = Employee.create!(system_account: system_account, branch: Branch.offset(rand(Branch.count)).first)
     current_employee.save
 
     50.in(100) do
@@ -140,7 +140,8 @@ if Rails.env.development? || Rails.env.test?
       current_employee_status = EmployeeStatus.create!(
           employee_id: current_employee.id,
           implemented_at: Faker::Date.between(6.years.ago, 1.years.ago),
-          state: ['ACTIVE','INACTIVE'].sample
+          state: ['ACTIVE','INACTIVE'].sample,
+          remark: Faker::Lorem.sentence(1)
       )
       current_employee_status.save
     end

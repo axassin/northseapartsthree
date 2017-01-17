@@ -22,10 +22,7 @@ class Vehicle < ApplicationRecord
   searchable_string(:brand)
   searchable_string(:plate_number)
   searchable_string(:fuel_type)
-
-  searchable do
-    time :date_of_registration
-    string :date_of_registration
-  end
+  searchable_string(:description)
+  searchable_date(:date_of_registration)
 
 end

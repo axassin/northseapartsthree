@@ -9,5 +9,6 @@ class Branch < ApplicationRecord
               Enterprise::BranchesController)
 
   has_many :contact_details, as: :contactable
+  has_many :employees
 
 end

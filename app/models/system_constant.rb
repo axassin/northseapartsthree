@@ -10,4 +10,7 @@ class SystemConstant < ApplicationRecord
   validates :category_type, presence: true, length: { in: 2..256 }
   validates :value, presence: true
 
+  searchable_string(:category_type)
+  searchable_string(:label)
+
 end

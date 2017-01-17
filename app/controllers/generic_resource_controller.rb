@@ -20,7 +20,9 @@ class GenericResourceController < ApplicationController
     @current_instance = class_model.new
     @class_model_symbolized = class_model.to_s.underscore.gsub('/','_').to_sym
 
-    @omitted_attributes
+    if @class_model.attribute_names.include? 'primary_image'
+      @omitted_attributes = omitted_attributes.push('primary_image')
+    end
 
     puts '------------ VARIABLES INITIALIZED ---------------- '
     puts '@class_model: ' + @class_model.to_s

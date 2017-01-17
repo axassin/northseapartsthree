@@ -17,5 +17,6 @@ class Link < ApplicationRecord
 
   searchable_string(:service)
   searchable_string(:url)
+  searchable_string(:remark)
 
 end

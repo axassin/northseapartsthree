@@ -4,8 +4,8 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::EmployeeStatusesCo
     setup_variables( EmployeeStatus,
                      'Employee Statuses',
                      'State of Employment',
-                     [],
-                     [],
+                     ['employee_id'],
+                     ['owner_name'],
                      @@routes.enterprise_human_resources_employee_accounts_management_path)
   end
 

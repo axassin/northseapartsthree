@@ -15,5 +15,6 @@ class TelephoneNumber < ApplicationRecord
   validates :digits, length: { in: 5..64 }, presence: true, uniqueness: true
 
   searchable_string(:digits)
+  searchable_string(:remark)
 
 end

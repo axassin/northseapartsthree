@@ -4,6 +4,7 @@ class CreateEmployeeStatuses < MainMigration
       common_set(t)
       foreign_key_id(t, 'employee')
       implemented_at(t)
+      remark_column(t)
       t.string :state, :limit => 64, :required => true
     end
   end

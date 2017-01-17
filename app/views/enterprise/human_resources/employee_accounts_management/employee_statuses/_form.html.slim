@@ -6,6 +6,8 @@ div.col-md-6
           current_instance.employee,
           'account_name')
 
+  = input_word(f, :remark)
+
 div.col-md-6
 
   = selector(f, :state, ['NOT ACTIVE','ACTIVE'], current_instance.state)

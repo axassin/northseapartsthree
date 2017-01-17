@@ -37,6 +37,13 @@ module GenericResourceCommon
       end
     end
 
+    def searchable_date(attribute)
+      searchable do
+        time attribute
+        string attribute
+      end
+    end
+
     def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller)
       self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
       self.class_variable_set(:@@representative_attribute, representative_attribute)

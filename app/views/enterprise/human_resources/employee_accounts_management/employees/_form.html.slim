@@ -1,8 +1,17 @@
-div.col-md-12
+div.col-md-6
   div.form_element_tip Create an Employee from a corresponding System Account
   br
   = model_selector(f,
           SystemAccount.where(account_type: 'INDIVIDUAL'),
           :system_account_id,
           current_instance.system_account,
+          'name')
+
+div.col-md-6
+  div.form_element_tip Assign Branch to the Employee
+  br
+  = model_selector(f,
+          Branch.all,
+          :branch_id,
+          current_instance.branch,
           'name')

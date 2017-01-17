@@ -21,4 +21,8 @@ class SystemAccount < ApplicationRecord
   validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }
   validates :description, length: { in: 2..512 }
 
+  searchable_string(:name)
+  searchable_string(:description)
+  searchable_string(:account_type)
+
 end

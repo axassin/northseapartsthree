@@ -1,4 +1,2 @@
 = primary_image_default(result.system_account)
-div align='center'
-  span
-    = result.system_account.name
+div.named_statement #{ result.represent + ' | ' + result.current_state}
