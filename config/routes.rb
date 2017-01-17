@@ -65,9 +65,9 @@ Rails.application.routes.draw do
     namespace :human_resources do
       define_index( 'employee_accounts_management' )
       namespace :employee_accounts_management do
+        generate_logic_unit( :employee_statuses )
         generate_logic_unit( :employees )
         generate_logic_unit( :biodata )
-        generate_logic_unit( :employee_status )
       end
     end
 

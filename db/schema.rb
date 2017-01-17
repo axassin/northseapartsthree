@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170113025932) do
+ActiveRecord::Schema.define(version: 20170116091257) do
 
   create_table "biodata", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -51,6 +51,16 @@ ActiveRecord::Schema.define(version: 20170113025932) do
     t.string   "contactable_type"
     t.index ["contactable_type", "contactable_id"], name: "index_contact_details_on_contactable_type_and_contactable_id", using: :btree
     t.index ["deleted_at"], name: "index_contact_details_on_deleted_at", using: :btree
+  end
+
+  create_table "employee_statuses", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "employee_id",    limit: 36
+    t.date     "implemented_at"
+    t.string   "state",          limit: 64
+    t.index ["deleted_at"], name: "index_employee_statuses_on_deleted_at", using: :btree
   end
 
   create_table "employees", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

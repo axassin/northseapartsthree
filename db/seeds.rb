@@ -136,6 +136,15 @@ if Rails.env.development? || Rails.env.test?
       current_biodata.save
     end
 
+    rand(0..5).times do
+      current_employee_status = EmployeeStatus.create!(
+          employee_id: current_employee.id,
+          implemented_at: Faker::Date.between(6.years.ago, 1.years.ago),
+          state: ['ACTIVE','INACTIVE'].sample
+      )
+      current_employee_status.save
+    end
+
   end
 
 
