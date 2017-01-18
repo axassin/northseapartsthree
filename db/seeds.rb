@@ -27,7 +27,7 @@ if Rails.env.development? || Rails.env.test?
       # Telephone Number
       rand(0..2).times do
         TelephoneNumber.create!(contact_detail: current_contact_detail,
-                                remark: Faker::Company.name,
+                                remark: Faker::Lorem.sentence(1),
                                 digits: Faker::Number.number( rand(7..64)) )
       end
 

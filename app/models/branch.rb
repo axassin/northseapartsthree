@@ -11,4 +11,7 @@ class Branch < ApplicationRecord
   has_many :contact_details, as: :contactable
   has_many :employees
 
+  searchable_string(:name)
+  searchable_string(:description)
+
 end

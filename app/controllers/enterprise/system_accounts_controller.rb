@@ -4,7 +4,7 @@ class Enterprise::SystemAccountsController < GenericResourceController
     setup_variables( SystemAccount,
                      'System Accounts',
                      'User Entities',
-                     ['primary_image'],
+                     [],
                      [],
                      @@routes.enterprise_path)
   end
