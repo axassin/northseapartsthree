@@ -3,6 +3,7 @@ ruby:
   selected.present? ? selected = selected.id : selected = nil
 
 div.model_selector_group
+  label.outside_label.string.required #{humanized_name.upcase}
   = f.input name,
           collection: model.all,
           prompt: 'Select ' + humanized_name,
