@@ -44,11 +44,12 @@ module GenericResourceCommon
       end
     end
 
-    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller)
+    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute)
       self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
       self.class_variable_set(:@@representative_attribute, representative_attribute)
       self.class_variable_set(:@@resource_path, resource_path)
       self.class_variable_set(:@@associated_controller, associated_controller)
+      self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
     end
 
     def view_path
@@ -79,7 +80,9 @@ module GenericResourceCommon
       self.to_s.underscore
     end
 
-
+    def polymorphic_attribute
+      self.class_variable_get(:@@associated_controller)
+    end
 
   end
 

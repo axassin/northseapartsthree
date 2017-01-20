@@ -11,6 +11,14 @@ class ApplicationDecorator < Drape::Decorator
     html_structure.to_s.html_safe
   end
 
+  def polymorphic_owner
+
+  end
+
+  def owner
+
+  end
+
   @@routes = Rails.application
 
 end

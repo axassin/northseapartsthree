@@ -13,9 +13,7 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
 
     contact_detail_processing = Proc.new do
       my_contact_details.label = current_params[:label]
-      contactable_array = current_params[:contactable].to_s.split(",")
-      my_contact_details.contactable_type = contactable_array[0]
-      my_contact_details.contactable_id = contactable_array[1]
+      polymorphic_reference_process(my_contact_details,'contactable',current_params)
       my_contact_details.save!
     end
 

@@ -51,6 +51,30 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  def establish_file(model, id)
+
+    current_file = ['sample_file_01.txt',
+                    'sample_file_02.txt',
+                    'sample_file_03.txt',
+                    'sample_file_04.txt',
+                    'sample_file_05.txt',
+                    ''].sample
+
+    rand(0..2).times do
+
+      associated_file = AssociatedFile.create!(
+          description: Faker::Lorem.sentence(3, false, 0),
+          name: Faker::Commerce.product_name,
+          file: current_file,
+          fileable_type: model,
+          fileable_id: id
+      )
+
+      associated_file[:file] = current_file
+      associated_file.save!
+    end
+  end
+
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
@@ -63,6 +87,7 @@ if Rails.env.development? || Rails.env.test?
 
     current_branch.save
     establish_contact_details(Branch, current_branch.id)
+    establish_file(Branch, current_branch.id)
   }
 
   # Vehicles
@@ -118,6 +143,8 @@ if Rails.env.development? || Rails.env.test?
                                         branch: Branch.offset(rand(Branch.count)).first,
                                         position: Faker::Lorem.sentence(1))
     current_employee.save
+
+    establish_file(Employee, current_employee.id)
 
     50.in(100) do
       current_biodata = Biodatum.create!(

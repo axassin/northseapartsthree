@@ -56,6 +56,8 @@ Rails.application.routes.draw do
     generate_logic_unit( :system_accounts )
     generate_logic_unit( :system_constants )
     generate_logic_unit( :branches )
+    generate_logic_unit( :associated_files )
+    generate_logic_unit( :associated_images )
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
