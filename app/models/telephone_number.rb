@@ -16,4 +16,6 @@ class TelephoneNumber < ApplicationRecord
 
   searchable_string(:digits)
 
+
+
 end

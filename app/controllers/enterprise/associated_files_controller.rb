@@ -4,8 +4,8 @@ class Enterprise::AssociatedFilesController < GenericResourceController
     setup_variables( AssociatedFile,
                      'Associated Files',
                      'File Assets relating to Model',
-                     [],
-                     [],
+                     ['file','fileable_id','fileable_type'],
+                     ['file_link'],
                      @@routes.enterprise_associated_files_path)
   end
 

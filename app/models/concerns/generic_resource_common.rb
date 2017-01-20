@@ -44,7 +44,7 @@ module GenericResourceCommon
       end
     end
 
-    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute)
+    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute = nil)
       self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
       self.class_variable_set(:@@representative_attribute, representative_attribute)
       self.class_variable_set(:@@resource_path, resource_path)
