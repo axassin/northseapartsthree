@@ -131,6 +131,10 @@ class GenericResourceController < ApplicationController
 
     end
 
+    puts '---------------------------'
+    puts search_suggestions_array.uniq
+    puts '---------------------------'
+
     # Respond
     respond_to do |format|
       format.json { render :json => search_suggestions_array.uniq }

@@ -12,4 +12,12 @@ class AssociatedFile < ApplicationRecord
 
   mount_uploader :file, AssociatedFileUploader
 
+  def file_link
+
+  end
+
+  searchable_string(:description)
+  searchable_string(:name)
+  searchable_string(:related)
+
 end

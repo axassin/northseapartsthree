@@ -28,6 +28,35 @@ module GenericResourceCommon
     resource_path + '/' + self.id
   end
 
+  def related
+    related = nil
+    self.class.reflect_on_all_associations(:belongs_to).each do |association|
+      unless association.options[:polymorphic]
+
+        # Normal Belongs To
+        owning_class = association.klass
+        foreign_key_name = association.foreign_key
+        foreign_key_value = object.send(foreign_key_name)
+        owning_object = owning_class.find(foreign_key_value)
+        related = owning_object.represent
+
+      else
+
+        # Polymorphic Belongs To
+        polymorphic_key = association.name.to_s
+        column_id = polymorphic_key + '_id'
+        column_type = polymorphic_key + '_type'
+        main_class = self.send(column_type).constantize
+        polymorphic_key_id = object.send(column_id)
+        owning_object = main_class.find(polymorphic_key_id)
+        related = owning_object.represent
+
+      end
+    end
+
+    related
+  end
+
   module ClassMethods
 
     def searchable_string(attribute)
