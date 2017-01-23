@@ -6,3 +6,5 @@ div.col-md-6
     polymorphic_array = [[Branch, 'name'],[Vehicle, 'plate_number'],[Employee, 'account_name'],[SystemAccount, 'name']]
 
   = polymorphic_selector(f, current_instance, 'fileable', polymorphic_array, false)
+  br
+  = associated_file_upload_element(f, params, @current_instance)

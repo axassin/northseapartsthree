@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170120020440) do
+ActiveRecord::Schema.define(version: 20170123031259) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 20170120020440) do
     t.string   "fileable_id",   limit: 36
     t.string   "fileable_type"
     t.index ["deleted_at"], name: "index_associated_files_on_deleted_at", using: :btree
+  end
+
+  create_table "associated_images", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "description",    limit: 512
+    t.string   "name",           limit: 64
+    t.string   "image",          limit: 512
+    t.string   "imageable_id",   limit: 36
+    t.string   "imageable_type"
+    t.index ["deleted_at"], name: "index_associated_images_on_deleted_at", using: :btree
   end
 
   create_table "biodata", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

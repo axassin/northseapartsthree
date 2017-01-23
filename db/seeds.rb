@@ -75,6 +75,30 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  def establish_image(model, id)
+
+    current_file = ['sample_image_01.jpg',
+                    'sample_image_02.jpg',
+                    'sample_image_03.jpg',
+                    'sample_image_04.jpg',
+                    'sample_image_05.jpg',
+                    ''].sample
+
+    rand(0..2).times do
+
+      associated_image = AssociatedImage.create!(
+          description: Faker::Lorem.sentence(3, false, 0),
+          name: Faker::Commerce.product_name,
+          image: current_file,
+          imageable_type: model,
+          imageable_id: id
+      )
+
+      associated_image[:image] = current_file
+      associated_image.save!
+    end
+  end
+
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
@@ -88,6 +112,7 @@ if Rails.env.development? || Rails.env.test?
     current_branch.save
     establish_contact_details(Branch, current_branch.id)
     establish_file(Branch, current_branch.id)
+
   }
 
   # Vehicles
@@ -110,6 +135,7 @@ if Rails.env.development? || Rails.env.test?
     current_vehicle.description = Faker::Lorem.paragraph
     current_vehicle.date_of_registration = Faker::Time.between(DateTime.now - 3600, DateTime.now)
     current_vehicle.save!
+    establish_image(Vehicle, current_vehicle.id)
   }
 
   # System Accounts
@@ -132,7 +158,7 @@ if Rails.env.development? || Rails.env.test?
     current_system_account[:primary_image] = current_image
     current_system_account.save!
     establish_contact_details(SystemAccount, current_system_account.id)
-
+    establish_image(SystemAccount, current_system_account.id)
   }
 
   # Employees

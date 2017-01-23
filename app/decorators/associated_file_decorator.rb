@@ -13,12 +13,11 @@ class AssociatedFileDecorator < ApplicationDecorator
   def file_link
 
     file_link = object.file.url
-    file_label = object.file_identifier
 
     main_element = mab do
       if file_link
         a :class => 'btn btn-default', :href => file_link, :target => '_new' do
-          file_label
+          'LINK'
         end
       else
         'N/A'

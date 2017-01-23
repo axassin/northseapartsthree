@@ -1,10 +1,10 @@
-class Enterprise::AssociatedFilesController < GenericResourceController
+class Enterprise::AssociatedImagesController < ApplicationController
 
   def setup_controller
-    setup_variables( AssociatedFile,
-                     'Associated Files',
-                     'File Assets',
-                     ['file','fileable_id','fileable_type'],
+    setup_variables( AssociatedImage,
+                     'Associated Image',
+                     'Image Assets',
+                     ['image','imageable_id','imageable_type'],
                      ['file_link','related'],
                      @@routes.enterprise_associated_files_path)
   end

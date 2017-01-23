@@ -170,3 +170,6 @@ gem 'jquery-turbolinks'
 
 # Basic Gem for quick default inclusion of Kaminari theme compatible with Twitter Bootstrap 2.0 and Twitter Bootstrap 3.0
 gem 'bootstrap-kaminari-views'
+
+# File Validators gem adds file size and content type validations to ActiveModel
+gem 'file_validators'
