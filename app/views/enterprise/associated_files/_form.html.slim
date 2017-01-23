@@ -1,0 +1,8 @@
+div.col-md-6
+  = input_word(f, :name)
+  = input_description(f, :description)
+div.col-md-6
+  ruby:
+    polymorphic_array = [[Branch, 'name'],[Vehicle, 'plate_number'],[Employee, 'account_name'],[SystemAccount, 'name']]
+
+  = polymorphic_selector(f, current_instance, 'fileable', polymorphic_array, false)

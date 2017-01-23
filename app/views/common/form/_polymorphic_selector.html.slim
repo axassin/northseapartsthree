@@ -9,7 +9,8 @@ ruby:
     method = pair[1]
 
     model.all.each do |instance|
-      option_array.push([model.to_s,instance.id, instance[method]])
+      # error is in [method]
+      option_array.push([model.to_s,instance.id, instance.send(method)])
     end
   end
 
@@ -20,7 +21,6 @@ ruby:
   end
 
 div.polymorphic_selector_group
-
   label.outside_label.string.required for="#{selectable_id}" #{polymorphic_name.upcase}
   select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}" disabled=('true' if disabled)
     - option_array.each do |option|

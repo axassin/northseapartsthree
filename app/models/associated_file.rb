@@ -12,12 +12,17 @@ class AssociatedFile < ApplicationRecord
 
   mount_uploader :file, AssociatedFileUploader
 
-  def file_link
+  def related
+    fileable_type.constantize.find(fileable_id).represent
+  end
 
+  def file_link
+    self.file.identifier
   end
 
   searchable_string(:description)
   searchable_string(:name)
   searchable_string(:related)
+  searchable_string(:file_link)
 
 end

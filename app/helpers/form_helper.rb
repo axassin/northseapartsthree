@@ -69,6 +69,12 @@ module FormHelper
     main
   end
 
+  def associated_file_upload_element(f, params, current_instance)
+    primary_image_input = f.input :file, as: :file
+    main = primary_image_input + file_default(current_instance)
+    main
+  end
+
   # Selector for a single model
   def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
     render partial: 'common/form/model_selector', locals: {
