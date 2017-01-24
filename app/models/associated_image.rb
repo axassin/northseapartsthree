@@ -19,7 +19,7 @@ class AssociatedImage < ApplicationRecord
   end
 
   def file_link
-    self.file.identifier
+    self.image.identifier
   end
 
   searchable_string(:description)

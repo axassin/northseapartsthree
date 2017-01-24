@@ -2,11 +2,11 @@ module GenericResourceHelper
 
   def primary_image_default(result)
 
+    instance_url = result.primary_image.url
+
     str = mab do
-      if ( result.primary_image.url.present? && public_file_exists?(result.primary_image.url) )
-        puts result.primary_image.url.present?
-        puts public_file_exists?(result.primary_image.url)
-        img.primary_image :src => result.primary_image.url
+      if ( instance_url.present? && public_file_exists?(instance_url) )
+        img.primary_image :src => instance_url
       else
         div :class => 'fa ' + result.class.class_variable_get(:@@resource_glyphicon) + ' resource_glyphicon',
             :style => 'width: 100%', :align => 'center'
@@ -17,9 +17,12 @@ module GenericResourceHelper
   end
 
   def file_default(result)
+
+    instance_url = result.file.url
+
     str = mab do
-      if ( result.file.url.present? && public_file_exists?(result.file.url) )
-        a :class => 'btn btn-default', :href => result.file.url do
+      if ( instance_url.present? && public_file_exists?(instance_url) )
+        a :class => 'btn btn-default', :href => instance_url do
           result.file_identifier
         end
       end

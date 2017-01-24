@@ -148,7 +148,7 @@ class GenericResourceController < ApplicationController
 
   def setup_process( model_instance, process_block, wizard_mode = nil )
 
-    modal_message = "There was a problem with the operation you've requested. Please contact Network Administrator."
+    modal_message = 'Invalid input detected. Please contact Administrator.'
     @wizard_response = nil
 
     begin
