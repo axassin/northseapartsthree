@@ -231,15 +231,16 @@ class GenericResourceController < ApplicationController
     (instance_primary_image.primary_image = current_params[:primary_image]) if wizard_mode
   end
 
-  def update_associated_file(instance_file, current_params, wizard_mode = nil)
+  def update_associated_file(instance_file, current_params, wizard_mode = nil, attribute_name = 'file')
+    attributable = attribute_name.to_sym
     puts '---------------- Associated File ----------------'
-    if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(:file) == true)
+    if (action_name == 'update' || action_name == 'create') && (current_params.has_key?(attributable) == true)
       puts '---------------- Updating Primary Image ----------------'
-      instance_file.file = current_params[:file]
+      instance_file.send("#{attributable}=", current_params[attributable])
     else
       puts '---------------- Not Updating Primary Image ----------------'
     end
-    (instance_file.file = current_params[:file]) if wizard_mode
+    instance_file.send("#{attributable}=", current_params[attributable]) if wizard_mode
   end
 
   def polymorphic_reference_process(polymorphic_instance,polymorphic_attribute,current_params)

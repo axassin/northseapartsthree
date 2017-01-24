@@ -1,0 +1,10 @@
+div.col-md-6
+  = input_word(f, :name)
+  = input_description(f, :description)
+div.col-md-6
+  ruby:
+    polymorphic_array = [[Vehicle, 'plate_number'], [Employee, 'account_name'], [SystemAccount, 'name']]
+
+  = polymorphic_selector(f, current_instance, 'imageable', polymorphic_array, false)
+  br
+  = associated_image_upload_element(f, params, @current_instance)

@@ -14,7 +14,7 @@ class Enterprise::AssociatedImagesController < GenericResourceController
     associated_image_processing = Proc.new do
       my_associated_image.name = current_params[:name]
       my_associated_image.description = current_params[:description]
-      update_associated_file(my_associated_image, current_params, wizard_mode)
+      update_associated_file(my_associated_image, current_params, wizard_mode, 'image')
       polymorphic_reference_process(my_associated_image,'imageable',current_params)
       my_associated_image.save!
     end
