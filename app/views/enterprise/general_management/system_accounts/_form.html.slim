@@ -4,3 +4,6 @@ div.col-md-6
   = selector(f, :account_type, ['INDIVIDUAL','BUSINESS'], current_instance.account_type)
 div.col-md-6
   = primary_image_file_upload_element(f, params, @current_instance)
+
+- if @wizard_steps.present?
+  input type='hidden' name='mother_model' value='new_branch'

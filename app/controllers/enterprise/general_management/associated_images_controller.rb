@@ -1,12 +1,12 @@
-class Enterprise::AssociatedImagesController < GenericResourceController
+class Enterprise::GeneralManagement::AssociatedImagesController < GenericResourceController
 
   def setup_controller
     setup_variables( AssociatedImage,
                      'Associated Image',
                      'Image Assets',
-                     ['image','imageable_id','imageable_type'],
-                     ['file_link','related'],
-                     @@routes.enterprise_associated_files_path)
+                     ['image','imageable_id','imageable_type', 'file_link'],
+                     ['related'],
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_associated_image, current_params, wizard_mode = nil)

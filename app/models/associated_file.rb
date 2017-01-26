@@ -7,8 +7,8 @@ class AssociatedFile < ApplicationRecord
 
   setup_model('fa-file',
               'name',
-              @@routes.enterprise_associated_files_path,
-              Enterprise::AssociatedFilesController)
+              @@routes.enterprise_general_management_associated_files_path,
+              Enterprise::GeneralManagement::AssociatedFilesController)
 
   mount_uploader :file, AssociatedFileUploader
 

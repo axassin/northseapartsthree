@@ -24,22 +24,8 @@ div.main_menu
   div.col-md-2.main_menu_segment
 
     div.main_menu_item
-      a.main_menu_link href='#{enterprise_associated_files_path}' Associated Files
-
-    div.main_menu_item
-      a.main_menu_link href='#{enterprise_associated_images_path}' Associated Images
-
-    div.main_menu_item
-      a.main_menu_link href='#{enterprise_branches_path}' Branches
-
-    div.main_menu_item
-      a.main_menu_link href='#{enterprise_system_accounts_path}' System Accounts
-
-    div.main_menu_item
-      a.main_menu_link href='#{enterprise_system_constants_path}' System Constants
-
-
-
+      div.main_category
+        a.main_menu_link href='#{enterprise_control_panel_path}' CONTROL PANEL
 
 
   div.col-md-2.main_menu_segment
@@ -47,6 +33,15 @@ div.main_menu
     div.main_menu_item
       div.main_category
         a.main_menu_link href='#{enterprise_general_management_path}' General Management
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_associated_files_path}' Associated Files
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_associated_images_path}' Associated Images
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_branches_path}' Branches
 
       div.main_menu_item
         a.main_menu_link href='#{enterprise_general_management_contact_details_path}' Contact Details
@@ -60,6 +55,12 @@ div.main_menu
           a.main_menu_link href='#{enterprise_general_management_contact_details_locations_path}' Locations
         div.main_menu_item
           a.main_menu_link href='#{enterprise_general_management_contact_details_telephone_numbers_path}' Telephone Numbers
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_system_accounts_path}' System Accounts
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_system_constants_path}' System Constants
 
       div.main_menu_item
         a.main_menu_link href='#{enterprise_general_management_vehicles_path}' Vehicles

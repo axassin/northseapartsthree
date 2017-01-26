@@ -1,4 +1,4 @@
-class Enterprise::BranchesController < GenericResourceController
+class Enterprise::GeneralManagement::BranchesController < GenericResourceController
 
   def setup_controller
     setup_variables( Branch,
@@ -6,7 +6,7 @@ class Enterprise::BranchesController < GenericResourceController
                      'Establishment Nodes',
                      [],
                      [],
-                     @@routes.enterprise_path)
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_branch, current_params, wizard_mode = nil)

@@ -5,8 +5,8 @@ class Branch < ApplicationRecord
 
   setup_model('fa-pagelines',
               'name',
-              @@routes.enterprise_branches_path,
-              Enterprise::BranchesController)
+              @@routes.enterprise_general_management_branches_path,
+              Enterprise::GeneralManagement::BranchesController)
 
   has_many :contact_details, as: :contactable
   has_many :employees

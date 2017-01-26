@@ -1,4 +1,4 @@
-class Enterprise::SystemAccountsController < GenericResourceController
+class Enterprise::GeneralManagement::SystemAccountsController < GenericResourceController
 
   def setup_controller
     setup_variables( SystemAccount,
@@ -6,7 +6,7 @@ class Enterprise::SystemAccountsController < GenericResourceController
                      'User Entities',
                      [],
                      [],
-                     @@routes.enterprise_path)
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_system_account, current_params, wizard_mode = nil)

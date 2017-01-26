@@ -8,6 +8,9 @@ class Employee < ApplicationRecord
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController)
 
   belongs_to :system_account
+  has_many :associated_files, as: :fileable
+  has_many :associated_images, as: :fileable
+
   validates_presence_of :system_account
 
   belongs_to :branch

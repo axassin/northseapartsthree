@@ -1,4 +1,4 @@
-class Enterprise::SystemConstantsController < GenericResourceController
+class Enterprise::GeneralManagement::SystemConstantsController < GenericResourceController
 
   def setup_controller
     setup_variables( SystemConstant,
@@ -6,7 +6,7 @@ class Enterprise::SystemConstantsController < GenericResourceController
                      'Constants for Application Use',
                      [],
                      [],
-                     @@routes.enterprise_path)
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_system_constant, current_params, wizard_mode = nil)

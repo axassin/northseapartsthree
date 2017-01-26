@@ -1,0 +1,9 @@
+div.form_element_tip Enter a new Branch for the Company
+
+div.col-md-6
+  = input_word(f, :name)
+div.col-md-6
+  = input_description(f, :description)
+
+- if @wizard_steps.present?
+  input type='hidden' name='mother_model' value='new_branch'

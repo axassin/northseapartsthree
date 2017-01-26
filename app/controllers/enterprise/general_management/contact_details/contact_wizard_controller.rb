@@ -29,9 +29,11 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
             @current_instance = SystemAccount.new
           when 'existing_branch'
             @current_instance = Branch.new
+          else
+            @restart = true
         end
       when :setup_contact_detail
-        setup_step(ContactDetail, false)
+        setup_step(ContactDetail)
       when :setup_telephone
         mother_model_type = params[:mother_model_type].constantize
         setup_step(TelephoneNumber, true, true)
@@ -55,7 +57,6 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   end
 
   def update
-
     case step
       when :start
       when :setup_mother_model
@@ -63,6 +64,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
           when 'new_system_account'
             process_step(SystemAccount, true)
           when 'new_branch'
+            puts '------------- batman 3 --------'
             process_step(Branch, true)
           when 'existing_system_account'
             @mother_parameters.store('mother_model_type','SystemAccount')
@@ -70,6 +72,8 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
           when 'existing_branch'
             @mother_parameters.store('mother_model_type','Branch')
             @mother_parameters.store('mother_model_id',params[:branch][:mother_model_id])
+          else
+            @restart = true
         end
       when :setup_contact_detail
         process_step(ContactDetail)

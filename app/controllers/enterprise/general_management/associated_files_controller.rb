@@ -1,4 +1,4 @@
-class Enterprise::AssociatedFilesController < GenericResourceController
+class Enterprise::GeneralManagement::AssociatedFilesController < GenericResourceController
 
   def setup_controller
     setup_variables( AssociatedFile,
@@ -6,7 +6,7 @@ class Enterprise::AssociatedFilesController < GenericResourceController
                      'File Assets',
                      ['file','fileable_id','fileable_type'],
                      ['file_link','related'],
-                     @@routes.enterprise_associated_files_path)
+                     @@routes.enterprise_general_management_path)
   end
 
   def process_form(my_associated_file, current_params, wizard_mode = nil)

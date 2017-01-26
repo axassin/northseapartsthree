@@ -40,6 +40,11 @@ Rails.application.routes.draw do
   define_index( 'enterprise' )
   namespace :enterprise do
 
+    define_index( 'control_panel' )
+    namespace :control_panel do
+
+    end
+
     define_index( 'general_management' )
     namespace :general_management do
       namespace :contact_details do
@@ -51,13 +56,12 @@ Rails.application.routes.draw do
       get 'contact_details/contactable', to: 'contact_details#contactable'
       generate_logic_unit( :contact_details )
       generate_logic_unit( :vehicles )
+      generate_logic_unit( :branches )
+      generate_logic_unit( :system_accounts )
+      generate_logic_unit( :system_constants )
+      generate_logic_unit( :associated_files )
+      generate_logic_unit( :associated_images )
     end
-
-    generate_logic_unit( :system_accounts )
-    generate_logic_unit( :system_constants )
-    generate_logic_unit( :branches )
-    generate_logic_unit( :associated_files )
-    generate_logic_unit( :associated_images )
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
@@ -67,6 +71,7 @@ Rails.application.routes.draw do
     namespace :human_resources do
       define_index( 'employee_accounts_management' )
       namespace :employee_accounts_management do
+        resources :new_employee_wizard
         generate_logic_unit( :employee_statuses )
         generate_logic_unit( :employees )
         generate_logic_unit( :biodata )

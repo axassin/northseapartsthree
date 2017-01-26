@@ -7,8 +7,8 @@ class AssociatedImage < ApplicationRecord
 
   setup_model('fa-image',
               'name',
-              @@routes.enterprise_associated_images_path,
-              Enterprise::AssociatedImagesController)
+              @@routes.enterprise_general_management_associated_images_path,
+              Enterprise::GeneralManagement::AssociatedImagesController)
 
   validates :image, file_size: { less_than_or_equal_to: 10.megabytes }
 

@@ -5,8 +5,8 @@ class SystemAccount < ApplicationRecord
 
   setup_model('fa-user',
               'name',
-              @@routes.enterprise_system_accounts_path,
-              Enterprise::SystemAccountsController)
+              @@routes.enterprise_general_management_system_accounts_path,
+              Enterprise::GeneralManagement::SystemAccountsController)
 
   include Description
 
