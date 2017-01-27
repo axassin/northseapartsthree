@@ -1,13 +1,13 @@
 ruby:
-  mother_model_id = params[:mother_model_id]
-  mother_model_type = params[:mother_model_type].constantize
-  mother_model_instance = mother_model_type.find_by_id(mother_model_id)
+  wizard_model_id = params[:wizard_model_id]
+  wizard_model_type = params[:wizard_model_type].constantize
+  wizard_model_instance = wizard_model_type.find_by_id(wizard_model_id)
 
 div.grid-item
-  = render partial: mother_model_type.cell_path, locals: { result: mother_model_instance }
+  = render partial: wizard_model_type.cell_path, locals: { result: wizard_model_instance }
 
-- if mother_model_instance.has_contact_detail?
-  - mother_model_instance.all_contact_details.each do |contact_detail|
+- if wizard_model_instance.has_contact_detail?
+  - wizard_model_instance.all_contact_details.each do |contact_detail|
     div.grid-item
       = render partial: contact_detail.class.cell_path, locals: {result: contact_detail}
 

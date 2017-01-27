@@ -20,7 +20,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
   end
 
   def show
-    mother_model_type = SystemAccount
+    wizard_model_type = SystemAccount
     case step
       when :start
         setup_step
@@ -30,16 +30,16 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         setup_step(ContactDetail)
       when :setup_telephone
         setup_step(TelephoneNumber, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: wizard_model_type).last.id
       when :setup_link
         setup_step(Link, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: wizard_model_type).last.id
       when :setup_location
         setup_step(Location, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: wizard_model_type).last.id
       when :setup_employee
         setup_step(Employee)
       when :setup_biodatum
@@ -60,8 +60,8 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
     case step
       when :start
       when :setup_system_account
-        @mother_parameters.store('mother_model_type','SystemAccount')
-        @mother_parameters.store('mother_model_id',params[:system_account][:mother_model_id])
+        @mother_parameters.store('wizard_model_type','SystemAccount')
+        @mother_parameters.store('wizard_model_id',params[:system_account][:wizard_model_id])
         process_step(SystemAccount, true)
       when :setup_contact_detail
         process_step(ContactDetail)

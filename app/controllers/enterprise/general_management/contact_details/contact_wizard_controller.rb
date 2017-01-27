@@ -2,7 +2,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   include Wicked::Wizard
 
   steps :start,
-        :setup_mother_model,
+        :setup_wizard_model,
         :setup_contact_detail,
         :setup_telephone,
         :setup_link,
@@ -18,9 +18,9 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
     case step
       when :start
         setup_step(nil, false, false, true)
-      when :setup_mother_model
+      when :setup_wizard_model
         @label_method = 'name'
-        case params[:mother_model]
+        case params[:wizard_model]
           when 'new_system_account'
             setup_step(SystemAccount)
           when 'new_branch'
@@ -35,20 +35,17 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :setup_contact_detail
         setup_step(ContactDetail)
       when :setup_telephone
-        mother_model_type = params[:mother_model_type].constantize
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: params[:wizard_model_type]).last.id
         setup_step(TelephoneNumber, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
       when :setup_link
-        mother_model_type = params[:mother_model_type].constantize
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: params[:wizard_model_type]).last.id
         setup_step(Link, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
       when :setup_location
-        mother_model_type = params[:mother_model_type].constantize
+        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                                 contactable_type: params[:wizard_model_type]).last.id
         setup_step(Location, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:mother_model_id],
-                                                 contactable_type: mother_model_type).last.id
       when :end
         setup_step(nil, false)
       else
@@ -59,19 +56,18 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   def update
     case step
       when :start
-      when :setup_mother_model
-        case params[:mother_model]
+      when :setup_wizard_model
+        case params[:wizard_model]
           when 'new_system_account'
             process_step(SystemAccount, true)
           when 'new_branch'
-            puts '------------- batman 3 --------'
             process_step(Branch, true)
           when 'existing_system_account'
-            @mother_parameters.store('mother_model_type','SystemAccount')
-            @mother_parameters.store('mother_model_id',params[:system_account][:mother_model_id])
+            @mother_parameters.store('wizard_model_type','SystemAccount')
+            @mother_parameters.store('wizard_model_id',params[:system_account][:wizard_model_id])
           when 'existing_branch'
-            @mother_parameters.store('mother_model_type','Branch')
-            @mother_parameters.store('mother_model_id',params[:branch][:mother_model_id])
+            @mother_parameters.store('wizard_model_type','Branch')
+            @mother_parameters.store('wizard_model_id',params[:branch][:wizard_model_id])
           else
             @restart = true
         end

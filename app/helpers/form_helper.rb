@@ -63,9 +63,9 @@ module FormHelper
   end
 
   # primary image uploader element
-  def primary_image_file_upload_element(f, params, current_instance)
-    primary_image_input = f.input :primary_image, as: :file
-    main = primary_image_input + primary_image_default(current_instance)
+  def image_upload_input(f, params, current_instance, name = 'primary_image')
+    image_input = f.input name.to_sym, as: :file
+    main = image_input + image_preview(current_instance)
     main
   end
 
@@ -79,7 +79,7 @@ module FormHelper
   # file uploader element
   def associated_file_upload_element(f, params, current_instance)
     primary_image_input = f.input :file, as: :file
-    main = primary_image_input + file_default(current_instance)
+    main = primary_image_input + file_preview(current_instance)
     main
   end
 

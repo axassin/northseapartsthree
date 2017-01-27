@@ -22,23 +22,22 @@ class WizardController < ApplicationController
     @choice = choice
 
     # Check if Mother Model Exists
-    if params.has_key?('mother_model_id') && params.has_key?('mother_model_type')
-      puts 'has_key? = ' + ( params.has_key?('mother_model_id') && params.has_key?('mother_model_type') ).to_s
-      puts 'exists? = ' + params[:mother_model_type].constantize.exists?(id: params[:mother_model_id]).to_s
-      if params[:mother_model_type].constantize.exists?(id: params[:mother_model_id])
-        @mother_model = params['mother_model_type'].constantize.find_by_id(params['mother_model_id'])
+    if params.has_key?('wizard_model_id') && params.has_key?('wizard_model_type')
+      if params[:wizard_model_type].constantize.exists?(id: params[:wizard_model_id])
+        @wizard_model = params['wizard_model_type'].constantize.find_by_id(params['wizard_model_id'])
       else
         flash[:main_notification] = ' Wizard identifier not found . Wizard has restarted. '
         @restart = true
       end
     end
+
   end
 
   def show_finish
     @restart == true ? (redirect_to @main_resource_path + '/start') : (render_step(params[:id]))
   end
 
-  def process_step(current_model, mother_model = false, finish_step = false, next_step = nil)
+  def process_step(current_model, wizard_model = false, finish_step = false, next_step = nil)
 
     # Process request through respective Resource Controller
     unless finish_step
@@ -54,12 +53,12 @@ class WizardController < ApplicationController
     else
 
       # Put as Mother Model
-      if mother_model
-        @mother_parameters.store('mother_model_type',current_model.to_s)
-        @mother_parameters.store('mother_model_id',response)
+      if wizard_model
+        @mother_parameters.store('wizard_model_type',current_model.to_s)
+        @mother_parameters.store('wizard_model_id',response)
       else
-        @mother_parameters.store('mother_model_type',params[:mother_model_type])
-        @mother_parameters.store('mother_model_id',params[:mother_model_id])
+        @mother_parameters.store('wizard_model_type',params[:wizard_model_type])
+        @mother_parameters.store('wizard_model_id',params[:wizard_model_id])
       end
 
       @next_step = next_step unless next_step.nil?
@@ -80,9 +79,6 @@ class WizardController < ApplicationController
 
       # for repeating steps
       params.has_key?('repeatable') ? main_step = step.to_s : main_step = next_step.to_s
-
-      # for steps with skips
-      main_step = @next_step if @next_step.present?
 
       # redirect path finalization
       update_redirection_path = @main_resource_path + '/' + main_step.to_s + '?' + @mother_parameters.to_query

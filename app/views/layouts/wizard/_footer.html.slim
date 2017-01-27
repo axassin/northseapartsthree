@@ -1,12 +1,45 @@
-- if @mother_model
-  div.col-md-12.associated_models
-    label.outside_label.string.required style='float: left' ASSOCIATED MODELS
-    br
-    div.associated_model_container
-      = render partial: 'associated_models'
+br
+
+
+- if @wizard_model.present?
+  ruby:
+    wizard_model_id = params[:wizard_model_id]
+    wizard_model_type = params[:wizard_model_type].constantize
+    wizard_model_instance = wizard_model_type.find_by_id(wizard_model_id)
+
+    contact_detail = wizard_model_instance.contact_details.order('created_at DESC').first
+    if contact_detail.present?
+      telephone_numbers = contact_detail.telephone_numbers
+      links = contact_detail.links
+      locations = contact_detail.locations  
+    end
+
+  label.outside_label.string.required style='float: left' ASSOCIATED MODELS
+  br
+  hr style='margin: 0'
+
+  div.associated_model_container
+
+    span.stackable_column
+      a.btn.btn-default.associated_wizard_button href='#{wizard_model_instance.show_path}' #{wizard_model_instance.represent}
+
+    span.stackable_column
+      a.btn.btn-default.associated_wizard_button href='#{contact_detail.show_path}' #{contact_detail.represent}
+
+    span.stackable_column
+      - telephone_numbers.each do |telephone_number|
+        a.btn.btn-default.associated_wizard_button href='#{telephone_number.show_path}' #{telephone_number.represent}
+
+    span.stackable_column
+      - links.each do |link|
+        a.btn.btn-default.associated_wizard_button href='#{link.show_path}' #{link.represent}
+
+    span.stackable_column
+      - locations.each do |location|
+        a.btn.btn-default.associated_wizard_button href='#{location.show_path}' #{location.represent}
 
 ruby:
-  current_parameters = '?mother_model_id=' + params[:mother_model_id].to_s + '&mother_model_type=' + params[:mother_model_type].to_s
+  current_parameters = '?wizard_model_id=' + params[:wizard_model_id].to_s + '&wizard_model_type=' + params[:wizard_model_type].to_s
   back_path = previous_wizard_path + @mother_parameters.to_query
   forward_path = next_wizard_path
   back_text = 'BACK'
@@ -52,7 +85,8 @@ div.col-md-12
   - if ((step.to_s == 'end'))
     a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD
 
-br
 div.float-clearing
+br
+br
 br
 br
