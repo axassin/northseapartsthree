@@ -1,8 +1,7 @@
 module GenericResourceHelper
 
-  def image_preview(result)
-
-    instance_url = result.primary_image.url
+  def image_preview(result, name = 'primary_image')
+    instance_url = result.send(name).send('url')
 
     str = mab do
       if ( instance_url.present? && public_file_exists?(instance_url) )

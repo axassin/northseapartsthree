@@ -24,13 +24,20 @@ class WizardController < ApplicationController
     # Check if Mother Model Exists
     if params.has_key?('wizard_model_id') && params.has_key?('wizard_model_type')
       if params[:wizard_model_type].constantize.exists?(id: params[:wizard_model_id])
-        @wizard_model = params['wizard_model_type'].constantize.find_by_id(params['wizard_model_id'])
+        @wizard_model_instance = params['wizard_model_type'].constantize.find_by_id(params['wizard_model_id'])
       else
         flash[:main_notification] = ' Wizard identifier not found . Wizard has restarted. '
         @restart = true
       end
     end
 
+  end
+
+  def setup_associations(main_array)
+    if @wizard_model_instance.present?
+      main_array.insert(0,@wizard_model_instance)
+    end
+    @associated_instances = main_array
   end
 
   def show_finish

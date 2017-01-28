@@ -20,7 +20,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
   end
 
   def show
-    wizard_model_type = SystemAccount
+
     case step
       when :start
         setup_step
@@ -31,15 +31,15 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
       when :setup_telephone
         setup_step(TelephoneNumber, true, true)
         @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: wizard_model_type).last.id
+                                                 contactable_type: SystemAccount).last.id
       when :setup_link
         setup_step(Link, true, true)
         @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: wizard_model_type).last.id
+                                                 contactable_type: SystemAccount).last.id
       when :setup_location
         setup_step(Location, true, true)
         @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: wizard_model_type).last.id
+                                                 contactable_type: SystemAccount).last.id
       when :setup_employee
         setup_step(Employee)
       when :setup_biodatum

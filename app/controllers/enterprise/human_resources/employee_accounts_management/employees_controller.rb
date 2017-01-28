@@ -6,7 +6,8 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesControlle
                      'Workforce',
                      ['system_account_id'],
                      ['account_name'],
-                     @@routes.enterprise_human_resources_employee_accounts_management_path)
+                     @@routes.enterprise_human_resources_employee_accounts_management_path,
+                     @@routes.enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path)
   end
 
   def process_form(my_employee, current_params, wizard_mode = nil)

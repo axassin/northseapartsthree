@@ -15,6 +15,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
   end
 
   def show
+
     case step
       when :start
         setup_step(nil, false, false, true)
