@@ -7,4 +7,4 @@ div.col-md-6
 
   = polymorphic_selector(f, current_instance, 'imageable', polymorphic_array, false)
   br
-  = associated_image_upload_element(f, params, @current_instance)
+  = image_upload_input(f, params, @current_instance, 'image')

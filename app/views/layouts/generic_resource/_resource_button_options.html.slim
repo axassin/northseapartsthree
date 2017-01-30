@@ -2,6 +2,8 @@ div.resource_button_options.btn-group-vertical
 
   a.btn.btn-default id="generic_resource_reset" RESET
   a.btn.btn-default data-toggle="modal" id='add_form_button' data-target="#add_form_modal" ADD ITEM
+  - if @wizard_model_path.present?
+    a.btn.btn-default href='#{@wizard_model_path}' ADD THROUGH WIZARD
 
   - unless @result_set.total_count == 0
 

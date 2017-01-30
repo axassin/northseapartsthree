@@ -2,12 +2,7 @@ class GenericResourceController < ApplicationController
 
   before_action :setup_controller
 
-  def setup_variables( class_model,
-                       resource_title_heading,
-                       resource_sub_heading,
-                       omitted_attributes = [],
-                       admitted_attributes = [],
-                       parent_controller_path )
+  def setup_variables( class_model, resource_title_heading, resource_sub_heading, omitted_attributes , admitted_attributes , parent_controller_path, wizard_model_path = nil)
 
     @class_model = class_model
     @resource_glyphicon = class_model.class_variable_get(:@@resource_glyphicon)
@@ -19,6 +14,7 @@ class GenericResourceController < ApplicationController
     @main_resource_path = class_model.class_variable_get(:@@resource_path)
     @current_instance = class_model.new
     @class_model_symbolized = class_model.to_s.underscore.gsub('/','_').to_sym
+    @wizard_model_path = wizard_model_path
 
     if @class_model.attribute_names.include? 'primary_image'
       @omitted_attributes = omitted_attributes.push('primary_image')

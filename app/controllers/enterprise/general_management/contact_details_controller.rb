@@ -6,7 +6,8 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
                      'Communication Assets',
                      [],
                      [],
-                     @@routes.enterprise_general_management_path)
+                     @@routes.enterprise_general_management_path,
+                     @@routes.enterprise_general_management_contact_details_contact_wizard_index_path)
   end
 
   def process_form(my_contact_details, current_params, wizard_mode = nil)

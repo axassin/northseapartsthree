@@ -21,8 +21,6 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
 
   def show
 
-
-
     case step
       when :start
         setup_step
