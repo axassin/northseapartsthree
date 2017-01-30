@@ -87,9 +87,9 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         process_step(Biodatum)
       when :setup_employee_status
         process_step(EmployeeStatus)
-      when :setup_associated_images
+      when :setup_associated_image
         process_step(AssociatedImage)
-      when :setup_associated_files
+      when :setup_associated_file
         process_step(AssociatedFile)
       when :end
     end

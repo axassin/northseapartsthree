@@ -43,6 +43,10 @@ html lang="en"
             div.col-md-12.footnote * Required
             div.float-clearing
             = render partial: 'layouts/wizard/footer'
+          javascript:
+            var form_id = '#new_' + '#{@current_instance.class.parameterized}';
+            $(form_id).parsley();
+
         - elsif step.to_s == 'end'
           div.statement Operation Successful!
           div.float-clearing

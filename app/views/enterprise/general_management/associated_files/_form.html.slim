@@ -6,10 +6,10 @@ div.col-md-6
     ruby:
       polymorphic_array = [[Branch, 'name'],[Vehicle, 'plate_number'],[Employee, 'designation'],[SystemAccount, 'name']]
     = polymorphic_selector(f, current_instance, 'fileable', polymorphic_array, false)
+    br
   - else
     = f.input :fileable,
             :as => :hidden,
             :input_html => { :value => 'Employee' + ',' + @employee_id}
 
-  br
-  = associated_file_upload_element(f, params, @current_instance)
+  = associated_file_upload_element(f, params, @current_instance, true)
