@@ -2,7 +2,7 @@ class Biodatum < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('fa-heart',
-              'description',
+              'owner',
               @@routes.enterprise_human_resources_employee_accounts_management_biodata_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController )
 
@@ -22,7 +22,7 @@ class Biodatum < ApplicationRecord
   validates :description, length: { in: 0..512 }, :allow_nil => true
 
   def owner
-    Employee.find(employee_id).account_name
+    Employee.find(employee_id).system_account.name
   end
 
   searchable_string(:owner)

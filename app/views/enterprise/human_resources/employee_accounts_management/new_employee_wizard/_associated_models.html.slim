@@ -1,1 +1,25 @@
 = render :partial => 'enterprise/general_management/contact_details/contact_wizard/associated_models'
+
+ruby:
+  employee = @wizard_model_instance.employee
+
+- if employee.present?
+  = associated_wizard_section(employee)
+
+  ruby:
+    biodatum = employee.biodatum
+    employee_status = employee.employee_statuses.order('created_at DESC').first
+    associated_files = employee.associated_files
+    associated_images = employee.associated_images
+
+  - if biodatum.present?
+    = associated_wizard_section(biodatum)
+
+  - if employee_status.present?
+    = associated_wizard_section(employee_status)
+
+  - if associated_files.present?
+    = associated_wizard_section(associated_files)
+
+  - if associated_images.present?
+    = associated_wizard_section(associated_images)

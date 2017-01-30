@@ -16,6 +16,11 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
 
   def show
 
+    set_contact_detail_id = Proc.new do
+      @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                               contactable_type: params[:wizard_model_type]).last.id
+    end
+
     case step
       when :start
         setup_step(nil, false, false, true)
@@ -36,16 +41,13 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
       when :setup_contact_detail
         setup_step(ContactDetail)
       when :setup_telephone
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: params[:wizard_model_type]).last.id
+        set_contact_detail_id.call
         setup_step(TelephoneNumber, true, true)
       when :setup_link
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: params[:wizard_model_type]).last.id
+        set_contact_detail_id.call
         setup_step(Link, true, true)
       when :setup_location
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: params[:wizard_model_type]).last.id
+        set_contact_detail_id.call
         setup_step(Location, true, true)
       when :end
         setup_step(nil, false)

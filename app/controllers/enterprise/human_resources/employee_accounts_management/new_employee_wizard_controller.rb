@@ -21,6 +21,15 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
 
   def show
 
+    set_employee_id = Proc.new do
+      @employee_id = Employee.where(system_account_id: params[:wizard_model_id]).last.id
+    end
+
+    set_contact_detail_id = Proc.new do
+      @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
+                                               contactable_type: SystemAccount).last.id
+    end
+
     case step
       when :start
         setup_step
@@ -29,26 +38,27 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
       when :setup_contact_detail
         setup_step(ContactDetail)
       when :setup_telephone
+        set_contact_detail_id.call
         setup_step(TelephoneNumber, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: SystemAccount).last.id
       when :setup_link
+        set_contact_detail_id.call
         setup_step(Link, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: SystemAccount).last.id
       when :setup_location
+        set_contact_detail_id.call
         setup_step(Location, true, true)
-        @contact_detail_id = ContactDetail.where(contactable_id: params[:wizard_model_id],
-                                                 contactable_type: SystemAccount).last.id
       when :setup_employee
         setup_step(Employee)
       when :setup_biodatum
+        set_employee_id.call
         setup_step(Biodatum)
       when :setup_employee_status
+        set_employee_id.call
         setup_step(EmployeeStatus)
       when :setup_associated_image
+        set_employee_id.call
         setup_step(AssociatedImage, true, true)
       when :setup_associated_file
+        set_employee_id.call
         setup_step(AssociatedFile, true, true)
       when :end
         setup_step(nil)

@@ -155,6 +155,7 @@ class GenericResourceController < ApplicationController
       end
 
     rescue => ex
+
       puts ' --------- PROCESS ERROR START --------- '
       puts ex
       @wizard_response = ex

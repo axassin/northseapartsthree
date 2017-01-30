@@ -46,6 +46,8 @@ class WizardController < ApplicationController
 
   def process_step(current_model, wizard_model = false, finish_step = false, next_step = nil)
 
+    puts '------------ request went through ----------------- '
+
     # Process request through respective Resource Controller
     unless finish_step
       response = current_model.associated_controller.new.process_form(current_model.new,
@@ -57,6 +59,7 @@ class WizardController < ApplicationController
     @error_flag = false
     if response.class < StandardError
       @error_flag = true
+      @error_message = response
     else
 
       # Put as Mother Model
@@ -80,7 +83,7 @@ class WizardController < ApplicationController
 
     # check for errors
     if @error_flag
-      flash[:main_notification] = ' There was an error processing your request. Wizard has restarted. '
+      flash[:main_notification] = ' There was an error processing your request. Wizard has restarted: ' + @error_message.to_s
       update_redirection_path = @main_resource_path # if there is one, go back to the start of wizard
     else
 
