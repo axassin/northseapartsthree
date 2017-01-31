@@ -1,2 +1,4 @@
 = image_preview(result.system_account)
-div.named_statement #{ result.represent + ' | ' + result.current_state + ' | ' + result.position}
+div.named_statement #{ result.represent.to_s }
+div.named_statement #{ result.current_state.to_s}
+div.named_statement #{ result.position.to_s}

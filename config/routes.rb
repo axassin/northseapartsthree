@@ -76,6 +76,14 @@ Rails.application.routes.draw do
         generate_logic_unit( :employees )
         generate_logic_unit( :biodata )
       end
+
+      define_index( 'attendance' )
+      namespace :attendance do
+        generate_logic_unit( :holidays )
+        generate_logic_unit( :attendance_record )
+        define_index( 'employee_attendance' )
+      end
+
     end
 
     define_index( 'operations' )

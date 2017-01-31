@@ -1,10 +1,7 @@
 br
 
 - if @wizard_model_instance.present?
-
-  label.outside_label.string.required style='float: left' ASSOCIATED MODELS
-  br
-  hr style='margin: 0'
+  = horizontal_ruled_label('ASSOCIATED MODELS')
 
   div.associated_model_container
     = render partial: controller_path + '/associated_models', locals: {wizard_model_instance: @wizard_model_instance}

@@ -29,4 +29,10 @@ module GenericResourceHelper
     output_html_structure(str)
   end
 
+  def horizontal_ruled_label(current_label)
+    render partial: 'layouts/horizontal_ruled_label', locals: {
+        current_label: current_label
+    }
+  end
+
 end
