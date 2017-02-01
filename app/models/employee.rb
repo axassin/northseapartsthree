@@ -19,7 +19,7 @@ class Employee < ApplicationRecord
   validates_presence_of :system_account
   validates :branch, length: { in: 0..64 }, :allow_nil => true
 
-  scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.current_state == status }}
+  scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
 
   def designation
     SystemAccount.find_by_id(system_account_id).name + ' (' + position + ') at ' + Branch.find_by_id(branch_id).name
@@ -33,8 +33,8 @@ class Employee < ApplicationRecord
     Branch.find_by_id(branch_id).represent
   end
 
-  def current_state
-    employee_status =  EmployeeStatus.where(['implemented_at <= ? AND employee_id = ?', Date.today, id])
+  def employment_status (inquired_date = Date.today)
+    employee_status =  EmployeeStatus.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
     employee_status.order('implemented_at DESC').first.state.to_s if employee_status.present?
   end
 

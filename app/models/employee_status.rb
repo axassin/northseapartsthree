@@ -1,6 +1,7 @@
 class EmployeeStatus < ApplicationRecord
 
   include GenericResourceCommon
+  include EmployeeAssociated
 
 
   setup_model('fa-fire',
@@ -12,14 +13,9 @@ class EmployeeStatus < ApplicationRecord
 
   include Remark
 
-  validates :employee_id, presence: true
   validates :state, inclusion: {in: ['ACTIVE','INACTIVE','']}, presence: true
 
-  def owner_name
-    Employee.find(employee).represent
-  end
-
-  searchable_string(:owner_name)
+  searchable_string(:owner)
   searchable_string(:state)
   searchable_date(:implemented_at)
 

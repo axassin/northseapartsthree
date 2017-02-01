@@ -201,6 +201,16 @@ if Rails.env.development? || Rails.env.test?
       current_employee_status.save
     end
 
+    rand(0..25).times do
+      generated_date = Faker::Date.between(1.week.ago, Date.today)
+      generated_time_in = Faker::Time.between(2.days.ago, Date.today, :all)
+      generated_time_out = Faker::Time.between(2.days.ago, Date.today, :all)
+      while generated_time_in > generated_time_out
+        generated_time_out = Faker::Time.between(2.days.ago, Date.today, :all)
+      end
+
+    end
+
   end
 
 

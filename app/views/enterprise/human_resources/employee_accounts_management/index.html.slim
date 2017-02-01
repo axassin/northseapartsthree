@@ -12,11 +12,11 @@ form method='get'
 
   span &nbsp; that are currently &nbsp;
 
-  select name='current_state'
-    - if params[:current_state] == 'ACTIVE'
+  select name='employment_status'
+    - if params[:employment_status] == 'ACTIVE'
       option value='ACTIVE' selected='selected' ACTIVE
       option value='INACTIVE' INACTIVE
-    - elsif params[:current_state] == 'INACTIVE'
+    - elsif params[:employment_status] == 'INACTIVE'
       option value='ACTIVE' ACTIVE
       option value='INACTIVE' selected='selected' INACTIVE
     - else
