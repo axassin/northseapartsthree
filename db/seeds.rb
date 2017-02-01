@@ -51,6 +51,11 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+
+  def rand_time(from, to=Time.now)
+    Time.at(rand_in_range(from.to_f, to.to_f))
+  end
+
   def establish_file(model, id)
 
     current_file = ['sample_file_01.txt',
@@ -203,12 +208,18 @@ if Rails.env.development? || Rails.env.test?
 
     rand(0..25).times do
       generated_date = Faker::Date.between(1.week.ago, Date.today)
-      generated_time_in = Faker::Time.between(2.days.ago, Date.today, :all)
-      generated_time_out = Faker::Time.between(2.days.ago, Date.today, :all)
-      while generated_time_in > generated_time_out
-        generated_time_out = Faker::Time.between(2.days.ago, Date.today, :all)
-      end
 
+      generated_time_in = Faker::Time.between(24.hours.ago, Time.now, :all)
+      generated_time_out = Faker::Time.between('00:00:00', generated_time_out, :all)
+
+      current_attendance_record = AttendanceRecord.create!(
+          employee_id: current_employee.id,
+          remark: Faker::Lorem.sentence(3, false, 0),
+          date_of_attendance: generated_date,
+          time_in: generated_time_in,
+          time_out: generated_time_out
+      )
+      current_attendance_record.save
     end
 
   end

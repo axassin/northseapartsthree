@@ -80,7 +80,7 @@ Rails.application.routes.draw do
       define_index( 'attendance' )
       namespace :attendance do
         generate_logic_unit( :holidays )
-        generate_logic_unit( :attendance_record )
+        generate_logic_unit( :attendance_records )
         define_index( 'employee_attendance' )
       end
 
