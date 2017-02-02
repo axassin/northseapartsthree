@@ -201,7 +201,7 @@ if Rails.env.development? || Rails.env.test?
       current_employee_status.save
     end
 
-    rand(0..25).times do
+    rand(0..50).times do
 
       generated_date = Faker::Date.between(2.weeks.ago, Date.today)
       generated_year = generated_date.year
@@ -221,6 +221,16 @@ if Rails.env.development? || Rails.env.test?
       time_in = [generated_time_in, exact_time_in_first_half, exact_time_in_second_half].sample
       time_out = [generated_time_out, exact_time_out_first_half, exact_time_out_second_half].sample
 
+      8.in(10) do
+        time_in = Time.new(generated_year, generated_month, generated_day, 8, 0 ,0)
+        time_out = Time.new(generated_year, generated_month, generated_day, 12, 0 ,0)
+      end
+
+      8.in(10) do
+        time_in = Time.new(generated_year, generated_month, generated_day, 13, 0 ,0)
+        time_out = Time.new(generated_year, generated_month, generated_day, 18, 0 ,0)
+      end
+
       # Time Precedence
       while time_in.to_i >= time_out.to_i
         time_out = Faker::Time.between(earliest_time_in, latest_time_out, :all)
@@ -230,24 +240,26 @@ if Rails.env.development? || Rails.env.test?
       save_flag = true
       current_date_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
       current_date_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
-      AttendanceRecord.all.where(employee_id: employee_id).each do |att_rec|
+      AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
         other_date_time_in = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
         other_date_time_out = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( id != att_rec.id))
-        while assessment
-
+        assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        if assessment
+          save_flag = false
+          break;
         end
       end
 
-      current_attendance_record = AttendanceRecord.create!(
-          employee_id: current_employee.id,
-          remark: Faker::Lorem.sentence(3, false, 0),
-          date_of_attendance: generated_date,
-          time_in: time_in,
-          time_out: time_out
-      )
+      if save_flag
+        AttendanceRecord.create!(
+            employee_id: current_employee.id,
+            remark: Faker::Lorem.sentence(3, false, 0),
+            date_of_attendance: generated_date,
+            time_in: time_in,
+            time_out: time_out
+        )
+      end
 
-      current_attendance_record.save
     end
 
   end
