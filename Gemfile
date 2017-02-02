@@ -173,3 +173,6 @@ gem 'bootstrap-kaminari-views'
 
 # File Validators gem adds file size and content type validations to ActiveModel
 gem 'file_validators'
+
+# Ideal solution for booking applications where you want to make sure, that one place can be booked only once in specific time period.
+gem 'validates_overlap'

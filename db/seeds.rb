@@ -51,11 +51,6 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
-
-  def rand_time(from, to=Time.now)
-    Time.at(rand_in_range(from.to_f, to.to_f))
-  end
-
   def establish_file(model, id)
 
     current_file = ['sample_file_01.txt',
@@ -207,18 +202,51 @@ if Rails.env.development? || Rails.env.test?
     end
 
     rand(0..25).times do
-      generated_date = Faker::Date.between(1.week.ago, Date.today)
 
-      generated_time_in = Faker::Time.between(24.hours.ago, Time.now, :all)
-      generated_time_out = Faker::Time.between('00:00:00', generated_time_out, :all)
+      generated_date = Faker::Date.between(2.weeks.ago, Date.today)
+      generated_year = generated_date.year
+      generated_month = generated_date.month
+      generated_day = generated_date.day
+
+      earliest_time_in = Time.new(generated_year, generated_month, generated_day, 0, 0 ,0)
+      latest_time_out = Time.new(generated_year, generated_month, generated_day, 23, 59, 59)
+
+      generated_time_in = Faker::Time.between(earliest_time_in, latest_time_out, :all)
+      generated_time_out = Faker::Time.between(earliest_time_in, latest_time_out, :all)
+      exact_time_in_first_half = Time.new(generated_year, generated_month, generated_day, 8, 0 ,0)
+      exact_time_out_first_half = Time.new(generated_year, generated_month, generated_day, 12, 0 ,0)
+      exact_time_in_second_half = Time.new(generated_year, generated_month, generated_day, 13, 0 ,0)
+      exact_time_out_second_half = Time.new(generated_year, generated_month, generated_day, 18, 0 ,0)
+
+      time_in = [generated_time_in, exact_time_in_first_half, exact_time_in_second_half].sample
+      time_out = [generated_time_out, exact_time_out_first_half, exact_time_out_second_half].sample
+
+      # Time Precedence
+      while time_in.to_i >= time_out.to_i
+        time_out = Faker::Time.between(earliest_time_in, latest_time_out, :all)
+      end
+
+      # Time Overlap
+      save_flag = true
+      current_date_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      current_date_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      AttendanceRecord.all.where(employee_id: employee_id).each do |att_rec|
+        other_date_time_in = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( id != att_rec.id))
+        while assessment
+
+        end
+      end
 
       current_attendance_record = AttendanceRecord.create!(
           employee_id: current_employee.id,
           remark: Faker::Lorem.sentence(3, false, 0),
           date_of_attendance: generated_date,
-          time_in: generated_time_in,
-          time_out: generated_time_out
+          time_in: time_in,
+          time_out: time_out
       )
+
       current_attendance_record.save
     end
 
