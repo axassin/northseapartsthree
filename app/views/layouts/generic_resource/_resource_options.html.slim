@@ -1,0 +1,42 @@
+- unless @result_set.total_count == 0
+
+  div.results_per_page
+    = 'View Mode : '
+    = select_tag(:view_mode, options_for_select([['TABLE', 'table'], ['GRID', 'grid']], @view_mode))
+
+  div.sort_by
+    ruby:
+      options = []
+      @result_set.first.class.attribute_names.each do |attribute|
+        option_array = []
+        unless @omitted_attributes.include?(attribute)
+          option_array = [attribute.to_s.humanize.upcase, attribute]
+          options.push(option_array)
+        end
+      end
+
+    = 'Sort By : '
+    = select_tag(:order_by, options_for_select([['ASCENDING', 'asc'], ['DESCENDING', 'desc']], @order_by))
+    = select_tag(:sort_by, options_for_select(options, @sort_by ))
+
+  ruby:
+    offset_additional = 0
+    params.has_key?(:per_page) ? offset_additional = params[:per_page].to_i : offset_additional = @DEFAULT_ITEMS_PER_PAGE
+    offset_end = @result_set.offset + offset_additional
+    total_count = @result_set.total_count
+    offset_end = total_count if total_count < offset_end
+
+  div.page_entries_info =("Displaying from #{(@result_set.offset + 1).ordinalize} to the #{offset_end.ordinalize} out of #{@total}")
+
+  div.results_per_page
+    = 'Results per Page : '
+    = select_tag(:per_page,
+            options_for_select([[10, 10],
+                    [50, 50],
+                    [100, 100],
+                    [500, 500],
+                    [1000, 1000],
+                    [5000, 5000]],
+                    params[:per_page]))
+
+  div =(paginate @result_set).gsub('First', '').gsub('Prev', '').gsub('Next', '').gsub('Last', '').html_safe

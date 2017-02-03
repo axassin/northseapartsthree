@@ -1,0 +1,28 @@
+div.col-md-6
+  - unless @employee_id.present?
+    = model_selector(f,
+            Employee,
+            :employee_id,
+            current_instance.employee,
+            'designation')
+    br
+  - else
+    = f.input :employee_id,
+            :as => :hidden,
+            :input_html => {:value => @employee_id}
+
+  = input_date(f, :date_of_birth)
+  = input_word(f, :complexion)
+  = input_word(f, :height)
+  = selector(f, :sex, ['MALE','FEMALE'], current_instance.sex, false)
+  = selector(f, :blood_type, ['O+','O-','A+','A-','B+','B-','AB+','AB-'], current_instance.blood_type, false)
+
+  = input_description(f, :description)
+div.col-md-6
+  = input_word(f, :name_of_mother)
+  = input_word(f, :name_of_father)
+  = input_description(f, :dependents, id = nil)
+
+  = input_description(f, :education, id = nil)
+  = input_description(f, :experience, id = nil)
+  = input_description(f, :notable_accomplishment, id = nil)

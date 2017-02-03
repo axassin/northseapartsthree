@@ -1,0 +1,113 @@
+nav.navbar.navbar-default.navigation
+  div.navbar-header.navigation-logo.col-md-2
+    a href='#{root_path}' =image_tag('nav_bar_header.png')
+
+  - if @class_model != nil
+    div.input_group.navigation-search.col-md-7
+      form method="get" action="#{@main_resource_path}"
+        input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+        input.hidden_submit type="submit"
+  - else
+    div.col-md-7
+
+  div.navigation-menu-button.col-md-1
+    button.btn.btn-default.menu_button data-toggle="tooltip" data-placement="bottom" title="Menu"
+        span.fa.fa-bars
+  div.navigation-login-indicator.col-md-2
+    span Login Placeholder
+
+- if action_name == 'index' || rest_action?
+  = javascript_include_tag 'generic_resource/search_suggestions'
+
+div.main_menu
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_control_panel_path}' CONTROL PANEL
+
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_general_management_path}' General Management
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_associated_files_path}' Associated Files
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_associated_images_path}' Associated Images
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_branches_path}' Branches
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_contact_details_path}' Contact Details
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_contact_wizard_index_path}' Contact Wizard
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_links_path}' Links
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_locations_path}' Locations
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_general_management_contact_details_telephone_numbers_path}' Telephone Numbers
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_system_accounts_path}' System Accounts
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_system_constants_path}' System Constants
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_general_management_vehicles_path}' Vehicles
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_human_resources_path}' Human Resources
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_human_resources_employee_accounts_management_path}' Employee Accounts Management
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path}' Employee Wizard
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_human_resources_employee_accounts_management_employees_path}' Employees
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_human_resources_employee_accounts_management_biodata_path}' Biodata
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_human_resources_employee_accounts_management_employee_statuses_path}' Employee Status
+
+      div.main_menu_item
+        a.main_menu_link href='#{enterprise_human_resources_attendance_path}' Attendance
+
+        div.main_menu_item
+          a.main_menu_link href='#{enterprise_human_resources_attendance_attendance_records_path}' Attendance Records
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_accounting_and_finance_path}' Accounting / Finance
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_operations_path}' Operations
+
+  div.col-md-2.main_menu_segment
+
+    div.main_menu_item
+      div.main_category
+        a.main_menu_link href='#{enterprise_strategic_marketing_path}' Strategic Marketing
+
+= javascript_include_tag 'navigation_bar', media: 'all'

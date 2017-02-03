@@ -1,0 +1,64 @@
+br
+
+- if @wizard_model_instance.present?
+  = horizontal_ruled_label('ASSOCIATED MODELS')
+
+  div.associated_model_container
+    = render partial: controller_path + '/associated_models', locals: {wizard_model_instance: @wizard_model_instance}
+
+ruby:
+  current_parameters = '?wizard_model_id=' + params[:wizard_model_id].to_s + '&wizard_model_type=' + params[:wizard_model_type].to_s
+  back_path = previous_wizard_path + @mother_parameters.to_query
+  forward_path = next_wizard_path
+  back_text = 'BACK'
+  forward_text = 'NEXT'
+  if step.to_s == 'start'
+    back_text = 'EXIT WIZARD'
+  elsif step.to_s == 'end'
+    forward_text = 'EXIT WIZARD'
+  else
+  end
+
+br
+div.float-clearing
+hr
+
+div.col-md-12
+
+  a.btn.btn-default href='#{@main_resource_path}' #{'RESTART WIZARD'}
+  span &nbsp;
+
+  a.btn.btn-default href='#{back_path + current_parameters}' #{back_text}
+  span &nbsp;
+
+  - if @form
+    input.btn.btn-default href='#{forward_path}' type='RESET' value='RESET'
+
+    span &nbsp;
+
+  - if @skippable
+    a.btn.btn-default href='#{forward_path + current_parameters}' SKIP
+
+    span &nbsp;
+
+  - if (((step.to_s == 'start') || (step.to_s == 'end')) && @choice == false)
+    a.btn.btn-default href='#{next_wizard_path}' #{forward_text}
+
+    span &nbsp;
+
+  - if @repeatable
+    input.btn.btn-default type='SUBMIT' name='repeatable' value='CONFIRM AND REPEAT'
+
+    span &nbsp;
+
+  - unless ((step.to_s == 'start') || (step.to_s == 'end'))
+    input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'
+
+  - if ((step.to_s == 'end'))
+    a.btn.btn-default href='#{wizard_path(:start)}' NEW WIZARD
+
+div.float-clearing
+br
+br
+br
+br

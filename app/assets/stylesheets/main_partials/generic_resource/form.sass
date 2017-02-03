@@ -1,0 +1,103 @@
+@import "../../constants"
+
+// Styles for Forms in Modal and Content
+div.main_content, .add_form_modal, .wizard_content
+
+  // Title
+  div.form_title
+    @extend %font_set_two
+    font-size: 2em
+    margin-bottom: 0.5em
+    border-bottom: solid thin
+
+
+  // Alternative Title for Modal Header
+  div.modal-header
+    padding: 1em
+    padding-bottom: 0em
+    border: 0
+
+  div.modal-body
+    padding-top: 0.25em
+
+  // for labels outside their input group
+  label.outside_label
+    margin: 0
+    background-color: gainsboro
+    padding: 0.25em
+    font-size: 0.75em
+
+  // Form Proper
+  form.simple_form
+
+    img.primary_image
+      width: 50%
+
+    img.associated_image
+      width: 100%
+
+    div.form_element_tip
+      padding-left: 1em
+      border-left: solid $TERTIARY_COLOR medium
+
+    // Location Google Maps
+    div.map-display
+      width: 100%
+      height: 350px
+      margin-bottom: 1em
+
+    // Model Select Group
+    div.model_select_group
+      div.form-group
+        margin-bottom: 0.1em
+      img.selector_primary_image
+        float: left
+        display: none
+        width: 50%
+        max-height: 15%
+        margin-top: 0.25em
+        padding: 0.25em
+        border: thin gainsboro solid
+        border-radius: 0
+      div.attribute_display
+        display: none
+        float: left
+        padding: 0.25em
+        margin-top: 0.25em
+        border: thin gainsboro solid
+      a.add_model_select
+        margin-top: 0.5em
+
+    // for contact selector
+    div.contact_detail_selector_group
+      div.contactable_element
+        float: left
+        border-radius: 0
+      .add-contactable-button
+        margin: 0.5em
+        float: left
+
+    // for each input group
+    div.form-group
+      label.control-label
+        float: left
+        margin: 0
+        background-color: gainsboro
+        color: black
+        padding: 0.25em
+        text-transform: uppercase
+        font-size: 0.75em
+      input.form-control
+        border-radius: 0
+      input[type="color"]
+        height: 5em
+
+    // button option
+    div.form_button_options
+      border-top: solid gainsboro thin
+      padding: 0.5em
+      button, input, a
+        margin: 0.5em
+
+    // for footnote
+    div.footnote

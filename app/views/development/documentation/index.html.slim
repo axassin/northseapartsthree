@@ -1,0 +1,44 @@
+div.container
+  h1 North Sea Parts Information System Documentation
+  hr
+  ul
+    li
+      h2 Technical Design
+      ul
+        li
+          h3 Migrations
+          ul
+            li Always include MainMigration Superclass
+            li For strings; always specify limit.
+            table
+              tr
+                th  TYPE
+                th  EXAMPLES
+                th  CHARACTER LIMIT
+              tr
+                td  Word
+                td  Names, Labels, Groups
+                td  2 to 64
+              tr
+                td  Sentence
+                td  Short Descriptions, Remarks
+                td  2 to 256
+              tr
+                td  Paragraph
+                td  Long Descriptions
+                td  2 to 512
+
+        li
+          h3 Models
+          ul
+            li Order of Concerns
+            ul
+              li ActiveRecord Associations
+              li Validations
+              li Solr Searchable Block
+        li
+          h3 Controllers
+        li
+          h3 Views
+    li
+      h2 Style Guide

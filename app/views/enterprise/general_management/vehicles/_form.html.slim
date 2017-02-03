@@ -1,0 +1,11 @@
+div.col-md-4
+  = input_word(f, :plate_number, true)
+  = input_word(f, :make)
+  = input_word(f, :brand)
+div.col-md-4
+  = input_word(f, :fuel_type)
+  = input_description(f, :description)
+  = input_date(f, :date_of_registration)
+  = f.input :color, :input_html => {:type => 'color'}
+div.col-md-4
+  = image_upload_input(f, params, @current_instance)

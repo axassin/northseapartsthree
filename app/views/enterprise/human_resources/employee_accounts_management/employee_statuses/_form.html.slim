@@ -1,0 +1,21 @@
+div.col-md-6
+  - unless @employee_id.present?
+    = model_selector(f,
+            Employee,
+            :employee_id,
+            current_instance.employee,
+            'designation')
+    br
+  - else
+    = f.input :employee_id,
+            :as => :hidden,
+            :input_html => {:value => @employee_id}
+
+  = selector(f, :state, ['INACTIVE','ACTIVE'], current_instance.state)
+  = input_date(f, :implemented_at)
+
+div.col-md-6
+
+  = input_word(f, :remark)
+
+

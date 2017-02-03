@@ -1,0 +1,9 @@
+div.remodal.setup_process data-remodal-id='setup_process'
+  = flash[:setup_process_message]
+  hr
+  div
+    a.btn.btn-default data-remodal-action="confirm" OK
+
+coffee:
+  inst = $('[data-remodal-id=setup_process]').remodal();
+  inst.open();

@@ -1,0 +1,8 @@
+ruby:
+  category_types = current_instance.class.uniq.pluck(:category_type)
+
+div.col-md-6
+  =selector(f, :category_type, category_types, current_instance.category_type)
+div.col-md-6
+  =input_word(f, :label)
+  =input_word(f, :value)

@@ -1,0 +1,22 @@
+@import constants
+
+span.twitter-typeahead
+  width: 100%
+
+  .tt-menu
+    padding: 0.5em
+    background-color: lightgrey
+  .tt-suggestion
+    padding: 0.5em
+    &:hover
+      background-color: lightgrey
+      color: white
+  .tt-suggestion.tt-cursor
+    color: white
+    background-color: $TERTIARY_COLOR
+
+
+  .input-group &
+    display: block !important
+    .tt-menu
+      top: 1em !important

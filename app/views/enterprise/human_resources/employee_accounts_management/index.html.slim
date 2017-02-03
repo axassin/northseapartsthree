@@ -1,0 +1,51 @@
+form method='get'
+
+  span EMPLOYEES at &nbsp;
+
+  select name='branch'
+    - Branch.all.each do |branch|
+      - if params[:branch] == branch.id
+        option selected='selected' value='#{branch.id}' #{branch.name}
+      - else
+        option value='#{branch.id}' #{branch.name}
+
+
+  span &nbsp; that are currently &nbsp;
+
+  select name='employment_status'
+    - if params[:employment_status] == 'ACTIVE'
+      option value='ACTIVE' selected='selected' ACTIVE
+      option value='INACTIVE' INACTIVE
+    - elsif params[:employment_status] == 'INACTIVE'
+      option value='ACTIVE' ACTIVE
+      option value='INACTIVE' selected='selected' INACTIVE
+    - else
+      option value='ACTIVE' ACTIVE
+      option value='INACTIVE' INACTIVE
+
+  span &nbsp; | &nbsp;
+
+  input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
+
+hr
+
+- unless @employee_set.count == 0
+  - @employee_set.each do |employee|
+    div.employee_status_cell
+      = image_preview(employee.system_account)
+      a.btn.btn-default href='#{employee.system_account.show_path}' target='_new'
+        = employee.system_account.name
+- else
+  div.statement No Results Found
+
+div.float-clearing
+br
+hr
+
+a.btn.btn-default href='#{}' NEW EMPLOYEE WIZARD
+span &nbsp;
+a.btn.btn-default href='#{}' EMPLOYEE
+span &nbsp;
+a.btn.btn-default href='#{}' BIODATA
+span &nbsp;
+a.btn.btn-default href='#{}' EMPLOYEE STATUS
