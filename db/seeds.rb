@@ -221,12 +221,12 @@ if Rails.env.development? || Rails.env.test?
       time_in = [generated_time_in, exact_time_in_first_half, exact_time_in_second_half].sample
       time_out = [generated_time_out, exact_time_out_first_half, exact_time_out_second_half].sample
 
-      8.in(10) do
+      5.in(10) do
         time_in = Time.new(generated_year, generated_month, generated_day, 8, 0 ,0)
         time_out = Time.new(generated_year, generated_month, generated_day, 12, 0 ,0)
       end
 
-      8.in(10) do
+      5.in(10) do
         time_in = Time.new(generated_year, generated_month, generated_day, 13, 0 ,0)
         time_out = Time.new(generated_year, generated_month, generated_day, 18, 0 ,0)
       end
