@@ -15,4 +15,6 @@ div.col-md-6
 
 div.col-md-6
 
-  = html5_date_selector(f, AttendanceRecord, :date_of_attendance)
+  = f.input :date_of_attendance, as: :date, html5: true
+  = f.input :time_in, as: :time, html5: true
+  = f.input :time_out, as: :time, html5: true

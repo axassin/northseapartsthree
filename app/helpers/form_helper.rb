@@ -77,7 +77,7 @@ module FormHelper
   end
 
   # Selector for a single model
-  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
+  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false, uniqueness = false)
     render partial: 'common/form/model_selector', locals: {
         f: f,
         model: model,
@@ -86,30 +86,6 @@ module FormHelper
         label_method: label_method,
         value_method: value_method,
         disabled: disabled
-    }
-  end
-
-  def html5_date_selector(f, model, name)
-    render partial: 'common/form/date_selector', locals: {
-        f: f,
-        model: model,
-        name: name
-    }
-  end
-
-  def html5_time_selector(f, model, name)
-    render partial: 'common/form/time_selector', locals: {
-        f: f,
-        model: model,
-        name: name
-    }
-  end
-
-  def html5_date_time_selector(f, model, name)
-    render partial: 'common/form/date_time_selector', locals: {
-        f: f,
-        model: model,
-        name: name
     }
   end
 
