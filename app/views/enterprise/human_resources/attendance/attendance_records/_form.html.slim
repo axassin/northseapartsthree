@@ -14,10 +14,5 @@ div.col-md-6
   = input_word(f, :remark)
 
 div.col-md-6
-  input.default_date_time type='date' name='attendance_record[date_of_attendance]'
-  input.default_date_time type='time' name='attendance_record[time_in]'
-  input.default_date_time type='time' name='attendance_record[time_out]'
 
-  = f.input :date_of_attendance, :as => :date, label: false
-  = f.input :time_in, :as => :time, label: false
-  = f.input :time_out, :as => :time, label: false
+  = html5_date_selector(f, AttendanceRecord, :date_of_attendance)

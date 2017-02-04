@@ -89,6 +89,30 @@ module FormHelper
     }
   end
 
+  def html5_date_selector(f, model, name)
+    render partial: 'common/form/date_selector', locals: {
+        f: f,
+        model: model,
+        name: name
+    }
+  end
+
+  def html5_time_selector(f, model, name)
+    render partial: 'common/form/time_selector', locals: {
+        f: f,
+        model: model,
+        name: name
+    }
+  end
+
+  def html5_date_time_selector(f, model, name)
+    render partial: 'common/form/date_time_selector', locals: {
+        f: f,
+        model: model,
+        name: name
+    }
+  end
+
   # multiple model selector for polymorphic types - manual render partial due to complicated logic
   def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled = false)
     render partial: 'common/form/polymorphic_selector', locals: {
