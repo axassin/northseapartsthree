@@ -7,13 +7,14 @@ class Employee < ApplicationRecord
               @@routes.enterprise_human_resources_employee_accounts_management_employees_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController)
 
+  belongs_to :branch
   belongs_to :system_account
+
   has_one :biodatum
   has_many :employee_statuses
   has_many :associated_files, as: :fileable
   has_many :associated_images, as: :imageable
-  has_many :employee_statuses
-  belongs_to :branch
+
 
   validates_presence_of :branch
   validates_presence_of :system_account

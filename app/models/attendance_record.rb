@@ -1,7 +1,7 @@
 class AttendanceRecord < ApplicationRecord
 
   include GenericResourceCommon
-  include EmployeeAssociated
+  include AssociatedEmployee
 
   setup_model('fa-clock-o',
               'date_of_attendance',
@@ -51,6 +51,10 @@ class AttendanceRecord < ApplicationRecord
 
     end
   end
+
+  searchable_date(:date_of_attendance)
+  searchable_date(:time_in)
+  searchable_date(:time_out)
 
   searchable_string(:date_of_attendance)
   searchable_string(:time_in)

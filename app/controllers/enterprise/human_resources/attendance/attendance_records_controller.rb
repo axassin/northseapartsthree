@@ -4,8 +4,8 @@ class Enterprise::HumanResources::Attendance::AttendanceRecordsController < Gene
     setup_variables( AttendanceRecord,
                      'Attendance Record',
                      'Record of Presence',
-                     [],
-                     [],
+                     ['employee_id'],
+                     ['associated_employee'],
                      @@routes.enterprise_human_resources_attendance_path)
   end
 

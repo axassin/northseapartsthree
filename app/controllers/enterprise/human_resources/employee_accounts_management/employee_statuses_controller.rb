@@ -5,7 +5,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::EmployeeStatusesCo
                      'Employee Statuses',
                      'State of Employment',
                      ['employee_id'],
-                     ['owner_name'],
+                     ['associated_employee'],
                      @@routes.enterprise_human_resources_employee_accounts_management_path)
   end
 

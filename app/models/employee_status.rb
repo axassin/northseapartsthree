@@ -1,7 +1,7 @@
 class EmployeeStatus < ApplicationRecord
 
   include GenericResourceCommon
-  include EmployeeAssociated
+  include AssociatedEmployee
 
 
   setup_model('fa-fire',
@@ -15,7 +15,6 @@ class EmployeeStatus < ApplicationRecord
 
   validates :state, inclusion: {in: ['ACTIVE','INACTIVE','']}, presence: true
 
-  searchable_string(:owner)
   searchable_string(:state)
   searchable_date(:implemented_at)
 

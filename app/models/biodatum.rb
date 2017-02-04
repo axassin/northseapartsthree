@@ -1,7 +1,7 @@
 class Biodatum < ApplicationRecord
 
   include GenericResourceCommon
-  include EmployeeAssociated
+  include AssociatedEmployee
   setup_model('fa-heart',
               'owner',
               @@routes.enterprise_human_resources_employee_accounts_management_biodata_path,
