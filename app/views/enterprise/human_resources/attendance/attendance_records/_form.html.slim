@@ -11,8 +11,13 @@ div.col-md-6
             :as => :hidden,
             :input_html => {:value => @employee_id}
 
-div.col-md-6
   = input_word(f, :remark)
-  = f.input :date_of_attendance, :as => :date
-  = f.input :time_in, :as => :time
-  = f.input :time_out, :as => :time
+
+div.col-md-6
+  input.default_date_time type='date' name='attendance_record[date_of_attendance]'
+  input.default_date_time type='time' name='attendance_record[time_in]'
+  input.default_date_time type='time' name='attendance_record[time_out]'
+
+  = f.input :date_of_attendance, :as => :date, label: false
+  = f.input :time_in, :as => :time, label: false
+  = f.input :time_out, :as => :time, label: false
