@@ -1,6 +1,10 @@
 ruby:
   humanized_name = camel_to_human(name)
   selected.present? ? selected = selected.id : selected = nil
+  data_parsley_hash = ''
+  if uniqueness
+    data_parsley_hash = { 'data-parsley-remote': @main_resource_path + '/uniqueness_validation?attribute='+name.to_s+'&value={value}' }
+  end
 
 div.model_selector_group
   label.outside_label.string.required #{humanized_name.upcase}
@@ -12,6 +16,7 @@ div.model_selector_group
           required: true,
           label_method: label_method.to_sym,
           value_method: value_method.to_sym,
-          disabled: disabled
+          disabled: disabled,
+          input_html: data_parsley_hash
   div
     a.btn.btn-default.add_model_select target='_new' href="#{ model.main_resource_path + '/new' }" #{'Add New ' + humanized_name}

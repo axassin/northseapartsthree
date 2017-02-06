@@ -4,7 +4,7 @@ div.col-md-6
             Employee,
             :employee_id,
             current_instance.employee,
-            'designation')
+            'designation', 'id', false, true)
     br
   - else
     = f.input :employee_id,

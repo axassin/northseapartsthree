@@ -85,7 +85,8 @@ module FormHelper
         selected: selected,
         label_method: label_method,
         value_method: value_method,
-        disabled: disabled
+        disabled: disabled,
+        uniqueness: uniqueness
     }
   end
 
