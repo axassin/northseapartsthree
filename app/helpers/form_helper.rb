@@ -77,7 +77,7 @@ module FormHelper
   end
 
   # Selector for a single model
-  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false, uniqueness = false)
+  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
     render partial: 'common/form/model_selector', locals: {
         f: f,
         model: model,
@@ -85,8 +85,7 @@ module FormHelper
         selected: selected,
         label_method: label_method,
         value_method: value_method,
-        disabled: disabled,
-        uniqueness: uniqueness
+        disabled: disabled
     }
   end
 

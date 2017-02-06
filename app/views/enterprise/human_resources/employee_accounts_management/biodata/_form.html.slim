@@ -1,10 +1,10 @@
 div.col-md-6
   - unless @employee_id.present?
     = model_selector(f,
-            Employee,
+            Employee.all.left_outer_joins(:biodatum).where( biodata: { id: nil } ),
             :employee_id,
             current_instance.employee,
-            'designation', 'id', false, true)
+            'designation')
     br
   - else
     = f.input :employee_id,

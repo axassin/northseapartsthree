@@ -19,4 +19,12 @@ class Enterprise::HumanResources::Attendance::AttendanceRecordsController < Gene
     setup_process(my_attendance_record, attendance_records_processing, wizard_mode)
   end
 
+  def validate_time(time_in, time_out)
+
+  end
+
+  def validate_overlap(date)
+
+  end
+
 end
