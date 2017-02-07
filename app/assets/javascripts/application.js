@@ -29,6 +29,7 @@
 //= require jquery.restfulizer.js
 //= require application_page_load.coffee
 //= require velocity.min.js
+//= require moment
 //= require velocity.ui.min.js
 //= require jquery.func_toggle.js
 //= //require_tree .

@@ -176,3 +176,6 @@ gem 'file_validators'
 
 # Ideal solution for booking applications where you want to make sure, that one place can be booked only once in specific time period.
 gem 'validates_overlap'
+
+# momentjs-rails wraps the Moment.js library in a rails engine for simple use with the asset pipeline provided by Rails 3.1 and higher
+gem 'momentjs-rails'

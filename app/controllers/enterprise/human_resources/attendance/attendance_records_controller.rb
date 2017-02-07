@@ -19,12 +19,29 @@ class Enterprise::HumanResources::Attendance::AttendanceRecordsController < Gene
     setup_process(my_attendance_record, attendance_records_processing, wizard_mode)
   end
 
-  def validate_time(time_in, time_out)
+  def validate_overlap
+    validation_token = false
+    current_date_time_in = DateTime.strptime(params[:date_time_in], '%Y-%m-%dT%H:%M')
+    current_date_time_out = DateTime.strptime(params[:date_time_out], '%Y-%m-%dT%H:%M')
+    employee_id = params[:employee_id]
 
-  end
+    puts '---------------'
+    puts 'current_date_time_in: ' + current_date_time_in.to_s
+    puts 'current_date_time_out: ' + current_date_time_out.to_s
+    puts 'employee_id: ' + employee_id.to_s
+    puts '---------------'
 
-  def validate_overlap(date)
-
+    AttendanceRecord.all.where(employee_id: employee_id).each do |att_rec|
+      other_date_time_in = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+      other_date_time_out = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+      if ((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) == false
+        puts '--------------- true condition detected -------------------'
+        validation_token = true
+        break
+      end
+    end
+    puts 'validation_token: ' + validation_token.to_s
+    render plain: validation_token.to_s
   end
 
 end
