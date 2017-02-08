@@ -40,9 +40,9 @@ ActiveRecord::Schema.define(version: 20170207104124) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "employee_id",        limit: 36
-    t.string   "remark",             limit: 64
-    t.date     "date_of_attendance"
+    t.string   "employee_id",  limit: 36
+    t.string   "remark",       limit: 64
+    t.date     "current_date"
     t.time     "time_in"
     t.time     "time_out"
     t.index ["deleted_at"], name: "index_attendance_records_on_deleted_at", using: :btree
@@ -116,6 +116,8 @@ ActiveRecord::Schema.define(version: 20170207104124) do
     t.datetime "updated_at"
     t.string   "remark",                 limit: 64
     t.date     "date_of_implementation"
+    t.string   "name",                   limit: 128
+    t.string   "type",                   limit: 128
     t.index ["deleted_at"], name: "index_holidays_on_deleted_at", using: :btree
   end
 

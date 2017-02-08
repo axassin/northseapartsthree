@@ -2,12 +2,11 @@ class Biodatum < ApplicationRecord
 
   include GenericResourceCommon
   include AssociatedEmployee
+
   setup_model('fa-heart',
               'owner',
               @@routes.enterprise_human_resources_employee_accounts_management_biodata_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController )
-
-  belongs_to :employee
 
   validates :employee_id, presence: true, uniqueness: true
   validates :name_of_mother, length: { in: 0..256 }, :allow_nil => true

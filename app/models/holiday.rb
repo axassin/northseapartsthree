@@ -1,6 +1,7 @@
 class Holiday < ApplicationRecord
 
   include GenericResourceCommon
+  include Remark
 
   setup_model('fa-slack',
               'name',

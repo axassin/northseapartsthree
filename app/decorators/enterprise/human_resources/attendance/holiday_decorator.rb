@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::Attendance::HolidaysControllerDecorator < ApplicationDecorator
+class Enterprise::HumanResources::Attendance::HolidayDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

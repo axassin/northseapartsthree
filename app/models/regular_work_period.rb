@@ -11,8 +11,6 @@ class RegularWorkPeriod < ApplicationRecord
               @@routes.enterprise_human_resources_attendance_regular_work_periods_path,
               Enterprise::HumanResources::Attendance::RegularWorkPeriodsController )
 
-  belongs_to :employee
-
   def work_period
     time_in.to_s + ' to ' + time_out.to_s
   end

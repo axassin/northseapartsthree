@@ -1,2 +1,2 @@
-class Enterprise::HumanResources::Attendance::RegularWorkPeriodsController < ApplicationController
+class Enterprise::HumanResources::Attendance::RegularWorkPeriodsController < GenericResourceController
 end

@@ -2,6 +2,7 @@ class RestDay < ApplicationRecord
 
   include GenericResourceCommon
   include AssociatedEmployee
+  include Remark
 
   setup_model('fa-eject',
               'day',

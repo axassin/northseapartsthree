@@ -10,6 +10,4 @@ class AttendanceRecord < ApplicationRecord
               @@routes.enterprise_human_resources_attendance_attendance_records_path,
               Enterprise::HumanResources::Attendance::AttendanceRecordsController )
 
-  belongs_to :employee
-
 end

@@ -3,6 +3,8 @@ module AssociatedEmployee
 
   included do
 
+    belongs_to :employee
+
     validates :employee_id, presence: true
 
     searchable do

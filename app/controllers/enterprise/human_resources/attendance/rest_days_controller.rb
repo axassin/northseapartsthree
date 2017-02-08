@@ -1,2 +1,2 @@
-class Enterprise::HumanResources::Attendance::RestDaysController < ApplicationController
+class Enterprise::HumanResources::Attendance::RestDaysController < GenericResourceController
 end
