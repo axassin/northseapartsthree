@@ -1,0 +1,2 @@
+class RestDay < ApplicationRecord
+end
