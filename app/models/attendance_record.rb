@@ -6,7 +6,7 @@ class AttendanceRecord < ApplicationRecord
   include TimeOverlap
 
   setup_model('fa-clock-o',
-              'current_date',
+              'date_of_implementation',
               @@routes.enterprise_human_resources_attendance_attendance_records_path,
               Enterprise::HumanResources::Attendance::AttendanceRecordsController )
 

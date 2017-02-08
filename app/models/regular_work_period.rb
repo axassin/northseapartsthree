@@ -15,4 +15,6 @@ class RegularWorkPeriod < ApplicationRecord
     time_in.to_s + ' to ' + time_out.to_s
   end
 
+
+
 end

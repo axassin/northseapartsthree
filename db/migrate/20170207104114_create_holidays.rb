@@ -5,7 +5,7 @@ class CreateHolidays < MainMigration
       remark_column(t)
       t.date :date_of_implementation, :required => true
       t.string :name, :limit => 128
-      t.string :type, :limit => 128
+      t.string :holiday_type_id, :limit => 128
       t.timestamps
     end
   end

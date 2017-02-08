@@ -174,6 +174,7 @@ if Rails.env.development? || Rails.env.test?
 
     establish_file(Employee, current_employee.id)
 
+
     # Biodata for Employee
     50.in(100) do
       current_biodata = Biodatum.create!(
@@ -243,12 +244,12 @@ if Rails.env.development? || Rails.env.test?
 
       # Time Overlap
       save_flag = true
-      current_date_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
-      current_date_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      date_of_implementation_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      date_of_implementation_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.current_date.year, att_rec.current_date.month, att_rec.current_date.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.current_date.year, att_rec.current_date.month, att_rec.current_date.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        other_date_time_in = DateTime.new(att_rec.date_of_implementation.year, att_rec.date_of_implementation.month, att_rec.date_of_implementation.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.date_of_implementation.year, att_rec.date_of_implementation.month, att_rec.date_of_implementation.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((date_of_implementation_time_in..date_of_implementation_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
           break;
@@ -259,7 +260,7 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            current_date: generated_date,
+            date_of_implementation: generated_date,
             time_in: time_in,
             time_out: time_out
         )
