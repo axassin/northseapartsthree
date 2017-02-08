@@ -80,7 +80,7 @@ Rails.application.routes.draw do
       define_index( 'attendance' )
       namespace :attendance do
         generate_logic_unit( :rest_days )
-        generate_logic_unit( :regular_work_days )
+        generate_logic_unit( :regular_work_periods )
         generate_logic_unit( :holidays )
         get 'attendance_records/validate_overlap', to: 'attendance_records#validate_overlap'
         generate_logic_unit( :attendance_records )

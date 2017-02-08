@@ -1,17 +1,5 @@
-class AttendanceRecordDecorator < ApplicationDecorator
+class Enterprise::HumanResources::Attendance::RestDayDecorator < ApplicationDecorator
   delegate_all
-
-  def time_in
-    object.time_in.strftime("%r")
-  end
-
-  def time_out
-    object.time_out.strftime("%r")
-  end
-
-  def current_date
-    object.current_date.strftime("%m/%d/%Y")
-  end
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:

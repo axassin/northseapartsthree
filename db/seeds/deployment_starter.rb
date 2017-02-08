@@ -11,3 +11,7 @@ SystemConstant.create!(category_type: 'hr.default_starting_time',
 SystemConstant.create!(category_type: 'hr.default_ending_time',
                        label: 'Default Ending Time',
                        value: '17:00:00').save!
+
+Holiday.create!(
+
+).save!

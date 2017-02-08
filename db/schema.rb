@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170201005033) do
+ActiveRecord::Schema.define(version: 20170207104124) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -110,6 +110,15 @@ ActiveRecord::Schema.define(version: 20170201005033) do
     t.index ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
   end
 
+  create_table "holidays", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remark",                 limit: 64
+    t.date     "date_of_implementation"
+    t.index ["deleted_at"], name: "index_holidays_on_deleted_at", using: :btree
+  end
+
   create_table "links", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
     t.datetime "created_at"
@@ -130,6 +139,29 @@ ActiveRecord::Schema.define(version: 20170201005033) do
     t.string   "address",           limit: 512
     t.string   "contact_detail_id", limit: 36
     t.index ["deleted_at"], name: "index_locations_on_deleted_at", using: :btree
+  end
+
+  create_table "regular_work_periods", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "employee_id",            limit: 36
+    t.string   "remark",                 limit: 64
+    t.date     "date_of_implementation"
+    t.time     "time_in"
+    t.time     "time_out"
+    t.index ["deleted_at"], name: "index_regular_work_periods_on_deleted_at", using: :btree
+  end
+
+  create_table "rest_days", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "employee_id",            limit: 36
+    t.string   "remark",                 limit: 64
+    t.date     "date_of_implementation"
+    t.string   "day"
+    t.index ["deleted_at"], name: "index_rest_days_on_deleted_at", using: :btree
   end
 
   create_table "system_accounts", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

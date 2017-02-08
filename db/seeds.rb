@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require File.expand_path('../seeds/deployment_starter', __FILE__)
+
 puts " Initializing Database with Sample Data for Production and Development Environment"
 
 # Execute only in a Development Environment; This is "fake" sample data
@@ -172,6 +174,7 @@ if Rails.env.development? || Rails.env.test?
 
     establish_file(Employee, current_employee.id)
 
+    # Biodata for Employee
     50.in(100) do
       current_biodata = Biodatum.create!(
           employee_id: current_employee.id,
@@ -191,6 +194,7 @@ if Rails.env.development? || Rails.env.test?
       current_biodata.save
     end
 
+    # Employee Status for Employee
     rand(0..5).times do
       current_employee_status = EmployeeStatus.create!(
           employee_id: current_employee.id,
@@ -201,6 +205,7 @@ if Rails.env.development? || Rails.env.test?
       current_employee_status.save
     end
 
+    # Attendance Records for Employee
     rand(0..50).times do
 
       generated_date = Faker::Date.between(2.weeks.ago, Date.today)
@@ -241,8 +246,8 @@ if Rails.env.development? || Rails.env.test?
       current_date_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
       current_date_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        other_date_time_in = DateTime.new(att_rec.current_date.year, att_rec.current_date.month, att_rec.current_date.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.current_date.year, att_rec.current_date.month, att_rec.current_date.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
         assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
@@ -254,7 +259,7 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            date_of_attendance: generated_date,
+            current_date: generated_date,
             time_in: time_in,
             time_out: time_out
         )
