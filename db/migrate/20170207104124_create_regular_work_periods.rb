@@ -4,9 +4,10 @@ class CreateRegularWorkPeriods < MainMigration
       common_set(t)
       foreign_key_id(t, 'employee')
       remark_column(t)
-      t.date :date_of_implementation, :required => true
-      t.time :time_in, :required => true
-      t.time :time_out, :required => true
+      implemented_at(t)
+      t.boolean :one_hour_break, :required => true, :default => true
+      t.time :time_in, :required => true, :default => '08:00'
+      t.time :time_out, :required => true, :default => '17:00'
       t.timestamps
     end
   end

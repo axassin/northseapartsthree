@@ -89,7 +89,7 @@ Rails.application.routes.draw do
 
       define_index( 'payroll' )
       namespace :payroll do
-        generate_logic_unit( :holiday_types )
+        generate_logic_unit( :day_schemes )
       end
 
     end

@@ -2,8 +2,10 @@ class Holiday < ApplicationRecord
 
   include GenericResourceCommon
   include Remark
+  include ImplementedAt
+  validates :implemented_at, presence: true, uniqueness: true
 
-  belongs_to :holiday_type
+  belongs_to :day_scheme
 
   setup_model('fa-slack',
               'name',

@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::Payroll::HolidayTypeDecorator < ApplicationDecorator
+class Enterprise::HumanResources::Payroll::DaySchemeDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

@@ -9,8 +9,8 @@ class AttendanceRecordDecorator < ApplicationDecorator
     object.time_out.strftime("%r")
   end
 
-  def date_of_implementation
-    object.date_of_implementation.strftime("%m/%d/%Y")
+  def implemented_at
+    object.implemented_at.strftime("%m/%d/%Y")
   end
 
   # Define presentation-specific methods here. Helpers are accessed through

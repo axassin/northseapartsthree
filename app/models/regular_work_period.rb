@@ -5,6 +5,7 @@ class RegularWorkPeriod < ApplicationRecord
   include TimePrecedence
   include TimeOverlap
   include Remark
+  include ImplementedAt
 
   setup_model('fa-play',
               'work_period',
@@ -15,6 +16,6 @@ class RegularWorkPeriod < ApplicationRecord
     time_in.to_s + ' to ' + time_out.to_s
   end
 
-
+  validates :one_hour_break, presence: true
 
 end

@@ -170,10 +170,39 @@ if Rails.env.development? || Rails.env.test?
     current_employee = Employee.create!(system_account: system_account,
                                         branch: Branch.offset(rand(Branch.count)).first,
                                         position: Faker::Lorem.sentence(1))
-    current_employee.save
 
+    current_employee.save
     establish_file(Employee, current_employee.id)
 
+    # Rest Day for Employee
+    rand(1..3).times do
+      RestDay.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+                      employee: current_employee,
+                      remark: Faker::Lorem.sentence(3, false, 0),
+                      day: %w(MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY).sample)
+    end
+
+    # Regular Work Period
+    rand(1..3).times do
+
+      generated_time_in = '08:00'
+      generated_time_out = '17:00'
+
+      30.in(100) do
+        base_time = Faker::Time.between(DateTime.now - 3600, DateTime.now - 45)
+        generated_time_in = base_time.strftime('%I:%M')
+        generated_time_out = (base_time - 9.hours).strftime('%I:%M')
+      end
+
+      regular_work_period = RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+                                                      employee: current_employee,
+                                                      remark: Faker::Lorem.sentence(3, false, 0),
+                                                      time_in: generated_time_in,
+                                                      time_out: generated_time_out,
+                                                      one_hour_break: true )
+
+      regular_work_period.save!
+    end
 
     # Biodata for Employee
     50.in(100) do
@@ -244,12 +273,12 @@ if Rails.env.development? || Rails.env.test?
 
       # Time Overlap
       save_flag = true
-      date_of_implementation_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
-      date_of_implementation_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      implemented_at_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      implemented_at_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.date_of_implementation.year, att_rec.date_of_implementation.month, att_rec.date_of_implementation.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.date_of_implementation.year, att_rec.date_of_implementation.month, att_rec.date_of_implementation.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((date_of_implementation_time_in..date_of_implementation_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        other_date_time_in = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((implemented_at_time_in..implemented_at_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
           break;
@@ -260,7 +289,7 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            date_of_implementation: generated_date,
+            implemented_at: generated_date,
             time_in: time_in,
             time_out: time_out
         )
