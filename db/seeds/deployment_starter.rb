@@ -2,15 +2,15 @@ puts 'Initializing Database with Starter Data'
 
 SystemConstant.create!(category_type: 'hr.allowable_work_hours_per_day',
                        label: 'Allowable Work Hours per Day',
-                       value: 8).save!
+                       value: 8, implemented_at: DateTime.new(2000,1,1,1,1,1)).save!
 
 SystemConstant.create!(category_type: 'hr.default_starting_time',
                        label: 'Default Starting Time',
-                       value: '8:00:00').save!
+                       value: '8:00:00', implemented_at: DateTime.new(2000,1,1,1,1,1)).save!
 
 SystemConstant.create!(category_type: 'hr.default_ending_time',
                        label: 'Default Ending Time',
-                       value: '17:00:00').save!
+                       value: '17:00:00', implemented_at: DateTime.new(2000,1,1,1,1,1)).save!
 
 regular_day = DayScheme.create!(type_name: 'Regular Day', base_multiplier: 1, overtime_multiplier: 1.25, rest_day_multiplier: 1.3, overtime_rest_day_multiplier: 1.69, implemented_at: Date.new(2012,1,1))
 regular_holiday = DayScheme.create!(type_name: 'Regular Holiday', base_multiplier: 2, overtime_multiplier: 2.6, rest_day_multiplier: 2.6, overtime_rest_day_multiplier: 3.38, implemented_at: Date.new(2012,1,1))

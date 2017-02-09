@@ -196,9 +196,10 @@ ActiveRecord::Schema.define(version: 20170208092252) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "label",         limit: 64
-    t.string   "category_type", limit: 256
-    t.string   "value",         limit: 256
+    t.string   "label",          limit: 64
+    t.string   "category_type",  limit: 256
+    t.string   "value",          limit: 256
+    t.date     "implemented_at"
     t.index ["deleted_at"], name: "index_system_constants_on_deleted_at", using: :btree
   end
 

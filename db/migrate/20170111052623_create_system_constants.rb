@@ -5,6 +5,7 @@ class CreateSystemConstants < MainMigration
       label_column(t)
       t.string :category_type, :limit => 256, :required => true
       t.string :value, :limit => 256, :required => true
+      implemented_at(t)
     end
   end
 end

@@ -189,19 +189,19 @@ if Rails.env.development? || Rails.env.test?
       generated_time_out = '17:00'
 
       30.in(100) do
-        base_time = Faker::Time.between(DateTime.now - 3600, DateTime.now - 45)
-        generated_time_in = base_time.strftime('%I:%M')
-        generated_time_out = (base_time - 9.hours).strftime('%I:%M')
+        start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
+        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
+        base_time = Faker::Time.between(start_time, end_time, :morning)
+        generated_time_in = base_time.strftime('%H:%M')
+        generated_time_out = (base_time + 9.hours).strftime('%H:%M')
       end
 
-      regular_work_period = RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
-                                                      employee: current_employee,
-                                                      remark: Faker::Lorem.sentence(3, false, 0),
-                                                      time_in: generated_time_in,
-                                                      time_out: generated_time_out,
-                                                      one_hour_break: true )
-
-      regular_work_period.save!
+      RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+                                employee: current_employee,
+                                remark: Faker::Lorem.sentence(3, false, 0),
+                                time_in: generated_time_in,
+                                time_out: generated_time_out,
+                                one_hour_break: true )
     end
 
     # Biodata for Employee
