@@ -8,7 +8,7 @@ class RegularWorkPeriod < ApplicationRecord
   include ImplementedAt
 
   validate :exact_work_period
-  validates :one_hour_break, presence: true
+  validates :one_hour_break, presence: true, inclusion: {in: [true,false]}
 
   setup_model('fa-play',
               'work_period',

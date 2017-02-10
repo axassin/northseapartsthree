@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20170208092252) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type_name",                    limit: 128
+    t.string   "type_name",                    limit: 64
     t.float    "base_multiplier",              limit: 24
     t.float    "overtime_multiplier",          limit: 24
     t.float    "rest_day_multiplier",          limit: 24

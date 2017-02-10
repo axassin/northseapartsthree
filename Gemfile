@@ -179,3 +179,6 @@ gem 'validates_overlap'
 
 # momentjs-rails wraps the Moment.js library in a rails engine for simple use with the asset pipeline provided by Rails 3.1 and higher
 gem 'momentjs-rails'
+
+# Complete validation of dates, times and datetimes for Rails 4.x and ActiveModel.
+gem 'validates_timeliness', '~> 4.0'

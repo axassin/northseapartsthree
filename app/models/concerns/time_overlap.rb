@@ -3,6 +3,8 @@ module TimeOverlap extend ActiveSupport::Concern
   included do
 
     validate :overlap
+    validates_time :time_in
+    validates_time :time_out
 
     def overlap
       implemented_at_time_in = DateTime.new(implemented_at.year, implemented_at.month, implemented_at.day, time_in.hour, time_in.min, time_in.sec )

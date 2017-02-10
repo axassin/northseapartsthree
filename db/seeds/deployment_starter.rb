@@ -12,21 +12,25 @@ SystemConstant.create!(category_type: 'hr.default_ending_time',
                        label: 'Default Ending Time',
                        value: '17:00:00', implemented_at: DateTime.new(2000,1,1,1,1,1)).save!
 
+SystemConstant.create!(category_type: 'hr.allowable_grace_period_late_minutes',
+                       label: 'Allowable Grace Period Late Minutes',
+                       value: '5', implemented_at: DateTime.new(2000,1,1,1,1,1)).save!
+
 regular_day = DayScheme.create!(type_name: 'Regular Day', base_multiplier: 1, overtime_multiplier: 1.25, rest_day_multiplier: 1.3, overtime_rest_day_multiplier: 1.69, implemented_at: Date.new(2012,1,1))
 regular_holiday = DayScheme.create!(type_name: 'Regular Holiday', base_multiplier: 2, overtime_multiplier: 2.6, rest_day_multiplier: 2.6, overtime_rest_day_multiplier: 3.38, implemented_at: Date.new(2012,1,1))
 special_non_working = DayScheme.create!(type_name: 'Special Non-Working Holiday', base_multiplier: 1.3, overtime_multiplier: 1.69, rest_day_multiplier: 1.5, overtime_rest_day_multiplier: 1.95, implemented_at: Date.new(2012,1,1))
 double = DayScheme.create!(type_name: 'Double', base_multiplier: 3, overtime_multiplier: 3.9, rest_day_multiplier: 3, overtime_rest_day_multiplier: 5.07, implemented_at: Date.new(2012,1,1))
 
-Holiday.create!(name: "New Year's Day", implemented_at: Date.new(2017,1,1), day_scheme: regular_day)
-Holiday.create!(name: 'Araw ng Kagitingan', implemented_at: Date.new(2017,4,9), day_scheme: regular_day)
-Holiday.create!(name: 'Maundy Thursday ', implemented_at: Date.new(2017,4,13), day_scheme: regular_day)
-Holiday.create!(name: 'Good Friday', implemented_at: Date.new(2017,4,14), day_scheme: regular_day)
-Holiday.create!(name: 'Labor Day', implemented_at: Date.new(2017,5,1), day_scheme: regular_day)
-Holiday.create!(name: 'Independence Day', implemented_at: Date.new(2017,6,12), day_scheme: regular_day)
-Holiday.create!(name: "National Heroes' Day", implemented_at: Date.new(2017,8,28), day_scheme: regular_day)
-Holiday.create!(name: 'Bonifacio Day', implemented_at: Date.new(2017,11,30), day_scheme: regular_day)
-Holiday.create!(name: 'Christmas Day', implemented_at: Date.new(2017,12,25), day_scheme: regular_day)
-Holiday.create!(name: 'Rizal Day', implemented_at: Date.new(2017,12,30), day_scheme: regular_day)
+Holiday.create!(name: "New Year's Day", implemented_at: Date.new(2017,1,1), day_scheme: regular_holiday)
+Holiday.create!(name: 'Araw ng Kagitingan', implemented_at: Date.new(2017,4,9), day_scheme: regular_holiday)
+Holiday.create!(name: 'Maundy Thursday ', implemented_at: Date.new(2017,4,13), day_scheme: regular_holiday)
+Holiday.create!(name: 'Good Friday', implemented_at: Date.new(2017,4,14), day_scheme: regular_holiday)
+Holiday.create!(name: 'Labor Day', implemented_at: Date.new(2017,5,1), day_scheme: regular_holiday)
+Holiday.create!(name: 'Independence Day', implemented_at: Date.new(2017,6,12), day_scheme: regular_holiday)
+Holiday.create!(name: "National Heroes' Day", implemented_at: Date.new(2017,8,28), day_scheme: regular_holiday)
+Holiday.create!(name: 'Bonifacio Day', implemented_at: Date.new(2017,11,30), day_scheme: regular_holiday)
+Holiday.create!(name: 'Christmas Day', implemented_at: Date.new(2017,12,25), day_scheme: regular_holiday)
+Holiday.create!(name: 'Rizal Day', implemented_at: Date.new(2017,12,30), day_scheme: regular_holiday)
 
 Holiday.create!(name: 'Proclamation 117', implemented_at: Date.new(2017,1,2), day_scheme: special_non_working)
 Holiday.create!(name: 'Chinese New Year', implemented_at: Date.new(2017,1,28), day_scheme: special_non_working)
