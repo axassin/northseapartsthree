@@ -1,10 +1,7 @@
-module AssociatedEmployee extend ActiveSupport::Concern
+module AssociatedEmployeeDecorator extend ActiveSupport::Concern
 
   def associated_employee_link
 
-  'sherwin'
-
-=begin
     link_label = object.employee.system_account.name
     link_path = object.employee.show_path
 
@@ -15,7 +12,6 @@ module AssociatedEmployee extend ActiveSupport::Concern
     end
 
     main_element.html_safe
-=end
 
   end
 

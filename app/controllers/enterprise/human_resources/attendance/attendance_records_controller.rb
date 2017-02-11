@@ -5,7 +5,7 @@ class Enterprise::HumanResources::Attendance::AttendanceRecordsController < Gene
                      'Attendance Record',
                      'Record of Presence',
                      ['employee_id'],
-                     ['associated_employee'],
+                     ['employee_name'],
                      @@routes.enterprise_human_resources_attendance_path)
   end
 

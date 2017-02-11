@@ -1,0 +1,11 @@
+div.col-md-6
+  = model_selector(f,
+          DayScheme,
+          :day_scheme_id,
+          current_instance.day_scheme_id,
+          'type_name')
+
+div.col-md-6
+  = input_word(f, :name)
+  = f.input :implemented_at, required: true, as: :date, html5: true
+  = input_word(f, :remark)

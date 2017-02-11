@@ -3,7 +3,7 @@ div.col-md-6
     = model_selector(f,
             Employee.all.left_outer_joins(:biodatum).where( biodata: { id: nil } ),
             :employee_id,
-            current_instance[:employee],
+            current_instance.employee,
             'designation')
     br
   - else

@@ -1,7 +1,7 @@
 class EmployeeStatusDecorator < ApplicationDecorator
   delegate_all
 
-  include ImplementedAt
-  include AssociatedEmployee
+  include ImplementedAtDecorator
+  include AssociatedEmployeeDecorator
 
 end

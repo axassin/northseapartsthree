@@ -5,7 +5,7 @@ class Enterprise::HumanResources::Attendance::RegularWorkPeriodsController < Gen
                      'Regular Work Period',
                      'Work Period per Employee',
                      ['employee_id'],
-                     ['associated_employee'],
+                     ['employee_name'],
                      @@routes.enterprise_human_resources_attendance_regular_work_periods_path)
   end
 

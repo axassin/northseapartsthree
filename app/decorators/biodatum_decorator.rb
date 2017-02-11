@@ -1,7 +1,7 @@
 class BiodatumDecorator < ApplicationDecorator
   delegate_all
 
-  include AssociatedEmployee
+  include AssociatedEmployeeDecorator
 
   def date_of_birth
     object.created_at.strftime("%m/%d/%Y")

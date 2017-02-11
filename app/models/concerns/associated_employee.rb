@@ -1,7 +1,6 @@
 module AssociatedEmployee extend ActiveSupport::Concern
 
   included do
-
     belongs_to :employee
 
     validates :employee_id, presence: true
