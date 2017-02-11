@@ -1,5 +1,4 @@
-module AssociatedEmployee
-  extend ActiveSupport::Concern
+module AssociatedEmployee extend ActiveSupport::Concern
 
   included do
 
@@ -8,16 +7,15 @@ module AssociatedEmployee
     validates :employee_id, presence: true
 
     searchable do
-      text :associated_employee
-      string :associated_employee
+      text :employee_name
+      string :employee_name
     end
 
-    def associated_employee
+    def employee_name
       Employee.find_by_id(employee_id).system_account.name
     end
 
   end
-
 
 
 end

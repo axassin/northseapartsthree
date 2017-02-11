@@ -1,5 +1,7 @@
-class Enterprise::HumanResources::Attendance::RestDayDecorator < ApplicationDecorator
+class DaySchemeDecorator < ApplicationDecorator
   delegate_all
+
+  include ImplementedAt
 
   # Define presentation-specific methods here. Helpers are accessed through
   # `helpers` (aka `h`). You can override attributes, for example:
