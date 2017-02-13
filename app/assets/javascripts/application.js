@@ -32,4 +32,6 @@
 //= require moment
 //= require velocity.ui.min.js
 //= require jquery.func_toggle.js
+//= require generic_resource/form
+//= require enterprise/human_resources/attendance/rest_days
 //= //require_tree .

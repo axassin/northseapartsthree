@@ -79,6 +79,7 @@ Rails.application.routes.draw do
 
       define_index( 'attendance' )
       namespace :attendance do
+        get 'rest_days/unique_rest_day_per_employee', to: 'rest_days#unique_rest_day_per_employee'
         generate_logic_unit( :rest_days )
         generate_logic_unit( :regular_work_periods )
         generate_logic_unit( :holidays )

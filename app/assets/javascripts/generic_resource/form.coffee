@@ -1,5 +1,6 @@
 $(document).on 'turbolinks:load', ->
 
+
   # Disables all fields for 'show' action
   if action_name == 'show'
     $('.main_content form input').prop('disabled', true);
@@ -22,6 +23,7 @@ $(document).on 'turbolinks:load', ->
   $('.model_selector_group').each (index, element) ->
     main_select = $(element).find('select')
     main_select.selectize();
+
 
 # Refreshes Model Selector
 refresh_model_selector = (model_path, model_id, current_group) ->
@@ -54,3 +56,27 @@ refresh_contactable_select = ( contactable_id ) ->
         $('img.contactable_element').show()
         if data == ''
           $('img.contactable_element').hide()
+
+# validation request
+ajax_validation_request = (url, form_id, attribute_id, error_message) ->
+  $(form_id).submit( (event) ->
+
+    validity_token = false
+    attribute_object = $(attribute_id).parsley()
+    window.ParsleyUI.removeError(attribute_object, "current_error");
+
+    $.ajax url,
+      type: 'GET'
+      async: false
+      dataType: 'text'
+      error: (jqXHR, textStatus, errorThrown) ->
+        window.ParsleyUI.addError(attribute_object, "current_error", error_message)
+        event.preventDefault()
+      success: (data, textStatus, jqXHR) ->
+        validity_token = ('true' == data)
+        if validity_token == true
+          $(form_id)[0].submit()
+        else
+          window.ParsleyUI.addError(attribute_object, "current_error", error_message)
+          event.preventDefault()
+  )

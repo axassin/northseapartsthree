@@ -22,4 +22,8 @@ class Enterprise::HumanResources::Attendance::HolidaysController < GenericResour
     setup_process(my_holiday, my_holiday_processing, wizard_mode)
   end
 
+  def unique_holiday_date
+
+  end
+
 end

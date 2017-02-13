@@ -22,4 +22,15 @@ class Enterprise::HumanResources::Attendance::RestDaysController < GenericResour
     setup_process(my_rest_day, rest_day_processing, wizard_mode)
   end
 
+  def unique_rest_day_per_employee
+    employee_id = params[:employee_id]
+    implemented_at = params[:implemented_at]
+
+    validation_token = true
+    RestDay.all.where(employee_id: employee_id).each do |rest_day|
+      (validation_token = false) if (rest_day.implemented_at.to_s == implemented_at.to_s)
+    end
+    render plain: validation_token.to_s
+  end
+
 end
