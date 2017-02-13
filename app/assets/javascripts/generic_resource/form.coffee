@@ -1,6 +1,5 @@
 $(document).on 'turbolinks:load', ->
 
-
   # Disables all fields for 'show' action
   if action_name == 'show'
     $('.main_content form input').prop('disabled', true);

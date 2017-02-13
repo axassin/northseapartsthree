@@ -2,8 +2,9 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$( document ).ready( ->
+require 'generic_resource/form'
 
+$( document ).ready( ->
   $('#new_rest_day').submit( (event) ->
 
     implemented_at = $('#rest_day_implemented_at').val()
