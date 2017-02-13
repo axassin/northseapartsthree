@@ -1,3 +1,5 @@
+alert 'fasfdas df a'
+
 $(document).on 'turbolinks:load', ->
 
   # Disables all fields for 'show' action

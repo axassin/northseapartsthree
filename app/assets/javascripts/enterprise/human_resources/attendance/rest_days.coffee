@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-require 'generic_resource/form'
+#= link 'generic_resource/form.coffee'
 
 $( document ).ready( ->
   $('#new_rest_day').submit( (event) ->
