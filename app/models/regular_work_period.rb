@@ -2,13 +2,18 @@ class RegularWorkPeriod < ApplicationRecord
 
   include GenericResourceCommon
   include AssociatedEmployee
-  include TimePrecedence
   include TimeOverlap
   include Remark
   include ImplementedAt
 
+  if overnight
+    include TimePrecedenceOvernight
+  else
+    include TimePrecedence
+  end
+
   validate :exact_work_period
-  validates :one_hour_break, presence: true, inclusion: {in: [true,false]}
+  validates :one_hour_break, inclusion: {in: [true,false]}
 
   setup_model('fa-play',
               'work_period',

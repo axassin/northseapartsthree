@@ -81,7 +81,9 @@ Rails.application.routes.draw do
       namespace :attendance do
         get 'rest_days/unique_rest_day_per_employee', to: 'rest_days#unique_rest_day_per_employee'
         generate_logic_unit( :rest_days )
+        get 'regular_work_periods/validate_overlap', to: 'regular_work_periods#validate_overlap'
         generate_logic_unit( :regular_work_periods )
+        get 'holidays/unique_holiday_date', to: 'holidays#unique_holiday_date'
         generate_logic_unit( :holidays )
         get 'attendance_records/validate_overlap', to: 'attendance_records#validate_overlap'
         generate_logic_unit( :attendance_records )

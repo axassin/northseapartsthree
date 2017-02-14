@@ -122,6 +122,10 @@ module FormHelper
     end
   end
 
-
-
+  def employee_selector(f, current_instance)
+    render partial: 'common/form/employee_selector', locals: {
+        f: f,
+        current_instance: current_instance
+    }
+  end
 end

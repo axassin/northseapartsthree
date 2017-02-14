@@ -16,12 +16,16 @@ class Enterprise::HumanResources::Attendance::RegularWorkPeriodsController < Gen
       my_regular_work_period.implemented_at = current_params[:implemented_at]
       my_regular_work_period.time_in = current_params[:time_in]
       my_regular_work_period.time_out = current_params[:time_out]
-      my_regular_work_period.one_hour_break = current_params[:one_hour_break]
+      my_regular_work_period[:one_hour_break] = (current_params[:one_hour_break] == 'true')
       my_regular_work_period.remark = current_params[:remark]
       my_regular_work_period.save!
     end
 
     setup_process(my_regular_work_period, attendance_records_processing, wizard_mode)
+  end
+
+  def validate_overlap
+
   end
 
 end

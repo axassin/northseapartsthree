@@ -23,7 +23,12 @@ class Enterprise::HumanResources::Attendance::HolidaysController < GenericResour
   end
 
   def unique_holiday_date
-
+    implemented_at = params[:implemented_at]
+    validation_token = true
+    Holiday.all.each do |holiday|
+      (validation_token = false) if (holiday.implemented_at.to_s == implemented_at.to_s)
+    end
+    render plain: validation_token.to_s
   end
 
 end

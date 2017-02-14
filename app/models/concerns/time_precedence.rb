@@ -6,6 +6,8 @@ module TimePrecedence extend ActiveSupport::Concern
     validates :time_out, presence: true
     validates_time :time_in, :before => :time_out
     validates_time :time_out, :after => :time_in
+=begin
+
     validate :time_precedence
 
     def time_precedence
@@ -13,6 +15,7 @@ module TimePrecedence extend ActiveSupport::Concern
         errors.add(:time_in, 'Time In must be before Time Out')
       end
     end
+=end
 
     searchable do
       time :time_in

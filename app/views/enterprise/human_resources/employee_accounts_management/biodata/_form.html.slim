@@ -1,16 +1,5 @@
 div.col-md-6
-  - unless @employee_id.present?
-    = model_selector(f,
-            Employee.all.left_outer_joins(:biodatum).where( biodata: { id: nil } ),
-            :employee_id,
-            current_instance.employee,
-            'designation')
-    br
-  - else
-    = f.input :employee_id,
-            :as => :hidden,
-            :input_html => {:value => @employee_id}
-
+  = employee_selector(f, current_instance)
   = input_date(f, :date_of_birth)
   = input_word(f, :complexion)
   = input_word(f, :height)

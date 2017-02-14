@@ -185,23 +185,52 @@ if Rails.env.development? || Rails.env.test?
     # Regular Work Period
     rand(1..3).times do
 
+      # Regular
       generated_time_in = '08:00'
       generated_time_out = '17:00'
+      one_hour_break = true
+      overnight = false
 
+      # Regular with Lunch Break
       30.in(100) do
         start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
         end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
         base_time = Faker::Time.between(start_time, end_time, :morning)
         generated_time_in = base_time.strftime('%H:%M')
         generated_time_out = (base_time + 9.hours).strftime('%H:%M')
+        one_hour_break = true
       end
+
+      # Regular with no Lunch Break
+      30.in(100) do
+        start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
+        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
+        base_time = Faker::Time.between(start_time, end_time, :morning)
+        generated_time_in = base_time.strftime('%H:%M')
+        generated_time_out = (base_time + 8.hours).strftime('%H:%M')
+        one_hour_break = false
+      end
+
+      # Overnight
+      30.in(100) do
+        start_time = DateTime.new(2002, 10, 31, 2, 0, 1)
+        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
+        base_time = Faker::Time.between(start_time, end_time, :morning)
+        generated_time_in = base_time.strftime('%H:%M')
+        generated_time_out = (base_time + 8.hours).strftime('%H:%M')
+        one_hour_break = true
+      end
+
+      # Overnight with no Lunch Break
+
 
       RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                                 employee: current_employee,
                                 remark: Faker::Lorem.sentence(3, false, 0),
                                 time_in: generated_time_in,
                                 time_out: generated_time_out,
-                                one_hour_break: true )
+                                one_hour_break: one_hour_break,
+                                overnight: overnight)
     end
 
     # Biodata for Employee
