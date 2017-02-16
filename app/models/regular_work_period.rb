@@ -5,12 +5,7 @@ class RegularWorkPeriod < ApplicationRecord
   include TimeOverlap
   include Remark
   include ImplementedAt
-
-  if overnight
-    include TimePrecedenceOvernight
-  else
-    include TimePrecedence
-  end
+  include TimePrecedence
 
   validate :exact_work_period
   validates :one_hour_break, inclusion: {in: [true,false]}

@@ -188,49 +188,40 @@ if Rails.env.development? || Rails.env.test?
       # Regular
       generated_time_in = '08:00'
       generated_time_out = '17:00'
-      one_hour_break = true
-      overnight = false
+      one_hour_break = 1
 
       # Regular with Lunch Break
       30.in(100) do
+        puts 'Regular with Lunch Break'
         start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
-        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
+        end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
         base_time = Faker::Time.between(start_time, end_time, :morning)
         generated_time_in = base_time.strftime('%H:%M')
         generated_time_out = (base_time + 9.hours).strftime('%H:%M')
-        one_hour_break = true
+        one_hour_break = 1
       end
 
       # Regular with no Lunch Break
       30.in(100) do
+        puts 'Regular with no Lunch Break'
         start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
-        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
+        end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
         base_time = Faker::Time.between(start_time, end_time, :morning)
         generated_time_in = base_time.strftime('%H:%M')
         generated_time_out = (base_time + 8.hours).strftime('%H:%M')
-        one_hour_break = false
+        one_hour_break = 0
       end
 
-      # Overnight
-      30.in(100) do
-        start_time = DateTime.new(2002, 10, 31, 2, 0, 1)
-        end_time = DateTime.new(2002, 10, 31, 15, 59, 59)
-        base_time = Faker::Time.between(start_time, end_time, :morning)
-        generated_time_in = base_time.strftime('%H:%M')
-        generated_time_out = (base_time + 8.hours).strftime('%H:%M')
-        one_hour_break = true
-      end
-
-      # Overnight with no Lunch Break
-
+      puts generated_time_in
+      puts generated_time_out
+      puts one_hour_break
 
       RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                                 employee: current_employee,
                                 remark: Faker::Lorem.sentence(3, false, 0),
                                 time_in: generated_time_in,
                                 time_out: generated_time_out,
-                                one_hour_break: one_hour_break,
-                                overnight: overnight)
+                                one_hour_break: one_hour_break)
     end
 
     # Biodata for Employee
