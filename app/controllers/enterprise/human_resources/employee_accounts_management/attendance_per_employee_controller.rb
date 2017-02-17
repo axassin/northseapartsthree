@@ -1,0 +1,2 @@
+class Enterprise::HumanResources::EmployeeAccountsManagement::AttendancePerEmployeeController < ApplicationController
+end
