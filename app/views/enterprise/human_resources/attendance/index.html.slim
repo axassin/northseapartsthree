@@ -1,3 +1,52 @@
+form method='get'
+
+  span EMPLOYEES at &nbsp;
+
+  select name='branch'
+    - Branch.all.each do |branch|
+      - if params[:branch] == branch.id
+        option selected='selected' value='#{branch.id}' #{branch.name}
+      - else
+        option value='#{branch.id}' #{branch.name}
+
+  span &nbsp; from : &nbsp;
+  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+
+  span &nbsp; to : &nbsp;
+  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+
+  span &nbsp; | &nbsp;
+  input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
+
+hr
+
+div.attendance_grid
+  table
+    thead
+      tr
+        th
+          div.title_attendance EMPLOYEE NAME
+        ruby:
+          @start_attendance = Time.parse(@start_attendance)
+          @end_attendance = Time.parse(@end_attendance)
+          current_attendance = @start_attendance
+
+        - while (current_attendance <= @end_attendance)
+          th
+            div.title_attendance = current_attendance.strftime('%Y-%m-%d')
+          ruby:
+            current_attendance = current_attendance + 1.day
+
+    tbody
+      - unless @employee_set.count == 0
+        - @employee_set.each do |employee|
+          tr
+            td.attendance_cell_employee
+              a.btn.btn-default href='#{employee.system_account.show_path}' target='_new'
+                = employee.system_account.name
+      - else
+        div.statement No Employees for Branch
+
 div.float-clearing
 br
 hr
@@ -10,4 +59,4 @@ a.btn.btn-default href='#{enterprise_human_resources_employee_accounts_managemen
 span &nbsp;
 a.btn.btn-default href='#{enterprise_human_resources_employee_accounts_management_employee_statuses_path}' REGULAR WORK PERIODS
 span &nbsp;
-a.btn.btn-default href='#{enterprise_human_resources_employee_accounts_management_attendance_per_employee_path}' ATTENDANCE PER EMPLOYEE
+a.btn.btn-default href='#{enterprise_human_resources_attendance_attendance_per_employee_path}' ATTENDANCE PER EMPLOYEE

@@ -88,7 +88,6 @@ Rails.application.routes.draw do
         generate_logic_unit( :holidays )
         get 'attendance_records/validate_overlap', to: 'attendance_records#validate_overlap'
         generate_logic_unit( :attendance_records )
-        define_index( 'employee_attendance' )
       end
 
       define_index( 'payroll' )

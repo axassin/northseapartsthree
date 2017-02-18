@@ -104,7 +104,7 @@ if Rails.env.development? || Rails.env.test?
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
-  NO_OF_BRANCHES = 17
+  NO_OF_BRANCHES = 3
   NO_OF_BRANCHES.times {
     current_branch = Branch.create!(
         name: Faker::Company.name,

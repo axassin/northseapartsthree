@@ -1,0 +1,46 @@
+@import '../stylesheets/constants'
+
+@mixin attendance_cell_status
+  float: left
+  margin: 0.5em
+  img, div.resource_glyphicon
+    width: 5em
+    margin: 0.5em
+    float: left
+  a
+    float: left
+    margin: 0.5em
+
+@mixin elementary_border
+  border: solid $QUATERNARY_COLOR thin
+
+div.employee_attendance_cell_present
+  @include elementary_border
+  border-left: solid green thick
+  @include attendance_cell_status
+
+div.employee_attendance_cell_absent
+  @include elementary_border
+  border-left: solid red thick
+  @include attendance_cell_status
+
+div.employee_attendance_cell_late
+  @include elementary_border
+  border-left: solid yellow thick
+  @include attendance_cell_status
+
+div.attendance_grid
+  overflow-x: auto
+  table
+    thead
+      tr
+        th
+          div.title_attendance
+            font-weight: normal
+            margin-right: 0.5em
+            border-bottom: solid $QUATERNARY_COLOR thin
+            padding: 0.5em
+    tbody
+      tr
+        td.attendance_cell_employee
+          padding: 0.5em

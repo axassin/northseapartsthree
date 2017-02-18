@@ -31,5 +31,9 @@ class RegularWorkPeriod < ApplicationRecord
 
   end
 
+  def self.current_work_period(inquired_date = Date.today, employee_id)
+    regular_work_period = RegularWorkPeriod.where(['implemented_at <= ? AND employee_id = ?', inquired_date, employee_id])
+    regular_work_period.order('implemented_at DESC').first if regular_work_period.present?
+  end
 
 end
