@@ -34,22 +34,26 @@ class Employee < ApplicationRecord
     Branch.find_by_id(branch_id).represent
   end
 
-  def employment_status (inquired_date = Date.today)
+  def employment_status(inquired_date = Date.today)
     employee_status = EmployeeStatus.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
     employee_status.order('implemented_at DESC').first.state.to_s if employee_status.present?
   end
 
   def attendance_status(inquired_date = Date.today)
-    attendance_records =  AttendanceRecord.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
-    if attendance_records.present?
-      time_in = attendance_records.order('implemented_at DESC').first.time_in
-      work_period_time_in = RegularWorkPeriod.current_work_period(inquired_date, id).time_in
-      if time_in = work_period_time_in
-        'present'
-      end
-    else
-      'no_record'
-    end
+=begin
+attendance_records =  AttendanceRecord.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
+
+if attendance_records.present?
+  time_in = attendance_records.order('implemented_at DESC').first.time_in
+  work_period_time_in = RegularWorkPeriod.current_work_period(inquired_date, id).time_in
+  if time_in = work_period_time_in
+    'present'
+  end
+else
+  'no_record'
+end
+=end
+    'fasf'
   end
 
   searchable_string(:account_name)

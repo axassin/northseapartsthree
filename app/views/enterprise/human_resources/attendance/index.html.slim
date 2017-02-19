@@ -27,13 +27,13 @@ div.attendance_grid
         th
           div.title_attendance EMPLOYEE NAME
         ruby:
-          @start_attendance = Time.parse(@start_attendance)
-          @end_attendance = Time.parse(@end_attendance)
-          current_attendance = @start_attendance
+          my_start_attendance = Time.parse(@start_attendance)
+          my_end_attendance = Time.parse(@end_attendance)
+          current_attendance = my_start_attendance
 
-        - while (current_attendance <= @end_attendance)
+        - while (current_attendance <= my_end_attendance)
           th
-            div.title_attendance = current_attendance.strftime('%Y-%m-%d')
+            div.title_attendance = current_attendance.strftime('%m/%d/%Y')
           ruby:
             current_attendance = current_attendance + 1.day
 
@@ -44,11 +44,22 @@ div.attendance_grid
             td.attendance_cell_employee
               a.btn.btn-default href='#{employee.system_account.show_path}' target='_new'
                 = employee.system_account.name
+
+              ruby:
+                my_start_attendance = Time.parse(@start_attendance)
+                my_end_attendance = Time.parse(@end_attendance)
+                current_attendance = my_start_attendance
+
+            - while (current_attendance <= my_end_attendance)
+              td.attendance_cell align='center'
+                = 'sherwin'
+              ruby:
+                current_attendance = current_attendance + 1.day
+
       - else
         div.statement No Employees for Branch
 
 div.float-clearing
-br
 hr
 
 a.btn.btn-default href='#{enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path}' ATTENDANCE RECORDS
