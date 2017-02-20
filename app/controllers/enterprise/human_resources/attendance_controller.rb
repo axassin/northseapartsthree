@@ -7,10 +7,9 @@ class Enterprise::HumanResources::AttendanceController < GenericDashboardControl
                      @@routes.enterprise_human_resources_path)
 
     current_branch = params[:branch] || Branch.ids.sample(1)
-    employment_status = params[:employment_status] || 'ACTIVE'
 
-    @employee_set = Employee.active_branches(current_branch, employment_status)
-    @start_attendance = params[:start_attendance] || Time.new.strftime('%Y-%m-%d')
+    @employee_set = Employee.active_branches(current_branch, 'ACTIVE')
+    @start_attendance = params[:start_attendance] || (Time.new - 6.days).strftime('%Y-%m-%d')
     @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
   end
 

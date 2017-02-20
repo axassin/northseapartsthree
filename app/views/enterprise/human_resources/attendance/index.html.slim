@@ -38,11 +38,18 @@ div.attendance_grid
             current_attendance = current_attendance + 1.day
 
     tbody
+
+      ruby:
+        absences = 0
+        tardiness = 0
+        overtime = 0
+
       - unless @employee_set.count == 0
         - @employee_set.each do |employee|
+
           tr
-            td.attendance_cell_employee
-              a.btn.btn-default href='#{employee.system_account.show_path}' target='_new'
+            td.employee_cell
+              a.btn.btn-default.little_button href='#{employee.system_account.show_path}' target='_new'
                 = employee.system_account.name
 
               ruby:
@@ -51,13 +58,43 @@ div.attendance_grid
                 current_attendance = my_start_attendance
 
             - while (current_attendance <= my_end_attendance)
-              td.attendance_cell align='center'
-                = 'sherwin'
+
+              ruby:
+                attendance_status = employee.attendance_status(current_attendance)
+                absences += 1 if attendance_status == 'no_record'
+                overtime += 1 if attendance_status == 'overtime'
+                tardiness += 1 if attendance_status == 'undertime'
+                attendance_class_name = 'attendance ' + attendance_status
+
+              td class='#{attendance_class_name}'
+                - AttendanceRecord.where(employee_id: employee.id, implemented_at: current_attendance.strftime('%Y-%m-%d')).each do |record|
+                  div.attendance_cell
+                    a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
+
               ruby:
                 current_attendance = current_attendance + 1.day
 
       - else
         div.statement No Employees for Branch
+
+div.attendance_legend
+  span.legend_label LEGEND :
+  span.legend.exact Exact Present
+  span.legend.shifted Shifted Present
+  span.legend.undertime Undertime
+  span.legend.overtime Overtime
+  span.legend.no_record No Record Exists
+
+div.branch_statistics
+  ruby:
+    days = (((my_end_attendance - my_start_attendance).to_i / (24 * 60 * 60)) + 1) * @employee_set.count
+    presence = days - absences
+    presence_ratio = ((presence.to_f / days.to_f ) * 100).round(2)
+    tardiness_ratio = ((tardiness.to_f / presence.to_f ) * 100).round(2)
+    overtime_ratio = ((overtime.to_f / presence.to_f) * 100).round(2)
+  span.stat Presence : #{presence_ratio.to_s + '%'}
+  span.stat Tardiness : #{tardiness_ratio.to_s + '%'}
+  span.stat Overtime : #{overtime_ratio.to_s + '%'}
 
 div.float-clearing
 hr

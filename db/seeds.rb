@@ -192,7 +192,6 @@ if Rails.env.development? || Rails.env.test?
 
       # Regular with Lunch Break
       30.in(100) do
-        puts 'Regular with Lunch Break'
         start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
         end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
         base_time = Faker::Time.between(start_time, end_time, :morning)
@@ -203,7 +202,6 @@ if Rails.env.development? || Rails.env.test?
 
       # Regular with no Lunch Break
       30.in(100) do
-        puts 'Regular with no Lunch Break'
         start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
         end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
         base_time = Faker::Time.between(start_time, end_time, :morning)
@@ -211,10 +209,6 @@ if Rails.env.development? || Rails.env.test?
         generated_time_out = (base_time + 8.hours).strftime('%H:%M')
         one_hour_break = 0
       end
-
-      puts generated_time_in
-      puts generated_time_out
-      puts one_hour_break
 
       RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                                 employee: current_employee,
