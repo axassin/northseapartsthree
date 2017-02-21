@@ -14,10 +14,15 @@ $(document).on 'turbolinks:load', ->
       $('.main_display').velocity({ opacity: 1 }, { duration: 250 })
   )
 
-  $('.main_menu > .menu_category > .menu_category').hide()
+  # --------------------- Menu Option ---------------------
+  # Default Condition
+  $('.main_menu > .menu_category').hide()
+  $('.main_menu > .enterprise').show()
 
   $('.sub_menu_button').click ->
-    target_div = '.' + $('.sub_menu_button').attr('unhide')
-    alert target_div
-    # $('.main_menu > .menu_category').hide()
-    $('.' + target_div).show()
+    target_div = '.' + $(this).attr('unhide')
+    $('.main_menu > .menu_category').hide()
+    $(target_div).velocity("fadeIn", { duration: 250 })
+
+  # --------------------- Menu Option ---------------------
+  # Default Condition

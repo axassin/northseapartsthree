@@ -22,26 +22,31 @@ nav.navbar.navbar-default.navigation
   = javascript_include_tag 'generic_resource/search_suggestions'
 
 div.main_menu
-  div.address-bar ENTERPRISE
+
   div.menu_category.enterprise
-
     = enterprise_menu_cell('universal-access',enterprise_human_resources_path,'human_resources',true)
-    div.menu_category.human_resources
+    = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'accounting_and_finance',true)
+    = enterprise_menu_cell('university',enterprise_general_management_path,'general_management',true)
+    = enterprise_menu_cell('codepen',enterprise_operations_path,'operations',true)
+    = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'strategic_marketing',true)
 
-      = enterprise_menu_cell('id-badge', enterprise_human_resources_employee_accounts_management_path, 'Employee Accounts Management', nil)
-      div.menu_category.employee_accounts_management
+  div.menu_category.human_resources data-parent-category='enterprise'
+    = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)
 
-        = enterprise_menu_cell('vcard', enterprise_human_resources_path, 'New Employee Wizard', nil)
-        = enterprise_menu_cell_model(EmployeeStatus)
-        = enterprise_menu_cell_model(Employee)
-        = enterprise_menu_cell_model(Biodatum)
-      div.menu_category.attendance
-      div.menu_category.payroll
+  div.menu_category.employee_accounts_management data-parent-category='human_resources'
+    = enterprise_menu_cell('vcard', enterprise_human_resources_path, 'New Employee Wizard', nil)
+    = enterprise_menu_cell_model(EmployeeStatus)
+    = enterprise_menu_cell_model(Employee)
+    = enterprise_menu_cell_model(Biodatum)
 
-    = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'Accounting and Finance',nil)
-    = enterprise_menu_cell('university',enterprise_general_management_path,'General Management',nil)
-    = enterprise_menu_cell('codepen',enterprise_operations_path,'Operations',nil)
-    = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'Strategic Marketing',nil)
+  div.menu_category.attendance
+  div.menu_category.payroll
 
+  div.float-clearing
+  br
+  div.main_menu_controls
+    button.btn.btn-default.back_menu_button
+      = fa_icon 'level-up'
+      = ' BACK ONE LEVEL'
 
 = javascript_include_tag 'navigation_bar', media: 'all'

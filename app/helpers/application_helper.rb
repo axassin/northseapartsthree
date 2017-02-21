@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def enterprise_menu_cell_model(model)
-    enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized)
+    enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized.pluralize)
   end
 
 end
