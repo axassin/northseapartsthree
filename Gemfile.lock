@@ -121,7 +121,7 @@ GEM
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
-    font-awesome-rails (4.6.3.1)
+    font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
     formatador (0.2.5)
     gherkin (4.0.0)
@@ -377,7 +377,7 @@ DEPENDENCIES
   factory_girl
   faker
   file_validators
-  font-awesome-rails
+  font-awesome-rails (~> 4.7.0.1)
   guard (>= 2.2.2)
   guard-livereload
   jbuilder (~> 2.5)

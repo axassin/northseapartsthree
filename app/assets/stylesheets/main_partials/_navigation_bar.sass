@@ -53,6 +53,41 @@ div.main_menu
   ul
     list-style-type: none
 
+  div.menu_cell
+    border: thin solid white
+    width: 11.5em
+    height: 11.5em
+    padding: 0.5em
+    padding-left: 0.8em
+    margin: 0.5em
+    color: white
+    float: left
+    overflow: hidden
+    i.fa
+      font-size: 4em
+      padding-bottom: 0.1em
+      float: left
+      display: block
+      width: 100%
+    a.cell_text
+      display: block
+      text-transform: uppercase
+      font-size: 1em
+      word-wrap: break-word
+      background-color: $TERTIARY_COLOR
+      padding: 0.25em
+      float: left
+      width: 100%
+      &:hover
+        background-color: grey
+    button.sub_menu_button
+      padding: 0.5em
+      font-size: 0.25em
+      float: right
+      margin-top: 0.5em
+      padding-left: 2.5em
+      padding-right: 2.5em
+
   div.main_menu_item
     padding-left: 1.25em
     div.main_category
@@ -74,4 +109,9 @@ div.main_menu
     &:last-child
       border-right: 0
 
-  div.menu_cell
+div.address-bar
+  text-transform: uppercase
+  border-bottom: thin solid white
+  padding: 0.5em
+  margin-bottom: 1em
+  border-left: thick solid white

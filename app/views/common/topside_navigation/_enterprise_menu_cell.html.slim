@@ -1,0 +1,7 @@
+div.menu_cell
+  = fa_icon icon
+  br
+  a.cell_text href='#{path}' #{text.to_s.humanize}
+  br
+  - if sub_dir
+    button.btn.btn-default.sub_menu_button unhide='#{text}' =fa_icon 'plus'

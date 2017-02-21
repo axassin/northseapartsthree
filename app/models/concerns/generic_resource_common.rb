@@ -81,6 +81,10 @@ module GenericResourceCommon
       self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
     end
 
+    def glyphicon
+      self.class_variable_get(:@@resource_glyphicon)
+    end
+
     def view_path
       self.class_variable_get(:@@resource_path)
     end
@@ -107,6 +111,10 @@ module GenericResourceCommon
 
     def parameterized
       self.to_s.underscore
+    end
+
+    def humanized
+      self.to_s.titleize
     end
 
     def polymorphic_attribute

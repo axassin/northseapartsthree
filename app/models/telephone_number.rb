@@ -1,7 +1,7 @@
 class TelephoneNumber < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-phone',
+  setup_model('phone',
               'digits',
               @@routes.enterprise_general_management_contact_details_telephone_numbers_path,
               Enterprise::GeneralManagement::ContactDetails::TelephoneNumbersController)

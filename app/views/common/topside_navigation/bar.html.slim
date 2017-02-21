@@ -1,0 +1,47 @@
+nav.navbar.navbar-default.navigation
+  div.navbar-header.navigation-logo.col-md-2
+    a href='#{root_path}' =image_tag('nav_bar_header.png')
+
+  - if @class_model != nil
+    div.input_group.navigation-search.col-md-6
+      form method="get" action="#{@main_resource_path}"
+        input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+        input.hidden_submit type="submit"
+  - else
+    div.col-md-6
+
+  div.navigation-menu-button.col-md-2
+    button.btn.btn-default.menu_button
+      i.fa.fa-modx aria-hidden="true"
+      span &nbsp; ENTERPRISE MENU &nbsp;
+    span.main_menu_arrow &#9660
+  div.navigation-login-indicator.col-md-2
+    span Login Placeholder
+
+- if action_name == 'index' || rest_action?
+  = javascript_include_tag 'generic_resource/search_suggestions'
+
+div.main_menu
+  div.address-bar ENTERPRISE
+  div.menu_category.enterprise
+
+    = enterprise_menu_cell('universal-access',enterprise_human_resources_path,'human_resources',true)
+    div.menu_category.human_resources
+
+      = enterprise_menu_cell('id-badge', enterprise_human_resources_employee_accounts_management_path, 'Employee Accounts Management', nil)
+      div.menu_category.employee_accounts_management
+
+        = enterprise_menu_cell('vcard', enterprise_human_resources_path, 'New Employee Wizard', nil)
+        = enterprise_menu_cell_model(EmployeeStatus)
+        = enterprise_menu_cell_model(Employee)
+        = enterprise_menu_cell_model(Biodatum)
+      div.menu_category.attendance
+      div.menu_category.payroll
+
+    = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'Accounting and Finance',nil)
+    = enterprise_menu_cell('university',enterprise_general_management_path,'General Management',nil)
+    = enterprise_menu_cell('codepen',enterprise_operations_path,'Operations',nil)
+    = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'Strategic Marketing',nil)
+
+
+= javascript_include_tag 'navigation_bar', media: 'all'

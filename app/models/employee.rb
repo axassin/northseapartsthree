@@ -2,7 +2,7 @@ class Employee < ApplicationRecord
 
   include GenericResourceCommon
 
-  setup_model('fa-black-tie',
+  setup_model('black-tie',
               'designation',
               @@routes.enterprise_human_resources_employee_accounts_management_employees_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController)

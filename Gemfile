@@ -90,7 +90,7 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'rails-assets-tether', '>= 1.1.0'
 
 # font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0.1'
 
 # UUID generator for producing universally unique identifiers based on RFC 4122
 gem 'uuidtools'

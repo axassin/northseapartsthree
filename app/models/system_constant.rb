@@ -3,7 +3,7 @@ class SystemConstant < ApplicationRecord
   include GenericResourceCommon
   include ImplementedAt
 
-  setup_model('fa-circle-o-notch',
+  setup_model('circle-o-notch',
               'label',
               @@routes.enterprise_general_management_system_constants_path,
               Enterprise::GeneralManagement::SystemConstantsController)

@@ -10,7 +10,7 @@ class Holiday < ApplicationRecord
   validates_presence_of :name
   validates :implemented_at, presence: true, uniqueness: true
 
-  setup_model('fa-slack',
+  setup_model('slack',
               'name',
               @@routes.enterprise_human_resources_attendance_holidays_path,
               Enterprise::HumanResources::Attendance::HolidaysController )

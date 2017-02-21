@@ -40,4 +40,17 @@ module ApplicationHelper
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def enterprise_menu_cell(icon, path, text, sub_dir = nil)
+    render partial: 'common/topside_navigation/enterprise_menu_cell', locals: {
+        icon: icon,
+        text: text,
+        path: path,
+        sub_dir: sub_dir
+    }
+  end
+
+  def enterprise_menu_cell_model(model)
+    enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized)
+  end
+
 end
