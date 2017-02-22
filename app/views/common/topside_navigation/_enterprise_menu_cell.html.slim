@@ -1,7 +1,8 @@
-div.menu_cell
+div.menu_cell data-text-label='#{text.to_s.humanize.downcase}'
   = fa_icon icon
   br
-  a.cell_text href='#{path}' #{text.to_s.humanize}
+  a.cell_text href='#{path}'
+    = text.to_s.humanize
   br
   - if sub_dir
     button.btn.btn-default.sub_menu_button unhide='#{text}' =fa_icon 'chevron-down'

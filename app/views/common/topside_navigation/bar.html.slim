@@ -23,24 +23,50 @@ nav.navbar.navbar-default.navigation
 
 div.main_menu
 
-  div.menu_category.enterprise
+  // Enterprise Main
+  div.menu_category.enterprise data-parent-category='enterprise'
     = enterprise_menu_cell('universal-access',enterprise_human_resources_path,'human_resources',true)
     = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'accounting_and_finance',true)
     = enterprise_menu_cell('university',enterprise_general_management_path,'general_management',true)
     = enterprise_menu_cell('codepen',enterprise_operations_path,'operations',true)
     = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'strategic_marketing',true)
 
+  // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'
     = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)
+    = enterprise_menu_cell('twitch', enterprise_human_resources_attendance_path, 'attendance', true)
+    = enterprise_menu_cell('yelp', enterprise_human_resources_payroll_path, 'payroll', true)
 
   div.menu_category.employee_accounts_management data-parent-category='human_resources'
-    = enterprise_menu_cell('vcard', enterprise_human_resources_path, 'New Employee Wizard', nil)
+    = enterprise_menu_cell('vcard', enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path, 'new_employee_wizard', nil)
     = enterprise_menu_cell_model(EmployeeStatus)
     = enterprise_menu_cell_model(Employee)
     = enterprise_menu_cell_model(Biodatum)
 
-  div.menu_category.attendance
-  div.menu_category.payroll
+  div.menu_category.attendance data-parent-category='human_resources'
+    = enterprise_menu_cell_model(RestDay)
+    = enterprise_menu_cell_model(RegularWorkPeriod)
+    = enterprise_menu_cell_model(Holiday)
+    = enterprise_menu_cell_model(AttendanceRecord)
+
+  div.menu_category.payroll data-parent-category='human_resources'
+    = enterprise_menu_cell_model(DayScheme)
+
+  // General Management
+  div.menu_category.general_management data-parent-category='enterprise'
+    = enterprise_menu_cell(ContactDetail.glyphicon, enterprise_general_management_contact_details_path, 'contact_details', true)
+    = enterprise_menu_cell_model(Vehicle)
+    = enterprise_menu_cell_model(Branch)
+    = enterprise_menu_cell_model(SystemAccount)
+    = enterprise_menu_cell_model(SystemConstant)
+    = enterprise_menu_cell_model(AssociatedFile)
+    = enterprise_menu_cell_model(AssociatedImage)
+
+  div.menu_category.contact_details data-parent-category='general_management'
+    = enterprise_menu_cell('gg', enterprise_general_management_contact_details_contact_wizard_index_path, 'contact_wizard', nil)
+    = enterprise_menu_cell_model(TelephoneNumber)
+    = enterprise_menu_cell_model(Location)
+    = enterprise_menu_cell_model(Link)
 
   div.float-clearing
   br
@@ -48,5 +74,13 @@ div.main_menu
     button.btn.btn-default.back_menu_button
       = fa_icon 'level-up'
       = ' BACK ONE LEVEL'
+
+    button.btn.btn-default.toggle_modules = 'SHOW ALL'
+    input.navigation_menu_search placeholder= ' Search for Modules '
+
+  div.float-clearing
+  br
+  br
+  br
 
 = javascript_include_tag 'navigation_bar', media: 'all'

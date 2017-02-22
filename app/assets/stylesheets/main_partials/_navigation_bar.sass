@@ -50,12 +50,18 @@ div.main_menu
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
   padding: 1em
   padding-bottom: 2em
+  overflow-y: scroll
   ul
     list-style-type: none
 
   div.main_menu_controls
     margin-left: 0.5em
+    button
+      margin-right: 0.5em
     button.back_menu_button
+    input.navigation_menu_search
+      padding: 0.3em
+      border: 0
 
 
 
@@ -110,10 +116,3 @@ div.main_menu
     height: 10em
     &:last-child
       border-right: 0
-
-div.address-bar
-  text-transform: uppercase
-  border-bottom: thin solid white
-  padding: 0.5em
-  margin-bottom: 1em
-  border-left: thick solid white
