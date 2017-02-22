@@ -15,19 +15,21 @@ $(document).on 'turbolinks:load', ->
   )
 
   # --------------------- Main Menu Behaviour ---------------------
+
+  # Initial Variables
+  navigation_search_touch_flag = 0
+
+  # Main Menu
   $('.main_menu .menu_category').hide()
   $('.main_menu .enterprise').show()
   current_div = '.enterprise'
 
+  # Sub Button per Cell
   $('.main_menu .sub_menu_button').click ->
     current_div = '.' + $(this).attr('unhide')
+    $('.main_menu .menu_cell').show()
     $('.main_menu .menu_category').hide()
     $(current_div).velocity("fadeIn", { duration: 250 })
-
-  # --------------------- Navigation Menu Controls --------------------
-
-  # Initial Variables
-  navigation_search_touch_flag = 0
 
   # Back Button
   $('.main_menu .back_menu_button').click ->

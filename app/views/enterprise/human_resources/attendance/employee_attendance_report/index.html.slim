@@ -1,0 +1,17 @@
+hr
+
+div.attendance_report_controls
+  span = 'Attendance Report for : '
+  span.employee_select_container
+    select.employee_id_attendance_report name='employee_id'
+      - Employee.all.each do |employee|
+        - if @employee.id == employee.id
+          option selected='selected' value='#{employee.id}' #{employee.designation}
+        - else
+          option value='#{employee.id}' #{employee.designation}
+
+  span &nbsp; from : &nbsp;
+  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+
+  span &nbsp; to : &nbsp;
+  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'

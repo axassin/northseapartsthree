@@ -1,2 +1,0 @@
-module Enterprise::HumanResources::EmployeeAccountsManagement::AttendancePerEmployeeHelper
-end

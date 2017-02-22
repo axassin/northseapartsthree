@@ -44,6 +44,7 @@ div.main_menu
     = enterprise_menu_cell_model(Biodatum)
 
   div.menu_category.attendance data-parent-category='human_resources'
+    = enterprise_menu_cell('user-circle', enterprise_human_resources_attendance_employee_attendance_report_path, 'employee_attendance_report', nil)
     = enterprise_menu_cell_model(RestDay)
     = enterprise_menu_cell_model(RegularWorkPeriod)
     = enterprise_menu_cell_model(Holiday)

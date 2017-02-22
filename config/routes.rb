@@ -79,7 +79,7 @@ Rails.application.routes.draw do
 
       define_index( 'attendance' )
       namespace :attendance do
-        define_index( 'attendance_per_employee' )
+        define_index( 'employee_attendance_report' )
         get 'rest_days/unique_rest_day_per_employee', to: 'rest_days#unique_rest_day_per_employee'
         generate_logic_unit( :rest_days )
         get 'regular_work_periods/validate_overlap', to: 'regular_work_periods#validate_overlap'
