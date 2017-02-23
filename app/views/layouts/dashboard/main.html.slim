@@ -3,6 +3,7 @@ html lang="en"
   head
     = render template: 'common/generic_head'
     = render template: 'common/generic_resource_head'
+    = stylesheet_link_tag 'main_partials/dashboard', media: 'all', 'data-turbolinks-track' => 'reload'
   body
 
     = render template: 'common/main_notification'

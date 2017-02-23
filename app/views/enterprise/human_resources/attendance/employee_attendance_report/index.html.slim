@@ -1,17 +1,80 @@
 hr
+form method='get'
+  div.report_controls
+    div.control_cell
+      = 'Attendance Report for :'
+      |&nbsp;
+      |&nbsp;
+    div.control_cell
+      select.employee_id_attendance_report name='employee_id'
+        - Employee.all.each do |employee|
+          - if @employee.id == employee.id
+            option selected='selected' value='#{employee.id}' #{employee.designation}
+          - else
+            option value='#{employee.id}' #{employee.designation}
+    div.control_cell
+      |&nbsp;
+      |&nbsp;
+      = ' from the period of '
+      |&nbsp;
+      input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+      |&nbsp;
+      = ' to '
+      |&nbsp;
+      input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+    div.control_cell
+      |&nbsp;
+      input.btn.btn-default type='SUBMIT' value='SEARCH'
 
-div.attendance_report_controls
-  span = 'Attendance Report for : '
-  span.employee_select_container
-    select.employee_id_attendance_report name='employee_id'
-      - Employee.all.each do |employee|
-        - if @employee.id == employee.id
-          option selected='selected' value='#{employee.id}' #{employee.designation}
-        - else
-          option value='#{employee.id}' #{employee.designation}
+div.float-clearing
+hr
 
-  span &nbsp; from : &nbsp;
-  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+table.attendance_report_table
+  thead
+    tr
+      th
+        div.att_report_heading Date
 
-  span &nbsp; to : &nbsp;
-  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+      ruby:
+        thead_counter = 0
+
+      - while thead_counter < 24
+        th
+          div.att_report_heading #{thead_counter.to_s.rjust(2, '0') + 'H'}
+
+        ruby:
+          thead_counter = thead_counter + 1
+
+      th
+        div.att_report_heading Remarks
+      th
+        div.att_report_heading Summary
+  tbody
+    ruby:
+      my_start_attendance = Time.parse(@start_attendance)
+      my_end_attendance = Time.parse(@end_attendance)
+      absences = 0
+      tardiness = 0
+      overtime = 0
+
+      current_attendance = my_start_attendance
+
+    - while (current_attendance <= my_end_attendance)
+      tr
+        // Date
+        td.att_report_date align='right' =current_attendance.strftime('%m/%d/%Y')
+        ruby:
+          current_attendance = current_attendance + 1.day
+
+        // Hours
+        ruby:
+          current_time = Time.new(2001,1,1,0,0,0)
+
+        - while current_time < Time.new(2001,1,2,0,0,0)
+          td align='center'
+            = current_time
+
+          ruby:
+            current_time = current_time + 1.hour
+            puts current_time
+        // Remarks

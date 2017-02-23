@@ -15,4 +15,11 @@ class AttendanceRecord < ApplicationRecord
     time_in.strftime('%T') + ' to ' + time_out.strftime('%T')
   end
 
+
+  def self.point_hour(point_date, point_time_hour)
+    AttendanceRecord.where(implemented_at: point_date).each do |attendance_record|
+
+    end
+  end
+
 end

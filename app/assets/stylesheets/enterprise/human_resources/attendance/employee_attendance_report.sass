@@ -1,12 +1,18 @@
 @import '../stylesheets/constants'
 
-div.attendance_report_controls
-  span.employee_select_container
-    display: inline
-    width: 30%
-    select
-      display: inline
-
-  .selectize-dropdown
-    width: 600px !important
-    display: inline
+table.attendance_report_table
+  width: 100%
+  thead
+    tr
+      th
+        text-transform: uppercase
+        font-weight: normal
+        div.att_report_heading
+          background-color: $QUATERNARY_COLOR
+          color: white
+          padding-left: 0.5em
+  tbody
+    tr
+      border-bottom: solid $QUATERNARY_COLOR thin
+      td
+        padding: 0.5em
