@@ -32,22 +32,13 @@ hr
 table.attendance_report_table
   thead
     tr
-      th
+      th style='width: 5%'
         div.att_report_heading Date
-
-      ruby:
-        thead_counter = 0
-
-      - while thead_counter < 24
-        th
-          div.att_report_heading #{thead_counter.to_s.rjust(2, '0') + 'H'}
-
-        ruby:
-          thead_counter = thead_counter + 1
-
-      th
+      th style='width: 70%'
+        div.att_report_heading Timeline
+      th style='width: 12.5%'
         div.att_report_heading Remarks
-      th
+      th style='width: 12.5%'
         div.att_report_heading Summary
   tbody
     ruby:
@@ -59,21 +50,41 @@ table.attendance_report_table
 
       current_attendance = my_start_attendance
 
-    - while (current_attendance <= my_end_attendance)
+    - while current_attendance < my_end_attendance
       tr
         // Date
         td.att_report_date align='right' =current_attendance.strftime('%m/%d/%Y')
-        ruby:
-          current_attendance = current_attendance + 1.day
-
-        // Hours
-        ruby:
-          current_time = Time.new(2000,1,1,0,0,0)
-
-        - while current_time < Time.new(2000,1,2,0,0,0)
-          td align='center'
-            = AttendanceRecord.point_hour(current_attendance, current_time, @employee.id)
-
+        td
           ruby:
-            current_time = current_time + 1.hour
-        // Remarks
+            id_formatted_date = current_attendance.strftime('%Y-%m-%d')
+
+          div.timeline id='#{id_formatted_date}'
+
+          // Timeline
+          javascript:
+            // Container Initialization
+            id = '#{id_formatted_date}'
+            container_string = 'div.timeline#' + id
+            var container = $(container_string)[0];
+
+            // Create a DataSet (allows two way data-binding)
+            var items = new vis.DataSet([
+              {id: 1, content: 'item 1', start: '2013-04-20'},
+              {id: 2, content: 'item 2', start: '2013-04-14'},
+              {id: 3, content: 'item 3', start: '2013-04-18'},
+              {id: 4, content: 'item 4', start: '2013-04-16', end: '2013-04-19'},
+              {id: 5, content: 'item 5', start: '2013-04-25'},
+              {id: 6, content: 'item 6', start: '2013-04-27'},
+            ]);
+
+            // Configuration for the Timeline
+            var options = {};
+
+            // Create a Timeline
+            var timeline = new vis.Timeline(container, items, options);
+
+        td remarks
+        td summary
+
+      ruby:
+        current_attendance = current_attendance + 1.day

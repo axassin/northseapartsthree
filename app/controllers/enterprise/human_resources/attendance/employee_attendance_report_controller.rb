@@ -9,7 +9,7 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
     current_employee = params[:employee_id] || Employee.ids.sample(1)
 
     @employee = Employee.find_by_id(current_employee)
-    @start_attendance = params[:start_attendance] || (Time.new - 6.days).strftime('%Y-%m-%d')
+    @start_attendance = params[:start_attendance] || (Time.new - 1.days).strftime('%Y-%m-%d')
     @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
 
   end

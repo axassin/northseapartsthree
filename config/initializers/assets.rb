@@ -20,4 +20,5 @@ image       = Dir["#{image_prefix}**/*.*"].map { |x| x.gsub(image_prefix, '') }
 
 puts "---------------------- START OF COMPILED ASSETS ----------------------"
 puts Rails.application.config.assets.precompile = (javascripts + css + image)
+puts Rails.application.config.assets.precompile += %w( timeline/* network/* )
 puts "----------------------- END OF COMPILED ASSETS -----------------------"

@@ -182,3 +182,6 @@ gem 'momentjs-rails'
 
 # Complete validation of dates, times and datetimes for Rails 4.x and ActiveModel.
 gem 'validates_timeliness', '~> 4.0'
+
+# A dynamic, browser based visualization library.
+gem 'visjs-rails'

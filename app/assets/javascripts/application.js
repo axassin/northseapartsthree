@@ -32,4 +32,5 @@
 //= require moment
 //= require velocity.ui.min.js
 //= require jquery.func_toggle.js
+//= require vis
 //= //require_tree .
