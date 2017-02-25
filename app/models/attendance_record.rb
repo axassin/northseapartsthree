@@ -15,22 +15,10 @@ class AttendanceRecord < ApplicationRecord
     time_in.strftime('%T') + ' to ' + time_out.strftime('%T')
   end
 
-
-  def self.point_hour(point_date, point_hour, employee_id)
-    time_hit = 'n.a.'
-    AttendanceRecord.where(implemented_at: point_date, employee_id: employee_id).each do |attendance_record|
-      time_in = attendance_record.time_in
-      time_out = attendance_record.time_out
-      if time_in.between?(point_hour, point_hour + 1.hour)
-        time_hit = time_in
-      elsif time_out.between?(point_hour, point_hour + 1.hour)
-        time_hit = time_out
-      end
-      puts time_in
-      puts point_hour
-      puts '-------------'
-    end
-    time_hit
+  def self.remarks_of_day(employee_id, implemented_at)
+    remark = ''
+    counter = 0
+    AttendanceRecord.where(employee_id: employee_id, implemented_at: implemented_at)
   end
 
 end

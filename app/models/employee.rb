@@ -40,31 +40,42 @@ class Employee < ApplicationRecord
     employee_status.order('implemented_at DESC').first.state.to_s if employee_status.present?
   end
 
+  # outputs if employee has incurred overtime, undertime, exact time, shifted time on said date
   def attendance_status(inquired_date = Date.today)
 
-    # overtime, undertime, exact time, shifted time
-
+    # extract attendance records
     attendance_records =  AttendanceRecord.where(['implemented_at = ? AND employee_id = ?', inquired_date, id])
+    date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
+
+    # see if record exists
     if attendance_records.count > 0
 
+      # set variables
       daily_emp_work_hours = 0
       current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
+      one_hour_break = current_work_period.one_hour_break
       reg_work_hours = current_work_period.number_of_hours
+      reg_work_hours = reg_work_hours - 1 if one_hour_break
+      puts one_hour_break
       work_period_time_in = current_work_period.time_in
       work_period_time_out = current_work_period.time_out
 
+      # count hours worked per day
       attendance_records.each do |record|
-
         att_rec_time_in = record.time_in
         att_rec_time_out = record.time_out
-        one_hour_break = current_work_period.one_hour_break
-        date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
-
         daily_emp_work_hours = daily_emp_work_hours + ((att_rec_time_out - att_rec_time_in)/3600)
-
       end
 
+      puts '---------------------------'
+      puts inquired_date
+      puts daily_emp_work_hours
+      puts reg_work_hours
+      puts daily_emp_work_hours == reg_work_hours
+
       if daily_emp_work_hours == reg_work_hours
+
+
 
         all_time_in = []
         all_time_out = []
@@ -76,7 +87,6 @@ class Employee < ApplicationRecord
 
         min_time_in = all_time_in.min
         max_time_out = all_time_out.max
-        gay = min_time_in.strftime('%T') + max_time_out.strftime('%T') + work_period_time_in.strftime('%T') + work_period_time_out.strftime('%T')
 
         if ((min_time_in == work_period_time_in) && (max_time_out == work_period_time_out))
           'exact'
