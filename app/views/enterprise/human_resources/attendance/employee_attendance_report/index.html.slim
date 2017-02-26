@@ -58,11 +58,14 @@ table.attendance_report_table
 
         td
           ruby: counter = 0
-          - AttendanceRecord.remarks_of_day(@employee.id, current_attendance).each do |record|
-            div = '[' + counter.to_s + '] ' + record.remark
+          -     AttendanceRecord.where(employee_id: @employee.id, implemented_at: current_attendance).each do |record|
+            div
+              a.btn.btn-default href='#{record.show_path}' = '[' + counter.to_s + '] ' + record.remark
+            br
             ruby: counter = counter + 1
 
-        td =@employee.attendance_status(current_attendance.strftime('%Y-%m-%d')).to_s.titleize
+        td
+          = @employee.attendance_status(current_attendance.strftime('%Y-%m-%d')).to_s.titleize
 
       ruby:
         current_attendance = current_attendance + 1.day

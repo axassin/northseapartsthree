@@ -53,10 +53,7 @@ class Employee < ApplicationRecord
       # set variables
       daily_emp_work_hours = 0
       current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
-      one_hour_break = current_work_period.one_hour_break
       reg_work_hours = current_work_period.number_of_hours
-      reg_work_hours = reg_work_hours - 1 if one_hour_break
-      puts one_hour_break
       work_period_time_in = current_work_period.time_in
       work_period_time_out = current_work_period.time_out
 
@@ -67,16 +64,8 @@ class Employee < ApplicationRecord
         daily_emp_work_hours = daily_emp_work_hours + ((att_rec_time_out - att_rec_time_in)/3600)
       end
 
-      puts '---------------------------'
-      puts inquired_date
-      puts daily_emp_work_hours
-      puts reg_work_hours
-      puts daily_emp_work_hours == reg_work_hours
 
       if daily_emp_work_hours == reg_work_hours
-
-
-
         all_time_in = []
         all_time_out = []
 

@@ -13,7 +13,7 @@ $(document).on 'turbolinks:load', ->
 
     data_set = []
     $.ajax
-      url: 'employee_attendance_report/get_attendance_records' + '?attendance_date=' + attendance_date
+      url: 'employee_attendance_report/get_attendance_records' + '?attendance_date=' + attendance_date + '&employee_id=' + employee_id
       dataType: 'json'
       async: false
       error: (jqXHR, textStatus, errorThrown) ->
