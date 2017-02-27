@@ -1,0 +1,7 @@
+- if action_name == 'show'
+  div
+    - AssociatedFile.where(fileable_id: current_instance.id, fileable_type: current_instance.class).each do |fileable|
+      div.associated_file_container
+        a.btn.btn-default href='#{fileable.file.url}'=fileable.name
+        = ' | ' + fileable.description
+      end

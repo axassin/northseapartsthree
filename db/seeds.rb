@@ -79,12 +79,7 @@ if Rails.env.development? || Rails.env.test?
 
   def establish_image(model, id)
 
-    current_file = ['sample_image_01.jpg',
-                    'sample_image_02.jpg',
-                    'sample_image_03.jpg',
-                    'sample_image_04.jpg',
-                    'sample_image_05.jpg',
-                    ''].sample
+    current_file = %w(sample_image_01.jpg sample_image_02.jpg sample_image_03.jpg sample_image_04.jpg sample_image_05.jpg).sample
 
     rand(0..2).times do
 
@@ -138,6 +133,7 @@ if Rails.env.development? || Rails.env.test?
     current_vehicle.date_of_registration = Faker::Time.between(DateTime.now - 3600, DateTime.now)
     current_vehicle.save!
     establish_image(Vehicle, current_vehicle.id)
+    establish_file(Vehicle, current_vehicle.id)
   }
 
   # System Accounts
@@ -161,6 +157,7 @@ if Rails.env.development? || Rails.env.test?
     current_system_account.save!
     establish_contact_details(SystemAccount, current_system_account.id)
     establish_image(SystemAccount, current_system_account.id)
+    establish_file(SystemAccount, current_system_account.id)
   }
 
   # Employees
@@ -172,7 +169,6 @@ if Rails.env.development? || Rails.env.test?
                                         position: Faker::Lorem.sentence(1))
 
     current_employee.save
-    establish_file(Employee, current_employee.id)
 
     # Rest Day for Employee
     rand(1..3).times do
