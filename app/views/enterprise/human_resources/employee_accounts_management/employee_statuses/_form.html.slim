@@ -1,0 +1,10 @@
+div.col-md-6
+  = employee_selector(f, current_instance)
+  = selector(f, :state, ['INACTIVE','ACTIVE'], current_instance.state)
+  = input_date(f, :implemented_at)
+
+div.col-md-6
+
+  = input_word(f, :remark)
+
+

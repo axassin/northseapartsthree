@@ -1,0 +1,35 @@
+// Place all the styles related to the enterprise/general_management/contacts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "constants"
+
+table.contact_tree
+  thead
+    tr
+      th
+        text-transform: uppercase
+        color: gray
+        border-bottom: gray medium solid
+        border-right: white thick solid
+  tbody
+    tr
+      border-bottom: solid #e6e6e6 thin
+      td
+        vertical-align: top
+        padding: 0.25em
+        fieldset
+          float: left
+          margin: 1em
+          margin-top: 0.25em
+          legend
+            font-size: 0.75em
+          div.contact_unit
+            padding: 0.25em
+            margin: 0.25em
+            &:hover
+              background-color: #BBBBBB
+              color: white
+            div.remark
+              @extend %font_set_one
+

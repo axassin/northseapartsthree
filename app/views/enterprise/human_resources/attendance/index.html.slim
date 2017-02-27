@@ -1,0 +1,97 @@
+hr
+
+form method='get'
+
+  span EMPLOYEES at &nbsp;
+
+  select name='branch'
+    - Branch.all.each do |branch|
+      - if params[:branch] == branch.id
+        option selected='selected' value='#{branch.id}' #{branch.name}
+      - else
+        option value='#{branch.id}' #{branch.name}
+
+  span &nbsp; from : &nbsp;
+  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+
+  span &nbsp; to : &nbsp;
+  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+
+  span &nbsp; | &nbsp;
+  input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
+
+hr
+
+ruby:
+  my_start_attendance = Time.parse(@start_attendance)
+  my_end_attendance = Time.parse(@end_attendance)
+  absences = 0
+  tardiness = 0
+  overtime = 0
+
+div.attendance_grid
+  table
+    thead
+      tr
+        th
+          div.title_attendance EMPLOYEE
+          ruby:
+            current_attendance = my_start_attendance
+        - while (current_attendance <= my_end_attendance)
+          th
+            div.title_attendance = current_attendance.strftime('%m/%d/%Y')
+          ruby:
+            current_attendance = current_attendance + 1.day
+
+    tbody
+      - unless @employee_set.count == 0
+        - @employee_set.each do |employee|
+
+          tr
+            td.employee_cell
+              a.btn.btn-default.little_button href='#{employee.system_account.show_path}' target='_new'
+                = employee.system_account.name
+
+              ruby:
+                current_attendance = my_start_attendance
+
+            - while (current_attendance <= my_end_attendance)
+
+              ruby:
+                attendance_status = employee.attendance_status(current_attendance)
+                absences += 1 if attendance_status == 'no_record'
+                overtime += 1 if attendance_status == 'overtime'
+                tardiness += 1 if attendance_status == 'undertime'
+                attendance_class_name = 'attendance ' + attendance_status
+
+              td class='#{attendance_class_name}'
+                - AttendanceRecord.where(employee_id: employee.id, implemented_at: current_attendance.strftime('%Y-%m-%d')).each do |record|
+                  div.attendance_cell
+                    a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
+
+              ruby:
+                current_attendance = current_attendance + 1.day
+
+      - else
+        div.statement No Employees for Branch
+
+div.attendance_legend
+  span.legend_label LEGEND :
+  span.legend.exact Exact Present
+  span.legend.shifted Shifted Present
+  span.legend.undertime Undertime
+  span.legend.overtime Overtime
+  span.legend.no_record No Record Exists
+
+div.branch_statistics
+  ruby:
+    days = (((my_end_attendance - my_start_attendance).to_i / (24 * 60 * 60)) + 1) * @employee_set.count
+    presence = days - absences
+    presence_ratio = ((presence.to_f / days.to_f ) * 100).round(2)
+    tardiness_ratio = ((tardiness.to_f / presence.to_f ) * 100).round(2)
+    overtime_ratio = ((overtime.to_f / presence.to_f) * 100).round(2)
+  span.stat Presence : #{presence_ratio.to_s + '%'}
+  span.stat Tardiness : #{tardiness_ratio.to_s + '%'}
+  span.stat Overtime : #{overtime_ratio.to_s + '%'}
+
+= button_set(@button_set)

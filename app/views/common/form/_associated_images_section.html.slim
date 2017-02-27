@@ -1,0 +1,7 @@
+- if action_name == 'show'
+  div
+    - AssociatedImage.where(imageable_id: current_instance.id, imageable_type: current_instance.class).each do |imageable|
+      div.associated_image_container
+        a href='#{imageable.image.url}'
+          img.associated_image_thumbnail.img-thumbnail src='#{imageable.image.url}' data-toggle="tooltip" data-placement="bottom" title='#{imageable.name + ' | ' + imageable.description}'
+      end

@@ -1,0 +1,32 @@
+ruby:
+  parameterized_class = selected.class.parameterized
+  selectable_name = parameterized_class + '[' + polymorphic_name + ']'
+  selectable_id = parameterized_class + '_' + polymorphic_name.downcase
+
+  option_array = []
+  polymorphic_hash.each do |pair|
+    model = pair[0]
+    method = pair[1]
+
+    model.all.each do |instance|
+      # error is in [method]
+      option_array.push([model.to_s,instance.id, instance.send(method)])
+    end
+  end
+
+  if selected.id
+    instance_value = selected.send(polymorphic_name + '_type') + ',' + selected.send(polymorphic_name + '_id')
+  else
+    instance_value = 'new'
+  end
+
+div.polymorphic_selector_group
+  label.outside_label.string.required for="#{selectable_id}" #{polymorphic_name.upcase}
+  select.form-control.select.required required="required" name="#{selectable_name}" id="#{selectable_id}" disabled=('true' if disabled)
+    - option_array.each do |option|
+      ruby:
+        option_value = option[0] + ',' + option[1]
+      - if option_value == instance_value
+        option selected='selected' value='#{option_value}' #{camel_to_human(option[0]) + ' | ' + option[2]}
+      - else
+        option value='#{option_value}' #{camel_to_human(option[0]) + ' | ' + option[2]}

@@ -1,0 +1,17 @@
+ruby:
+  contact_detail = @wizard_model_instance.contact_details.order('created_at DESC').first
+
+= associated_wizard_section(@wizard_model_instance)
+
+- if contact_detail.present?
+  = associated_wizard_section(contact_detail)
+
+  - if contact_detail.telephone_numbers.present?
+    = associated_wizard_section(contact_detail.telephone_numbers)
+
+  - if contact_detail.links.present?
+    = associated_wizard_section(contact_detail.links)
+
+  - if contact_detail.locations.present?
+    = associated_wizard_section(contact_detail.locations)
+

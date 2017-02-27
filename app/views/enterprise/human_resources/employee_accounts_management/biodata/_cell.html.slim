@@ -1,0 +1,48 @@
+div = result.decorate.associated_employee_link
+
+hr
+
+div #{result.decorate.date_of_birth}
+
+hr
+
+div
+  - if result.complexion.present?
+    span #{result.complexion + ', '}
+
+  - if result.height.present?
+    span #{result.height + ', '}
+
+  - if result.sex.present?
+    span #{result.sex + ', '}
+
+  - if result.blood_type.present?
+    span #{result.blood_type}
+
+hr
+
+- if result.description.present?
+  div =result.description
+  br
+
+- if result.name_of_mother.present?
+  div Mother : #{result.name_of_mother}
+  br
+
+- if result.name_of_father.present?
+  div Father : #{result.name_of_father}
+  br
+
+- if result.dependents.present?
+  div Dependents : #{result.dependents}
+
+hr
+
+- if result.education.present?
+  div =result.education
+
+- if result.experience.present?
+  div =result.experience
+
+- if result.notable_accomplishment.present?
+  div =result.notable_accomplishment

@@ -1,0 +1,28 @@
+@import "typeahead"
+@import "../../constants"
+
+div.main_display
+  div.side_bar
+    float: left
+    background-color: #f2f2f2
+    padding: 1em
+
+    div.resource_glyphicon
+      font-size: 3em
+      color: white
+      background-color: $TERTIARY_COLOR
+      padding: 0.5em
+
+    div.title_group
+      margin-top: 0.5em
+
+      h1.title_heading
+        @extend %font_set_two
+        margin: 0
+        font-size: 2em
+      div.sub_heading
+        @extend %font_set_one
+
+  div.main_content
+    float: right
+

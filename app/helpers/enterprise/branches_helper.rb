@@ -1,0 +1,2 @@
+module Enterprise::BranchesHelper
+end

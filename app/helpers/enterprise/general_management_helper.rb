@@ -1,0 +1,2 @@
+module Enterprise::GeneralManagementHelper
+end

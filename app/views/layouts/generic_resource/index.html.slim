@@ -1,0 +1,68 @@
+
+div.fade.modal.add_form_modal id='add_form_modal'
+  div.modal-dialog role='document'
+    div.modal-content
+      div.modal-header
+        div.form_title #{ ('ADD ' + controller_name.to_s.humanize.singularize.capitalize + ' Form').upcase }
+      div.modal-body
+        div.row
+          = render template: 'layouts/generic_resource/form'
+
+- unless @result_set.total_count == 0
+  - if @view_mode == 'table'
+
+    table.resource_table
+      thead
+        tr
+          - @result_set.first.class.attribute_names.each do |attribute|
+            - unless @omitted_attributes.include?(attribute)
+              th
+                div = attribute.humanize.titleize.upcase
+          - if @admitted_attributes.present?
+            - @admitted_attributes.each do |attribute|
+              th
+                div = attribute.humanize.titleize.upcase
+          th
+
+      tbody
+        - @result_set.each do |result|
+          tr
+            - result.attribute_names.each_with_index do |attribute, index|
+              - unless @omitted_attributes.include?(attribute)
+                td = result.decorate.send(attribute)
+            - if @admitted_attributes.present?
+              - @admitted_attributes.each do |attribute|
+                td = result.decorate.send(attribute)
+            td = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
+
+  - else
+
+    div.loading_screen align='center'
+      = image_tag('ajax-loader.gif')
+      p LOADING
+ 
+    div.grid
+      - @result_set.each do |result|
+        div.grid-item
+          = render partial: controller_path + '/cell', locals: {result: result}
+          = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
+
+
+- else
+  div.no_results_message
+    h1 NO RESULTS FOUND
+    div Suggestions:
+    ul
+      li Check your spelling
+      li Try different keywords; more general or specific
+      li Try fewer keywords
+      li Information is non-existent; add more
+
+= javascript_include_tag 'generic_resource/grid', 'data-turbolinks-track' => 'reload'
+= javascript_include_tag 'grid_fade', 'data-turbolinks-track' => 'reload'
+
+- if params[:printable] == 'true'
+  = javascript_include_tag 'generic_resource/printable', 'data-turbolinks-track' => 'reload'
+
+br
+br

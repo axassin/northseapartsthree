@@ -1,0 +1,14 @@
+- if flash[:main_notification]
+  div.modal.hide.fade.alert_modal role='dialog' id='main_notification'
+    div.modal-content
+      div.modal-alert-content
+        span.alert_message
+          = flash[:main_notification]
+          br
+          button.btn.btn-default.alert_modal_button.btn-sm type='button' data-dismiss="modal" &#10006;
+          br
+
+ruby:
+  flash[:main_notification] = nil
+
+= javascript_include_tag 'main_notification'
