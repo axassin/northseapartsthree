@@ -90,7 +90,7 @@ gem 'bootstrap', '~> 4.0.0.alpha5'
 gem 'rails-assets-tether', '>= 1.1.0'
 
 # font-awesome-rails provides the Font-Awesome web fonts and stylesheets as a Rails engine for use with the asset pipeline.
-gem 'font-awesome-rails'
+gem 'font-awesome-rails', '~> 4.7.0.1'
 
 # UUID generator for producing universally unique identifiers based on RFC 4122
 gem 'uuidtools'
@@ -176,3 +176,12 @@ gem 'file_validators'
 
 # Ideal solution for booking applications where you want to make sure, that one place can be booked only once in specific time period.
 gem 'validates_overlap'
+
+# momentjs-rails wraps the Moment.js library in a rails engine for simple use with the asset pipeline provided by Rails 3.1 and higher
+gem 'momentjs-rails'
+
+# Complete validation of dates, times and datetimes for Rails 4.x and ActiveModel.
+gem 'validates_timeliness', '~> 4.0'
+
+# A dynamic, browser based visualization library.
+gem 'visjs-rails'

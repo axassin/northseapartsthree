@@ -1,7 +1,7 @@
 class Location < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-map-marker',
+  setup_model('map-marker',
               'address',
               @@routes.enterprise_general_management_contact_details_locations_path,
               Enterprise::GeneralManagement::ContactDetails::LocationsController)

@@ -5,7 +5,7 @@ class AssociatedFile < ApplicationRecord
 
   belongs_to :fileable, polymorphic: true
 
-  setup_model('fa-file',
+  setup_model('file',
               'name',
               @@routes.enterprise_general_management_associated_files_path,
               Enterprise::GeneralManagement::AssociatedFilesController)

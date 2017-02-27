@@ -9,10 +9,17 @@
       options = []
       @result_set.first.class.attribute_names.each do |attribute|
         option_array = []
+
         unless @omitted_attributes.include?(attribute)
           option_array = [attribute.to_s.humanize.upcase, attribute]
           options.push(option_array)
         end
+
+      end
+
+      @admitted_attributes.each do |add_attribute|
+        option_array = [add_attribute.to_s.humanize.upcase, add_attribute]
+        options.push(option_array)
       end
 
     = 'Sort By : '

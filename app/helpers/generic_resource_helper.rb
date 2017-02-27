@@ -7,7 +7,7 @@ module GenericResourceHelper
       if ( instance_url.present? && public_file_exists?(instance_url) )
         img.primary_image :src => instance_url
       else
-        div :class => 'fa ' + result.class.class_variable_get(:@@resource_glyphicon) + ' resource_glyphicon',
+        div :class => 'fa fa-' + result.class.class_variable_get(:@@resource_glyphicon) + ' resource_glyphicon',
             :style => 'width: 100%', :align => 'center'
         br
       end

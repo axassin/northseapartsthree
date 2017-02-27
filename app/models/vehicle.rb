@@ -1,7 +1,7 @@
 class Vehicle < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('fa-bus',
+  setup_model('bus',
               'plate_number',
               @@routes.enterprise_general_management_vehicles_path,
               Enterprise::GeneralManagement::VehiclesController)

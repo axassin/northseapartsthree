@@ -18,12 +18,17 @@ module ContactableDecorator
 
   def owner
 
-    owner = object.represent
-    owner_link = object.show_path
+    contact_detail = object.contact_detail
+    contact_type = contact_detail.contactable_type.constantize
+    contact_id = contact_detail.contactable_id.to_s
+    contact_object_representation = contact_type.find_by_id(contact_id).represent
+    contact_object = contact_type.find_by_id(contact_id).show_path
+
+    owner_link = contact_object
 
     main_element = mab do
       a :class => 'btn btn-default', :href => owner_link, :target => '_new' do
-        owner
+        contact_object_representation
       end
     end
 

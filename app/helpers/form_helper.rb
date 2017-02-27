@@ -122,6 +122,25 @@ module FormHelper
     end
   end
 
+  def employee_selector(f, current_instance)
+    render partial: 'common/form/employee_selector', locals: {
+        f: f,
+        current_instance: current_instance
+    }
+  end
 
+  def associated_files_section(f, current_instance)
+    render partial: 'common/form/associated_files_section', locals: {
+        f: f,
+        current_instance: current_instance
+    }
+  end
+
+  def associated_images_section(f, current_instance)
+    render partial: 'common/form/associated_images_section', locals: {
+        f: f,
+        current_instance: current_instance
+    }
+  end
 
 end

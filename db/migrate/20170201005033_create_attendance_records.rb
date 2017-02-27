@@ -4,7 +4,7 @@ class CreateAttendanceRecords < MainMigration
       common_set(t)
       foreign_key_id(t, 'employee')
       remark_column(t)
-      t.date :date_of_attendance, :required => true
+      implemented_at(t)
       t.time :time_in, :required => true
       t.time :time_out, :required => true
     end

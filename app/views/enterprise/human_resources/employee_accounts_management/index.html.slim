@@ -1,5 +1,5 @@
+// Form Section --------------------------------------------------
 form method='get'
-
   span EMPLOYEES at &nbsp;
 
   select name='branch'
@@ -27,6 +27,7 @@ form method='get'
 
   input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
 
+// Display Section --------------------------------------------------
 hr
 
 - unless @employee_set.count == 0
@@ -38,14 +39,4 @@ hr
 - else
   div.statement No Results Found
 
-div.float-clearing
-br
-hr
-
-a.btn.btn-default href='#{}' NEW EMPLOYEE WIZARD
-span &nbsp;
-a.btn.btn-default href='#{}' EMPLOYEE
-span &nbsp;
-a.btn.btn-default href='#{}' BIODATA
-span &nbsp;
-a.btn.btn-default href='#{}' EMPLOYEE STATUS
+= button_set(@button_set)

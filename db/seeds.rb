@@ -6,6 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+require File.expand_path('../seeds/deployment_starter', __FILE__)
+
 puts " Initializing Database with Sample Data for Production and Development Environment"
 
 # Execute only in a Development Environment; This is "fake" sample data
@@ -77,12 +79,7 @@ if Rails.env.development? || Rails.env.test?
 
   def establish_image(model, id)
 
-    current_file = ['sample_image_01.jpg',
-                    'sample_image_02.jpg',
-                    'sample_image_03.jpg',
-                    'sample_image_04.jpg',
-                    'sample_image_05.jpg',
-                    ''].sample
+    current_file = %w(sample_image_01.jpg sample_image_02.jpg sample_image_03.jpg sample_image_04.jpg sample_image_05.jpg).sample
 
     rand(0..2).times do
 
@@ -102,7 +99,7 @@ if Rails.env.development? || Rails.env.test?
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
-  NO_OF_BRANCHES = 17
+  NO_OF_BRANCHES = 3
   NO_OF_BRANCHES.times {
     current_branch = Branch.create!(
         name: Faker::Company.name,
@@ -136,6 +133,7 @@ if Rails.env.development? || Rails.env.test?
     current_vehicle.date_of_registration = Faker::Time.between(DateTime.now - 3600, DateTime.now)
     current_vehicle.save!
     establish_image(Vehicle, current_vehicle.id)
+    establish_file(Vehicle, current_vehicle.id)
   }
 
   # System Accounts
@@ -159,6 +157,7 @@ if Rails.env.development? || Rails.env.test?
     current_system_account.save!
     establish_contact_details(SystemAccount, current_system_account.id)
     establish_image(SystemAccount, current_system_account.id)
+    establish_file(SystemAccount, current_system_account.id)
   }
 
   # Employees
@@ -168,10 +167,54 @@ if Rails.env.development? || Rails.env.test?
     current_employee = Employee.create!(system_account: system_account,
                                         branch: Branch.offset(rand(Branch.count)).first,
                                         position: Faker::Lorem.sentence(1))
+
     current_employee.save
 
-    establish_file(Employee, current_employee.id)
+    # Rest Day for Employee
+    rand(1..3).times do
+      RestDay.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+                      employee: current_employee,
+                      remark: Faker::Lorem.sentence(3, false, 0),
+                      day: %w(MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY).sample)
+    end
 
+    # Regular Work Period
+    rand(1..3).times do
+
+      # Regular
+      generated_time_in = '08:00'
+      generated_time_out = '17:00'
+      one_hour_break = 1
+
+      # Regular with Lunch Break
+      30.in(100) do
+        start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
+        end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
+        base_time = Faker::Time.between(start_time, end_time, :morning)
+        generated_time_in = base_time.strftime('%H:%M')
+        generated_time_out = (base_time + 9.hours).strftime('%H:%M')
+        one_hour_break = 1
+      end
+
+      # Regular with no Lunch Break
+      30.in(100) do
+        start_time = DateTime.new(2002, 10, 31, 0, 0, 1)
+        end_time = DateTime.new(2002, 10, 31, 12, 59, 59)
+        base_time = Faker::Time.between(start_time, end_time, :morning)
+        generated_time_in = base_time.strftime('%H:%M')
+        generated_time_out = (base_time + 8.hours).strftime('%H:%M')
+        one_hour_break = 0
+      end
+
+      RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+                                employee: current_employee,
+                                remark: Faker::Lorem.sentence(3, false, 0),
+                                time_in: generated_time_in,
+                                time_out: generated_time_out,
+                                one_hour_break: one_hour_break)
+    end
+
+    # Biodata for Employee
     50.in(100) do
       current_biodata = Biodatum.create!(
           employee_id: current_employee.id,
@@ -191,6 +234,7 @@ if Rails.env.development? || Rails.env.test?
       current_biodata.save
     end
 
+    # Employee Status for Employee
     rand(0..5).times do
       current_employee_status = EmployeeStatus.create!(
           employee_id: current_employee.id,
@@ -201,6 +245,7 @@ if Rails.env.development? || Rails.env.test?
       current_employee_status.save
     end
 
+    # Attendance Records for Employee
     rand(0..50).times do
 
       generated_date = Faker::Date.between(2.weeks.ago, Date.today)
@@ -238,12 +283,12 @@ if Rails.env.development? || Rails.env.test?
 
       # Time Overlap
       save_flag = true
-      current_date_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
-      current_date_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      implemented_at_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      implemented_at_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.date_of_attendance.year, att_rec.date_of_attendance.month, att_rec.date_of_attendance.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((current_date_time_in..current_date_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        other_date_time_in = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((implemented_at_time_in..implemented_at_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
           break;
@@ -254,13 +299,14 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            date_of_attendance: generated_date,
+            implemented_at: generated_date,
             time_in: time_in,
             time_out: time_out
         )
       end
-
     end
+
+
 
   end
 

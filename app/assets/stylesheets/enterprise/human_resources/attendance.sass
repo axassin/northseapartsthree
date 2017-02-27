@@ -1,0 +1,61 @@
+@import '../stylesheets/constants'
+
+div.attendance_grid
+  overflow-x: auto
+  table
+    thead
+      tr
+        th
+          div.title_attendance
+            font-weight: normal
+            border-bottom: solid $QUATERNARY_COLOR thin
+            padding: 0.5em
+            color: black
+            background-color: $QUATERNARY_COLOR
+    tbody
+      tr
+        td.employee_cell
+          padding: 0.5em
+          float: right
+        td.attendance
+          border: white thin solid
+          padding: 0.2em
+        td.exact
+          background: lightgreen
+        td.shifted
+          background: cyan
+        td.undertime
+          background: violet
+        td.overtime
+          background: gold
+        td.no_record
+          background: indianred
+        div.attendance_cell
+          color: white
+
+div.attendance_legend
+  width: 100%
+  border-left: darkgray solid thick
+  padding-left: 0.5em
+  margin: 0.5em
+  span.legend
+    padding-right: 0.5em
+    padding-left: 0.5em
+    color: black
+  span.exact
+    background: lightgreen
+  span.shifted
+    background: cyan
+  span.undertime
+    background: violet
+  span.overtime
+    background: gold
+  span.no_record
+    background: indianred
+
+div.branch_statistics
+  margin: 0.5em
+  span.stat
+    padding-left: 0.5em
+    padding-right: 0.5em
+    border-left: darkgray solid thick

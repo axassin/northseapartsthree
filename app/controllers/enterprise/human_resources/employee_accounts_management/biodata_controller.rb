@@ -4,8 +4,8 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController 
     setup_variables( Biodatum,
                      'Biodatum',
                      'Personal Details',
-                     [],
-                     [],
+                     ['employee_id'],
+                     ['employee_name'],
                      @@routes.enterprise_human_resources_employee_accounts_management_path)
   end
 

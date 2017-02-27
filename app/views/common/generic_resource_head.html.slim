@@ -3,13 +3,10 @@
 - if action_name == 'index'
   = stylesheet_link_tag 'main_partials/generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
   = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
-  = javascript_include_tag 'generic_resource/form'
-
 - elsif rest_action?
   = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
-  = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
-
 - else
+
 
 = stylesheet_link_tag 'main_partials/generic_resource/side_bar_options', media: 'all', 'data-turbolinks-track' => 'reload'
 = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
