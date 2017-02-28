@@ -12,11 +12,11 @@ class SystemAccount < ApplicationRecord
 
   mount_uploader :primary_image, PrimaryImageUploader
 
-  has_many :contact_details, as: :contactable
-  has_many :telephone_numbers, through: :contact_details
-  has_many :locations, through: :contact_details
-  has_many :links, through: :contact_details
-  has_one :employee
+  has_many :contact_details, as: :contactable, :dependent => :destroy
+  has_many :telephone_numbers, through: :contact_details, :dependent => :destroy
+  has_many :locations, through: :contact_details, :dependent => :destroy
+  has_many :links, through: :contact_details, :dependent => :destroy
+  has_one :employee, :dependent => :destroy
 
   validates :name, presence: true, length: { in: 2..64 }
   validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }

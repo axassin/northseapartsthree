@@ -10,6 +10,7 @@ div.col-md-6
   br
   = input_word(f, :position)
 
+
 - unless @wizard_steps.present?
   div.col-md-6
     div.form_element_tip Create an Employee from a corresponding System Account
@@ -19,7 +20,11 @@ div.col-md-6
             :system_account_id,
             current_instance.system_account,
             'name')
+    br
+    = associated_files_section(f, @current_instance)
+    = associated_images_section(f, @current_instance)
 - else
-  = f.input :system_account_id,
-          :as => :hidden,
-          :input_html => {:value => params[:wizard_model_id]}
+  div.col-md-6
+    = f.input :system_account_id,
+            :as => :hidden,
+            :input_html => {:value => params[:wizard_model_id]}

@@ -4,7 +4,7 @@ div.col-md-6
 div.col-md-6
   - unless @employee_id.present?
     ruby:
-      polymorphic_array = [[Vehicle, 'plate_number'], [Employee, 'designation'], [SystemAccount, 'name']]
+      polymorphic_array = [[Vehicle, 'plate_number'], [Branch, 'name'], [SystemAccount, 'name']]
     = polymorphic_selector(f, current_instance, 'imageable', polymorphic_array, false)
     br
   - else

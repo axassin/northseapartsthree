@@ -109,7 +109,6 @@ if Rails.env.development? || Rails.env.test?
     current_branch.save
     establish_contact_details(Branch, current_branch.id)
     establish_file(Branch, current_branch.id)
-
   }
 
   # Vehicles
