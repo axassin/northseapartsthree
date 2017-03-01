@@ -10,6 +10,8 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         :setup_employee,
         :setup_biodatum,
         :setup_employee_status,
+        :setup_regular_work_period,
+        :setup_rest_day,
         :setup_associated_image,
         :setup_associated_file,
         :end
@@ -54,6 +56,12 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
       when :setup_employee_status
         set_employee_id.call
         setup_step(EmployeeStatus)
+      when :setup_regular_work_period
+        set_employee_id.call
+        setup_step(RegularWorkPeriod)
+      when :setup_rest_day
+        set_employee_id.call
+        setup_step(RestDay)
       when :setup_associated_image
         set_employee_id.call
         setup_step(AssociatedImage, true, true)
@@ -87,6 +95,10 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         process_step(Biodatum)
       when :setup_employee_status
         process_step(EmployeeStatus)
+      when :setup_regular_work_period
+        process_step(RegularWorkPeriod)
+      when :setup_rest_day
+        process_step(RestDay)
       when :setup_associated_image
         process_step(AssociatedImage)
       when :setup_associated_file

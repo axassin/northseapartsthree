@@ -16,7 +16,7 @@ class RegularWorkPeriod < ApplicationRecord
               Enterprise::HumanResources::Attendance::RegularWorkPeriodsController )
 
   def work_period
-    time_in.to_s + ' to ' + time_out.to_s
+    time_in.strftime('%R') + ' to ' + time_out.strftime('%R')
   end
 
   def exact_work_period

@@ -1,13 +1,12 @@
 class SystemAccount < ApplicationRecord
 
   include GenericResourceCommon
-  include ContactableResource
-
   setup_model('user',
               'name',
               @@routes.enterprise_general_management_system_accounts_path,
               Enterprise::GeneralManagement::SystemAccountsController)
 
+  include ContactableResource
   include Description
 
   mount_uploader :primary_image, PrimaryImageUploader

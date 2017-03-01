@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170208092252) do
+ActiveRecord::Schema.define(version: 20170301052909) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -122,6 +122,27 @@ ActiveRecord::Schema.define(version: 20170208092252) do
     t.string   "branch_id",         limit: 36
     t.string   "position",          limit: 64
     t.index ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
+  end
+
+  create_table "greco_items", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name",        limit: 64
+    t.string   "description", limit: 512
+    t.index ["deleted_at"], name: "index_greco_items_on_deleted_at", using: :btree
+  end
+
+  create_table "greco_transactions", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "greco_item_id_id", limit: 36
+    t.integer  "quantity"
+    t.string   "transaction_code", limit: 64
+    t.string   "transaction_type", limit: 64
+    t.string   "remark",           limit: 64
+    t.index ["deleted_at"], name: "index_greco_transactions_on_deleted_at", using: :btree
   end
 
   create_table "holidays", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

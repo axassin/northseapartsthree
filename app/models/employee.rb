@@ -10,12 +10,12 @@ class Employee < ApplicationRecord
   belongs_to :branch
   belongs_to :system_account
 
-  has_one :biodatum
-  has_many :regular_work_periods
-  has_many :employee_statuses
-  has_many :associated_files, as: :fileable
-  has_many :associated_images, as: :imageable
-
+  has_one :biodatum, :dependent => :destroy
+  has_many :regular_work_periods, :dependent => :destroy
+  has_many :employee_statuses, :dependent => :destroy
+  has_many :associated_files, as: :fileable, :dependent => :destroy
+  has_many :associated_images, as: :imageable, :dependent => :destroy
+  has_many :rest_days
 
   validates_presence_of :branch
   validates_presence_of :system_account
