@@ -320,8 +320,9 @@ if Rails.env.development? || Rails.env.test?
     TRANS_PER_ITEM = 20
     TRANS_PER_ITEM.times {
       greco_transaction = GrecoTransaction.new
-      greco_transaction.quantity = [5..200].sample
-      greco_transaction.transaction_code = Faker::Commerce.promotion_code
+      greco_transaction.greco_item = greco_item
+      greco_transaction.quantity = rand(5..200)
+      greco_transaction.transaction_code = Faker::Code.isbn
       greco_transaction.transaction_type = ['STORE','RETRIEVE'].sample
       greco_transaction.save!
 

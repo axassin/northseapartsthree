@@ -10,13 +10,17 @@ class GrecoTransaction < ApplicationRecord
 
   belongs_to :greco_item
 
+  validates :transaction_type, presence: true
+  validates_presence_of :greco_item
+  validates_numericality_of :quantity
+
   searchable_string(:remark)
-  searchable_string(:transaction_number)
+  searchable_string(:transaction_code)
   searchable_string(:transaction_type)
   searchable_string(:item_involved)
 
   def item_involved
     GrecoItem.find_by_id(greco_item_id).name
   end
-
+ 
 end

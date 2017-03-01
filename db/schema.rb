@@ -137,7 +137,7 @@ ActiveRecord::Schema.define(version: 20170301052909) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "greco_item_id_id", limit: 36
+    t.string   "greco_item_id",    limit: 36
     t.integer  "quantity"
     t.string   "transaction_code", limit: 64
     t.string   "transaction_type", limit: 64
