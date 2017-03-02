@@ -1,0 +1,9 @@
+div.col-md-6
+  = model_selector(f, GrecoItem, :greco_item_id, current_instance.greco_item, 'summary')
+  br
+  = selector(f, :transaction_type, ['STORE', 'RETRIEVE'], current_instance.transaction_type)
+  = f.input :quantity, as: :integer
+div.col-md-6
+  = input_date(f, :implemented_at)
+  = input_word(f, :transaction_code)
+  = input_word(f, :remark)

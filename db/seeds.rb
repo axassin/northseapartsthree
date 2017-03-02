@@ -310,22 +310,22 @@ if Rails.env.development? || Rails.env.test?
   end
 
   # Greco Items Temporary Inventory
-  NO_OF_PARTS = 50
+  NO_OF_PARTS = 20
   NO_OF_PARTS.times {
     greco_item = GrecoItem.new
     greco_item.name = Faker::Commerce.product_name
-    greco_item.description = Faker::Lorem.paragraph
+    greco_item.remark = Faker::Commerce.product_name
     greco_item.save!
 
-    TRANS_PER_ITEM = 20
-    TRANS_PER_ITEM.times {
+    5.times {
       greco_transaction = GrecoTransaction.new
       greco_transaction.greco_item = greco_item
+      greco_transaction.implemented_at = Faker::Date.between(2.weeks.ago, Date.today)
       greco_transaction.quantity = rand(5..200)
       greco_transaction.transaction_code = Faker::Code.isbn
       greco_transaction.transaction_type = ['STORE','RETRIEVE'].sample
+      greco_transaction.remark = Faker::Commerce.product_name
       greco_transaction.save!
-
     }
   }
 end

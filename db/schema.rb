@@ -128,8 +128,8 @@ ActiveRecord::Schema.define(version: 20170301052909) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",        limit: 64
-    t.string   "description", limit: 512
+    t.string   "name",       limit: 64
+    t.string   "remark",     limit: 64
     t.index ["deleted_at"], name: "index_greco_items_on_deleted_at", using: :btree
   end
 
@@ -141,6 +141,7 @@ ActiveRecord::Schema.define(version: 20170301052909) do
     t.integer  "quantity"
     t.string   "transaction_code", limit: 64
     t.string   "transaction_type", limit: 64
+    t.date     "implemented_at"
     t.string   "remark",           limit: 64
     t.index ["deleted_at"], name: "index_greco_transactions_on_deleted_at", using: :btree
   end
