@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301052909) do
+ActiveRecord::Schema.define(version: 20170303053840) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -46,6 +46,25 @@ ActiveRecord::Schema.define(version: 20170301052909) do
     t.time     "time_in"
     t.time     "time_out"
     t.index ["deleted_at"], name: "index_attendance_records_on_deleted_at", using: :btree
+  end
+
+  create_table "bank_accounts", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "system_account_id", limit: 36
+    t.string   "account_number",    limit: 64
+    t.index ["deleted_at"], name: "index_bank_accounts_on_deleted_at", using: :btree
+  end
+
+  create_table "banks", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "system_account_id", limit: 36
+    t.string   "name",              limit: 64
+    t.string   "remark",            limit: 64
+    t.index ["deleted_at"], name: "index_banks_on_deleted_at", using: :btree
   end
 
   create_table "biodata", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

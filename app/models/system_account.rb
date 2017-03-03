@@ -18,7 +18,7 @@ class SystemAccount < ApplicationRecord
   has_one :employee, :dependent => :destroy
 
   validates :name, presence: true, length: { in: 2..64 }
-  validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }
+  validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL GROUP ) }
   validates :description, length: { in: 2..512 }
 
   searchable_string(:name)

@@ -96,6 +96,40 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  def generate_system_account(account_type)
+
+    current_image = ['sample_system_account_01.jpg',
+                     'sample_system_account_02.jpg',
+                     'sample_system_account_03.jpg',
+                     'sample_system_account_04.jpg',
+                     'sample_system_account_05.jpg',
+                     ''].sample
+
+    if account_type == 'GROUP'
+      current_name = Faker::Company.name
+    else
+      current_name = Faker::Name.name
+    end
+
+
+    current_system_account = SystemAccount.create!(name: current_name,
+                                                   description: Faker::Lorem.sentence,
+                                                   account_type: account_type)
+
+    current_system_account[:primary_image] = current_image
+    current_system_account.save!
+    establish_contact_details(SystemAccount, current_system_account.id)
+    establish_image(SystemAccount, current_system_account.id)
+    establish_file(SystemAccount, current_system_account.id)
+    current_system_account
+
+  end
+
+  def random_system_account
+    # MySQL Implementation
+    SystemAccount.order("RAND()").first
+  end
+
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
@@ -135,39 +169,28 @@ if Rails.env.development? || Rails.env.test?
     establish_file(Vehicle, current_vehicle.id)
   }
 
-  # System Accounts
-  NO_OF_SYSTEM_ACCOUNTS = 70
-  NO_OF_SYSTEM_ACCOUNTS.times {
+  # Banks
+  10.times do
+    bank = Bank.new
+    bank.system_account_id = generate_system_account('GROUP').id
+    bank.remark = Faker::Lorem.sentence(3, false, 0)
 
-    current_image = ['sample_system_account_01.jpg',
-                     'sample_system_account_02.jpg',
-                     'sample_system_account_03.jpg',
-                     'sample_system_account_04.jpg',
-                     'sample_system_account_05.jpg',
-                     ''].sample
-
-    current_name = [Faker::Company.name,Faker::Name.name ].sample
-
-    current_system_account = SystemAccount.create!(name: current_name,
-                                                   description: Faker::Lorem.sentence,
-                                                   account_type: %w(BUSINESS INDIVIDUAL).sample)
-
-    current_system_account[:primary_image] = current_image
-    current_system_account.save!
-    establish_contact_details(SystemAccount, current_system_account.id)
-    establish_image(SystemAccount, current_system_account.id)
-    establish_file(SystemAccount, current_system_account.id)
-  }
+    10.times do
+      bank_account = BankAccount.new
+      bank_account.system_account_id = random_system_account.id
+      bank_account.account_number = Faker::Code.imei
+    end
+  end
 
   # Employees
   NO_OF_EMPLOYEES = 30
-  employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(NO_OF_EMPLOYEES)
-  employee_associated_system_accounts.each do |system_account|
-    current_employee = Employee.create!(system_account: system_account,
+  NO_OF_EMPLOYEES.times do
+
+    current_employee = Employee.create!(system_account: generate_system_account('INDIVIDUAL'),
                                         branch: Branch.offset(rand(Branch.count)).first,
                                         position: Faker::Lorem.sentence(1))
 
-    current_employee.save
+    current_employee.save!
 
     # Rest Day for Employee
     rand(1..3).times do
@@ -304,14 +327,11 @@ if Rails.env.development? || Rails.env.test?
         )
       end
     end
-
-
-
   end
 
   # Greco Items Temporary Inventory
-  NO_OF_PARTS = 20
-  NO_OF_PARTS.times {
+  no_of_parts = 20
+  no_of_parts.times {
     greco_item = GrecoItem.new
     greco_item.name = Faker::Commerce.product_name
     greco_item.remark = Faker::Commerce.product_name
