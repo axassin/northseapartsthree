@@ -8,6 +8,7 @@ class SystemAccount < ApplicationRecord
 
   include ContactableResource
   include Description
+  include Name
 
   mount_uploader :primary_image, PrimaryImageUploader
 
@@ -16,13 +17,9 @@ class SystemAccount < ApplicationRecord
   has_many :locations, through: :contact_details, :dependent => :destroy
   has_many :links, through: :contact_details, :dependent => :destroy
   has_one :employee, :dependent => :destroy
+  has_one :bank, :dependent => :destroy
 
-  validates :name, presence: true, length: { in: 2..64 }
-  validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL BUSINESS ) }
-  validates :description, length: { in: 2..512 }
-
-  searchable_string(:name)
-  searchable_string(:description)
+  validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL GROUP ) }
   searchable_string(:account_type)
 
 end

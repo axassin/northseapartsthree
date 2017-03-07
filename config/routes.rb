@@ -74,6 +74,11 @@ Rails.application.routes.draw do
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
+      define_index( 'financial_institutions' )
+      namespace :financial_institutions do
+        generate_logic_unit( :banks )
+        generate_logic_unit( :bank_accounts )
+      end
     end
 
     define_index( 'human_resources' )
@@ -111,10 +116,12 @@ Rails.application.routes.draw do
     define_index( 'operations' )
     namespace :operations do
       define_index('greco_warehouse')
+      generate_action_url( 'greco_warehouse','greco_transaction_history' )
+      generate_action_url( 'greco_warehouse','greco_current_stock_report' )
+      generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
         generate_logic_unit( :greco_transactions )
-        define_index( 'greco_reports' )
       end
     end
 

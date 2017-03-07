@@ -1,6 +1,6 @@
 class DaySchemeDecorator < ApplicationDecorator
   delegate_all
 
-  include ImplementedAtDecorator
+  include ImplementedOnDecorator
 
 end

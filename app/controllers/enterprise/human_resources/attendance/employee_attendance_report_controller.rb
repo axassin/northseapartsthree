@@ -21,7 +21,7 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
   def get_attendance_records
     attendance_date = params[:attendance_date]
     employee_id = params[:employee_id]
-    attendance_records = AttendanceRecord.where(employee_id: employee_id, implemented_at: attendance_date)
+    attendance_records = AttendanceRecord.where(employee_id: employee_id, implemented_on: attendance_date)
     render json: attendance_records
   end
 

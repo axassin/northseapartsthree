@@ -7,8 +7,8 @@ class DayScheme < ApplicationRecord
               Enterprise::HumanResources::Payroll::DaySchemesController )
 
   include Remark
-  include ImplementedAt
-  validates :implemented_at, presence: true
+  include ImplementedOn
+  validates :implemented_on, presence: true
 
   validates :type_name, length: { in: 2..64 }, presence: true
   validates_numericality_of :base_multiplier

@@ -1,0 +1,28 @@
+form method='get'
+
+  span &nbsp; from : &nbsp;
+  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
+
+  span &nbsp; to : &nbsp;
+  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+
+  span &nbsp; | &nbsp;
+  input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
+
+hr
+h3 TRANSACTION HISTORY
+a.btn.btn-default.greco_csv EXPORT TO CSV
+table.greco_report_table
+  thead
+    tr
+      th DATE
+      th TYPE
+      th QTY
+      th ITEM
+  tbody
+    - @greco_transactions.each do |greco_transaction|
+      tr
+        td = greco_transaction.implemented_on
+        td = greco_transaction.transaction_type
+        td = greco_transaction.quantity
+        td = greco_transaction.item_involved

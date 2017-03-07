@@ -7,6 +7,7 @@ class GrecoTransaction < ApplicationRecord
               Enterprise::Operations::GrecoWarehouse::GrecoTransactionsController)
 
   include Remark
+  include ImplementedOn
 
   belongs_to :greco_item
 

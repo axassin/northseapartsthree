@@ -27,9 +27,27 @@ div.main_menu
   div.menu_category.enterprise data-parent-category='enterprise'
     = enterprise_menu_cell('universal-access',enterprise_human_resources_path,'human_resources',true)
     = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'accounting_and_finance',true)
-    = enterprise_menu_cell('university',enterprise_general_management_path,'general_management',true)
+    = enterprise_menu_cell('maxcdn',enterprise_general_management_path,'general_management',true)
     = enterprise_menu_cell('codepen',enterprise_operations_path,'operations',true)
     = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'strategic_marketing',true)
+
+  // Accounting and Finance
+  div.menu_category.accounting_and_finance data-parent-category='enterprise'
+    = enterprise_menu_cell('university', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true)
+
+  div.menu_category.financial_institutions data-parent-category='accounting_and_finance'
+    = enterprise_menu_cell_model(Bank)
+    = enterprise_menu_cell_model(BankAccount)
+
+  // Operations
+  div.menu_category.operations data-parent-category='enterprise'
+    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_path,'greco_warehouse',true)
+
+  div.menu_category.greco_warehouse data-parent-category='operations'
+    = enterprise_menu_cell_model(GrecoItem)
+    = enterprise_menu_cell_model(GrecoTransaction)
+    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false)
+    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false)
 
   // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'
