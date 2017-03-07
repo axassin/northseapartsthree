@@ -204,7 +204,7 @@ if Rails.env.development? || Rails.env.test?
 
     # Rest Day for Employee
     rand(1..3).times do
-      RestDay.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+      RestDay.create!(implemented_on: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                       employee: current_employee,
                       remark: Faker::Lorem.sentence(3, false, 0),
                       day: %w(MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY).sample)
@@ -238,7 +238,7 @@ if Rails.env.development? || Rails.env.test?
         one_hour_break = 0
       end
 
-      RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+      RegularWorkPeriod.create!(implemented_on: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                                 employee: current_employee,
                                 remark: Faker::Lorem.sentence(3, false, 0),
                                 time_in: generated_time_in,
@@ -270,7 +270,7 @@ if Rails.env.development? || Rails.env.test?
     rand(0..5).times do
       current_employee_status = EmployeeStatus.create!(
           employee_id: current_employee.id,
-          implemented_at: Faker::Date.between(6.years.ago, 1.years.ago),
+          implemented_on: Faker::Date.between(6.years.ago, 1.years.ago),
           state: ['ACTIVE','INACTIVE'].sample,
           remark: Faker::Lorem.sentence(3, false, 0)
       )
@@ -315,12 +315,12 @@ if Rails.env.development? || Rails.env.test?
 
       # Time Overlap
       save_flag = true
-      implemented_at_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
-      implemented_at_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      implemented_on_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      implemented_on_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((implemented_at_time_in..implemented_at_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        other_date_time_in = DateTime.new(att_rec.implemented_on.year, att_rec.implemented_on.month, att_rec.implemented_on.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.implemented_on.year, att_rec.implemented_on.month, att_rec.implemented_on.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((implemented_on_time_in..implemented_on_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
           break;
@@ -331,7 +331,7 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            implemented_at: generated_date,
+            implemented_on: generated_date,
             time_in: time_in,
             time_out: time_out
         )
@@ -350,7 +350,7 @@ if Rails.env.development? || Rails.env.test?
     5.times {
       greco_transaction = GrecoTransaction.new
       greco_transaction.greco_item = greco_item
-      greco_transaction.implemented_at = Faker::Date.between(2.weeks.ago, Date.today)
+      greco_transaction.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
       greco_transaction.quantity = rand(5..200)
       greco_transaction.transaction_code = Faker::Code.isbn
       greco_transaction.transaction_type = ['STORE','RETRIEVE'].sample

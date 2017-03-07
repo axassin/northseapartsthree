@@ -20,7 +20,7 @@ $(document).on 'turbolinks:load', ->
         console.log "AJAX Error: #{errorThrown}"
       success: (data_array, textStatus, jqXHR) ->
         for datum in data_array
-          base_date = datum.implemented_at
+          base_date = datum.implemented_on
           datum_start = base_date + ' ' + datum.time_in.substring(11, 16)
           datum_end = base_date + ' ' + datum.time_out.substring(11, 16)
           current_content = 'Present at [ ' + datum.time_in.substring(11, 16) + ' to ' + datum.time_out.substring(11, 16) + ' ]'

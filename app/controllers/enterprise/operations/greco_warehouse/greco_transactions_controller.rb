@@ -16,7 +16,7 @@ class Enterprise::Operations::GrecoWarehouse::GrecoTransactionsController < Gene
       my_greco_transaction.quantity = current_params[:quantity]
       my_greco_transaction.transaction_code = current_params[:transaction_code]
       my_greco_transaction.transaction_type = current_params[:transaction_type]
-      my_greco_transaction.implemented_at = current_params[:implemented_at]
+      my_greco_transaction.implemented_on = current_params[:implemented_on]
       my_greco_transaction.remark = current_params[:remark]
       my_greco_transaction.save!
     end

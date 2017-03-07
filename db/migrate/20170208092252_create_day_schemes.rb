@@ -7,7 +7,7 @@ class CreateDaySchemes < MainMigration
       t.float :overtime_multiplier
       t.float :rest_day_multiplier
       t.float :overtime_rest_day_multiplier
-      implemented_at(t)
+      implemented_on(t)
       remark_column(t)
     end
   end

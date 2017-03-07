@@ -65,7 +65,7 @@ div.attendance_grid
                 attendance_class_name = 'attendance ' + attendance_status
 
               td class='#{attendance_class_name}'
-                - AttendanceRecord.where(employee_id: employee.id, implemented_at: current_attendance.strftime('%Y-%m-%d')).each do |record|
+                - AttendanceRecord.where(employee_id: employee.id, implemented_on: current_attendance.strftime('%Y-%m-%d')).each do |record|
                   div.attendance_cell
                     a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
 

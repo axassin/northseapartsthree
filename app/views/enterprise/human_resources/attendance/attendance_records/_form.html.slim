@@ -4,6 +4,6 @@ div.col-md-6
 
 div.col-md-6
 
-  = f.input :implemented_at, required: true, as: :date, html5: true
+  = f.input :implemented_on, required: true, as: :date, html5: true
   = f.input :time_in, input_html: { 'data-parsley-time-in' => '0' }, as: :time, required: true, html5: true
   = f.input :time_out, input_html: { 'data-parsley-time-out' => '0' }, as: :time, required: true, html5: true

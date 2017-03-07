@@ -1,2 +1,0 @@
-class AccountingAndFinance::FinancialInstitutionController < ApplicationController
-end

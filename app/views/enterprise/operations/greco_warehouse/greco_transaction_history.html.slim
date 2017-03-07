@@ -22,7 +22,7 @@ table.greco_report_table
   tbody
     - @greco_transactions.each do |greco_transaction|
       tr
-        td = greco_transaction.implemented_at
+        td = greco_transaction.implemented_on
         td = greco_transaction.transaction_type
         td = greco_transaction.quantity
         td = greco_transaction.item_involved

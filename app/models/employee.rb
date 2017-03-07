@@ -37,15 +37,15 @@ class Employee < ApplicationRecord
   end
 
   def employment_status(inquired_date = Date.today)
-    employee_status = EmployeeStatus.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
-    employee_status.order('implemented_at DESC').first.state.to_s if employee_status.present?
+    employee_status = EmployeeStatus.where(['implemented_on <= ? AND employee_id = ?', inquired_date, id])
+    employee_status.order('implemented_on DESC').first.state.to_s if employee_status.present?
   end
 
   # outputs if employee has incurred overtime, undertime, exact time, shifted time on said date
   def attendance_status(inquired_date = Date.today)
 
     # extract attendance records
-    attendance_records =  AttendanceRecord.where(['implemented_at = ? AND employee_id = ?', inquired_date, id])
+    attendance_records =  AttendanceRecord.where(['implemented_on = ? AND employee_id = ?', inquired_date, id])
     date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
 
     # see if record exists

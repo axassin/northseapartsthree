@@ -28,7 +28,7 @@ class Enterprise::Operations::GrecoWarehouseController < GenericDashboardControl
     @start_attendance = params[:start_attendance] || (Time.new - 6.days).strftime('%Y-%m-%d')
     @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
 
-    @greco_transactions = GrecoTransaction.where(:implemented_at => @start_attendance..@end_attendance).order('implemented_at ASC')
+    @greco_transactions = GrecoTransaction.where(:implemented_on => @start_attendance..@end_attendance).order('implemented_on ASC')
 
   end
 

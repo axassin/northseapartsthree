@@ -14,7 +14,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::EmployeeStatusesCo
     employee_status_processing = Proc.new do
       my_employee_status.employee = Employee.find(current_params[:employee_id])
       my_employee_status.state = current_params[:state]
-      my_employee_status.implemented_at = current_params[:implemented_at]
+      my_employee_status.implemented_on = current_params[:implemented_on]
       my_employee_status.save!
     end
 

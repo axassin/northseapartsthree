@@ -3,7 +3,7 @@ class RestDay < ApplicationRecord
   include GenericResourceCommon
   include AssociatedEmployee
   include Remark
-  include ImplementedAt
+  include ImplementedOn
 
   setup_model('eject',
               'day',

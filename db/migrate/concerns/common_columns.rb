@@ -37,8 +37,12 @@ module CommonColumns
     t.timestamps
   end
 
+  def implemented_on(t)
+    t.date :implemented_on, :required => true
+  end
+
   def implemented_at(t)
-    t.date :implemented_at, :required => true
+    t.datetime :implemented_at, :required => true
   end
 
 end

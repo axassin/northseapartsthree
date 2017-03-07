@@ -15,6 +15,6 @@ class EmployeeStatus < ApplicationRecord
   validates :state, inclusion: {in: ['ACTIVE','INACTIVE','']}, presence: true
 
   searchable_string(:state)
-  searchable_date(:implemented_at)
+  searchable_date(:implemented_on)
 
 end

@@ -58,7 +58,7 @@ table.attendance_report_table
 
         td
           ruby: counter = 0
-          -     AttendanceRecord.where(employee_id: @employee.id, implemented_at: current_attendance).each do |record|
+          -     AttendanceRecord.where(employee_id: @employee.id, implemented_on: current_attendance).each do |record|
             div
               a.btn.btn-default href='#{record.show_path}' = '[' + counter.to_s + '] ' + record.remark
             br
