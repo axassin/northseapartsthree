@@ -22,5 +22,5 @@ class GrecoTransaction < ApplicationRecord
   def item_involved
     GrecoItem.find_by_id(greco_item_id).name
   end
- 
+
 end
