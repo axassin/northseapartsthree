@@ -74,6 +74,11 @@ Rails.application.routes.draw do
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
+      define_index( 'financial_institutions' )
+      namespace :financial_institutions do
+        generate_logic_unit( :banks )
+        generate_logic_unit( :bank_accounts )
+      end
     end
 
     define_index( 'human_resources' )

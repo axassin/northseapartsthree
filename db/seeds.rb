@@ -130,6 +130,11 @@ if Rails.env.development? || Rails.env.test?
     SystemAccount.order("RAND()").first
   end
 
+  NO_OF_UNA_SYS_ACC = 10
+  NO_OF_UNA_SYS_ACC.times {
+    generate_system_account(['INDIVIDUAL','GROUP'].sample)
+  }
+
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
@@ -170,17 +175,22 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Banks
-  10.times do
+  NO_OF_BANKS = 10
+  NO_OF_BANKS.times {
     bank = Bank.new
     bank.system_account_id = generate_system_account('GROUP').id
     bank.remark = Faker::Lorem.sentence(3, false, 0)
-
-    10.times do
+    bank.save!
+    NO_OF_BANK_ACCOUNTS = 10
+    NO_OF_BANK_ACCOUNTS.times {
       bank_account = BankAccount.new
+      bank_account.bank = bank
       bank_account.system_account_id = random_system_account.id
       bank_account.account_number = Faker::Code.imei
-    end
-  end
+      bank_account.remark = Faker::Lorem.sentence(3, false, 0)
+      bank_account.save!
+    }
+  }
 
   # Employees
   NO_OF_EMPLOYEES = 30

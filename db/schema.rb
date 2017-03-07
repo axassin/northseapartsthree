@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170303053840) do
+ActiveRecord::Schema.define(version: 20170306051635) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -53,8 +53,20 @@ ActiveRecord::Schema.define(version: 20170303053840) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "system_account_id", limit: 36
+    t.string   "bank_id",           limit: 36
     t.string   "account_number",    limit: 64
+    t.string   "remark",            limit: 64
     t.index ["deleted_at"], name: "index_bank_accounts_on_deleted_at", using: :btree
+  end
+
+  create_table "bank_transfers", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "reference_number",            limit: 36
+    t.string   "to_bank_account_number_id",   limit: 36
+    t.string   "from_bank_account_number_id", limit: 36
+    t.index ["deleted_at"], name: "index_bank_transfers_on_deleted_at", using: :btree
   end
 
   create_table "banks", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -62,7 +74,6 @@ ActiveRecord::Schema.define(version: 20170303053840) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "system_account_id", limit: 36
-    t.string   "name",              limit: 64
     t.string   "remark",            limit: 64
     t.index ["deleted_at"], name: "index_banks_on_deleted_at", using: :btree
   end
@@ -95,6 +106,26 @@ ActiveRecord::Schema.define(version: 20170303053840) do
     t.string   "name",        limit: 64
     t.string   "description", limit: 512
     t.index ["deleted_at"], name: "index_branches_on_deleted_at", using: :btree
+  end
+
+  create_table "cashes", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "denomination"
+    t.string   "reference_number"
+    t.index ["deleted_at"], name: "index_cashes_on_deleted_at", using: :btree
+  end
+
+  create_table "checks", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "bank_account_id",   limit: 36
+    t.string   "check_number",      limit: 36
+    t.date     "dated"
+    t.string   "system_account_id", limit: 36
+    t.index ["deleted_at"], name: "index_checks_on_deleted_at", using: :btree
   end
 
   create_table "contact_details", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -141,6 +172,20 @@ ActiveRecord::Schema.define(version: 20170303053840) do
     t.string   "branch_id",         limit: 36
     t.string   "position",          limit: 64
     t.index ["deleted_at"], name: "index_employees_on_deleted_at", using: :btree
+  end
+
+  create_table "exchange_media", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "amount",               limit: 64
+    t.string   "remark",               limit: 64
+    t.date     "implemented_at"
+    t.string   "transaction_id",       limit: 36
+    t.string   "transaction_type"
+    t.string   "exchange_medium_id",   limit: 36
+    t.string   "exchange_medium_type"
+    t.index ["deleted_at"], name: "index_exchange_media_on_deleted_at", using: :btree
   end
 
   create_table "greco_items", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

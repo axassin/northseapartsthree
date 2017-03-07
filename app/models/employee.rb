@@ -19,6 +19,7 @@ class Employee < ApplicationRecord
 
   validates_presence_of :branch
   validates_presence_of :system_account
+  validates_uniqueness_of :system_account
   validates :branch, length: { in: 0..64 }, :allow_nil => true
 
   scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
@@ -64,8 +65,14 @@ class Employee < ApplicationRecord
         daily_emp_work_hours = daily_emp_work_hours + ((att_rec_time_out - att_rec_time_in)/3600)
       end
 
+      puts '-----------------------'
+      puts inquired_date
+      puts account_name
+      puts daily_emp_work_hours
+      puts reg_work_hours
 
       if daily_emp_work_hours == reg_work_hours
+
         all_time_in = []
         all_time_out = []
 
@@ -80,7 +87,7 @@ class Employee < ApplicationRecord
         if ((min_time_in == work_period_time_in) && (max_time_out == work_period_time_out))
           'exact'
         else
-          'shifted time'
+          'shifted'
         end
 
       elsif daily_emp_work_hours > reg_work_hours

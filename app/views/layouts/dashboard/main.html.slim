@@ -12,3 +12,6 @@ html lang="en"
     div.main_display
       div.main_content.col-md-12
         == yield
+
+        - if @button_set.present?
+          = button_set(@button_set)
