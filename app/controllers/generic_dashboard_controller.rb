@@ -1,5 +1,7 @@
 class GenericDashboardController < ApplicationController
 
+  layout 'dashboard/main'
+
   before_action :setup_controller
 
   def setup_variables(main_resource_path, parent_controller_path)

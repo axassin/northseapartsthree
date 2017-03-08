@@ -1,7 +1,5 @@
 class Enterprise::HumanResources::AttendanceController < GenericDashboardController
 
-  layout 'dashboard/main'
-
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_attendance_path,
                      @@routes.enterprise_human_resources_path)

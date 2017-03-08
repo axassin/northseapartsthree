@@ -63,3 +63,8 @@ remove_all_params = (url) ->
     newURL = oldURL.substring(0, index)
 
   newURL
+
+# Delete Button Behaviour
+$('.generic_item_option_delete').click ->
+  e.preventDefault()
+  alert 'great allied nation'

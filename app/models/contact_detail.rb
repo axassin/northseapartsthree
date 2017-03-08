@@ -7,9 +7,9 @@ class ContactDetail < ApplicationRecord
               Enterprise::GeneralManagement::ContactDetailsController )
 
   belongs_to :contactable, polymorphic: true
-  has_many :telephone_numbers
-  has_many :locations
-  has_many :links
+  has_many :telephone_numbers, :dependent => :destroy
+  has_many :locations, :dependent => :destroy
+  has_many :links, :dependent => :destroy
 
   validates :label, length: { in: 2..64 }
   validates_presence_of :contactable_id

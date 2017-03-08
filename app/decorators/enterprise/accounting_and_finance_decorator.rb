@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::Attendance::AttendancePerEmployeeDecorator < ApplicationDecorator
+class Enterprise::AccountingAndFinanceDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

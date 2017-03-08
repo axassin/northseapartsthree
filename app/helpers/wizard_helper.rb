@@ -14,7 +14,7 @@ module WizardHelper
               show_path = instance.show_path
               represent = instance.represent
 
-              a :class => 'btn btn-default associated_wizard_button', :href => show_path do
+              a :class => 'btn btn-default associated_wizard_button', :href => show_path, :target => '_new' do
                 represent
               end
 
@@ -30,7 +30,7 @@ module WizardHelper
 
         main_str = mab do
           span :class => 'stackable_column' do
-            a :class => 'btn btn-default associated_wizard_button', :href => show_path do
+            a :class => 'btn btn-default associated_wizard_button', :href => show_path, :target => '_new' do
               represent
             end
           end

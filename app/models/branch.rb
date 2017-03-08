@@ -8,7 +8,7 @@ class Branch < ApplicationRecord
               @@routes.enterprise_general_management_branches_path,
               Enterprise::GeneralManagement::BranchesController)
 
-  has_many :contact_details, as: :contactable
+  has_many :contact_details, as: :contactable, :dependent => :destroy
   has_many :employees
 
   searchable_string(:name)

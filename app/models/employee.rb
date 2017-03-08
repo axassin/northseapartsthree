@@ -10,15 +10,16 @@ class Employee < ApplicationRecord
   belongs_to :branch
   belongs_to :system_account
 
-  has_one :biodatum
-  has_many :regular_work_periods
-  has_many :employee_statuses
-  has_many :associated_files, as: :fileable
-  has_many :associated_images, as: :imageable
-
+  has_one :biodatum, :dependent => :destroy
+  has_many :regular_work_periods, :dependent => :destroy
+  has_many :employee_statuses, :dependent => :destroy
+  has_many :associated_files, as: :fileable, :dependent => :destroy
+  has_many :associated_images, as: :imageable, :dependent => :destroy
+  has_many :rest_days
 
   validates_presence_of :branch
   validates_presence_of :system_account
+  validates_uniqueness_of :system_account
   validates :branch, length: { in: 0..64 }, :allow_nil => true
 
   scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
@@ -36,15 +37,15 @@ class Employee < ApplicationRecord
   end
 
   def employment_status(inquired_date = Date.today)
-    employee_status = EmployeeStatus.where(['implemented_at <= ? AND employee_id = ?', inquired_date, id])
-    employee_status.order('implemented_at DESC').first.state.to_s if employee_status.present?
+    employee_status = EmployeeStatus.where(['implemented_on <= ? AND employee_id = ?', inquired_date, id])
+    employee_status.order('implemented_on DESC').first.state.to_s if employee_status.present?
   end
 
   # outputs if employee has incurred overtime, undertime, exact time, shifted time on said date
   def attendance_status(inquired_date = Date.today)
 
     # extract attendance records
-    attendance_records =  AttendanceRecord.where(['implemented_at = ? AND employee_id = ?', inquired_date, id])
+    attendance_records =  AttendanceRecord.where(['implemented_on = ? AND employee_id = ?', inquired_date, id])
     date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
 
     # see if record exists
@@ -64,8 +65,14 @@ class Employee < ApplicationRecord
         daily_emp_work_hours = daily_emp_work_hours + ((att_rec_time_out - att_rec_time_in)/3600)
       end
 
+      puts '-----------------------'
+      puts inquired_date
+      puts account_name
+      puts daily_emp_work_hours
+      puts reg_work_hours
 
       if daily_emp_work_hours == reg_work_hours
+
         all_time_in = []
         all_time_out = []
 
@@ -80,7 +87,7 @@ class Employee < ApplicationRecord
         if ((min_time_in == work_period_time_in) && (max_time_out == work_period_time_out))
           'exact'
         else
-          'shifted time'
+          'shifted'
         end
 
       elsif daily_emp_work_hours > reg_work_hours

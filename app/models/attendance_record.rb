@@ -4,10 +4,10 @@ class AttendanceRecord < ApplicationRecord
   include AssociatedEmployee
   include TimePrecedence
   include TimeOverlap
-  include ImplementedAt
+  include ImplementedOn
 
   setup_model('clock-o',
-              'implemented_at',
+              'implemented_on',
               @@routes.enterprise_human_resources_attendance_attendance_records_path,
               Enterprise::HumanResources::Attendance::AttendanceRecordsController )
 
@@ -15,10 +15,10 @@ class AttendanceRecord < ApplicationRecord
     time_in.strftime('%T') + ' to ' + time_out.strftime('%T')
   end
 
-  def self.remarks_of_day(employee_id, implemented_at)
+  def self.remarks_of_day(employee_id, implemented_on)
     remark = ''
     counter = 0
-    AttendanceRecord.where(employee_id: employee_id, implemented_at: implemented_at)
+    AttendanceRecord.where(employee_id: employee_id, implemented_on: implemented_on)
   end
 
 end

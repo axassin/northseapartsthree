@@ -14,7 +14,7 @@ class Enterprise::HumanResources::Payroll::DaySchemesController < GenericResourc
 
     attendance_records_processing = Proc.new do
       my_day_scheme.type_name = Employee.find(current_params[:type_name])
-      my_day_scheme.implemented_at = current_params[:implemented_at]
+      my_day_scheme.implemented_on = current_params[:implemented_on]
       my_day_scheme.base_multiplier = current_params[:base_multiplier]
       my_day_scheme.overtime_multiplier = current_params[:overtime_multiplier]
       my_day_scheme.rest_day_multiplier = current_params[:rest_day_multiplier]
