@@ -12,7 +12,7 @@ class Enterprise::HumanResources::Attendance::HolidaysController < GenericResour
   def process_form(my_holiday, current_params, wizard_mode = nil)
 
     my_holiday_processing = Proc.new do
-      my_holiday.implemented_at = current_params[:implemented_at]
+      my_holiday.implemented_on = current_params[:implemented_on]
       my_holiday.remark = current_params[:remark]
       my_holiday.name = current_params[:name]
       my_holiday.day_scheme_id = current_params[:day_scheme_id]
@@ -23,10 +23,10 @@ class Enterprise::HumanResources::Attendance::HolidaysController < GenericResour
   end
 
   def unique_holiday_date
-    implemented_at = params[:implemented_at]
+    implemented_on = params[:implemented_on]
     validation_token = true
     Holiday.all.each do |holiday|
-      (validation_token = false) if (holiday.implemented_at.to_s == implemented_at.to_s)
+      (validation_token = false) if (holiday.implemented_on.to_s == implemented_on.to_s)
     end
     render plain: validation_token.to_s
   end

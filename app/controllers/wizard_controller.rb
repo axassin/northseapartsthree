@@ -21,14 +21,27 @@ class WizardController < ApplicationController
     @repeatable = repeatable
     @choice = choice
 
-    # Check if Mother Model Exists
+    # check if mother models exist
     if params.has_key?('wizard_model_id') && params.has_key?('wizard_model_type')
+
+      # delete if wizard - restart mode
+      if params.has_key?('delete_mode')
+        wizard_model_id = params[:wizard_model_id]
+        wizard_model_type = params[:wizard_model_type]
+        if wizard_model_id.present? && wizard_model_type.present?
+          wizard_model_type.constantize.find_by_id(wizard_model_id).destroy
+        end
+        @restart = true
+      end
+
+      # otherwise continue evaluating
       if params[:wizard_model_type].constantize.exists?(id: params[:wizard_model_id])
         @wizard_model_instance = params['wizard_model_type'].constantize.find_by_id(params['wizard_model_id'])
       else
-        flash[:main_notification] = ' Wizard identifier not found . Wizard has restarted. '
+        flash[:main_notification] = ' Wizard has restarted. '
         @restart = true
       end
+
     end
 
   end

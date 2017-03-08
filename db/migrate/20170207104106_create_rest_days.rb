@@ -4,7 +4,7 @@ class CreateRestDays < MainMigration
       common_set(t)
       foreign_key_id(t, 'employee')
       remark_column(t)
-      implemented_at(t)
+      implemented_on(t)
       t.string :day, :required => true
       t.timestamps
     end

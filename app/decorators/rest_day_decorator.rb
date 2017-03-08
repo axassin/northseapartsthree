@@ -1,7 +1,7 @@
 class RestDayDecorator < ApplicationDecorator
   delegate_all
 
-  include ImplementedAtDecorator
+  include ImplementedOnDecorator
   include AssociatedEmployeeDecorator
 
 end

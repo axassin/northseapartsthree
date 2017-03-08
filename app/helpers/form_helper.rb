@@ -46,7 +46,7 @@ module FormHelper
 
   # date selector
   def input_date(f, name)
-    f.input name, as: :date, html5: true
+    f.input name, as: :date, html5: true, required: true
   end
 
   # simple Selector with explicit selection array

@@ -8,6 +8,8 @@ ruby:
 
   ruby:
     biodatum = employee.biodatum
+    regular_work_period = employee.regular_work_periods
+    rest_day = employee.rest_days
     employee_status = employee.employee_statuses.order('created_at DESC').first
     associated_files = employee.associated_files
     associated_images = employee.associated_images
@@ -17,6 +19,12 @@ ruby:
 
   - if employee_status.present?
     = associated_wizard_section(employee_status)
+
+  - if regular_work_period.present?
+    = associated_wizard_section(regular_work_period)
+
+  - if rest_day.present?
+    = associated_wizard_section(rest_day)
 
   - if associated_files.present?
     = associated_wizard_section(associated_files)

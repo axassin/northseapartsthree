@@ -96,6 +96,45 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  def generate_system_account(account_type)
+
+    current_image = ['sample_system_account_01.jpg',
+                     'sample_system_account_02.jpg',
+                     'sample_system_account_03.jpg',
+                     'sample_system_account_04.jpg',
+                     'sample_system_account_05.jpg',
+                     ''].sample
+
+    if account_type == 'GROUP'
+      current_name = Faker::Company.name
+    else
+      current_name = Faker::Name.name
+    end
+
+
+    current_system_account = SystemAccount.create!(name: current_name,
+                                                   description: Faker::Lorem.sentence,
+                                                   account_type: account_type)
+
+    current_system_account[:primary_image] = current_image
+    current_system_account.save!
+    establish_contact_details(SystemAccount, current_system_account.id)
+    establish_image(SystemAccount, current_system_account.id)
+    establish_file(SystemAccount, current_system_account.id)
+    current_system_account
+
+  end
+
+  def random_system_account
+    # MySQL Implementation
+    SystemAccount.order("RAND()").first
+  end
+
+  NO_OF_UNA_SYS_ACC = 10
+  NO_OF_UNA_SYS_ACC.times {
+    generate_system_account(['INDIVIDUAL','GROUP'].sample)
+  }
+
   # --------------------- Generate Sample Data ---------------------
 
   # Branches
@@ -109,7 +148,6 @@ if Rails.env.development? || Rails.env.test?
     current_branch.save
     establish_contact_details(Branch, current_branch.id)
     establish_file(Branch, current_branch.id)
-
   }
 
   # Vehicles
@@ -136,43 +174,37 @@ if Rails.env.development? || Rails.env.test?
     establish_file(Vehicle, current_vehicle.id)
   }
 
-  # System Accounts
-  NO_OF_SYSTEM_ACCOUNTS = 70
-  NO_OF_SYSTEM_ACCOUNTS.times {
-
-    current_image = ['sample_system_account_01.jpg',
-                     'sample_system_account_02.jpg',
-                     'sample_system_account_03.jpg',
-                     'sample_system_account_04.jpg',
-                     'sample_system_account_05.jpg',
-                     ''].sample
-
-    current_name = [Faker::Company.name,Faker::Name.name ].sample
-
-    current_system_account = SystemAccount.create!(name: current_name,
-                                                   description: Faker::Lorem.sentence,
-                                                   account_type: %w(BUSINESS INDIVIDUAL).sample)
-
-    current_system_account[:primary_image] = current_image
-    current_system_account.save!
-    establish_contact_details(SystemAccount, current_system_account.id)
-    establish_image(SystemAccount, current_system_account.id)
-    establish_file(SystemAccount, current_system_account.id)
+  # Banks
+  no_of_banks = 10
+  no_of_banks.times {
+    bank = Bank.new
+    bank.system_account_id = generate_system_account('GROUP').id
+    bank.remark = Faker::Lorem.sentence(3, false, 0)
+    bank.save!
+    no_of_bank_accounts = 10
+    no_of_bank_accounts.times {
+      bank_account = BankAccount.new
+      bank_account.bank = bank
+      bank_account.system_account_id = random_system_account.id
+      bank_account.account_number = Faker::Code.imei
+      bank_account.remark = Faker::Lorem.sentence(3, false, 0)
+      bank_account.save!
+    }
   }
 
   # Employees
   NO_OF_EMPLOYEES = 30
-  employee_associated_system_accounts = SystemAccount.where(account_type: 'INDIVIDUAL').order("RAND()").limit(NO_OF_EMPLOYEES)
-  employee_associated_system_accounts.each do |system_account|
-    current_employee = Employee.create!(system_account: system_account,
+  NO_OF_EMPLOYEES.times do
+
+    current_employee = Employee.create!(system_account: generate_system_account('INDIVIDUAL'),
                                         branch: Branch.offset(rand(Branch.count)).first,
                                         position: Faker::Lorem.sentence(1))
 
-    current_employee.save
+    current_employee.save!
 
     # Rest Day for Employee
     rand(1..3).times do
-      RestDay.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+      RestDay.create!(implemented_on: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                       employee: current_employee,
                       remark: Faker::Lorem.sentence(3, false, 0),
                       day: %w(MONDAY TUESDAY WEDNESDAY THURSDAY FRIDAY SATURDAY SUNDAY).sample)
@@ -206,7 +238,7 @@ if Rails.env.development? || Rails.env.test?
         one_hour_break = 0
       end
 
-      RegularWorkPeriod.create!(implemented_at: Faker::Time.between(DateTime.now - 3600, DateTime.now),
+      RegularWorkPeriod.create!(implemented_on: Faker::Time.between(DateTime.now - 3600, DateTime.now),
                                 employee: current_employee,
                                 remark: Faker::Lorem.sentence(3, false, 0),
                                 time_in: generated_time_in,
@@ -238,7 +270,7 @@ if Rails.env.development? || Rails.env.test?
     rand(0..5).times do
       current_employee_status = EmployeeStatus.create!(
           employee_id: current_employee.id,
-          implemented_at: Faker::Date.between(6.years.ago, 1.years.ago),
+          implemented_on: Faker::Date.between(6.years.ago, 1.years.ago),
           state: ['ACTIVE','INACTIVE'].sample,
           remark: Faker::Lorem.sentence(3, false, 0)
       )
@@ -283,12 +315,12 @@ if Rails.env.development? || Rails.env.test?
 
       # Time Overlap
       save_flag = true
-      implemented_at_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
-      implemented_at_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
+      implemented_on_time_in = DateTime.new(generated_year, generated_month, generated_day, time_in.hour, time_in.min, time_in.sec )
+      implemented_on_time_out = DateTime.new(generated_year, generated_month, generated_day, time_out.hour, time_out.min, time_out.sec )
       AttendanceRecord.all.where(employee_id: current_employee.id).each do |att_rec|
-        other_date_time_in = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
-        other_date_time_out = DateTime.new(att_rec.implemented_at.year, att_rec.implemented_at.month, att_rec.implemented_at.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
-        assessment = (((implemented_at_time_in..implemented_at_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
+        other_date_time_in = DateTime.new(att_rec.implemented_on.year, att_rec.implemented_on.month, att_rec.implemented_on.day, att_rec.time_in.hour, att_rec.time_in.min, att_rec.time_in.sec )
+        other_date_time_out = DateTime.new(att_rec.implemented_on.year, att_rec.implemented_on.month, att_rec.implemented_on.day, att_rec.time_out.hour, att_rec.time_out.min, att_rec.time_out.sec )
+        assessment = (((implemented_on_time_in..implemented_on_time_out).overlaps?(other_date_time_in..other_date_time_out)) && ( current_employee.id != att_rec.id))
         if assessment
           save_flag = false
           break;
@@ -299,17 +331,71 @@ if Rails.env.development? || Rails.env.test?
         AttendanceRecord.create!(
             employee_id: current_employee.id,
             remark: Faker::Lorem.sentence(3, false, 0),
-            implemented_at: generated_date,
+            implemented_on: generated_date,
             time_in: time_in,
             time_out: time_out
         )
       end
     end
-
-
-
   end
 
+  # Greco Items Temporary Inventory
+  no_of_parts = 20
+  no_of_parts.times {
+    greco_item = GrecoItem.new
+    greco_item.name = Faker::Commerce.product_name
+    greco_item.remark = Faker::Commerce.product_name
+    greco_item.save!
 
+    5.times {
+      greco_transaction = GrecoTransaction.new
+      greco_transaction.greco_item = greco_item
+      greco_transaction.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
+      greco_transaction.quantity = rand(5..200)
+      greco_transaction.transaction_code = Faker::Code.isbn
+      greco_transaction.transaction_type = ['STORE','RETRIEVE'].sample
+      greco_transaction.remark = Faker::Commerce.product_name
+      greco_transaction.save!
+    }
+  }
 
+  # Exchange Medium
+  no_of_exchange_mediums = 100
+  no_of_exchange_mediums.times {
+
+    exchange_medium = ExchangeMedium.new
+    exchange_medium.amount = Faker::Commerce.price
+    exchange_medium.currency = ['USD','PHP','NT'].sample
+    exchange_medium.remark = Faker::Commerce.product_name
+    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
+    # Change when expenses come online
+    exchange_medium.transaction_type = 'EXPENSE'
+    exchange_medium.transaction_id = Faker::Code.isbn
+    exchange_medium.save!
+
+    exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample
+    case exchange_medium_type
+      when 'CASH'
+        cash = Cash.new
+        cash.denomination = Faker::Lorem.sentence(3, false, 0)
+        cash.reference_number = Faker::Code.isbn
+        cash.exchange_medium = exchange_medium
+        cash.save!
+      when 'CHECK'
+        check = Check.new
+        check.bank_account = BankAccount.order("RAND()").first
+        check.check_number = Faker::Code.isbn
+        check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
+        check.system_account = random_system_account
+        check.exchange_medium = exchange_medium
+        check.save!
+      when 'BANK_TRANSFER'
+        bank_transfer = BankTransfer.new
+        bank_transfer.from_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.to_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.transaction_number = Faker::Code.isbn
+        bank_transfer.exchange_medium = exchange_medium
+        bank_transfer.save!
+    end
+  }
 end

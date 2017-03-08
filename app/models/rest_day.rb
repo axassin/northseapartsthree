@@ -3,7 +3,7 @@ class RestDay < ApplicationRecord
   include GenericResourceCommon
   include AssociatedEmployee
   include Remark
-  include ImplementedAt
+  include ImplementedOn
 
   setup_model('eject',
               'day',
@@ -11,7 +11,6 @@ class RestDay < ApplicationRecord
               Enterprise::HumanResources::Attendance::RestDaysController )
 
   validates :day, length: { in: 0..64 }, inclusion: {in: ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']}, :allow_nil => false
-  validates :day, uniqueness: { scope: [:employee_id, :implemented_at] }
 
   searchable_string(:day)
 

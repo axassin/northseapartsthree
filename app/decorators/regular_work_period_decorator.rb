@@ -1,7 +1,7 @@
 class RegularWorkPeriodDecorator < ApplicationDecorator
   delegate_all
 
-  include ImplementedAtDecorator
+  include ImplementedOnDecorator
   include AssociatedEmployeeDecorator
   include TimePrecedenceDecorator
 

@@ -24,8 +24,14 @@ div.float-clearing
 hr
 
 div.col-md-12
+  ruby:
+    if params.has_key?('wizard_model_type')&& params.has_key?('wizard_model_id')
+      restart_path = @main_resource_path + '?wizard_model_type=' + params[:wizard_model_type] + '&wizard_model_id=' + params[:wizard_model_id] + '&delete_mode=true'
+    else
+      restart_path = @main_resource_path
+    end
 
-  a.btn.btn-default href='#{@main_resource_path}' #{'RESTART WIZARD'}
+  a.btn.btn-default href='#{restart_path}' onclick="return confirm('Restarting will delete any progress; Are you sure?')" #{'RESTART WIZARD'}
   span &nbsp;
 
   a.btn.btn-default href='#{back_path + current_parameters}' #{back_text}

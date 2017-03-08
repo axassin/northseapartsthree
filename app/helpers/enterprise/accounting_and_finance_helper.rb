@@ -1,0 +1,2 @@
+module Enterprise::AccountingAndFinanceHelper
+end
