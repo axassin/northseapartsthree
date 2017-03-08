@@ -358,4 +358,19 @@ if Rails.env.development? || Rails.env.test?
       greco_transaction.save!
     }
   }
+
+  # Exchange Medium
+  no_of_exchange_mediums = 100
+  no_of_exchange_mediums.times {
+
+    exchange_medium = ExchangeMedium.new
+    exchange_medium.amount = Faker::Commerce.price
+    exchange_medium.remark = Faker::Commerce.product_name
+    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
+    # Change when expenses come online
+    exchange_medium.transaction_type = 'EXPENSE'
+    exchange_medium.transaction_id = Faker::Code.isbn
+    exchange_medium.save!
+
+  }
 end

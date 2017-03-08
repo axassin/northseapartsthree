@@ -5,10 +5,7 @@ class CreateExchangeMedia < MainMigration
       t.string :amount, :limit => 64, :required => true
       remark_column(t)
       implemented_at(t)
-      t.string :transaction_id, :limit => 36
-      t.string  :transaction_type
-      t.string :exchange_medium_id, :limit => 36
-      t.string  :exchange_medium_type
+      t.references :transaction, polymorphic: true, index: true
       t.timestamps
     end
   end

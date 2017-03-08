@@ -6,6 +6,7 @@ class CreateChecks < MainMigration
       t.string  :check_number, :limit => 36
       t.date :dated, :required => true
       foreign_key_id(t, 'system_account')
+      foreign_key_id(t, 'exchange_medium')
       t.timestamps
     end
   end

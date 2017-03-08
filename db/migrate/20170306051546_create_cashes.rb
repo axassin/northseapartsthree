@@ -4,6 +4,7 @@ class CreateCashes < MainMigration
       common_set(t)
       t.string :denomination
       t.string :reference_number
+      foreign_key_id(t, 'exchange_medium')
       t.timestamps
     end
   end

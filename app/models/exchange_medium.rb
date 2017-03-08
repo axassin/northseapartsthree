@@ -15,11 +15,6 @@ class ExchangeMedium < ApplicationRecord
 
   validates_presence_of :transaction_id
   validates_presence_of :transaction_type
-  validates_presence_of :exchange_medium_id
-  validates_presence_of :exchange_medium_type
-  validates_presence_of :implemented_at
   validates_numericality_of :amount
-
-  
 
 end
