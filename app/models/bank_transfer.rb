@@ -6,4 +6,6 @@ class BankTransfer < ApplicationRecord
               @@routes.enterprise_accounting_and_finance_exchange_media_bank_transfers_path,
               Enterprise::AccountingAndFinance::ExchangeMedia::BankTransfersController )
 
+  
+
 end
