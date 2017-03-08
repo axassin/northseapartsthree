@@ -175,14 +175,14 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Banks
-  NO_OF_BANKS = 10
-  NO_OF_BANKS.times {
+  no_of_banks = 10
+  no_of_banks.times {
     bank = Bank.new
     bank.system_account_id = generate_system_account('GROUP').id
     bank.remark = Faker::Lorem.sentence(3, false, 0)
     bank.save!
-    NO_OF_BANK_ACCOUNTS = 10
-    NO_OF_BANK_ACCOUNTS.times {
+    no_of_bank_accounts = 10
+    no_of_bank_accounts.times {
       bank_account = BankAccount.new
       bank_account.bank = bank
       bank_account.system_account_id = random_system_account.id
@@ -365,6 +365,7 @@ if Rails.env.development? || Rails.env.test?
 
     exchange_medium = ExchangeMedium.new
     exchange_medium.amount = Faker::Commerce.price
+    exchange_medium.currency = ['USD','PHP','NT'].sample
     exchange_medium.remark = Faker::Commerce.product_name
     exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
     # Change when expenses come online
@@ -372,5 +373,29 @@ if Rails.env.development? || Rails.env.test?
     exchange_medium.transaction_id = Faker::Code.isbn
     exchange_medium.save!
 
+    exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample
+    case exchange_medium_type
+      when 'CASH'
+        cash = Cash.new
+        cash.denomination = Faker::Lorem.sentence(3, false, 0)
+        cash.reference_number = Faker::Code.isbn
+        cash.exchange_medium = exchange_medium
+        cash.save!
+      when 'CHECK'
+        check = Check.new
+        check.bank_account = BankAccount.order("RAND()").first
+        check.check_number = Faker::Code.isbn
+        check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
+        check.system_account = random_system_account
+        check.exchange_medium = exchange_medium
+        check.save!
+      when 'BANK_TRANSFER'
+        bank_transfer = BankTransfer.new
+        bank_transfer.from_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.to_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.transaction_number = Faker::Code.isbn
+        bank_transfer.exchange_medium = exchange_medium
+        bank_transfer.save!
+    end
   }
 end

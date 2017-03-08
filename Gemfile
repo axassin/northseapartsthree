@@ -138,6 +138,9 @@ gem 'wicked'
 # Ancestry is a gem/plugin that allows the records of a Ruby on Rails ActiveRecord model to be organised as a tree structure (or hierarchy)
 gem 'ancestry'
 
+# A Ruby Library for dealing with money and currency conversion.
+gem 'money'
+
 # This library provides integration of the money gem with Rails.
 gem 'money-rails'
 

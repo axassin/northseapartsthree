@@ -63,9 +63,10 @@ ActiveRecord::Schema.define(version: 20170306051635) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "reference_number",            limit: 36
+    t.string   "transaction_number",          limit: 36
     t.string   "to_bank_account_number_id",   limit: 36
     t.string   "from_bank_account_number_id", limit: 36
+    t.string   "exchange_medium_id",          limit: 36
     t.index ["deleted_at"], name: "index_bank_transfers_on_deleted_at", using: :btree
   end
 
@@ -114,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170306051635) do
     t.datetime "updated_at"
     t.string   "denomination"
     t.string   "reference_number"
+    t.string   "exchange_medium_id", limit: 36
     t.index ["deleted_at"], name: "index_cashes_on_deleted_at", using: :btree
   end
 
@@ -121,10 +123,11 @@ ActiveRecord::Schema.define(version: 20170306051635) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "bank_account_id",   limit: 36
-    t.string   "check_number",      limit: 36
+    t.string   "bank_account_id",    limit: 36
+    t.string   "check_number",       limit: 36
     t.date     "dated"
-    t.string   "system_account_id", limit: 36
+    t.string   "system_account_id",  limit: 36
+    t.string   "exchange_medium_id", limit: 36
     t.index ["deleted_at"], name: "index_checks_on_deleted_at", using: :btree
   end
 
@@ -178,14 +181,13 @@ ActiveRecord::Schema.define(version: 20170306051635) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "amount",               limit: 64
-    t.string   "remark",               limit: 64
+    t.string   "amount",           limit: 64
+    t.string   "remark",           limit: 64
     t.datetime "implemented_at"
-    t.string   "transaction_id",       limit: 36
     t.string   "transaction_type"
-    t.string   "exchange_medium_id",   limit: 36
-    t.string   "exchange_medium_type"
+    t.integer  "transaction_id"
     t.index ["deleted_at"], name: "index_exchange_media_on_deleted_at", using: :btree
+    t.index ["transaction_type", "transaction_id"], name: "index_exchange_media_on_transaction_type_and_transaction_id", using: :btree
   end
 
   create_table "greco_items", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

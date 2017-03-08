@@ -8,8 +8,8 @@ class BankTransfer < ApplicationRecord
 
   belongs_to :exchange_medium
 
-  validates_presence_of :from_bank_account
-  validates_presence_of :to_bank_account
+  validates_presence_of :from_bank_account_number_id
+  validates_presence_of :to_bank_account_number_id
   validates_presence_of :transaction_number
 
 end

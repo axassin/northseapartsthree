@@ -16,5 +16,6 @@ class ExchangeMedium < ApplicationRecord
   validates_presence_of :transaction_id
   validates_presence_of :transaction_type
   validates_numericality_of :amount
+  validates_presence_of :currency
 
 end

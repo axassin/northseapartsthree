@@ -7,9 +7,13 @@ class Check < ApplicationRecord
               Enterprise::AccountingAndFinance::ExchangeMedia::ChecksController )
 
   belongs_to :exchange_medium
+  belongs_to :system_account
+  belongs_to :bank_account
 
-  validates_presence_of :bank_account_id
+  validates_presence_of :exchange_medium
+  validates_presence_of :system_account
+  validates_presence_of :bank_account
   validates_presence_of :check_number
-  validates_presence_of :system_account_id
+
 
 end
