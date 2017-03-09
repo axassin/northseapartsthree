@@ -364,7 +364,8 @@ if Rails.env.development? || Rails.env.test?
   no_of_exchange_mediums.times {
 
     exchange_medium = ExchangeMedium.new
-    exchange_medium.amount_cents = Faker::Commerce.price
+    exchange_medium.amount_centavos = Faker::Commerce.price*100.00
+    exchange_medium.amount_currency = ['USD','PHP','NTD'].sample
     exchange_medium.remark = Faker::Commerce.product_name
     exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
     # Change when expenses come online
@@ -397,4 +398,5 @@ if Rails.env.development? || Rails.env.test?
         bank_transfer.save!
     end
   }
+
 end

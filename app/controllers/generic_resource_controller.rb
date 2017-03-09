@@ -246,4 +246,11 @@ class GenericResourceController < ApplicationController
     polymorphic_instance.send("#{polymorphic_attribute + '_id='}", raw_polymorphic_array[1])
   end
 
+  def process_money(model_instance, amount, currency = 'PHP', prefix = 'amount')
+    actual_amount = (prefix + '_centavos').to_sym
+    actual_currency = (prefix + '_currency').to_sym
+    model_instance[actual_amount] = amount*100
+    model_instance[actual_currency] = currency
+  end
+
 end

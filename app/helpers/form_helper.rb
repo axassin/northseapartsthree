@@ -143,4 +143,12 @@ module FormHelper
     }
   end
 
+  def currency_codes
+    currencies = []
+    Money::Currency.table.values.each do |currency|
+      currencies.push(currency[:iso_code].to_s)
+    end
+    currencies
+  end
+
 end

@@ -1,0 +1,6 @@
+div.col-md-6
+  = f.input :amount, as: :float
+  = selector(f, :currency, currency_codes, current_instance.amount_currency, false)
+div.col-md-6
+  = input_word(f, :remark)
+  = f.input :implemented_at, required: true, as: :date, html5: true
