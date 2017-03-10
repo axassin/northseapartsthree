@@ -143,6 +143,22 @@ module FormHelper
     }
   end
 
+  def date_time_selector(f, current_instance, attribute_name = 'implemented_at')
+    render partial: 'common/form/implemented_at_selector', locals: {
+        f: f,
+        current_instance: current_instance,
+        attribute_name: attribute_name
+    }
+  end
+
+  def date_selector(f, current_instance, attribute_name = 'implemented_on')
+    render partial: 'common/form/implemented_on_selector', locals: {
+        f: f,
+        current_instance: current_instance,
+        attribute_name: attribute_name
+    }
+  end
+
   def currency_codes
     currencies = []
     Money::Currency.table.values.each do |currency|

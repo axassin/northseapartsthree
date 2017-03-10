@@ -2,7 +2,7 @@ class ExchangeMedium < ApplicationRecord
 
   include GenericResourceCommon
   setup_model('exchange',
-              'remark',
+              'summary',
               @@routes.enterprise_accounting_and_finance_exchange_media_path,
               Enterprise::AccountingAndFinance::ExchangeMediaController )
 
@@ -19,7 +19,7 @@ class ExchangeMedium < ApplicationRecord
   monetize :amount_centavos, with_model_currency: :currency
 
   def transaction
-    'test n/a yet'
+    'EXPENSES'
   end
 
   def type_of_medium
@@ -36,6 +36,12 @@ class ExchangeMedium < ApplicationRecord
 
   def summary
     amount.to_s + ' ' + amount_currency.to_s + ' '+ type_of_medium
+  end
+
+  def self.blank_exchange_mediums
+    ExchangeMedium.includes(:cash).where(:cashes => { :exchange_medium_id => nil })
+        .includes(:bank_transfer).where(:bank_transfers => { :exchange_medium_id => nil })
+        .includes(:check).where(:checks => { :exchange_medium_id => nil })
   end
 
 end
