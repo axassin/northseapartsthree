@@ -1,13 +1,21 @@
-class Enterprise::AccountingAndFinance::FinancialInstitutions::BankAccountDecorator < ApplicationDecorator
+class BankAccountDecorator < ApplicationDecorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  include SystemAccountableDecorator
+
+  def bank
+
+    link_path = object.bank.show_path
+    link_label = object.bank.represent
+
+    main_element = mab do
+      a :class => 'btn btn-default', :href => link_path, :target => '_new' do
+        link_label
+      end
+    end
+
+    main_element.html_safe
+
+  end
 
 end

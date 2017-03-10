@@ -11,7 +11,7 @@ module ExchangeableMedium
       string :exchange_medium
     end
 
-    def exchange_medium_representation
+    def exchange_summary
       exchange_medium = ExchangeMedium.find_by_id(exchange_medium_id)
       exchange_medium.amount.to_s + ' ' + exchange_medium.amount_currency.to_s + ' for ' + exchange_medium.transaction.to_s
     end

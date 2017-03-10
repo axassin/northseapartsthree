@@ -2,6 +2,6 @@
 div.col-md-6
   ruby:
     selector_model = SystemAccount.left_outer_joins(:bank).where( banks: { id: nil }).where( account_type: 'GROUP')
-  = model_selector(f, selector_model, :system_account_id, current_instance.system_account_id, 'name')
+  = model_selector(f, selector_model, :system_account_id, current_instance.system_account, 'name')
 div.col-md-6
   = input_word(f, :remark)

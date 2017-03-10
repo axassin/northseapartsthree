@@ -249,7 +249,7 @@ class GenericResourceController < ApplicationController
   def process_money(model_instance, amount, currency = 'PHP', prefix = 'amount')
     actual_amount = (prefix + '_centavos').to_sym
     actual_currency = (prefix + '_currency').to_sym
-    model_instance[actual_amount] = amount*100
+    model_instance[actual_amount] = ((amount.to_f)*100).round(2)
     model_instance[actual_currency] = currency
   end
 

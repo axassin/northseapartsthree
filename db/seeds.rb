@@ -360,7 +360,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Exchange Medium
-  no_of_exchange_mediums = 100
+  no_of_exchange_mediums = 50
   no_of_exchange_mediums.times {
 
     exchange_medium = ExchangeMedium.new
@@ -386,7 +386,8 @@ if Rails.env.development? || Rails.env.test?
         check.bank_account = BankAccount.order("RAND()").first
         check.check_number = Faker::Code.isbn
         check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
-        check.system_account = random_system_account
+        check.payee = random_system_account.id
+        check.signatory = random_system_account.id
         check.exchange_medium = exchange_medium
         check.save!
       when 'BANK_TRANSFER'

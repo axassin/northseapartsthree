@@ -1,5 +1,5 @@
 div.col-md-6
-  = f.input :amount, as: :float
+  = f.input :amount, as: :float, step: '0.01'
   = selector(f, :currency, currency_codes, current_instance.amount_currency, false)
   div put transaction selector here
 
