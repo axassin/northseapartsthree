@@ -79,8 +79,11 @@ group :development do
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Gemfile
 
+platform :mswin, :mingw, :x64_mingw do
+  gem 'tzinfo-data'
+end
 # Slim is a fast, lightweight templating engine
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
@@ -188,3 +191,16 @@ gem 'validates_timeliness', '~> 4.0'
 
 # A dynamic, browser based visualization library.
 gem 'visjs-rails'
+
+# DEPLOYMENT
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
+
+gem 'nokogiri'
+
+# gem 'puma'
