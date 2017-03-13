@@ -71,10 +71,10 @@ group :development do
   gem 'web-console'
 
   # Guard is a command line tool to easily handle events on file system modifications.
-  gem 'guard', '>= 2.2.2', :require => false
-  gem 'guard-livereload',  :require => false
-  gem 'rack-livereload'
-  gem 'rb-fsevent',        :require => false
+  # gem 'guard', '>= 2.2.2', :require => false
+  # gem 'guard-livereload',  :require => false
+  # gem 'rack-livereload'
+  # gem 'rb-fsevent',        :require => false
 
 end
 
