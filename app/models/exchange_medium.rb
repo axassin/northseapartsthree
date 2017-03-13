@@ -44,4 +44,6 @@ class ExchangeMedium < ApplicationRecord
         .includes(:check).where(:checks => { :exchange_medium_id => nil })
   end
 
+  searchable_string(:type_of_medium)
+
 end
