@@ -196,9 +196,12 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "expense_entry_id",  limit: 36
-    t.string   "system_account_id", limit: 36
+    t.string   "expense_entry_id",   limit: 36
+    t.string   "expensable_id",      limit: 36
+    t.string   "expensable_type"
+    t.string   "approving_party_id"
     t.index ["deleted_at"], name: "index_expense_assignments_on_deleted_at", using: :btree
+    t.index ["expensable_type", "expensable_id"], name: "index_expense_assignments_on_expensable_type_and_expensable_id", using: :btree
   end
 
   create_table "expense_categories", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -218,6 +221,8 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "vendor_id",           limit: 36
     t.string   "expense_category_id", limit: 36
     t.date     "due_date"
+    t.string   "receiving_party_id",  limit: 36
+    t.string   "reference_number"
     t.integer  "amount_centavos",                default: 0,     null: false
     t.string   "amount_currency",                default: "PHP", null: false
     t.string   "remark",              limit: 64

@@ -367,6 +367,32 @@ if Rails.env.development? || Rails.env.test?
     vendor.save!
   }
 
+  # Expense Entries
+  no_of_expense_entries = 25
+  no_of_expense_entries.times {
+    expense_entry = ExpenseEntry.new
+    expense_entry.vendor_id = Vendor.order("RAND()").first.id
+    expense_entry.receiving_party_id = Employee.order("RAND()").first.id
+    expense_entry.expense_category_id = ExpenseCategory.order("RAND()").first.id
+    expense_entry.amount_centavos = Faker::Commerce.price*100.00
+    expense_entry.amount_currency = ['USD','PHP','NTD'].sample
+    expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)
+    expense_entry.reference_number = Faker::Code.isbn
+    expense_entry.save!
+  }
+
+  # Expense Assignment
+  no_of_expense_assignment = 25
+  no_of_expense_assignment.times {
+    expense_assignment = ExpenseAssignment.new
+    expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
+    expense_assignment.approving_party_id = Employee.order("RAND()").first.id
+    expensable_type = ['Vehicle','Employee','Branch'].sample
+    expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
+    expense_assignment.expensable_type = expensable_type
+    expense_assignment.save!
+  }
+
   # Exchange Medium
   no_of_exchange_mediums = 50
   no_of_exchange_mediums.times {
