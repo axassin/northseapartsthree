@@ -1,0 +1,17 @@
+div.col-md-6
+  = employee_selector(f, current_instance)
+  = input_date(f, :date_of_birth)
+  = input_word(f, :complexion)
+  = input_word(f, :height)
+  = selector(f, :sex, ['MALE','FEMALE'], current_instance.sex, false)
+  = selector(f, :blood_type, ['O+','O-','A+','A-','B+','B-','AB+','AB-'], current_instance.blood_type, false)
+
+  = input_description(f, :description)
+div.col-md-6
+  = input_word(f, :name_of_mother)
+  = input_word(f, :name_of_father)
+  = input_description(f, :dependents, id = nil)
+
+  = input_description(f, :education, id = nil)
+  = input_description(f, :experience, id = nil)
+  = input_description(f, :notable_accomplishment, id = nil)

@@ -1,0 +1,15 @@
+div.col-md-6
+  = input_word(f, :name)
+  = input_description(f, :description)
+div.col-md-6
+  - unless @employee_id.present?
+    ruby:
+      polymorphic_array = [[Vehicle, 'plate_number'], [Branch, 'name'], [SystemAccount, 'name']]
+    = polymorphic_selector(f, current_instance, 'imageable', polymorphic_array, false)
+    br
+  - else
+    = f.input :imageable,
+            :as => :hidden,
+            :input_html => {:value => 'Employee' + ',' + @employee_id}
+
+  = image_upload_input(f, params, @current_instance, 'image', true)

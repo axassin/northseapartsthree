@@ -1,0 +1,12 @@
+- if action_name == 'show' || action_name == 'edit'
+  div
+    - AssociatedFile.where(fileable_id: current_instance.id, fileable_type: current_instance.class).each do |fileable|
+      div.associated_file_container
+        a.btn.btn-default href='#{fileable.file.url}' =fileable.name
+        = ' | ' + fileable.description + ' '
+        - if action_name == 'edit'
+          a.btn.btn-default.associated_file_delete_button.fa.fa-eye href='#{enterprise_general_management_associated_files_path + '/' + fileable.id}' data-toggle="tooltip" title="Examine"
+
+  - if action_name == 'edit'
+    div.associated_file_container
+      a.btn.btn-default href='#{new_enterprise_general_management_associated_file_path}' Add Associated Files

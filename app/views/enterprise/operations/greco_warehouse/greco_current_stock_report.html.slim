@@ -1,0 +1,12 @@
+h3 CURRENT STOCK
+a.btn.btn-default.greco_csv EXPORT TO CSV
+table.greco_report_table
+  thead
+    tr
+      th ITEM
+      th align='center' QUANTITY
+  tbody
+    - @greco_items.each do |greco_item|
+      tr
+        td = greco_item.name
+        td align='center' = greco_item.get_current_stock

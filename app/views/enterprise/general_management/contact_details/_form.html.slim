@@ -1,0 +1,15 @@
+div.col-md-6
+  div.form_element_tip Enter a short label for this set of Contact Details:
+  br
+  = input_word(f, :label)
+
+
+- unless @wizard_steps.present?
+  div.col-md-6
+    div.form_element_tip Pick the owner of this set of Contact Details:
+    br
+    = polymorphic_selector(f, current_instance, 'contactable', [[SystemAccount, 'name'],[Branch, 'name']], false)
+- else
+  = f.input :contactable,
+          :as => :hidden,
+          :input_html => { :value => params[:wizard_model_type] + ',' + params[:wizard_model_id]}

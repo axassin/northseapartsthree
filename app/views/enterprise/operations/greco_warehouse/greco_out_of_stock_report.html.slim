@@ -1,0 +1,11 @@
+h3 OUT OF STOCK
+a.btn.btn-default.greco_csv EXPORT TO CSV
+table.greco_report_table
+  thead
+    tr
+      th ITEM
+  tbody
+    - @greco_items.each do |greco_item|
+      - if greco_item.get_current_stock <= 0
+        tr
+          td = greco_item.name

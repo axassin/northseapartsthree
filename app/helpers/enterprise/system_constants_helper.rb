@@ -1,0 +1,2 @@
+module Enterprise::SystemConstantsHelper
+end

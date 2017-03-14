@@ -1,0 +1,2 @@
+module Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardHelper
+end

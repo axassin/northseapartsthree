@@ -1,0 +1,8 @@
+div.col-md-6
+  div.form_element_tip Set bank to which account is kept
+  = model_selector(f, Bank, :bank_id, current_instance.bank, 'bank_name')
+  = input_word(f, :account_number)
+div.col-md-6
+  div.form_element_tip Set owner of account
+  = model_selector(f, SystemAccount, :system_account_id, current_instance.system_account, 'name')
+  = input_word(f, :remark)

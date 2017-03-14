@@ -1,0 +1,2 @@
+class AssociatedImagesControllerController < ApplicationController
+end

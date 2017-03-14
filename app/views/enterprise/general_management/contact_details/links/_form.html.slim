@@ -1,0 +1,7 @@
+div.col-md-6
+  = input_description(f, :url)
+  = selector(f, :service, ['EMAIL','SYKPE'], current_instance.service)
+  = input_word(f, :remark)
+
+div.col-md-6
+  = contact_detail_selector(f, current_instance)

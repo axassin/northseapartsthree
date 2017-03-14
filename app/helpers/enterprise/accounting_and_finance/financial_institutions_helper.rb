@@ -1,0 +1,2 @@
+module Enterprise::AccountingAndFinance::FinancialInstitutionsHelper
+end

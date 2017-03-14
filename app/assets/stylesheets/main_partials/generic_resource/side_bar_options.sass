@@ -1,0 +1,44 @@
+@import "main"
+
+%RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  margin-top: 0.5em
+
+div.sort_by
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  select
+    margin: 0.25em
+
+div.page_entries_info
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+
+div.resource_button_options
+  color: white
+  a
+    border-bottom: solid medium lighten($TERTIARY_COLOR, 5%)
+  a:last-child
+    border-bottom: none
+
+nav.pagination
+  border: gainsboro solid thin
+  padding: 0.5em
+
+  span.page
+    color: white
+    background-color: $TERTIARY_COLOR
+    padding: 0.25em
+    &:hover
+      background-color: darken($TERTIARY_COLOR, 20%)
+  span.current
+    background-color: $QUATERNARY_COLOR
+
+div.view_type
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET
+  border-top: solid gray thin
+  border-bottom: solid gray thin
+  div
+    float: left
+    padding: 1em
+    width: 50%
+
+div.results_per_page
+  @extend %RESOURCE_NAVIGATION_ELEMENT_OFFSET

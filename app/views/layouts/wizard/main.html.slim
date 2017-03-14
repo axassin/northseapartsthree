@@ -1,0 +1,54 @@
+doctype html
+html lang="en"
+  head
+    = render template: 'common/generic_head'
+    = stylesheet_link_tag 'main_partials/wizard', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
+  body
+    = render template: 'common/topside_navigation/bar'
+    = render template: 'common/main_notification'
+    div.main_display
+      div.wizard_head
+        h1.wizard_heading = totally_humanize(controller_name)
+        div.wizard_progress_bar
+          ruby:
+            past_step = true
+          - @wizard_steps.each do |step|
+            - if step.to_s == params[:id].to_s
+              span.progress_cell.current = totally_humanize(step)
+              ruby:
+                past_step = false
+            - else
+              - if past_step
+                span.progress_cell.past_cell = totally_humanize(step)
+              - else
+                span.progress_cell = totally_humanize(step)
+      div.wizard_content
+        - if @form
+          = simple_form_for @current_instance,
+                  url: wizard_path,
+                  multipart: true,
+                  method: :put,
+                  html: {:'data-parsley-validate' => ''} do |f|
+            input type='hidden' name='wizard_model_type' value='#{params[:wizard_model_type]}'
+            input type='hidden' name='wizard_model_id' value='#{params[:wizard_model_id]}'
+
+            - if params.has_key?(:wizard_model)
+              input type='hidden' name='wizard_model' value='#{params[:wizard_model]}'
+
+            div.form_proper
+              = render partial: @form, locals: {f: f, current_instance: @current_instance}
+
+            div.col-md-12.footnote * Required
+            div.float-clearing
+            = render partial: 'layouts/wizard/footer'
+          javascript:
+            var form_id = '#new_' + '#{@current_instance.class.parameterized}';
+            $(form_id).parsley();
+
+        - elsif step.to_s == 'end'
+          div.statement Operation Successful!
+          div.float-clearing
+          = render partial: 'layouts/wizard/footer'
+        - else
+          == yield

@@ -1,0 +1,8 @@
+div.col-md-6
+  div.form_element_tip Assign Parent Exchange Medium
+  ruby:
+    selected_models = ExchangeMedium.blank_exchange_mediums
+  = model_selector(f, selected_models, :exchange_medium_id, current_instance.exchange_medium, 'summary')
+div.col-md-6
+  = input_word(f, :denomination)
+  = input_word(f, :reference_number)

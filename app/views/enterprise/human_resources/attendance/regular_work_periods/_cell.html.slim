@@ -1,0 +1,6 @@
+div = result.decorate.associated_employee_link
+div = ' at ' + result.decorate.implemented_on.to_s
+div = result.decorate.time_in.to_s + ' to ' +  result.decorate.time_out.to_s
+- if result.one_hour_break
+  span = 'with one hour break'
+div = result.remark

@@ -1,0 +1,33 @@
+dfadfasdfsa
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch james_development
+# Your branch is up-to-date with 'origin/james_development'.
+#
+# Changes to be committed:
+#	modified:   .gitignore
+#	new file:   fizqgcxl.b2l.txt
+#	new file:   public/uploads/primary_image/system_account/Thumbs.db
+#	new file:   public/uploads/primary_image/system_account/sample_system_account_01.jpg
+#	new file:   public/uploads/primary_image/system_account/sample_system_account_02.jpg
+#	new file:   public/uploads/primary_image/system_account/sample_system_account_03.jpg
+#	new file:   public/uploads/primary_image/system_account/sample_system_account_04.jpg
+#	new file:   public/uploads/primary_image/system_account/sample_system_account_05.jpg
+#	modified:   public/uploads/primary_image/vehicle/Thumbs.db
+#	deleted:    public/uploads/tmp/1478222023-6420-0001-1874/Thumbs.db
+#	deleted:    public/uploads/tmp/1478222023-6420-0001-1874/dfsadf.jpg
+#	deleted:    public/uploads/tmp/1478222644-6420-0002-9685/Thumbs.db
+#	deleted:    public/uploads/tmp/1478222644-6420-0002-9685/fdsfasdf.jpg
+#	deleted:    public/uploads/tmp/1478228740-524-0001-2180/DSC_0040.JPG
+#	deleted:    public/uploads/tmp/1478234783-524-0002-7872/DSC_0040.JPG
+#	deleted:    public/uploads/tmp/1478234893-524-0003-3652/DSC_0040.JPG
+#	deleted:    public/uploads/tmp/1478236521-6088-0001-0017/Thumbs.db
+#	deleted:    public/uploads/tmp/1478236521-6088-0001-0017/webcam-toy-photo13.jpg
+#	deleted:    public/uploads/tmp/1478236932-7780-0001-4450/Thumbs.db
+#	deleted:    public/uploads/tmp/1478236932-7780-0001-4450/dfsadf.jpg
+#	deleted:    public/uploads/tmp/1478237226-7780-0002-3082/Thumbs.db
+#	deleted:    public/uploads/tmp/1478237226-7780-0002-3082/fdsfasdf.jpg
+#	deleted:    public/uploads/tmp/1478237275-7780-0003-1925/Thumbs.db
+#	deleted:    public/uploads/tmp/1478237275-7780-0003-1925/dfsadf.jpg
+#
+
