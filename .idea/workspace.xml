@@ -28,7 +28,18 @@
     <favorites_list name="northseapartsthree" />
   </component>
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="369">
+              <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -188,7 +199,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="SearchEverywhereHistoryKey" value="work&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;works-&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sunspot_solr-2.2.6/solr/server/solr-webapp/webapp/img/ico/network-status-away.png&#10;gitig&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.gitignore&#10;workspace.xml&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;gemfi&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
+    <property name="SearchEverywhereHistoryKey" value="git&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.gitignore&#10;gem&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/Gemfile.lock&#10;gemfi&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/Gemfile.lock&#10;work&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;works-&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sunspot_solr-2.2.6/solr/server/solr-webapp/webapp/img/ico/network-status-away.png&#10;gitig&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.gitignore&#10;workspace.xml&#9;FILE&#9;file://C:/Users/own/My Projects/northseapartsthree/.idea/workspace.xml&#10;gemfile.lo&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile.lock&#10;application.js&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/javascripts/application.js&#10;a&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.scss&#10;application.css&#9;FILE&#9;file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/railties-5.0.0.1/lib/rails/generators/rails/app/templates/app/assets/stylesheets/application.css&#10;ap&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.slim&#10;ge&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.html&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;application.htm&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;gemf&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/Gemfile&#10;application.&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/assets/stylesheets/application.css&#10;application.html.erb&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/app/views/layouts/application.html.erb&#10;home&#9;null&#9;null&#10;routes&#9;FILE&#9;file://D:/PROJECTS/northseapartsthree/config/routes.rb" />
     <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.ruby.settings.RubyActiveModuleSdkConfigurable" />
     <property name="last_opened_file_path" value="C:/Ruby23-x64/bin/ruby.exe" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -458,12 +469,12 @@
       <workItem from="1472691407338" duration="180000" />
       <workItem from="1472691610823" duration="616000" />
       <workItem from="1474417063215" duration="1281000" />
-      <workItem from="1489455303846" duration="274000" />
+      <workItem from="1489455303846" duration="1593000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="14843000" />
+    <option name="totallyTimeSpent" value="16162000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -476,7 +487,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28895614" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -484,7 +495,7 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07034796" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967034" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24962178" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2621664" sideWeight="0.85173976" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2621664" sideWeight="0.85173976" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -592,6 +603,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="85" column="0" selection-start-line="85" selection-start-column="0" selection-end-line="85" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -807,21 +819,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="176" column="14" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="318">
-          <caret line="78" column="16" selection-start-line="78" selection-start-column="16" selection-end-line="78" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Ruby23-x64/lib/ruby/gems/2.3.0/gems/sunspot_solr-2.2.6/solr/server/solr-webapp/webapp/img/ico/network-status-away.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -831,6 +828,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3655">
           <caret line="215" column="69" selection-start-line="215" selection-start-column="68" selection-end-line="215" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Gemfile.lock">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2788">
+          <caret line="176" column="14" selection-start-line="176" selection-start-column="5" selection-end-line="176" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="369">
+          <caret line="81" column="13" selection-start-line="81" selection-start-column="13" selection-end-line="81" selection-end-column="13" />
           <folding />
         </state>
       </provider>
