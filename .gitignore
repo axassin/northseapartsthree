@@ -75,3 +75,6 @@ solr/hsperfdata_own
 solr/hsperfdata_james
 
 Gemfile.lock
+.idea/.generators
+.idea/.rakeTasks
+.idea/workspace.xml
