@@ -10,7 +10,11 @@ class ExpenseCategory < ApplicationRecord
               Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController )
 
   def parent
-    ExpenseCategory.find_by_id(parent).represent
+    ExpenseCategory.find_by_id(parent_id)
+  end
+
+  def parent_summary
+    ExpenseCategory.find_by_id(parent_id).represent
   end
 
 end

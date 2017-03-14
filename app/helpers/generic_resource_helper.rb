@@ -35,4 +35,24 @@ module GenericResourceHelper
     }
   end
 
+  def resource_cell_link(resource)
+
+    unless resource == nil
+      link_path = resource.show_path
+      link_label = resource.represent
+
+      main_element = mab do
+        a :class => 'btn btn-default', :href => link_path, :target => '_new' do
+          link_label
+        end
+      end
+
+      main_element.html_safe
+    else
+      'N/A'
+    end
+
+
+  end
+
 end
