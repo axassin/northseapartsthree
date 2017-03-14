@@ -1,6 +1,7 @@
 class Employee < ApplicationRecord
 
   include GenericResourceCommon
+  include SystemAccountable
 
   setup_model('black-tie',
               'designation',
@@ -8,7 +9,6 @@ class Employee < ApplicationRecord
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController)
 
   belongs_to :branch
-  belongs_to :system_account
 
   has_one :biodatum, :dependent => :destroy
   has_many :regular_work_periods, :dependent => :destroy
@@ -26,10 +26,6 @@ class Employee < ApplicationRecord
 
   def designation
     SystemAccount.find_by_id(system_account_id).name + ' (' + position + ') at ' + Branch.find_by_id(branch_id).name
-  end
-
-  def account_name
-    SystemAccount.find_by_id(system_account_id).name
   end
 
   def mother_branch

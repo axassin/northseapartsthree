@@ -293,7 +293,7 @@ if Rails.env.development? || Rails.env.test?
       exact_time_in_first_half = Time.new(generated_year, generated_month, generated_day, 8, 0 ,0)
       exact_time_out_first_half = Time.new(generated_year, generated_month, generated_day, 12, 0 ,0)
       exact_time_in_second_half = Time.new(generated_year, generated_month, generated_day, 13, 0 ,0)
-      exact_time_out_second_half = Time.new(generated_year, generated_month, generated_day, 18, 0 ,0)
+      exact_time_out_second_half = Time.new(generated_year, generated_month, generated_day, 17, 0 ,0)
 
       time_in = [generated_time_in, exact_time_in_first_half, exact_time_in_second_half].sample
       time_out = [generated_time_out, exact_time_out_first_half, exact_time_out_second_half].sample
@@ -305,7 +305,7 @@ if Rails.env.development? || Rails.env.test?
 
       5.in(10) do
         time_in = Time.new(generated_year, generated_month, generated_day, 13, 0 ,0)
-        time_out = Time.new(generated_year, generated_month, generated_day, 18, 0 ,0)
+        time_out = Time.new(generated_year, generated_month, generated_day, 17, 0 ,0)
       end
 
       # Time Precedence
@@ -359,13 +359,47 @@ if Rails.env.development? || Rails.env.test?
     }
   }
 
+  # Vendor
+  no_of_exchange_mediums = 25
+  no_of_exchange_mediums.times {
+    vendor = Vendor.new
+    vendor.system_account = generate_system_account('GROUP')
+    vendor.save!
+  }
+
+  # Expense Entries
+  no_of_expense_entries = 25
+  no_of_expense_entries.times {
+    expense_entry = ExpenseEntry.new
+    expense_entry.vendor_id = Vendor.order("RAND()").first.id
+    expense_entry.receiving_party_id = Employee.order("RAND()").first.id
+    expense_entry.expense_category_id = ExpenseCategory.order("RAND()").first.id
+    expense_entry.amount_centavos = Faker::Commerce.price*100.00
+    expense_entry.amount_currency = ['USD','PHP','NTD'].sample
+    expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)
+    expense_entry.reference_number = Faker::Code.isbn
+    expense_entry.save!
+  }
+
+  # Expense Assignment
+  no_of_expense_assignment = 25
+  no_of_expense_assignment.times {
+    expense_assignment = ExpenseAssignment.new
+    expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
+    expense_assignment.approving_party_id = Employee.order("RAND()").first.id
+    expensable_type = ['Vehicle','Employee','Branch'].sample
+    expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
+    expense_assignment.expensable_type = expensable_type
+    expense_assignment.save!
+  }
+
   # Exchange Medium
-  no_of_exchange_mediums = 100
+  no_of_exchange_mediums = 50
   no_of_exchange_mediums.times {
 
     exchange_medium = ExchangeMedium.new
-    exchange_medium.amount = Faker::Commerce.price
-    exchange_medium.currency = ['USD','PHP','NT'].sample
+    exchange_medium.amount_centavos = Faker::Commerce.price*100.00
+    exchange_medium.amount_currency = ['USD','PHP','NTD'].sample
     exchange_medium.remark = Faker::Commerce.product_name
     exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
     # Change when expenses come online
@@ -386,7 +420,8 @@ if Rails.env.development? || Rails.env.test?
         check.bank_account = BankAccount.order("RAND()").first
         check.check_number = Faker::Code.isbn
         check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
-        check.system_account = random_system_account
+        check.payee = random_system_account.id
+        check.signatory = random_system_account.id
         check.exchange_medium = exchange_medium
         check.save!
       when 'BANK_TRANSFER'
@@ -398,4 +433,5 @@ if Rails.env.development? || Rails.env.test?
         bank_transfer.save!
     end
   }
+
 end

@@ -1,4 +1,4 @@
-class Enterprise::AccountingAndFinance::ExchangeMedia::CheckDecorator < ApplicationDecorator
+class Enterprise::AccountingAndFinance::PaymentDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

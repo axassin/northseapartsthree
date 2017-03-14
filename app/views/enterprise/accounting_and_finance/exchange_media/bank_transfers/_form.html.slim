@@ -1,0 +1,9 @@
+div.col-md-6
+  div.form_element_tip Assign Parent Exchange Medium
+  ruby:
+    selected_models = ExchangeMedium.blank_exchange_mediums
+  = model_selector(f, selected_models, :exchange_medium_id, current_instance.exchange_medium, 'summary')
+div.col-md-6
+  = input_word(f, :transaction_number)
+  = model_selector(f, BankAccount, :to_bank_account_number_id, BankAccount.find_by_id(current_instance.to_bank_account_number_id), 'account_number')
+  = model_selector(f, BankAccount, :from_bank_account_number_id, BankAccount.find_by_id(current_instance.from_bank_account_number_id), 'account_number')

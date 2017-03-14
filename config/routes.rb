@@ -75,6 +75,9 @@ Rails.application.routes.draw do
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
 
+      generate_logic_unit( :vendors )
+      generate_logic_unit( :payments )
+
       define_index( 'financial_institutions' )
       namespace :financial_institutions do
         generate_logic_unit( :banks )
@@ -87,6 +90,13 @@ Rails.application.routes.draw do
         generate_logic_unit(:bank_transfers)
       end
       generate_logic_unit( :exchange_media )
+
+      define_index( 'expenses' )
+      namespace :expenses do
+        generate_logic_unit( :expense_categories )
+        generate_logic_unit( :expense_entries )
+        generate_logic_unit( :expense_assignments )
+      end
 
     end
 
