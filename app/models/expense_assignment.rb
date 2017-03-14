@@ -2,7 +2,7 @@ class ExpenseAssignment < ApplicationRecord
 
   include GenericResourceCommon
 
-  setup_model('foursquare',
+  setup_model('etsy',
               'summary',
               @@routes.enterprise_accounting_and_finance_expenses_expense_assignments_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseAssignmentsController )

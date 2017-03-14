@@ -1,2 +1,3 @@
-class Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController < ApplicationController
+class Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController < GenericResourceController
+
 end

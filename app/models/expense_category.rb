@@ -4,9 +4,13 @@ class ExpenseCategory < ApplicationRecord
   include Remark
   include Name
 
-  setup_model('buysellads',
+  setup_model('etsy',
               'name',
               @@routes.enterprise_accounting_and_finance_expenses_expense_categories_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController )
+
+  def parent
+    ExpenseCategory.find_by_id(parent).represent
+  end
 
 end
