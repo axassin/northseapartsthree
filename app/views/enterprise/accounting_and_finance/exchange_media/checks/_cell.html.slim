@@ -1,10 +1,10 @@
-div = result.decorate.exchange_medium
+div = resource_cell_link(result.exchange_medium)
 div = result.check_number
 div = result.dated
 div
   span Payee :
-  span = result.decorate.payee
+  span = resource_cell_link(SystemAccount.find_by_id(result.payee))
 div
   span Signatory :
-  span = result.decorate.signatory
-div = result.decorate.bank_account
+  span = resource_cell_link(SystemAccount.find_by_id(result.signatory))
+div = resource_cell_link(result.bank_account)
