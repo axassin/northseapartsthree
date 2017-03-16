@@ -78,3 +78,5 @@ Gemfile.lock
 .idea/.generators
 .idea/.rakeTasks
 .idea/workspace.xml
+
+workspace.xml

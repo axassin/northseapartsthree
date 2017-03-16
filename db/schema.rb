@@ -196,10 +196,10 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "expense_entry_id",   limit: 36
-    t.string   "expensable_id",      limit: 36
+    t.string   "expense_entry_id", limit: 36
+    t.string   "expensable_id",    limit: 36
     t.string   "expensable_type"
-    t.string   "approving_party_id"
+    t.string   "remark",           limit: 64
     t.index ["deleted_at"], name: "index_expense_assignments_on_deleted_at", using: :btree
     t.index ["expensable_type", "expensable_id"], name: "index_expense_assignments_on_expensable_type_and_expensable_id", using: :btree
   end

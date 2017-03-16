@@ -1,0 +1,5 @@
+div = result.name
+div = result.remark
+div
+  span PARENT : &nbsp;
+  span = resource_cell_link(ExpenseCategory.find_by_id(result.parent))

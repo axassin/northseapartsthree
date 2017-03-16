@@ -386,7 +386,7 @@ if Rails.env.development? || Rails.env.test?
   no_of_expense_assignment.times {
     expense_assignment = ExpenseAssignment.new
     expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
-    expense_assignment.approving_party_id = Employee.order("RAND()").first.id
+    expense_assignment.remark = Faker::Lorem.sentence(3, false, 0)
     expensable_type = ['Vehicle','Employee','Branch'].sample
     expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
     expense_assignment.expensable_type = expensable_type

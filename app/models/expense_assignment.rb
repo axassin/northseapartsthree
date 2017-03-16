@@ -1,8 +1,9 @@
 class ExpenseAssignment < ApplicationRecord
 
   include GenericResourceCommon
+  include Remark
 
-  setup_model('foursquare',
+  setup_model('etsy',
               'summary',
               @@routes.enterprise_accounting_and_finance_expenses_expense_assignments_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseAssignmentsController )
@@ -25,12 +26,6 @@ class ExpenseAssignment < ApplicationRecord
     expensable_type.constantize.find_by_id(expensable_id).represent
   end
 
-  def approving_party
-    Employee.find_by_id(approving_party_id).represent
-  end
-
   searchable_string :expense_entry_summary
   searchable_string :expensable
-  searchable_string :approving_party
-
 end
