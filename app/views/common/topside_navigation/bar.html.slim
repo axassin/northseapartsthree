@@ -1,25 +1,31 @@
+// Enterprise Navigation Bar
 nav.navbar.navbar-default.navigation
-  div.navbar-header.navigation-logo.col-md-2
-    a href='#{root_path}' =image_tag('nav_bar_header.png')
+  div.row
 
-  - if @class_model != nil
-    div.input_group.navigation-search.col-md-6
-      form method="get" action="#{@main_resource_path}"
-        input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
-        input.hidden_submit type="submit"
-  - else
-    div.col-md-6
+    // Enterprise Logo
+    div.enterprise_logo.col-md-2
+      a href='#{root_path}' =image_tag('nav_bar_header.png')
 
-  div.navigation-menu-button.col-md-2
-    button.btn.btn-default.menu_button
-      i.fa.fa-modx aria-hidden="true"
-      span &nbsp; ENTERPRISE MENU &nbsp;
-    span.main_menu_arrow &#9660
-  div.navigation-login-indicator.col-md-2
-    span Login Placeholder
+    // Search Bar
+    - if @class_model != nil
+      div.input_group.navigation-search.col-md-6
+        form method="get" action="#{@main_resource_path}"
+          input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+          input.hidden_submit type="submit"
+    - else
+      div.col-md-6
 
-- if action_name == 'index' || rest_action?
-  = javascript_include_tag 'generic_resource/search_suggestions'
+    // Enterprise Menu Button
+    div.enterprise_menu_button.col-md-2
+      button.btn.btn-default.menu_button
+        i.fa.fa-modx aria-hidden="true"
+        span &nbsp; ENTERPRISE MENU
+      span.main_menu_arrow &#9660
+
+    //
+    div.col-md-2
+      span ="[ LOGIN PLACEHOLDER ]"
+
 
 div.main_menu
 
@@ -34,7 +40,7 @@ div.main_menu
   // Accounting and Finance
   div.menu_category.accounting_and_finance data-parent-category='enterprise'
     = enterprise_menu_cell('university', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true)
-    = enterprise_menu_cell('info', enterprise_accounting_and_finance_expenses_path, 'expenses', true)
+    = enterprise_menu_cell('etsy', enterprise_accounting_and_finance_expenses_path, 'expenses', true)
     = enterprise_menu_cell(ExchangeMedium.glyphicon, enterprise_accounting_and_finance_exchange_media_path, 'exchange_media', true)
     = enterprise_menu_cell_model(Vendor)
     = enterprise_menu_cell_model(Payment)

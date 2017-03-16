@@ -41,6 +41,10 @@ module GenericResourceHelper
       link_path = resource.show_path
       link_label = resource.represent
 
+      if link_label.size > 30
+        link_label = link_label.slice(0,30) + '...'
+      end
+
       main_element = mab do
         a :class => 'btn btn-default', :href => link_path, :target => '_new' do
           link_label
@@ -52,6 +56,26 @@ module GenericResourceHelper
       'N/A'
     end
 
+  end
+
+  def money_display(result_amount, result_currency)
+
+    amount_str = result_amount
+    currency_str = result_currency
+
+    main_element = mab do
+      span do
+        amount_str
+      end
+      span do
+        ' '
+      end
+      span do
+        currency_str
+      end
+    end
+
+    main_element.html_safe
 
   end
 

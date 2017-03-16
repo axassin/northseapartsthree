@@ -31,13 +31,13 @@ class ExpenseEntry < ApplicationRecord
     ExpenseCategory.find_by_id(expense_category_id).represent
   end
 
-  def receiving_party
+  def receiving_party_summary
     Employee.find_by_id(receiving_party_id).represent
   end
 
   searchable_string(:vendor_summary)
   searchable_string(:expense_category_summary)
-  searchable_string(:receiving_party)
+  searchable_string(:receiving_party_summary)
   searchable_date(:due_date)
   searchable_string(:reference_number)
 

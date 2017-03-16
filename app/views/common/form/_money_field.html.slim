@@ -1,0 +1,2 @@
+= f.input amount_name.to_sym, as: :float, step: '0.01'
+= selector(f, (currency_name).to_sym, currency_codes, current_instance.send(amount_name + '_' + currency_name), false)
