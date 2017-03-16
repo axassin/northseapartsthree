@@ -18,7 +18,7 @@ ruby:
                   multipart: true,
                   method: method,
                   html: {:'data-parsley-validate' => ''} do |f|
-  div
+  div.row
     = render partial: controller_path + '/form', locals: {f: f, current_instance: @current_instance}
 
   div.col-md-12.footnote * Required

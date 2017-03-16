@@ -7,6 +7,9 @@ class Enterprise::AccountingAndFinance::ExpensesController < GenericDashboardCon
 
   def index
 
+    @start_expenses = params[:start_expenses] || '2001-01-01'
+    @end_expenses = params[:end_expenses] || Time.new.strftime('%Y-%m-%d')
+
   end
 
 end
