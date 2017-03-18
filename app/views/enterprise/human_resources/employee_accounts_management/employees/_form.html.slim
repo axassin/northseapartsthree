@@ -1,11 +1,6 @@
 div.col-md-6
   div.form_element_tip Assign Branch to the Employee
-  = model_selector(f,
-          Branch.all,
-          :branch_id,
-          current_instance.branch,
-          'name')
-
+  = model_selector(f, Branch.all, :branch_id, current_instance.branch, 'name')
   br
   = input_word(f, :position)
 
@@ -15,11 +10,7 @@ div.col-md-6
     div.form_element_tip Create an Employee from a corresponding System Account
     ruby:
       selected_models = SystemAccount.left_outer_joins(:employee).where( employees: { id: nil }).where(account_type: 'INDIVIDUAL')
-    = model_selector(f,
-            selected_models,
-            :system_account_id,
-            current_instance.system_account,
-            'name')
+    = model_selector(f, selected_models, :system_account_id, current_instance.system_account, 'name')
     br
     = associated_files_section(f, @current_instance.system_account)
     = associated_images_section(f, @current_instance.system_account)

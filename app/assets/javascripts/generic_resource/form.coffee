@@ -68,7 +68,8 @@ refresh_contactable_select = ( contactable_id ) ->
     async: false
     dataType: 'text'
     error: (jqXHR, textStatus, errorThrown) ->
-      window.ParsleyUI.addError(attribute_object, "current_error", error_message)
+      window.ParsleyUI.addError(attribute_object, "current_error", 'System Error : Please Contact Administrator')
+      alert errorThrown
       event.preventDefault()
     success: (data, textStatus, jqXHR) ->
       validity_token = ('true' == data)

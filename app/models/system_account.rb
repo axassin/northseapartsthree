@@ -16,6 +16,7 @@ class SystemAccount < ApplicationRecord
   has_many :telephone_numbers, through: :contact_details, :dependent => :destroy
   has_many :locations, through: :contact_details, :dependent => :destroy
   has_many :links, through: :contact_details, :dependent => :destroy
+  has_many :payments, :dependent => :destroy
   has_one :employee, :dependent => :destroy
   has_one :bank, :dependent => :destroy
 

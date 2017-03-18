@@ -1,0 +1,8 @@
+div.col-md-6
+  = f.input :amount, as: :float, step: '0.01'
+  = selector(f, :currency, currency_codes, current_instance.amount_currency, false)
+  div put transaction selector here
+
+div.col-md-6
+  = input_word(f, :remark)
+  = date_time_selector(f, current_instance, :implemented_at)
