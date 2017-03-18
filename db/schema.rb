@@ -182,6 +182,7 @@ ActiveRecord::Schema.define(version: 20170306051635) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "amount",           limit: 64
+    t.string   "currency",         limit: 64
     t.string   "remark",           limit: 64
     t.datetime "implemented_at"
     t.string   "transaction_type"
