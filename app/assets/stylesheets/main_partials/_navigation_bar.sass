@@ -5,10 +5,23 @@ nav.navigation
   width: 100%
   position: fixed
   z-index: 2
-  div.navigation-logo
-    padding: 0.25em
-    padding-right: 2.5em
-    border-right: $SECONDARY_COLOR thin solid
+  display: inline
+
+  div.enterprise_logo
+    margin-top: 0.25em
+
+  div.enterprise_menu_button
+    button
+      span
+        letter-spacing: 0.1em
+        font-family: "Arial"
+    span.main_menu_arrow
+      color: white
+      position: absolute
+      left: 50%
+      top: 1.5em
+      font-size: 1em
+
   div.navigation-search
     form
       input.navigation-search-input
@@ -18,26 +31,6 @@ nav.navigation
       input.hidden_submit
         position: absolute
         left: -9999px
-  div.navigation-menu-button
-    .menu_button
-      width: 100%
-      border: 0
-      border-left: solid gray thick
-      border-right: solid gray thick
-      letter-spacing: 0.05em
-      z-index: 3
-      p
-        display: inline
-
-      &:hover
-    span.main_menu_arrow
-      color: white
-      position: absolute
-      left: 45%
-      top: 1.5em
-      font-size: 1em
-
-  div.navigation-login-indicator
 
 div.main_menu
   display: none

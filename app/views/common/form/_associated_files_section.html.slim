@@ -5,7 +5,7 @@
         a.btn.btn-default href='#{fileable.file.url}' =fileable.name
         = ' | ' + fileable.description + ' '
         - if action_name == 'edit'
-          a.btn.btn-default.associated_file_delete_button.fa.fa-eye href='#{enterprise_general_management_associated_files_path + '/' + fileable.id}' data-toggle="tooltip" title="Examine"
+          a.btn.btn-default.associated_file_delete_button.fa.fa-eye href='#{enterprise_general_management_associated_files_path + '/' + fileable.id}' data-toggle="tooltip" data-animation="false" title="Examine"
 
   - if action_name == 'edit'
     div.associated_file_container

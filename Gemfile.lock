@@ -45,8 +45,6 @@ GEM
       tzinfo (~> 1.1)
     addressable (2.5.0)
       public_suffix (~> 2.0, >= 2.0.2)
-    airbrussh (1.1.2)
-      sshkit (>= 1.6.1, != 1.7.0)
     ancestry (2.2.2)
       activerecord (>= 3.0.0)
     arel (7.1.4)
@@ -63,25 +61,7 @@ GEM
       kaminari (>= 0.13)
       rails (>= 3.1)
     builder (3.2.3)
-    byebug (9.0.6)
-    capistrano (3.8.0)
-      airbrussh (>= 1.0.0)
-      i18n
-      rake (>= 10.0.0)
-      sshkit (>= 1.9.0)
-    capistrano-bundler (1.2.0)
-      capistrano (~> 3.1)
-      sshkit (~> 1.2)
-    capistrano-rails (1.2.3)
-      capistrano (~> 3.1)
-      capistrano-bundler (~> 1.1)
-    capistrano-rvm (0.1.2)
-      capistrano (~> 3.0)
-      sshkit (~> 1.2)
-    capistrano3-puma (1.2.1)
-      capistrano (~> 3.0)
-      puma (>= 2.6)
-    capybara (2.13.0)
+    capybara (2.12.1)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -128,22 +108,43 @@ GEM
       activesupport (>= 5.0.0.beta1)
       request_store (~> 1.0)
     dry_require_spec_helper (0.5.0)
+    em-websocket (0.5.1)
+      eventmachine (>= 0.12.9)
+      http_parser.rb (~> 0.6.0)
     erubis (2.7.0)
+    eventmachine (1.2.3-x64-mingw32)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     faker (1.7.3)
       i18n (~> 0.5)
-    ffi (1.9.18)
+    ffi (1.9.18-x64-mingw32)
     file_validators (2.1.0)
       activemodel (>= 3.0)
       mime-types (>= 1.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
-    gherkin (4.1.1)
+    formatador (0.2.5)
+    gherkin (4.0.0)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    guard (2.14.1)
+      formatador (>= 0.2.4)
+      listen (>= 2.7, < 4.0)
+      lumberjack (~> 1.0)
+      nenv (~> 0.1)
+      notiffany (~> 0.0)
+      pry (>= 0.9.12)
+      shellany (~> 0.0)
+      thor (>= 0.18.1)
+    guard-compat (1.2.1)
+    guard-livereload (2.5.2)
+      em-websocket (~> 0.5)
+      guard (~> 2.8)
+      guard-compat (~> 1.0)
+      multi_json (~> 1.8)
     highline (1.7.8)
+    http_parser.rb (0.6.0)
     i18n (0.8.1)
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
@@ -168,8 +169,13 @@ GEM
       kaminari-core (= 1.0.1)
     kaminari-core (1.0.1)
     lightbox-bootstrap-rails (5.1.0.1)
+    listen (3.1.5)
+      rb-fsevent (~> 0.9, >= 0.9.4)
+      rb-inotify (~> 0.9, >= 0.9.7)
+      ruby_dep (~> 1.2)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
+    lumberjack (1.0.11)
     mab (0.0.3)
     mail (2.6.4)
       mime-types (>= 1.16, < 4)
@@ -194,13 +200,14 @@ GEM
       railties (>= 3.0)
     multi_json (1.12.1)
     multi_test (0.1.2)
-    mysql2 (0.4.5)
-    net-scp (1.2.1)
-      net-ssh (>= 2.6.5)
-    net-ssh (4.1.0)
+    mysql2 (0.4.5-x64-mingw32)
+    nenv (0.3.0)
     nio4r (2.0.0)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.0.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
+    notiffany (0.1.1)
+      nenv (~> 0.1)
+      shellany (~> 0.0)
     options (2.3.2)
     paranoia (2.2.1)
       activerecord (>= 4.0, < 5.1)
@@ -211,9 +218,15 @@ GEM
     progress_bar (1.1.0)
       highline (~> 1.6)
       options (~> 2.3.0)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     public_suffix (2.0.5)
-    puma (3.8.2)
+    puma (3.8.1)
     rack (2.0.1)
+    rack-livereload (0.3.16)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.2)
@@ -245,6 +258,9 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (12.0.0)
+    rb-fsevent (0.9.8)
+    rb-inotify (0.9.8)
+      ffi (>= 0.5.0)
     request_store (1.3.2)
     roo (2.7.1)
       nokogiri (~> 1)
@@ -268,6 +284,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
+    ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.4.23)
     sassc (1.11.2)
@@ -282,6 +299,7 @@ GEM
       sprockets-rails
       tilt
     selectize-rails (0.12.4)
+    shellany (0.0.1)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
     simple_form (3.4.0)
@@ -291,6 +309,7 @@ GEM
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
+    slop (3.6.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -298,9 +317,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.12.0)
-      net-scp (>= 1.1.2)
-      net-ssh (>= 2.8.0)
     sunspot (2.2.7)
       pr_geohash (~> 1.0)
       rsolr (>= 1.1.1, < 3)
@@ -326,7 +342,9 @@ GEM
       railties (>= 3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
-    uglifier (3.1.8)
+    tzinfo-data (1.2017.1)
+      tzinfo (>= 1.0.0)
+    uglifier (3.1.7)
       execjs (>= 0.3.0, < 3)
     uri-js-rails (1.15.2)
     uuidtools (2.1.5)
@@ -349,7 +367,7 @@ GEM
       nokogiri (~> 1.3)
 
 PLATFORMS
-  ruby
+  x64-mingw32
 
 DEPENDENCIES
   activemodel-serializers-xml
@@ -358,11 +376,6 @@ DEPENDENCIES
   bootstrap (~> 4.0.0.alpha5)
   bootstrap-kaminari-views
   byebug
-  capistrano
-  capistrano-bundler
-  capistrano-rails
-  capistrano-rvm
-  capistrano3-puma
   capybara
   carrierwave (>= 1.0.0.beta, < 2.0)
   coffee-rails (~> 4.2)
@@ -375,6 +388,8 @@ DEPENDENCIES
   faker
   file_validators
   font-awesome-rails (~> 4.7.0.1)
+  guard (>= 2.2.2)
+  guard-livereload
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
@@ -386,15 +401,16 @@ DEPENDENCIES
   money
   money-rails
   mysql2 (>= 0.3.18, < 0.5)
-  nokogiri
   paranoia (~> 2.2)
   parsley-rails
   probability
   progress_bar
   puma (~> 3.0)
+  rack-livereload
   rails (~> 5.0.0)
   rails-assets-tether (>= 1.1.0)
   rails-controller-testing
+  rb-fsevent
   roo
   rspec-rails (~> 3.5)
   sassc-rails
@@ -418,4 +434,4 @@ DEPENDENCIES
   wicked
 
 BUNDLED WITH
-   1.14.6
+   1.12.5
