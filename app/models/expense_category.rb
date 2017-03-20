@@ -17,4 +17,8 @@ class ExpenseCategory < ApplicationRecord
     ExpenseCategory.find_by_id(parent_id).represent
   end
 
+  def get_siblings
+    ExpenseCategory.where(parent_id: parent_id)
+  end
+
 end

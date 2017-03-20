@@ -1,4 +1,5 @@
 hr
+
 form method='get'
 
   span Get Expenses from period &nbsp;
@@ -13,8 +14,14 @@ form method='get'
   button.btn.btn-default type='SUBMIT'
     i.fa.fa-search
 
+br
 hr
 
 div.row
-  div.col-md-4 ice bear wants panckacke
+  div.col-md-4
+    - @root_expenses.each do |expense|
+      div.expense_cell
+        span
+          input type='checkbox' data-attribute-category='#{expense.name.underscore.gsub(' ','_')}' &nbsp; &nbsp;
+        span = expense.name
   div.col-md-8 sherwin hueh ehuh
