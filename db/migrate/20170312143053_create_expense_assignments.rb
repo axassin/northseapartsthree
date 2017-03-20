@@ -5,7 +5,7 @@ class CreateExpenseAssignments < MainMigration
       foreign_key_id(t, 'expense_entry')
       t.string :expensable_id, :limit => 36
       t.string  :expensable_type
-      t.string :approving_party_id
+      remark_column(t)
       t.timestamps
     end
     add_index :expense_assignments, [:expensable_type, :expensable_id]

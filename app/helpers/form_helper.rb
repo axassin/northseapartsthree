@@ -77,7 +77,7 @@ module FormHelper
   end
 
   # Selector for a single model
-  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
+  def model_selector(f, model, name, selected, label_method = 'represent', value_method = 'id', disabled = false)
     render partial: 'common/form/model_selector', locals: {
         f: f,
         model: model,
@@ -165,6 +165,15 @@ module FormHelper
       currencies.push(currency[:iso_code].to_s)
     end
     currencies
+  end
+
+  def money_field(f, current_instance, amount_name = 'amount', currency_name = 'currency')
+    render partial: 'common/form/money_field', locals: {
+        f: f,
+        current_instance: current_instance,
+        amount_name: amount_name,
+        currency_name: currency_name
+    }
   end
 
 end
