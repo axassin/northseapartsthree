@@ -1,0 +1,11 @@
+.bundle/
+.idea/
+log/*.log
+pkg/
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
+database.yml
+Gemfile*.lock
+.DS_Store
+.ruby-version
