@@ -12,6 +12,8 @@ nav.navbar.navbar-default.navigation
         form method="get" action="#{@main_resource_path}"
           input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
           input.hidden_submit type="submit"
+
+      = javascript_include_tag 'generic_resource/search_suggestions'
     - else
       div.col-md-6
 
