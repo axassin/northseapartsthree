@@ -142,6 +142,9 @@ Rails.application.routes.draw do
         generate_logic_unit( :greco_items )
         generate_logic_unit( :greco_transactions )
       end
+
+      define_index('database_schema_translator')
+      generate_action_url( 'database_schema_translator','process_old_files' )
     end
 
     define_index( 'strategic_marketing' )
