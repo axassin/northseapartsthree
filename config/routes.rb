@@ -158,6 +158,7 @@ Rails.application.routes.draw do
 
     define_index( 'database_migration_initializer' )
     generate_action_url( 'database_migration_initializer','initialize_greco_inventory' )
+    generate_action_url( 'database_migration_initializer','initialize_northseapartstwo_data' )
 
     define_index('documentation')
   end
