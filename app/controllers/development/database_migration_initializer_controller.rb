@@ -8,13 +8,14 @@ class Development::DatabaseMigrationInitializerController < GenericDashboardCont
 
   def index
     @button_set = [
-        [development_database_migration_initializer_initialize_greco_inventory_path,'Greco Inventory Initializer ']
+        [development_database_migration_initializer_initialize_greco_inventory_path, 'Greco Inventory Initializer'],
+        [development_database_migration_initializer_initialize_northseapartstwo_data_path, 'North Sea Parts Two Initializer']
     ]
   end
 
   def initialize_greco_inventory
-    require 'roo'
 
+    require 'roo'
     greco_current_stock_sheet = Roo::Spreadsheet.open('migration_sheets/greco_current_stocks.csv')
     greco_current_stock_sheet.each(item: 'item', current_stock: 'current_stock') do |current_stock_hash|
       greco_item = GrecoItem.new()
@@ -32,9 +33,8 @@ class Development::DatabaseMigrationInitializerController < GenericDashboardCont
     redirect_to action: 'index'
   end
 
-  def sample_template
+  def initialize_northseapartstwo_data
 
-=begin
     require 'roo'
 
     system_account_sheet = Roo::Spreadsheet.open('migration_sheets/system_account.csv')
@@ -54,7 +54,7 @@ class Development::DatabaseMigrationInitializerController < GenericDashboardCont
 
       contact_detail = ContactDetail.new()
       contact_detail.label = 'main'
-      contact_detail.contactable_id = system_account.id
+      contact_detail.contactable_id = system_account_id
       contact_detail.contactable_type = 'SystemAccount'
       contact_detail.save!
 
@@ -86,9 +86,7 @@ class Development::DatabaseMigrationInitializerController < GenericDashboardCont
     end
 
     redirect_to action: 'index'
-=end
 
   end
-
 
 end
