@@ -1,4 +1,10 @@
-class Enterprise::GeneralManagementController < EnterpriseController
+class Enterprise::GeneralManagementController < GenericDashboardController
+
+  def setup_controller
+    setup_variables( @@routes.enterprise_general_management_path,
+                     @@routes.enterprise_path)
+
+  end
 
   def index
 

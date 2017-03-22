@@ -12,7 +12,7 @@
     div.form_element_tip Choose an existing #{camel_to_human(@current_instance.class)}
     br
 
-    = model_selector(f, @current_instance.class, :wizard_model_id, nil, @label_method)
+    = model_selector(f, @current_instance.class.all, :wizard_model_id, nil, @label_method)
     br
     div
       input.btn.btn-default type='SUBMIT' value='CONFIRM AND PROCEED'

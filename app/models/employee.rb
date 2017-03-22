@@ -25,7 +25,7 @@ class Employee < ApplicationRecord
   scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
 
   def designation
-    SystemAccount.find_by_id(system_account_id).name + ' (' + position + ') at ' + Branch.find_by_id(branch_id).name
+    SystemAccount.find_by_id(system_account_id).name + ' (' + position.to_s + ') at ' + Branch.find_by_id(branch_id).name
   end
 
   def mother_branch

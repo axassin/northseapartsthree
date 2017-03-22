@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description",   limit: 512
-    t.string   "name",          limit: 64
+    t.string   "name",          limit: 128
     t.string   "file",          limit: 512
     t.string   "fileable_id",   limit: 36
     t.string   "fileable_type"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "description",    limit: 512
-    t.string   "name",           limit: 64
+    t.string   "name",           limit: 128
     t.string   "image",          limit: 512
     t.string   "imageable_id",   limit: 36
     t.string   "imageable_type"
@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "employee_id",    limit: 36
-    t.string   "remark",         limit: 64
+    t.string   "remark",         limit: 256
     t.date     "implemented_on"
     t.time     "time_in"
     t.time     "time_out"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "system_account_id", limit: 36
     t.string   "bank_id",           limit: 36
     t.string   "account_number",    limit: 64
-    t.string   "remark",            limit: 64
+    t.string   "remark",            limit: 256
     t.index ["deleted_at"], name: "index_bank_accounts_on_deleted_at", using: :btree
   end
 
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "system_account_id", limit: 36
-    t.string   "remark",            limit: 64
+    t.string   "remark",            limit: 256
     t.index ["deleted_at"], name: "index_banks_on_deleted_at", using: :btree
   end
 
@@ -104,7 +104,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",        limit: 64
+    t.string   "name",        limit: 128
     t.string   "description", limit: 512
     t.index ["deleted_at"], name: "index_branches_on_deleted_at", using: :btree
   end
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.float    "rest_day_multiplier",          limit: 24
     t.float    "overtime_rest_day_multiplier", limit: 24
     t.date     "implemented_on"
-    t.string   "remark",                       limit: 64
+    t.string   "remark",                       limit: 256
     t.index ["deleted_at"], name: "index_day_schemes_on_deleted_at", using: :btree
   end
 
@@ -163,7 +163,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "updated_at"
     t.string   "employee_id",    limit: 36
     t.date     "implemented_on"
-    t.string   "remark",         limit: 64
+    t.string   "remark",         limit: 256
     t.string   "state",          limit: 64
     t.index ["deleted_at"], name: "index_employee_statuses_on_deleted_at", using: :btree
   end
@@ -182,9 +182,9 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "amount_centavos",             default: 0,     null: false
-    t.string   "amount_currency",             default: "PHP", null: false
-    t.string   "remark",           limit: 64
+    t.integer  "amount_centavos",              default: 0,     null: false
+    t.string   "amount_currency",              default: "PHP", null: false
+    t.string   "remark",           limit: 256
     t.datetime "implemented_at"
     t.string   "transaction_type"
     t.integer  "transaction_id"
@@ -199,7 +199,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "expense_entry_id", limit: 36
     t.string   "expensable_id",    limit: 36
     t.string   "expensable_type"
-    t.string   "remark",           limit: 64
+    t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_expense_assignments_on_deleted_at", using: :btree
     t.index ["expensable_type", "expensable_id"], name: "index_expense_assignments_on_expensable_type_and_expensable_id", using: :btree
   end
@@ -209,8 +209,8 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "parent_id",  limit: 36
-    t.string   "name",       limit: 64
-    t.string   "remark",     limit: 64
+    t.string   "name",       limit: 128
+    t.string   "remark",     limit: 256
     t.index ["deleted_at"], name: "index_expense_categories_on_deleted_at", using: :btree
   end
 
@@ -223,9 +223,9 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.date     "due_date"
     t.string   "receiving_party_id",  limit: 36
     t.string   "reference_number"
-    t.integer  "amount_centavos",                default: 0,     null: false
-    t.string   "amount_currency",                default: "PHP", null: false
-    t.string   "remark",              limit: 64
+    t.integer  "amount_centavos",                 default: 0,     null: false
+    t.string   "amount_currency",                 default: "PHP", null: false
+    t.string   "remark",              limit: 256
     t.index ["deleted_at"], name: "index_expense_entries_on_deleted_at", using: :btree
   end
 
@@ -233,8 +233,8 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",       limit: 64
-    t.string   "remark",     limit: 64
+    t.string   "name",       limit: 128
+    t.string   "remark",     limit: 256
     t.index ["deleted_at"], name: "index_greco_items_on_deleted_at", using: :btree
   end
 
@@ -247,7 +247,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "transaction_code", limit: 64
     t.string   "transaction_type", limit: 64
     t.date     "implemented_on"
-    t.string   "remark",           limit: 64
+    t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_greco_transactions_on_deleted_at", using: :btree
   end
 
@@ -255,9 +255,9 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "remark",         limit: 64
+    t.string   "remark",         limit: 256
     t.date     "implemented_on"
-    t.string   "name",           limit: 64
+    t.string   "name",           limit: 128
     t.string   "day_scheme_id",  limit: 128
     t.index ["deleted_at"], name: "index_holidays_on_deleted_at", using: :btree
   end
@@ -269,7 +269,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "service",           limit: 64
     t.string   "url",               limit: 512
     t.string   "contact_detail_id", limit: 36
-    t.string   "remark",            limit: 64
+    t.string   "remark",            limit: 256
     t.index ["deleted_at"], name: "index_links_on_deleted_at", using: :btree
   end
 
@@ -290,7 +290,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "updated_at"
     t.string   "system_account_id",  limit: 36
     t.string   "exchange_medium_id", limit: 36
-    t.string   "remark",             limit: 64
+    t.string   "remark",             limit: 256
     t.index ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree
   end
 
@@ -299,11 +299,11 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "employee_id",    limit: 36
-    t.string   "remark",         limit: 64
+    t.string   "remark",         limit: 256
     t.date     "implemented_on"
-    t.boolean  "one_hour_break",            default: true
-    t.time     "time_in",                   default: '2000-01-01 08:00:00'
-    t.time     "time_out",                  default: '2000-01-01 17:00:00'
+    t.boolean  "one_hour_break",             default: true
+    t.time     "time_in",                    default: '2000-01-01 08:00:00'
+    t.time     "time_out",                   default: '2000-01-01 17:00:00'
     t.index ["deleted_at"], name: "index_regular_work_periods_on_deleted_at", using: :btree
   end
 
@@ -312,7 +312,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "employee_id",    limit: 36
-    t.string   "remark",         limit: 64
+    t.string   "remark",         limit: 256
     t.date     "implemented_on"
     t.string   "day"
     t.index ["deleted_at"], name: "index_rest_days_on_deleted_at", using: :btree
@@ -322,7 +322,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",          limit: 64
+    t.string   "name",          limit: 128
     t.string   "description",   limit: 512
     t.string   "account_type",  limit: 64
     t.string   "primary_image", limit: 512
@@ -333,7 +333,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "label",          limit: 64
+    t.string   "label",          limit: 128
     t.string   "category_type",  limit: 256
     t.string   "value",          limit: 256
     t.date     "implemented_on"
@@ -346,7 +346,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "updated_at"
     t.string   "digits",            limit: 64
     t.string   "contact_detail_id", limit: 36
-    t.string   "remark",            limit: 64
+    t.string   "remark",            limit: 256
     t.index ["deleted_at"], name: "index_telephone_numbers_on_deleted_at", using: :btree
   end
 

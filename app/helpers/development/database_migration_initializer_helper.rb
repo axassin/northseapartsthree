@@ -1,0 +1,2 @@
+module Development::DatabaseMigrationInitializerHelper
+end

@@ -8,7 +8,7 @@ nav.navbar.navbar-default.navigation
       a href='#{root_path}' =image_tag('nav_bar_header.png')
 
     // Search Bar
-    - if @class_model != nil
+    - if ApplicationController.current.class < GenericResourceController
       div.input_group.navigation-search.col-md-6
         form method="get" action="#{@main_resource_path}"
           input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "

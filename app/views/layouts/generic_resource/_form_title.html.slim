@@ -1,2 +1,3 @@
 - unless controller.action_name == 'index'
-  div.form_title.col-md-12 #{ (controller.action_name + ' ' + controller_name.humanize.to_s.singularize.capitalize + ' Form').upcase }
+  div.header_modal #{ (controller.action_name + ' ' + controller_name.humanize.to_s.singularize.capitalize + ' Form').upcase }
+  hr

@@ -1,9 +1,5 @@
 - unless @employee_id.present?
-  = model_selector(f,
-          Employee,
-          :employee_id,
-          current_instance.employee,
-          'designation')
+  = model_selector(f, Employee.all, :employee_id, current_instance.employee, 'designation')
   br
 - else
   = f.input :employee_id,

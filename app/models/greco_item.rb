@@ -10,7 +10,7 @@ class GrecoItem < ApplicationRecord
 
   has_many :greco_transactions, :dependent => :destroy
 
-  validates :name, presence: true, length: { in: 2..64 }
+  validates :name, presence: true, length: { in: 2..256 }
   searchable_string(:name)
 
   def get_current_stock
