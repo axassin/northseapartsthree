@@ -65,11 +65,6 @@ crashlytics-build.properties
 fabric.properties
 
 # Sunspot Solr
-solr/data
-solr/test
-solr/development
-solr/default/data
-/log/*.log.lck
 solr/pids
 solr/hsperfdata_own
 solr/hsperfdata_james
