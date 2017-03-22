@@ -1,5 +1,15 @@
 puts 'Initializing Database with Starter Data'
 
+# ---------------------- Branch --------------------
+
+north_sea_parts = Branch.create!(name: 'North Sea Parts')
+
+# ---------------------- System Accounts -----------------------
+
+developer_one_system_account = SystemAccount.create!(name: 'developer_one', account_type: 'INDIVIDUAL')
+Employee.create!(system_account: developer_one_system_account, branch: north_sea_parts)
+
+# ---------------------- System Constants ----------------------
 SystemConstant.create!(category_type: 'hr.allowable_work_hours_per_day',
                        label: 'Allowable Work Hours per Day',
                        value: 8, implemented_on: DateTime.new(2000,1,1,1,1,1)).save!
@@ -16,6 +26,7 @@ SystemConstant.create!(category_type: 'hr.allowable_grace_period_late_minutes',
                        label: 'Allowable Grace Period Late Minutes',
                        value: '5', implemented_on: DateTime.new(2000,1,1,1,1,1)).save!
 
+# ---------------------- Holiday ----------------------
 regular_day = DayScheme.create!(type_name: 'Regular Day', base_multiplier: 1, overtime_multiplier: 1.25, rest_day_multiplier: 1.3, overtime_rest_day_multiplier: 1.69, implemented_on: Date.new(2012,1,1))
 regular_holiday = DayScheme.create!(type_name: 'Regular Holiday', base_multiplier: 2, overtime_multiplier: 2.6, rest_day_multiplier: 2.6, overtime_rest_day_multiplier: 3.38, implemented_on: Date.new(2012,1,1))
 special_non_working = DayScheme.create!(type_name: 'Special Non-Working Holiday', base_multiplier: 1.3, overtime_multiplier: 1.69, rest_day_multiplier: 1.5, overtime_rest_day_multiplier: 1.95, implemented_on: Date.new(2012,1,1))
@@ -41,6 +52,7 @@ Holiday.create!(name: 'additional special (non-working) day', implemented_on: Da
 Holiday.create!(name: 'All Saints Day', implemented_on: Date.new(2017,11,1), day_scheme: special_non_working)
 Holiday.create!(name: 'Last day of the year', implemented_on: Date.new(2017,12,31), day_scheme: special_non_working)
 
+# ---------------------- Expenses ----------------------
 utilities = ExpenseCategory.create!(name: 'Utilities', remark: Faker::Lorem.sentence(3, false, 0))
 ExpenseCategory.create!(name: 'Water', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
 ExpenseCategory.create!(name: 'Electricity', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)

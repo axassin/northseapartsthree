@@ -8,11 +8,11 @@ module CommonColumns
   end
 
   def name_column(t)
-    t.string :name, :limit => 64, :required => true
+    t.string :name, :limit => 128, :required => true
   end
 
   def label_column(t)
-    t.string :label, :limit => 64
+    t.string :label, :limit => 128
   end
 
   def description_column(t)
@@ -24,7 +24,7 @@ module CommonColumns
   end
 
   def remark_column(t)
-    t.string :remark, :limit => 64
+    t.string :remark, :limit => 256
   end
 
   def deleted_at(t)
