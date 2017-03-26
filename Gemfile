@@ -4,7 +4,7 @@ source 'http://rubygems.org'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'mysql2', '>= 0.4.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -18,6 +18,8 @@ gem 'coffee-script-source', '1.8.0'
 # For Bootstrap JS Runtime; See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer'
 # gem 'execjs'
+
+gem 'json', '~> 2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'

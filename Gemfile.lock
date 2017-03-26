@@ -50,7 +50,7 @@ GEM
     ancestry (2.2.2)
       activerecord (>= 3.0.0)
     arel (7.1.4)
-    autoprefixer-rails (6.7.7)
+    autoprefixer-rails (6.7.7.1)
       execjs
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -78,11 +78,11 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
-    capistrano3-puma (3.0.0)
+    capistrano3-puma (3.1.0)
       capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
-    capybara (2.12.1)
+    capybara (2.13.0)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -145,7 +145,7 @@ GEM
       mime-types (>= 1.0)
     font-awesome-rails (4.7.0.1)
       railties (>= 3.2, < 5.1)
-    gherkin (4.0.0)
+    gherkin (4.1.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     highline (1.7.8)
@@ -153,13 +153,15 @@ GEM
     jbuilder (2.6.3)
       activesupport (>= 3.0.0, < 5.2)
       multi_json (~> 1.2)
-    jquery-rails (4.2.2)
+    jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    json (2.0.3)
+    json (2.0.3-java)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -208,17 +210,17 @@ GEM
     net-ssh (4.1.0)
     nio4r (2.0.0)
     nio4r (2.0.0-java)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
-    nokogiri (1.7.0.1-java)
-    nokogiri (1.7.0.1-x64-mingw32)
+    nokogiri (1.7.1-java)
+    nokogiri (1.7.1-x64-mingw32)
       mini_portile2 (~> 2.1.0)
-    nokogiri (1.7.0.1-x86-mingw32)
+    nokogiri (1.7.1-x86-mingw32)
       mini_portile2 (~> 2.1.0)
     options (2.3.2)
     paranoia (2.2.1)
       activerecord (>= 4.0, < 5.1)
-    parsley-rails (2.6.2.0)
+    parsley-rails (2.7.0.0)
       railties (>= 3.0.0)
     pr_geohash (1.0.0)
     probability (1.0.0)
@@ -226,8 +228,8 @@ GEM
       highline (~> 1.6)
       options (~> 2.3.0)
     public_suffix (2.0.5)
-    puma (3.8.1)
-    puma (3.8.1-java)
+    puma (3.8.2)
+    puma (3.8.2-java)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -313,7 +315,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.12.0)
+    sshkit (1.13.0)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     sunspot (2.2.7)
@@ -330,7 +332,8 @@ GEM
     temple (0.7.7)
     thor (0.19.4)
     thread_safe (0.3.6)
-    tilt (2.0.6)
+    thread_safe (0.3.6-java)
+    tilt (2.0.7)
     timeliness (0.3.8)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
@@ -339,11 +342,11 @@ GEM
       actionpack (>= 3.1)
       jquery-rails
       railties (>= 3.1)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    tzinfo-data (1.2017.1)
+    tzinfo-data (1.2017.2)
       tzinfo (>= 1.0.0)
-    uglifier (3.1.7)
+    uglifier (3.1.10)
       execjs (>= 0.3.0, < 3)
     uri-js-rails (1.15.2)
     uuidtools (2.1.5)
@@ -401,6 +404,7 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
+  json (~> 2)
   kaminari
   lightbox-bootstrap-rails
   mab
@@ -408,7 +412,7 @@ DEPENDENCIES
   momentjs-rails
   money
   money-rails
-  mysql2 (>= 0.3.18, < 0.5)
+  mysql2 (>= 0.4.5)
   nokogiri
   paranoia (~> 2.2)
   parsley-rails
