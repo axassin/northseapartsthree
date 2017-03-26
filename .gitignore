@@ -74,6 +74,7 @@ solr/pids
 solr/hsperfdata_own
 solr/hsperfdata_james
 
+
 .idea/.generators
 .idea/.rakeTasks
 .idea/workspace.xml
