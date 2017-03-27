@@ -1,0 +1,46 @@
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/mysql2-0.4.5/ext/mysql2
+/home/jcgofredo/.rvm/rubies/ruby-2.4.0/bin/ruby -r ./siteconf20170311-7130-9mti34.rb extconf.rb
+checking for rb_absint_size()... yes
+checking for rb_absint_singlebit_p()... yes
+checking for ruby/thread.h... yes
+checking for rb_thread_call_without_gvl() in ruby/thread.h... yes
+checking for rb_thread_blocking_region()... no
+checking for rb_wait_for_single_fd()... yes
+checking for rb_hash_dup()... yes
+checking for rb_intern3()... yes
+checking for rb_big_cmp()... yes
+-----
+Using mysql_config at /usr/bin/mysql_config
+-----
+checking for mysql.h... yes
+checking for SSL_MODE_DISABLED in mysql.h... yes
+checking for SSL_MODE_PREFERRED in mysql.h... yes
+checking for SSL_MODE_REQUIRED in mysql.h... yes
+checking for SSL_MODE_VERIFY_CA in mysql.h... yes
+checking for SSL_MODE_VERIFY_IDENTITY in mysql.h... yes
+checking for errmsg.h... yes
+checking for mysqld_error.h... yes
+-----
+Setting libpath to /usr/lib/x86_64-linux-gnu
+-----
+creating Makefile
+
+To see why this extension failed to compile, please check the mkmf.log which can be found here:
+
+  /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/extensions/x86_64-linux/2.4.0/mysql2-0.4.5/mkmf.log
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/mysql2-0.4.5/ext/mysql2
+make "DESTDIR=" clean
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/mysql2-0.4.5/ext/mysql2
+make "DESTDIR="
+compiling client.c
+compiling infile.c
+compiling mysql2_ext.c
+compiling result.c
+compiling statement.c
+linking shared-object mysql2/mysql2.so
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/mysql2-0.4.5/ext/mysql2
+make "DESTDIR=" install
+/usr/bin/install -m 0755 mysql2.so ./.gem.20170311-7130-1c5lo0a/mysql2

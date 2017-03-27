@@ -10,7 +10,7 @@ class GrecoItem < ApplicationRecord
 
   has_many :greco_transactions, :dependent => :destroy
 
-  validates :name, presence: true, length: { in: 2..64 }
+  validates :name, presence: true, length: { in: 2..256 }, uniqueness: true
   searchable_string(:name)
 
   def get_current_stock
@@ -26,7 +26,11 @@ class GrecoItem < ApplicationRecord
   end
 
   def summary
-    name.to_s + ' | ' + remark.to_s
+    name.to_s + '{' + quantity +  ' ) + ' + remark.to_s
+  end
+
+  def last_transactions
+    GrecoTransaction.where(greco_item_id: id).order('implemented_on DESC').limit(5)
   end
 
 end

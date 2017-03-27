@@ -118,6 +118,7 @@ class GenericResourceController < ApplicationController
         search_suggestions_array.push(suggestion) if suggestion.to_s.downcase.include? search_query.downcase
       end
 
+
       if @admitted_attributes.present?
         @admitted_attributes.each do |attribute|
           suggestion = result.send(attribute)

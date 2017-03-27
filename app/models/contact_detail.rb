@@ -16,6 +16,7 @@ class ContactDetail < ApplicationRecord
   validates :contactable_type, presence: true, inclusion: { in: %w(SystemAccount Branch)}
 
   searchable_string(:label)
+  searchable_string(:contactable_representative)
 
   def selector_option_label
     contactable_type.constantize.find_by_id(contactable_id).represent + ' | ' + label

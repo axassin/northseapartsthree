@@ -5,6 +5,8 @@ class Enterprise::OperationsController < GenericDashboardController
                      @@routes.enterprise_path)
   end
 
+  def index
 
+  end
 
 end

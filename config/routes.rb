@@ -140,11 +140,10 @@ Rails.application.routes.draw do
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
+        generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
       end
 
-      define_index('database_schema_translator')
-      generate_action_url( 'database_schema_translator','process_old_files' )
     end
 
     define_index( 'strategic_marketing' )
@@ -155,8 +154,14 @@ Rails.application.routes.draw do
 
   # ----------------------------- Developer Management and Testing -----------------------------
 
+  define_index( 'development' )
   namespace :development do
-    get 'documentation', to: 'documentation#index'
+
+    define_index( 'database_migration_initializer' )
+    generate_action_url( 'database_migration_initializer','initialize_greco_inventory' )
+    generate_action_url( 'database_migration_initializer','initialize_northseapartstwo_data' )
+
+    define_index('documentation')
   end
 
 end

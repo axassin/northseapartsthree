@@ -1,5 +1,5 @@
 div.col-md-6
-  = input_word(f, :name)
-  = input_word(f, :remark)
+  = input_name(f)
+  = input_remark(f)
 div.col-md-6
-  = model_selector(f, ExpenseCategory, :parent_id, current_instance.parent_id, 'name')
+  = model_selector(f, ExpenseCategory.all, :parent_id, current_instance.parent_id, 'name')

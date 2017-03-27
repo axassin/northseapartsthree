@@ -1,7 +1,7 @@
 div.col-md-6
   div.form_element_tip Enter a new Branch for the Company
   br
-  = input_word(f, :name)
+  = input_name(f)
   = associated_files_section(f, @current_instance)
 div.col-md-6
   = input_description(f, :description)

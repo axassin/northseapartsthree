@@ -1,6 +1,6 @@
 jQuery ($) ->
 
-# Search Suggestions
+  # Search Suggestions
   class_model_data = new Bloodhound(
     datumTokenizer: Bloodhound.tokenizers.whitespace('value')
     queryTokenizer: Bloodhound.tokenizers.whitespace

@@ -1,7 +1,12 @@
 div.col-md-6
-  = input_word(f, :name)
+  = input_name(f)
   = input_description(f, :description)
-  = selector(f, :account_type, ['INDIVIDUAL','GROUP'], current_instance.account_type)
+
+  - if controller_name == 'new_employee_wizard'
+    = f.input :account_type, :as => :hidden, :input_html => { :value => 'INDIVIDUAL' }
+  - else
+    = selector(f, :account_type, ['INDIVIDUAL','GROUP'], current_instance.account_type)
+
   = associated_files_section(f, @current_instance)
 div.col-md-6
   = image_upload_input(f, params, @current_instance)
