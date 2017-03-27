@@ -24,5 +24,9 @@ class Enterprise::Operations::GrecoWarehouse::GrecoTransactionsController < Gene
     setup_process(my_greco_transaction, greco_transactions_processing, wizard_mode)
   end
 
+  def last_transactions
+    render json: GrecoTransaction.where(greco_item_id: params[:greco_item_id])
+  end
+
 
 end

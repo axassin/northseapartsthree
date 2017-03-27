@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
+        generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
       end
 

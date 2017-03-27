@@ -29,4 +29,8 @@ class GrecoItem < ApplicationRecord
     name.to_s + ' | ' + remark.to_s
   end
 
+  def last_transactions
+    GrecoTransaction.where(greco_item_id: id).order('implemented_on DESC').limit(5)
+  end
+
 end
