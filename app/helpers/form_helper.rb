@@ -194,4 +194,8 @@ module FormHelper
     }
   end
 
+  def input_quantity(f)
+    f.input :quantity, as: :integer, input_html: {min: 0}
+  end
+
 end
