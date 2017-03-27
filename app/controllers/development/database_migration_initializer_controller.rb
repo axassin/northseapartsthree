@@ -16,18 +16,34 @@ class Development::DatabaseMigrationInitializerController < GenericDashboardCont
   def initialize_greco_inventory
 
     require 'roo'
-    greco_current_stock_sheet = Roo::Spreadsheet.open('migration_sheets/greco_current_stocks.csv')
-    greco_current_stock_sheet.each(item: 'item', current_stock: 'current_stock') do |current_stock_hash|
-      greco_item = GrecoItem.new()
-      greco_item.name = current_stock_hash[:item]
-      greco_item.save!
 
-      greco_transaction = GrecoTransaction.new()
-      greco_transaction.transaction_type = 'STORE'
-      greco_transaction.greco_item_id = greco_item.id
-      greco_transaction.implemented_on = Date.today
-      greco_transaction.quantity = current_stock_hash[:current_stock].to_i
-      greco_transaction.save!
+    greco_item_sheet = Roo::Spreadsheet.open('migration_sheets/greco_items.csv')
+    greco_item_sheet.each_with_index(old_id: 'id', name: 'name', remark: 'remark') do |current_stock_hash, index|
+      unless index == 0
+        greco_old_id = current_stock_hash[:old_id]
+        greco_item = GrecoItem.new()
+        greco_item.name = current_stock_hash[:name]
+        greco_item.remark = current_stock_hash[:remark]
+        greco_item.save!
+
+        greco_transaction_sheet = Roo::Spreadsheet.open('migration_sheets/greco_transactions.csv')
+        greco_transaction_sheet.each_with_index(greco_item_id: 'greco_item_id', quantity: 'quantity', transaction_code: 'transaction_code',transaction_type: 'transaction_type', implemented_on: 'implemented_on', remark: 'remark') do |transaction_hash, index|
+          unless index == 0
+            if transaction_hash[:greco_item_id] == greco_old_id
+
+              greco_transaction = GrecoTransaction.new()
+              greco_transaction.greco_item = greco_item
+              greco_transaction.quantity = transaction_hash[:quantity].to_i
+              greco_transaction.transaction_code = transaction_hash[:transaction_code]
+              greco_transaction.transaction_type = transaction_hash[:transaction_type]
+              greco_transaction.implemented_on = transaction_hash[:implemented_on].to_s
+              greco_transaction.remark = transaction_hash[:remark]
+              greco_transaction.save!
+
+            end
+          end
+        end
+      end
     end
 
     redirect_to action: 'index'

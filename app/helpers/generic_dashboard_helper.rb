@@ -6,4 +6,12 @@ module GenericDashboardHelper
     }
   end
 
+  def dashboard_date_input()
+
+  end
+
+  def dashboard_selector()
+
+  end
+
 end
