@@ -4,9 +4,9 @@
 
 $(document).on 'turbolinks:load', ->
 
-  $('select.employee_id_attendance_report').selectize()
+  $('select#employee_id').selectize()
 
-  employee_id = $('select.employee_id_attendance_report').val()
+  employee_id = $('select#employee_id').val()
 
   for current_timeline in $('div.timeline')
     attendance_date = current_timeline.getAttribute("data-parsley-date")

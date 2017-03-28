@@ -1,18 +1,15 @@
 hr
-
 form method='get'
-
-  span Get Expenses from period &nbsp;
-
-  span &nbsp;
-  input type='date' name='start_expenses' max='3000-01-01' min='1900-01-01' value='#{@start_expenses}'
-
-  span &nbsp; to : &nbsp;
-  input type='date' name='end_expenses' max='3000-01-01' min='1900-01-01' value='#{@end_expenses}'
-
-  span &nbsp; | &nbsp;
-  button.btn.btn-default type='SUBMIT'
-    i.fa.fa-search
+  div.report_controls
+    div.control_cell
+      span Get Expenses from period &nbsp;
+      = dashboard_date_input('start_expenses',@start_expenses)
+    div.control_cell
+      span &nbsp; to : &nbsp;
+      = dashboard_date_input('end_expenses',@end_expenses)
+    div.control_cell
+      span &nbsp; | &nbsp;
+      = dashboard_submit_button
 
 br
 hr

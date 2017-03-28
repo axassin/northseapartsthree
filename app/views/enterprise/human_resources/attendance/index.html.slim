@@ -1,26 +1,20 @@
 hr
+div.report_controls
+  form method='get'
+    div.control_cell
+      span EMPLOYEES at
+      = dashboard_selector(Branch.all, 'branch_id', @branch_id)
+    div.control_cell
+      span &nbsp; from :
+      = dashboard_date_input('start_attendance',@start_attendance)
+    div.control_cell
+      span &nbsp; to :
+      = dashboard_date_input('end_attendance',@end_attendance)
+    div.control_cell
+      span &nbsp; |
+      = dashboard_submit_button
 
-form method='get'
-
-  span EMPLOYEES at &nbsp;
-
-  select name='branch'
-    - Branch.all.each do |branch|
-      - if params[:branch] == branch.id
-        option selected='selected' value='#{branch.id}' #{branch.name}
-      - else
-        option value='#{branch.id}' #{branch.name}
-
-  span &nbsp; from : &nbsp;
-  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
-
-  span &nbsp; to : &nbsp;
-  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
-
-  span &nbsp; | &nbsp;
-  button.btn.btn-default type='SUBMIT'
-    i.fa.fa-search
-
+div.float-clearing
 hr
 
 ruby:

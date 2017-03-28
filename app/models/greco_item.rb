@@ -26,7 +26,7 @@ class GrecoItem < ApplicationRecord
   end
 
   def summary
-    name.to_s + '{' + quantity +  ' ) + ' + remark.to_s
+    name.to_s + ' (' + get_current_stock.to_s +  ') ' + remark.to_s
   end
 
   def last_transactions
