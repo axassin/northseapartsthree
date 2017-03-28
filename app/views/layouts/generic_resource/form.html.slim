@@ -22,5 +22,30 @@ ruby:
     = render partial: controller_path + '/form', locals: {f: f, current_instance: @current_instance}
 
   div.col-md-12.footnote * Required
+  div.form_button_options.col-md-12 align='right'
 
-  = render partial: 'layouts/generic_resource/form_buttons'
+    - if action_name == 'index'
+      a.btn.btn-default data-dismiss="modal" CLOSE
+    - else
+      a.btn.btn-default href='#{@main_resource_path}' BACK
+
+    - if action_name == 'edit'
+      = link_to('DELETE', @main_resource_path + '/' + params[:id],
+              method: :delete,
+              class: 'delete_button button btn btn-default resource_button_option')
+
+    - if action_name == 'show'
+      a.btn.btn-default href='#{@main_resource_path + '/' + params[:id] + '/edit'}' SET EDITABLE
+
+    - elsif action_name == 'edit' || action_name == 'add'
+      input.btn.btn-default type='reset' value='RESET'
+      input.btn.btn-default.modal_submit type='submit' value='SUBMIT'
+
+    - elsif action_name == 'index' || action_name == 'new'
+      input.btn.btn-default.modal_submit type='submit' value='SUBMIT'
+
+div
+br
+br
+br
+br

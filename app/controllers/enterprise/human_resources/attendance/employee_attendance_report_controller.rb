@@ -4,9 +4,8 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
     setup_variables( @@routes.enterprise_human_resources_attendance_employee_attendance_report_path,
                      @@routes.enterprise_human_resources_attendance_path)
 
-    current_employee = params[:employee_id] || Employee.ids.sample(1)
-
-    @employee = Employee.find_by_id(current_employee)
+    @employee_id = params[:employee_id] || Employee.order("RAND()").first.id
+    @employee = Employee.find_by_id(@employee_id)
     @start_attendance = params[:start_attendance] || (Time.new - 3.days).strftime('%Y-%m-%d')
     @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
 
@@ -26,6 +25,12 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
   def get_regular_work_period
     attendance_date = params[:attendance_date]
     employee_id = params[:employee_id]
+
+    puts '--------------------- --------'
+    puts attendance_date
+    puts employee_id
+    puts RegularWorkPeriod.current_work_period(attendance_date, employee_id)
+
     render json: RegularWorkPeriod.current_work_period(attendance_date, employee_id)
   end
 

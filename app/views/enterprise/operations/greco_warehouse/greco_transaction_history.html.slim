@@ -1,15 +1,21 @@
-form method='get'
-
-  span &nbsp; from : &nbsp;
-  input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
-
-  span &nbsp; to : &nbsp;
-  input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
-
-  span &nbsp; | &nbsp;
-  input.btn.btn-default style='padding: 0.5em' type='SUBMIT' value='SEARCH'
-
 hr
+div.report_controls
+  form method='get'
+    div.control_cell
+      = dashboard_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
+    div.control_cell
+      span &nbsp; from : &nbsp;
+      = dashboard_date_input('start_date', @start_date)
+    div.control_cell
+      span &nbsp; to : &nbsp;
+      = dashboard_date_input('end_date', @end_date)
+    div.control_cell
+      span &nbsp; | &nbsp;
+      = dashboard_submit_button
+
+div.float-clearing
+hr
+
 h3 TRANSACTION HISTORY
 a.btn.btn-default.greco_csv EXPORT TO CSV
 table.greco_report_table

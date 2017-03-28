@@ -36,6 +36,7 @@ module GenericResourceHelper
   end
 
   def resource_cell_link(resource)
+
     unless resource == nil
       link_path = resource.show_path
       link_label = resource.represent
@@ -54,6 +55,7 @@ module GenericResourceHelper
     else
       'N/A'
     end
+
   end
 
   def money_display(result_amount, result_currency)

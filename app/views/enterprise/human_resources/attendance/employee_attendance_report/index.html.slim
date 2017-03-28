@@ -1,30 +1,18 @@
 hr
-form method='get'
-  div.report_controls
+div.report_controls
+  form method='get'
     div.control_cell
-      = 'Attendance Report for :'
-      |&nbsp;
-      |&nbsp;
+      span Attendance Report for
+      = dashboard_selector(Employee.all, 'employee_id', @employee_id)
     div.control_cell
-      select.employee_id_attendance_report name='employee_id'
-        - Employee.all.each do |employee|
-          - if @employee.id == employee.id
-            option selected='selected' value='#{employee.id}' #{employee.designation}
-          - else
-            option value='#{employee.id}' #{employee.designation}
+      span from the period of
+      = dashboard_date_input('start_attendance',@start_attendance)
     div.control_cell
-      |&nbsp;
-      |&nbsp;
-      = ' from the period of '
-      |&nbsp;
-      input type='date' name='start_attendance' max='3000-01-01' min='1900-01-01' value='#{@start_attendance}'
-      |&nbsp;
-      = ' to '
-      |&nbsp;
-      input type='date' name='end_attendance' max='3000-01-01' min='1900-01-01' value='#{@end_attendance}'
+      span to
+      = dashboard_date_input('end_attendance',@end_attendance)
     div.control_cell
-      |&nbsp;
-      input.btn.btn-default type='SUBMIT' value='SEARCH'
+      span |
+      = dashboard_submit_button
 
 div.float-clearing
 hr
