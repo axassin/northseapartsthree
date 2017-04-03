@@ -15,19 +15,25 @@ module GenericDashboardHelper
 
   def dashboard_submit_button
     main_element = mab do
-      button :class => 'btn btn-default', :type => 'submit', :style => 'padding: 0.5em', :value => 'SEARCH' do
-        i :class => 'fa fa-search'
-      end
+      input :class => 'btn btn-default btn-xs dashboard_submit', :type => 'submit', :style => 'padding: 0.5em', :value => 'SEARCH'
     end
     main_element.html_safe
   end
 
-  def dashboard_selector(scoped_class_model, name, selected, value_method = 'id', label_method = 'represent')
-    render partial: 'common/dashboard/dashboard_selector', locals: {
+  def dashboard_model_selector(scoped_class_model, name, selected, value_method = 'id', label_method = 'represent')
+    render partial: 'common/dashboard/dashboard_model_selector', locals: {
         scoped_class_model: scoped_class_model,
         name: name,
         label_method: label_method,
         value_method: value_method,
+        selected: selected
+    }
+  end
+
+  def dashboard_selector(selection_array, name, selected)
+    render partial: 'common/dashboard/dashboard_selector', locals: {
+        selection_array: selection_array,
+        name: name,
         selected: selected
     }
   end

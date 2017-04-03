@@ -1,8 +1,8 @@
 hr
-div.report_controls
+div.dashboard_controls
   form method='get'
     div.control_cell
-      = dashboard_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
+      = dashboard_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
     div.control_cell
       span &nbsp; from : &nbsp;
       = dashboard_date_input('start_date', @start_date)
