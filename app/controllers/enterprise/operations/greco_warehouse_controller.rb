@@ -17,11 +17,11 @@ class Enterprise::Operations::GrecoWarehouseController < GenericDashboardControl
   end
 
   def greco_current_stock_report
-    @greco_items = GrecoItem.all.order('name ASC')
+    @greco_items = GrecoItem.order('lower(name) ASC').all
   end
 
   def greco_out_of_stock_report
-    @greco_items = GrecoItem.all.order('name ASC')
+    @greco_items = GrecoItem.order('lower(name) ASC').all.select { |m| m.get_current_stock <= 0 }
   end
 
   def greco_transaction_history

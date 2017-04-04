@@ -15,7 +15,7 @@ div.attendance_grid
             current_attendance = my_start_attendance
         - while (current_attendance <= my_end_attendance)
           th
-            div.title_attendance = current_attendance.strftime('%m/%d/%Y')
+            div.title_attendance = current_attendance.strftime('%m/%d/%Y') + ', ' + current_attendance.strftime('%A')
           ruby:
             current_attendance = current_attendance + 1.day
 
@@ -51,6 +51,7 @@ div.attendance_grid
       - else
         div.statement No Employees for Branch
 
+// colored legends for different table cells
 div.attendance_legend
   span.legend_label LEGEND :
   span.legend.exact Exact Present
@@ -59,6 +60,7 @@ div.attendance_legend
   span.legend.overtime Overtime
   span.legend.no_record No Record Exists
 
+// statistics per attendance per branch
 div.branch_statistics
   ruby:
     days = (((my_end_attendance - my_start_attendance).to_i / (24 * 60 * 60)) + 1) * @employee_set.count
@@ -70,3 +72,17 @@ div.branch_statistics
   span.stat Tardiness : #{tardiness_ratio.to_s + '%'}
   span.stat Overtime : #{overtime_ratio.to_s + '%'}
 
+hr
+form method='get' id='quick_add_attendance'
+  div.dashboard_controls
+    div.control_cell
+      span Record Quick Attendance for :
+      = dashboard_model_selector(@employee_set, 'current_employee', nil)
+    div.control_cell
+      span at a Period of :
+      = dashboard_selector([['half_day','Half Day'],['whole_day','Whole Day']],'add_attendance_period', 'whole_day')
+    div.control_cell
+      span on
+      = dashboard_date_input('add_attendance_date')
+    div.control_cell
+      input.btn.btn-default.btn-xs.dashboard_submit type='SUBMIT' value='Add Attendance'

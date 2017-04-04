@@ -8,14 +8,14 @@ module GenericDashboardHelper
 
   def dashboard_date_input(name, default_value = Date.today)
     main_element = mab do
-      input :type => 'date', :name => name, :max => '3000-01-01', :min => '1900-01-01', :value => default_value
+      input :type => 'date', :name => name, :id => name, :max => '3000-01-01', :min => '1900-01-01', :value => default_value
     end
     main_element.html_safe
   end
 
   def dashboard_submit_button
     main_element = mab do
-      input :class => 'btn btn-default btn-xs dashboard_submit', :type => 'submit', :style => 'padding: 0.5em', :value => 'SEARCH'
+      input :class => 'btn btn-default btn-xs dashboard_submit', :type => 'submit', :style => 'padding: 0.5em', :value => 'Search'
     end
     main_element.html_safe
   end

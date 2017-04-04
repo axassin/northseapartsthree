@@ -8,5 +8,6 @@ table.greco_report_table
   tbody
     - @greco_items.each do |greco_item|
       tr
-        td = greco_item.name
+        td
+          a href='#{greco_item.show_path}' =greco_item.name
         td align='center' = greco_item.get_current_stock
