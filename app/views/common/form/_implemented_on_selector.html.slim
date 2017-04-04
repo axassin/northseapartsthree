@@ -1,4 +1,4 @@
 - if current_instance.send(attribute_name.to_sym).present?
   = f.input attribute_name.to_sym, required: true, as: :date, html5: true
 - else
-  = f.input attribute_name.to_sym, required: true, as: :date, html5: true, input_html: {value: DateTime.now.strftime('%Y-%m-%dT%H:%M:%S')}
+  = f.input attribute_name.to_sym, required: true, as: :date, html5: true, input_html: {value: DateTime.now.strftime('%Y-%m-%d')}

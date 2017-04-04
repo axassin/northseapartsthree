@@ -1,0 +1,17 @@
+div.control_cell
+  span EMPLOYEES at
+  = dashboard_model_selector(Branch.all, 'branch_id', @branch_id)
+div.control_cell
+  span that are currently
+  select name='employment_status'
+    - if params[:employment_status] == 'ACTIVE'
+      option value='ACTIVE' selected='selected' ACTIVE
+      option value='INACTIVE' INACTIVE
+    - elsif params[:employment_status] == 'INACTIVE'
+      option value='ACTIVE' ACTIVE
+      option value='INACTIVE' selected='selected' INACTIVE
+    - else
+      option value='ACTIVE' ACTIVE
+      option value='INACTIVE' INACTIVE
+div.control_cell
+  = dashboard_submit_button

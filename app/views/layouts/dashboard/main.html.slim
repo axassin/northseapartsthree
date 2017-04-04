@@ -12,7 +12,16 @@ html lang="en"
 
     div.main_display
       div.main_content.col-md-12
+        hr
+        ruby:
+          path_to_partial = controller_path + '/dashboard_controls'
+        - if lookup_context.find_all(path_to_partial,[],true).any?
+          form method='get'
+            div.dashboard_controls
+              = render path_to_partial
+            div.float-clearing
+            br
+            hr
         == yield
-
         - if @button_set.present?
           = button_set(@button_set)

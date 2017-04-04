@@ -15,7 +15,7 @@ class Employee < ApplicationRecord
   has_many :employee_statuses, :dependent => :destroy
   has_many :associated_files, as: :fileable, :dependent => :destroy
   has_many :associated_images, as: :imageable, :dependent => :destroy
-  has_many :rest_days
+  has_many :rest_days, :dependent => :destroy
 
   validates_presence_of :branch
   validates_presence_of :system_account
@@ -23,6 +23,7 @@ class Employee < ApplicationRecord
   validates :branch, length: { in: 0..64 }, :allow_nil => true
 
   scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
+  scope :active_employees, -> { select{|employee| employee.employment_status == 'ACTIVE'}}
 
   def designation
     SystemAccount.find_by_id(system_account_id).name + ' (' + position.to_s + ') at ' + Branch.find_by_id(branch_id).name

@@ -123,6 +123,7 @@ Rails.application.routes.draw do
         generate_logic_unit( :holidays )
         generate_action_url('attendance_records','validate_overlap')
         generate_logic_unit( :attendance_records )
+        define_index('printable_attendance_sheet')
       end
 
       define_index( 'payroll' )

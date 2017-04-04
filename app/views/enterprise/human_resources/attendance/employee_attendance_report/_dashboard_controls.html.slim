@@ -1,0 +1,12 @@
+div.control_cell
+  span Attendance Report for
+  = dashboard_model_selector(Employee.all, 'employee_id', @employee_id)
+div.control_cell
+  span from the period of
+  = dashboard_date_input('start_attendance',@start_attendance)
+div.control_cell
+  span to
+  = dashboard_date_input('end_attendance',@end_attendance)
+div.control_cell
+  span
+  = dashboard_submit_button

@@ -1,0 +1,11 @@
+div.control_cell
+  span EMPLOYEES at
+  = dashboard_model_selector(Branch.all, 'branch_id', @branch_id)
+div.control_cell
+  span from
+  = dashboard_date_input('start_attendance',@start_attendance)
+div.control_cell
+  span to
+  = dashboard_date_input('end_attendance',@end_attendance)
+div.control_cell
+  = dashboard_submit_button

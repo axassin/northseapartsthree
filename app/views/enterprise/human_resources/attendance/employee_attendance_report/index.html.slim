@@ -1,22 +1,3 @@
-hr
-div.report_controls
-  form method='get'
-    div.control_cell
-      span Attendance Report for
-      = dashboard_selector(Employee.all, 'employee_id', @employee_id)
-    div.control_cell
-      span from the period of
-      = dashboard_date_input('start_attendance',@start_attendance)
-    div.control_cell
-      span to
-      = dashboard_date_input('end_attendance',@end_attendance)
-    div.control_cell
-      span |
-      = dashboard_submit_button
-
-div.float-clearing
-hr
-
 table.attendance_report_table
   thead
     tr
@@ -48,7 +29,7 @@ table.attendance_report_table
           ruby: counter = 0
           - AttendanceRecord.where(employee_id: @employee.id, implemented_on: current_attendance).each do |record|
             div
-              a.btn.btn-default href='#{record.show_path}' = '[' + counter.to_s + '] ' + record.remark
+              a.btn.btn-default href='#{record.show_path}' = '[' + counter.to_s + '] ' + record.remark.to_s
             br
             ruby: counter = counter + 1
 

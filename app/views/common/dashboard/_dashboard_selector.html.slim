@@ -1,7 +1,6 @@
-span.dashboard_selector_group
-  select name='#{name}' id='#{name}'
-    - scoped_class_model.each do |model_instance|
-      - if selected == model_instance.send(value_method)
-        option selected='selected' value='#{model_instance.send(value_method)}' #{model_instance.send(label_method)}
-      - else
-        option value='#{model_instance.send(value_method)}' #{model_instance.send(label_method)}
+select name='#{name}' id='#{name}'
+  - selection_array.each do |parameterized_value, humanized_value|
+    - if selected == parameterized_value
+      option value='#{parameterized_value}' selected='selected' =humanized_value
+    - else
+      option value='#{parameterized_value}' =humanized_value
