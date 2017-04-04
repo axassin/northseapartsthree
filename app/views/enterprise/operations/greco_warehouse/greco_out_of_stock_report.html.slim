@@ -8,4 +8,5 @@ table.greco_report_table
     - @greco_items.each do |greco_item|
       - if greco_item.get_current_stock <= 0
         tr
-          td = greco_item.name
+          td
+            a href='#{greco_item.show_path}' =greco_item.name
