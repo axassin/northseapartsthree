@@ -4,7 +4,7 @@ class Enterprise::HumanResources::AttendanceController < GenericDashboardControl
     setup_variables( @@routes.enterprise_human_resources_attendance_path,
                      @@routes.enterprise_human_resources_path)
 
-    @branch_id = params[:branch_id] || Branch.ids.sample(1)
+    @branch_id = params[:branch_id] || Branch.order('RAND()').first.id
 
     @employee_set = Employee.active_branches(@branch_id, 'ACTIVE')
     @start_attendance = params[:start_attendance] || (Time.new - 6.days).strftime('%Y-%m-%d')
