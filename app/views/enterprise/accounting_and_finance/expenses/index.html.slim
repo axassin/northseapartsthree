@@ -1,8 +1,11 @@
 div.row
+
+div.row
   div.col-md-4
     - @root_expenses.each do |expense|
       div.expense_cell
         span
           input type='checkbox' data-attribute-category='#{expense.name.underscore.gsub(' ','_')}' &nbsp; &nbsp;
         span = expense.name
-  div.col-md-8 sherwin hueh ehuh
+  div.col-md-4
+  div.col-md-4

@@ -54,25 +54,25 @@ Holiday.create!(name: 'Last day of the year', implemented_on: Date.new(2017,12,3
 
 # ---------------------- Expenses ----------------------
 utilities = ExpenseCategory.create!(name: 'Utilities', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Water', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Electricity', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Telephone', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Internet', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Gas', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Cable', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
+ExpenseCategory.create!(name: 'Water', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
+ExpenseCategory.create!(name: 'Electricity', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
+ExpenseCategory.create!(name: 'Telephone', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
+ExpenseCategory.create!(name: 'Internet', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
+ExpenseCategory.create!(name: 'Gas', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
+ExpenseCategory.create!(name: 'Cable', remark: Faker::Lorem.sentence(3, false, 0), parent: utilities)
 
 maintenance_expenses = ExpenseCategory.create!(name: 'Maintenance Expenses', remark: Faker::Lorem.sentence(3, false, 0))
 
 business_insurance = ExpenseCategory.create!(name: 'Business Insurance', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Car', remark: Faker::Lorem.sentence(3, false, 0), parent_id: business_insurance.id)
-ExpenseCategory.create!(name: 'Employee', remark: Faker::Lorem.sentence(3, false, 0), parent_id: business_insurance.id)
+ExpenseCategory.create!(name: 'Car', remark: Faker::Lorem.sentence(3, false, 0), parent: business_insurance)
+ExpenseCategory.create!(name: 'Employee', remark: Faker::Lorem.sentence(3, false, 0), parent: business_insurance)
 
 auxiliary_supplies = ExpenseCategory.create!(name: 'Auxiliary Supplies', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Office', remark: Faker::Lorem.sentence(3, false, 0), parent_id: auxiliary_supplies.id)
+ExpenseCategory.create!(name: 'Office', remark: Faker::Lorem.sentence(3, false, 0), parent: auxiliary_supplies)
 
 professional_fees = ExpenseCategory.create!(name: 'Professional Fees', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Accountant', remark: Faker::Lorem.sentence(3, false, 0), parent_id: professional_fees.id)
-ExpenseCategory.create!(name: 'Broker', remark: Faker::Lorem.sentence(3, false, 0), parent_id: professional_fees.id)
+ExpenseCategory.create!(name: 'Accountant', remark: Faker::Lorem.sentence(3, false, 0), parent: professional_fees)
+ExpenseCategory.create!(name: 'Broker', remark: Faker::Lorem.sentence(3, false, 0), parent: professional_fees)
 
 taxes = ExpenseCategory.create!(name: 'Taxes', remark: Faker::Lorem.sentence(3, false, 0))
 miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: Faker::Lorem.sentence(3, false, 0))

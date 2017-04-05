@@ -15,7 +15,12 @@ module GenericDashboardHelper
 
   def dashboard_submit_button
     main_element = mab do
-      input :class => 'btn btn-default btn-xs dashboard_submit', :type => 'submit', :style => 'padding: 0.5em', :value => 'Search'
+      span do
+        '&nbsp;'
+      end
+      button :type => 'submit', :class => 'btn btn-default btn-xs dashboard_submit' do
+        span :class => 'fa fa-search'
+      end
     end
     main_element.html_safe
   end
