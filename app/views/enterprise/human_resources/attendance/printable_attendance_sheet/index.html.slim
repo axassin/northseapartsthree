@@ -1,0 +1,61 @@
+ruby:
+  my_start_attendance = Time.parse(@start_attendance)
+  my_end_attendance = Time.parse(@end_attendance)
+  absences = 0
+  tardiness = 0
+  overtime = 0
+
+div.attendance_sheet
+  table
+    thead
+      tr
+        th
+          div EMPLOYEE
+          ruby:
+            current_attendance = my_start_attendance
+        - while (current_attendance <= my_end_attendance)
+          th
+            div = current_attendance.strftime('%m/%d/%Y') + ', ' + current_attendance.strftime('%A')
+          ruby:
+            current_attendance = current_attendance + 1.day
+
+    tbody
+      - unless @employee_set.count == 0
+        - @employee_set.each do |employee|
+
+          tr
+            td.employee_cell
+              = employee.system_account.name
+
+              ruby:
+                current_attendance = my_start_attendance
+
+            - while (current_attendance <= my_end_attendance)
+
+              ruby:
+                attendance_status = employee.attendance_status(current_attendance)
+                absences += 1 if attendance_status == 'no_record'
+                overtime += 1 if attendance_status == 'overtime'
+                tardiness += 1 if attendance_status == 'undertime'
+                attendance_class_name = 'attendance ' + attendance_status
+
+              td class='#{attendance_class_name}'
+                table.attendance_cell
+                  tr
+                    td.attendance_sub_cell Time In
+                    td.attendance_sub_cell Signature
+                  tr
+                    td.attendance_sub_cell Time Out
+                    td.attendance_sub_cell Signature
+
+              ruby:
+                current_attendance = current_attendance + 1.day
+
+      - else
+        div.statement No Employees for Branch
+
+hr
+br
+br
+div ___________________________________________________
+div Assigned Attendance Checker
