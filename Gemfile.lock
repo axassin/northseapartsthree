@@ -160,12 +160,9 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
-<<<<<<< HEAD
     jstree-rails-4 (3.3.3)
-=======
     json (2.0.3)
     json (2.0.3-java)
->>>>>>> 6d08c68880e4aebe77e3298ecad264588ebd06e2
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.0.1)
@@ -337,11 +334,7 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     thread_safe (0.3.6-java)
-<<<<<<< HEAD
-    tilt (2.0.6)
-=======
     tilt (2.0.7)
->>>>>>> 6d08c68880e4aebe77e3298ecad264588ebd06e2
     timeliness (0.3.8)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
@@ -412,11 +405,8 @@ DEPENDENCIES
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks
-<<<<<<< HEAD
   jstree-rails-4
-=======
   json (~> 2)
->>>>>>> 6d08c68880e4aebe77e3298ecad264588ebd06e2
   kaminari
   lightbox-bootstrap-rails
   mab
