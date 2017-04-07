@@ -44,13 +44,14 @@ class Employee < ApplicationRecord
     # extract attendance records
     attendance_records =  AttendanceRecord.where(['implemented_on = ? AND employee_id = ?', inquired_date, id])
     date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
+    current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
 
     # see if record exists
-    if attendance_records.count > 0
+    if (attendance_records.count > 0) && (current_work_period.present?)
 
       # set variables
       daily_emp_work_hours = 0
-      current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
+
       reg_work_hours = current_work_period.number_of_hours
       work_period_time_in = current_work_period.time_in
       work_period_time_out = current_work_period.time_out
