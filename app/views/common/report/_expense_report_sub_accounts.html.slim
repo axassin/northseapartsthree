@@ -1,6 +1,6 @@
 ul
   - account_array.each do |account|
-    li = account.name
+    li
+      = account.name
       - if account.has_children?
-        ul
-          = render_expense_category_sub_accounts(account.children)
+        = render_expense_category_sub_accounts(account.children)
