@@ -1,5 +1,28 @@
 @import '../constants'
 
+nav.main_navigation_bar
+  input.generic_resource_search_bar
+    width: 100%
+    border-left: solid gray medium
+
+  /* Chrome/Opera/Safari */
+  ::-webkit-input-placeholder
+    font-size: 0.75em
+    text-transform: uppercase
+    color: gainsboro
+
+  /* Firefox 19+ */
+  ::-moz-placeholder
+    color: pink
+
+  /* IE 10+ */
+  :-ms-input-placeholder
+    color: pink
+
+  /* Firefox 18- */
+  :-moz-placeholder
+    color: pink
+
 div.main_menu
   display: none
   background-color: lightgray
