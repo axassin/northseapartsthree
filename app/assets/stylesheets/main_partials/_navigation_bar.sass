@@ -1,27 +1,39 @@
 @import '../constants'
 
 nav.main_navigation_bar
+
+  form.form-inline
+    padding: 0
+
   input.generic_resource_search_bar
     width: 100%
     border-left: solid gray medium
 
-  /* Chrome/Opera/Safari */
-  ::-webkit-input-placeholder
+  @mixin placeholder_text
     font-size: 0.75em
     text-transform: uppercase
     color: gainsboro
 
+  /* Chrome/Opera/Safari */
+  ::-webkit-input-placeholder
+    @include placeholder_text
+
   /* Firefox 19+ */
   ::-moz-placeholder
-    color: pink
+    @include placeholder_text
 
   /* IE 10+ */
   :-ms-input-placeholder
-    color: pink
+    @include placeholder_text
 
   /* Firefox 18- */
   :-moz-placeholder
-    color: pink
+    @include placeholder_text
+
+  div.enterprise_menu_button
+    button
+      span
+        letter-spacing: 0.1em
 
 div.main_menu
   display: none
@@ -31,10 +43,11 @@ div.main_menu
   position: fixed
   top: 3.5em
   z-index: 2
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.75), 0 6px 20px 0 rgba(0, 0, 0, 0.75)
   padding: 1em
   padding-bottom: 2em
   overflow-y: auto
+  border-top: solid #666666 thin
   ul
     list-style-type: none
 

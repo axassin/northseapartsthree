@@ -1,19 +1,32 @@
-// Followed Bootstrap 4 Documentation on how to Implement a Navigation Bar
+// Main Navigation Bar
+// followed Bootstrap 4 documentation on how to implement a navigation bar
 nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navigation_bar
+
+  // default button if screen is too small
   button.navbar-toggler type='button' data-toggle='collapse' data-target='#main_navigation_bar' aria-controls='main_navigation_bar'
     span.navbar-toggler-icon
+
+  // collapsible portion
   div.collapse.navbar-collapse id='main_navigation_bar'
+
+    // logo (2 columns)
     a.navbar-brand.col-md-2 href='#{root_path}'
       = image_tag('nav_bar_header.png')
+
+    // search bar if logic unit controller (4 columns)
     - if ApplicationController.current.class < GenericResourceController
       form.form-inline.col-md-4 method='get' action='#{@main_resource_path}'
         input.form-control.typeahead.generic_resource_search_bar id='search_query' name='search_query' type='text' placeholder='#{ '&#x25ba;'.html_safe } LOOK FOR #{controller_name.humanize.titleize} '
+        = javascript_include_tag 'generic_resource/search_suggestions'
     - else
       div.col-md-4 &nbsp;
+
+    // enterprise menu button
     div.col-md-4
-    ul.col-md-2.navbar-nav
-      li.nav-item 'ACTIVE'
-      li.nav-item 'ACTIVE'
+    div.enterprise_menu_button.col-md-2
+      button.btn.btn-default.menu_button
+        i.fa.fa-modx aria-hidden="true"
+        span &nbsp; ENTERPRISE MENU
 
 // Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
