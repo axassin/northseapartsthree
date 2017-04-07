@@ -1,11 +1,11 @@
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
   namespace :enterprise do
     resources :branches
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 
   # ----------------------------- Concerns -----------------------------
-
   def declare_concern( concern_name )
     concern concern_name do
       collection do
@@ -18,21 +18,25 @@ Rails.application.routes.draw do
   declare_concern( :uniqueness_validation )
   declare_concern( :retrieve_resource )
 
-  # ----------------------------- Aggregated Functions -----------------------------
+  # ----------------------------- Helpers -----------------------------
 
+  # used for the generic CRUD interface as per model
   def generate_logic_unit( unit )
     resources unit, concerns: [:search_suggestion, :uniqueness_validation, :retrieve_resource]
   end
 
+  # used for generic report or dashboard
   def define_index( indexable_controller )
     get indexable_controller, to: indexable_controller + '#index'
   end
 
+  # used for wizards
   def wizard(indexable_controller)
     resources indexable_controller.to_sym
     get indexable_controller + '/restart_wizard', to: indexable_controller + '#restart_wizard'
   end
 
+  # used for custom actions in a controller
   def generate_action_url(main_controller, action_name)
     get main_controller + '/' + action_name, to: main_controller + '#' + action_name
   end

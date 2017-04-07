@@ -74,15 +74,15 @@ div.branch_statistics
 
 hr
 form method='get' id='quick_add_attendance'
-  div.dashboard_controls
+  div.report_controls
     div.control_cell
       span Record Quick Attendance for :
-      = dashboard_model_selector(@employee_set, 'current_employee', nil)
+      = report_model_selector(@employee_set, 'current_employee', nil)
     div.control_cell
       span at a Period of :
-      = dashboard_selector([['half_day','Half Day'],['whole_day','Whole Day']],'add_attendance_period', 'whole_day')
+      = report_selector([['half_day','Half Day'],['whole_day','Whole Day']],'add_attendance_period', 'whole_day')
     div.control_cell
       span on
-      = dashboard_date_input('add_attendance_date')
+      = report_date_input('add_attendance_date')
     div.control_cell
-      input.btn.btn-default.btn-xs.dashboard_submit type='SUBMIT' value='Add Attendance'
+      input.btn.btn-default.btn-xs.report_submit type='SUBMIT' value='Add Attendance'

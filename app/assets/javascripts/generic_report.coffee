@@ -4,7 +4,7 @@
 
 $(document).on 'turbolinks:load', ->
 
-  # Dashboard Model Selector
-  $('.dashboard_selector_group').each (index, element) ->
+  # Report Model Selector
+  $('.report_selector_group').each (index, element) ->
     main_select = $(element).find('select')
     main_select.selectize();

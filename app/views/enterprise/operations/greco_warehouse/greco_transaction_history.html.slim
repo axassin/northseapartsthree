@@ -1,17 +1,17 @@
 hr
-div.dashboard_controls
+div.report_controls
   form method='get'
     div.control_cell
-      = dashboard_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
+      = report_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
     div.control_cell
       span &nbsp; from : &nbsp;
-      = dashboard_date_input('start_date', @start_date)
+      = report_date_input('start_date', @start_date)
     div.control_cell
       span &nbsp; to : &nbsp;
-      = dashboard_date_input('end_date', @end_date)
-    div.control_cell
+      = report_date_input('end_date', @end_date)
+    div.control_celld
       span &nbsp; | &nbsp;
-      = dashboard_submit_button
+      = report_submit_button
 
 div.float-clearing
 hr

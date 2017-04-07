@@ -1,4 +1,4 @@
-class Enterprise::HumanResourcesController < GenericDashboardController
+class Enterprise::HumanResourcesController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_path,

@@ -11,11 +11,12 @@ class ExpenseCategory < ApplicationRecord
               @@routes.enterprise_accounting_and_finance_expenses_expense_categories_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController )
 
-  def total_amount
-    siblings = get_siblings
-    siblings.each do |sibling|
+  def get_end_sub_accounts
+  end
 
-    end
+  def total_amount(date_start = '2000-01-01', date_end = '2100-01-01', interval = 'day')
+    amount = 0
+    ExpenseEntry.where()
   end
 
   def parent_representation

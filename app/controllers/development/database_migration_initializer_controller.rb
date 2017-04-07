@@ -1,4 +1,4 @@
-class Development::DatabaseMigrationInitializerController < GenericDashboardController
+class Development::DatabaseMigrationInitializerController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.development_database_migration_initializer_path,

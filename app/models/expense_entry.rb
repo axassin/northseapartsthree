@@ -16,8 +16,14 @@ class ExpenseEntry < ApplicationRecord
   validates_presence_of :expense_category_id
   validates_presence_of :due_date
   validates_presence_of :reference_number
+  validate :expense_category_no_children
 
   monetize :amount_centavos, with_model_currency: :currency
+
+  def expense_category_no_children
+    expense_category = ExpenseCategory.find_by_id(expense_category_id)
+    errors.add(:expense_category, 'Expense Category must have no sub accounts') if expense_category.has_children?
+  end
 
   def summary
     amount.to_s + ' ' + amount_currency.to_s + ' from ' + vendor_summary

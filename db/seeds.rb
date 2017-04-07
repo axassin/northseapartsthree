@@ -373,7 +373,14 @@ if Rails.env.development? || Rails.env.test?
     expense_entry = ExpenseEntry.new
     expense_entry.vendor_id = Vendor.order("RAND()").first.id
     expense_entry.receiving_party_id = Employee.order("RAND()").first.id
-    expense_entry.expense_category_id = ExpenseCategory.order("RAND()").first.id
+    has_children_flag = true
+    while has_children_flag
+      current_expense_category = ExpenseCategory.order("RAND()").first
+      unless current_expense_category.has_children?
+        expense_entry.expense_category_id = current_expense_category.id
+        has_children_flag = false
+      end
+    end
     expense_entry.amount_centavos = Faker::Commerce.price*100.00
     expense_entry.amount_currency = ['USD','PHP','NTD'].sample
     expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)

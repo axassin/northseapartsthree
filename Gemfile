@@ -207,4 +207,7 @@ gem 'nokogiri'
 # Ancestry is a gem/plugin that allows the records of a Ruby on Rails ActiveRecord model to be organised as a tree structure (or hierarchy)
 gem 'ancestry'
 
+# JS Tree
+gem 'jstree-rails-4'
+
 # gem 'puma'
