@@ -10,18 +10,20 @@ html lang="en"
     = render template: 'common/main_notification'
     = render template: 'common/topside_navigation/bar'
 
-    div.main_display
-      div.main_content.col-md-12
-        hr
+    // div.main_display
+    div.main_content.container
+
+      div.row
+        == yield
+
+      div.row
         ruby:
           path_to_partial = controller_path + '/report_controls'
-        - if lookup_context.find_all(path_to_partial,[],true).any?
+        - if lookup_context.find_all(path_to_partial, [], true).any?
           form method='get'
             div.report_controls
               = render path_to_partial
-            div.float-clearing
-            br
-            hr
-        == yield
+
+      div.row
         - if @button_set.present?
           = button_set(@button_set)

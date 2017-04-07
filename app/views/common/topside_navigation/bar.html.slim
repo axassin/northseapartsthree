@@ -1,34 +1,15 @@
-// Enterprise Navigation Bar
-nav.navbar.navbar-default.navigation
-
-  div.row
-
-    // Enterprise Logo
-    div.enterprise_logo.col-md-2
-      a href='#{root_path}' =image_tag('nav_bar_header.png')
-
-    // Search Bar
+// Followed Bootstrap 4 Documentation on how to Implement a Navigation Bar
+nav.navbar.navbar-light.navbar-fixed-top.bg-faded
+  button.navbar-toggler type='button' data-toggle='collapse' data-target='#main_navigation_bar' aria-controls='main_navigation_bar'
+    span.navbar-toggler-icon
+  div.collapse.navbar-collapse id='main_navigation_bar'
+    a.navbar-brand
+      a href='#{root_path}' = image_tag('nav_bar_header.png')
     - if ApplicationController.current.class < GenericResourceController
-      div.input_group.navigation-search.col-md-6
-        form method="get" action="#{@main_resource_path}"
-          input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
-          input.hidden_submit type="submit"
+      form.form-inline method='get' action='#{@main_resource_path}'
+        input.form-control.typeahead id='search_query' name='search_query' type='text' placeholder='#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} '
 
-      = javascript_include_tag 'generic_resource/search_suggestions'
-    - else
-      div.col-md-6
-
-    // Enterprise Menu Button
-    div.enterprise_menu_button.col-md-2
-      button.btn.btn-default.menu_button
-        i.fa.fa-modx aria-hidden="true"
-        span &nbsp; ENTERPRISE MENU
-      span.main_menu_arrow &#9660
-
-    // Login Placeholder
-    div.col-md-2
-      span = "[LOGIN PLACEHOLDER.]"
-
+// Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
 
   // Enterprise Main

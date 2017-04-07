@@ -372,7 +372,7 @@ if Rails.env.development? || Rails.env.test?
   no_of_expense_entries.times {
     expense_entry = ExpenseEntry.new
     expense_entry.vendor_id = Vendor.order("RAND()").first.id
-    expense_entry.receiving_party_id = Employee.order("RAND()").first.id
+    expense_entry.requesting_party_id = Employee.order("RAND()").first.id
     has_children_flag = true
     while has_children_flag
       current_expense_category = ExpenseCategory.order("RAND()").first

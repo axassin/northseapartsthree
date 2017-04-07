@@ -11,7 +11,7 @@ class ExpenseEntry < ApplicationRecord
   belongs_to :vendor
   belongs_to :expense_category
 
-  validates_presence_of :receiving_party_id
+  validates_presence_of :requesting_party_id
   validates_presence_of :vendor_id
   validates_presence_of :expense_category_id
   validates_presence_of :due_date
@@ -37,13 +37,13 @@ class ExpenseEntry < ApplicationRecord
     ExpenseCategory.find_by_id(expense_category_id).represent
   end
 
-  def receiving_party_summary
-    Employee.find_by_id(receiving_party_id).represent
+  def requesting_party_summary
+    Employee.find_by_id(requesting_party_id).represent
   end
 
   searchable_string(:vendor_summary)
   searchable_string(:expense_category_summary)
-  searchable_string(:receiving_party_summary)
+  searchable_string(:requesting_party_summary)
   searchable_date(:due_date)
   searchable_string(:reference_number)
 

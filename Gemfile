@@ -209,7 +209,10 @@ gem 'nokogiri'
 # Ancestry is a gem/plugin that allows the records of a Ruby on Rails ActiveRecord model to be organised as a tree structure (or hierarchy)
 gem 'ancestry'
 
-# JS Tree
+# The jstree-rails-4 gem integrates the jsTree jQuery plugin with the Rails asset pipeline.
 gem 'jstree-rails-4'
+
+# Devise is a flexible authentication solution for Rails based on Warden
+gem 'devise'
 
 # gem 'puma'
