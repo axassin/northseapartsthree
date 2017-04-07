@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::AttendanceController < GenericDashboardController
+class Enterprise::HumanResources::AttendanceController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_attendance_path,

@@ -1,4 +1,4 @@
-class EnterpriseController < GenericDashboardController
+class EnterpriseController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_path,

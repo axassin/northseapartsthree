@@ -208,9 +208,10 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "parent_id",  limit: 36
     t.string   "name",       limit: 128
     t.string   "remark",     limit: 256
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_expense_categories_on_ancestry", using: :btree
     t.index ["deleted_at"], name: "index_expense_categories_on_deleted_at", using: :btree
   end
 

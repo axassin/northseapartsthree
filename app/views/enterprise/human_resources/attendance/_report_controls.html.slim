@@ -1,0 +1,11 @@
+div.control_cell
+  span EMPLOYEES at
+  = report_model_selector(Branch.all, 'branch_id', @branch_id)
+div.control_cell
+  span from
+  = report_date_input('start_attendance',@start_attendance)
+div.control_cell
+  span to
+  = report_date_input('end_attendance',@end_attendance)
+div.control_cell
+  = report_submit_button

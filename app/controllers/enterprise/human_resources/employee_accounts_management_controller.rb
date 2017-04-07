@@ -1,6 +1,6 @@
-class Enterprise::HumanResources::EmployeeAccountsManagementController < GenericDashboardController
+class Enterprise::HumanResources::EmployeeAccountsManagementController < GenericReportController
 
-  layout 'dashboard/main'
+  layout 'report/main'
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_employee_accounts_management_path,

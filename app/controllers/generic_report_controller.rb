@@ -1,6 +1,6 @@
-class GenericDashboardController < ApplicationController
+class GenericReportController < ApplicationController
 
-  layout 'dashboard/main'
+  layout 'report/main'
 
   before_action :setup_controller
 

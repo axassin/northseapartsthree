@@ -1,4 +1,4 @@
-class Enterprise::HumanResources::Attendance::PrintableAttendanceSheetController < GenericDashboardController
+class Enterprise::HumanResources::Attendance::PrintableAttendanceSheetController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_attendance_printable_attendance_sheet_path,

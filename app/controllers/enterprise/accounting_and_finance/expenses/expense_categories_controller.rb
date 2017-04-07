@@ -4,8 +4,8 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController < 
     setup_variables( ExpenseCategory,
                      'Expense Category',
                      'Categories of an Expense',
-                     ['parent_id'],
-                     ['parent_summary'],
+                     ['ancestor'],
+                     [],
                      @@routes.enterprise_accounting_and_finance_expenses_expense_categories_path)
   end
 

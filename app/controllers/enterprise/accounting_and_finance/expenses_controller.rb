@@ -1,4 +1,4 @@
-class Enterprise::AccountingAndFinance::ExpensesController < GenericDashboardController
+class Enterprise::AccountingAndFinance::ExpensesController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_accounting_and_finance_expenses_path,
@@ -9,11 +9,11 @@ class Enterprise::AccountingAndFinance::ExpensesController < GenericDashboardCon
 
     @start_expenses = params[:start_expenses] || '2001-01-01'
     @end_expenses = params[:end_expenses] || Time.new.strftime('%Y-%m-%d')
+    @root_expenses = ExpenseCategory.roots
 
-    @root_expenses = ExpenseCategory.where(parent_id: nil)
-  end
-
-  def expand_expense
+    @button_set = [[enterprise_accounting_and_finance_expenses_expense_assignments_path,'EXPENSE ASSIGNMENTS'],
+                   [enterprise_accounting_and_finance_expenses_expense_categories_path,'EXPENSE CATEGORIES'],
+                   [enterprise_accounting_and_finance_expenses_expense_entries_path,'EXPENSE ENTRIES']]
 
   end
 

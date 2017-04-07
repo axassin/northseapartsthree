@@ -33,4 +33,5 @@
 //= require velocity.ui.min.js
 //= require jquery.func_toggle.js
 //= require vis
+//= require jstree
 //= //require_tree .

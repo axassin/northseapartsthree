@@ -3,8 +3,8 @@ html lang="en"
   head
     = render template: 'common/generic_head'
     = render template: 'common/generic_resource_head'
-    = stylesheet_link_tag 'main_partials/dashboard', media: 'all', 'data-turbolinks-track' => 'reload'
-    = javascript_include_tag 'generic_dashboard', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'main_partials/report', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'generic_report', 'data-turbolinks-track' => 'reload'
   body
 
     = render template: 'common/main_notification'
@@ -14,10 +14,10 @@ html lang="en"
       div.main_content.col-md-12
         hr
         ruby:
-          path_to_partial = controller_path + '/dashboard_controls'
+          path_to_partial = controller_path + '/report_controls'
         - if lookup_context.find_all(path_to_partial,[],true).any?
           form method='get'
-            div.dashboard_controls
+            div.report_controls
               = render path_to_partial
             div.float-clearing
             br

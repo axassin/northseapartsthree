@@ -1,4 +1,4 @@
-class Enterprise::AccountingAndFinance::FinancialInstitutionsController < GenericDashboardController
+class Enterprise::AccountingAndFinance::FinancialInstitutionsController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_accounting_and_finance_financial_institutions_path,

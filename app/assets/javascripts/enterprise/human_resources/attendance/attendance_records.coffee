@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$( document ).ready( ->
+$( document ).ready ->
   $('#new_attendance_record').submit( (event) ->
 
     implemented_on = $('#attendance_record_implemented_on').val()
@@ -12,7 +12,7 @@ $( document ).ready( ->
     url = "attendance_records/validate_overlap?date_time_in=" + time_in + "&date_time_out=" + time_out + "&employee_id=" + employee_id
     ajax_validation_request(url, '#new_attendance_record','#attendance_record_implemented_on','Overlap with a Previous Attendance Record')
 
-  ))
+  )
 
 window.Parsley
 .addValidator('timeIn',

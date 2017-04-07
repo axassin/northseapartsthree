@@ -1,4 +1,4 @@
-class DevelopmentController < GenericDashboardController
+class DevelopmentController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.development_path,
