@@ -6,16 +6,19 @@ div.main_display
   div.side_bar
     padding-top: 1em
 
+    $title_group_base_color: #8e8e8e
     div.resource_glyphicon
       font-size: 3em
       padding: 0.5em
-      border: solid gray thin
+      border: solid $title_group_base_color thick
+      color: $title_group_base_color
 
     div.title_group
       margin-top: 0.5em
-      font-size: 1.25em
+      font-size: 1.15em
       margin-bottom: 0.75em
       font-family: "Roboto Medium", "Arial"
+      color: $title_group_base_color
 
       h1.title_heading
         text-transform: uppercase

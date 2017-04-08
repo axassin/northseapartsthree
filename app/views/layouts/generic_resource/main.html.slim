@@ -24,6 +24,7 @@ html lang="en"
           - if action_name == 'index'
             = render template: 'layouts/generic_resource/index'
           - elsif rest_action?
-            = render template: 'layouts/generic_resource/form'
+            div.pl-2
+              = render template: 'layouts/generic_resource/form'
           - else
             div align='center' NO CONTENT AVAILABLE

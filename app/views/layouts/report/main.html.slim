@@ -3,27 +3,37 @@ html lang="en"
   head
     = render template: 'common/generic_head'
     = render template: 'common/generic_resource_head'
-    = stylesheet_link_tag 'main_partials/report', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'report', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'generic_report', 'data-turbolinks-track' => 'reload'
   body
 
     = render template: 'common/main_notification'
     = render template: 'common/topside_navigation/bar'
 
-    // div.main_display
-    div.main_content.container
+    // Main Display
+    div.container-fluid
+      div.report_main_content
 
-      div.row
-        == yield
+        // Header Display
+        div.row
 
-      div.row
-        ruby:
-          path_to_partial = controller_path + '/report_controls'
-        - if lookup_context.find_all(path_to_partial, [], true).any?
-          form method='get'
+          // Title Display
+          h1.report_title_display ATTENDANCE REPORT
+
+          // Controls Display
+          ruby:
+            path_to_partial = controller_path + '/report_controls'
+          - if lookup_context.find_all(path_to_partial, [], true).any?
             div.report_controls
-              = render path_to_partial
+              form method='get'
+                = render path_to_partial
 
-      div.row
-        - if @button_set.present?
-          = button_set(@button_set)
+        hr
+        // Report Display
+        div.row
+          == yield
+
+        // Buttons to other Modules
+        div.row
+          - if @button_set.present?
+            = button_set(@button_set)

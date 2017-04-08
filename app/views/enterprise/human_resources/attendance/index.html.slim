@@ -5,51 +5,53 @@ ruby:
   tardiness = 0
   overtime = 0
 
+
 div.attendance_grid
-  table
-    thead
-      tr
-        th
-          div.title_attendance EMPLOYEE
-          ruby:
-            current_attendance = my_start_attendance
-        - while (current_attendance <= my_end_attendance)
+  form method='get'
+    table
+      thead
+        tr
           th
-            div.title_attendance = current_attendance.strftime('%m/%d/%Y') + ', ' + current_attendance.strftime('%A')
-          ruby:
-            current_attendance = current_attendance + 1.day
+            div.title_attendance EMPLOYEE
+            ruby:
+              current_attendance = my_start_attendance
+          - while (current_attendance <= my_end_attendance)
+            th
+              div.title_attendance = current_attendance.strftime('%m/%d/%Y') + ', ' + current_attendance.strftime('%A')
+            ruby:
+              current_attendance = current_attendance + 1.day
 
-    tbody
-      - unless @employee_set.count == 0
-        - @employee_set.each do |employee|
+      tbody
+        - unless @employee_set.count == 0
+          - @employee_set.each do |employee|
 
-          tr
-            td.employee_cell
-              a.btn.btn-default.little_button href='#{employee.system_account.show_path}' target='_new'
-                = employee.system_account.name
+            tr
+              td.employee_cell
+                a.btn.btn-default.little_button href='#{employee.system_account.show_path}' target='_new'
+                  = employee.system_account.name
 
-              ruby:
-                current_attendance = my_start_attendance
+                ruby:
+                  current_attendance = my_start_attendance
 
-            - while (current_attendance <= my_end_attendance)
+              - while (current_attendance <= my_end_attendance)
 
-              ruby:
-                attendance_status = employee.attendance_status(current_attendance)
-                absences += 1 if attendance_status == 'no_record'
-                overtime += 1 if attendance_status == 'overtime'
-                tardiness += 1 if attendance_status == 'undertime'
-                attendance_class_name = 'attendance ' + attendance_status
+                ruby:
+                  attendance_status = employee.attendance_status(current_attendance)
+                  absences += 1 if attendance_status == 'no_record'
+                  overtime += 1 if attendance_status == 'overtime'
+                  tardiness += 1 if attendance_status == 'undertime'
+                  attendance_class_name = 'attendance ' + attendance_status
 
-              td class='#{attendance_class_name}'
-                - AttendanceRecord.where(employee_id: employee.id, implemented_on: current_attendance.strftime('%Y-%m-%d')).each do |record|
-                  div.attendance_cell
-                    a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
+                td class='#{attendance_class_name}'
+                  - AttendanceRecord.where(employee_id: employee.id, implemented_on: current_attendance.strftime('%Y-%m-%d')).each do |record|
+                    div.attendance_cell
+                      a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
 
-              ruby:
-                current_attendance = current_attendance + 1.day
+                ruby:
+                  current_attendance = current_attendance + 1.day
 
-      - else
-        div.statement No Employees for Branch
+        - else
+          div.statement No Employees for Branch
 
 // colored legends for different table cells
 div.attendance_legend
@@ -71,18 +73,3 @@ div.branch_statistics
   span.stat Presence : #{presence_ratio.to_s + '%'}
   span.stat Tardiness : #{tardiness_ratio.to_s + '%'}
   span.stat Overtime : #{overtime_ratio.to_s + '%'}
-
-hr
-form method='get' id='quick_add_attendance'
-  div.report_controls
-    div.control_cell
-      span Record Quick Attendance for :
-      = report_model_selector(@employee_set, 'current_employee', nil)
-    div.control_cell
-      span at a Period of :
-      = report_selector([['half_day','Half Day'],['whole_day','Whole Day']],'add_attendance_period', 'whole_day')
-    div.control_cell
-      span on
-      = report_date_input('add_attendance_date')
-    div.control_cell
-      input.btn.btn-default.btn-xs.report_submit type='SUBMIT' value='Add Attendance'
