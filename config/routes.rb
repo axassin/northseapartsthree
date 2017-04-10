@@ -115,6 +115,7 @@ Rails.application.routes.draw do
       end
 
       define_index( 'attendance' )
+      generate_action_url('attendance','process_attendance_grid')
       namespace :attendance do
         generate_action_url('employee_attendance_report','get_regular_work_period')
         generate_action_url('employee_attendance_report','get_attendance_records')

@@ -1,8 +1,8 @@
 div.control_cell
-  span EMPLOYEES at
+  span Employees from
   = report_model_selector(Branch.all, 'branch_id', @branch_id)
 div.control_cell
-  span from
+  span spanning a period from
   = report_date_input('start_attendance',@start_attendance)
 div.control_cell
   span to

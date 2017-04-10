@@ -4,7 +4,7 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController < Gen
     setup_variables( ExpenseEntry,
                      'Expense Entry',
                      'Entry into an Expense Account',
-                     ['vendor_id','expense_category_id','receiving_party_id'],
+                     ['vendor_id','expense_category_id','requesting_party_id'],
                      ['vendor_summary','expense_category_summary','receiving_party_summary'],
                      @@routes.enterprise_accounting_and_finance_expenses_expense_entries_path)
   end
@@ -15,7 +15,7 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController < Gen
       my_expense_entry.vendor = Vendor.find_by_id(current_params[:vendor_id])
       my_expense_entry.expense_category = ExpenseCategory.find_by_id(current_params[:expense_category_id])
       my_expense_entry.due_date = current_params[:due_date]
-      my_expense_entry.receiving_party_id = current_params[:receiving_party_id]
+      my_expense_entry.requesting_party_id = current_params[:requesting_party_id]
       my_expense_entry.reference_number = current_params[:reference_number]
       process_money(my_expense_entry, current_params[:amount], current_params[:currency])
       my_expense_entry.remark = current_params[:remark]

@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '5.0.2'
 # Use mysql as the database for Active Record
 gem 'mysql2', '>= 0.4.5'
 # Use Puma as the app server
@@ -206,10 +206,10 @@ end
 # Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors.
 gem 'nokogiri'
 
-# Ancestry is a gem/plugin that allows the records of a Ruby on Rails ActiveRecord model to be organised as a tree structure (or hierarchy)
-gem 'ancestry'
-
-# JS Tree
+# The jstree-rails-4 gem integrates the jsTree jQuery plugin with the Rails asset pipeline.
 gem 'jstree-rails-4'
+
+# Devise is a flexible authentication solution for Rails based on Warden
+gem 'devise'
 
 # gem 'puma'

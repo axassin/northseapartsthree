@@ -1,5 +1,8 @@
 select name='#{name}' id='#{name}'
-  - selection_array.each do |parameterized_value, humanized_value|
+  - selection_array.each do |key_pair|
+    ruby:
+      parameterized_value = key_pair[0]
+      humanized_value = key_pair[1]
     - if selected == parameterized_value
       option value='#{parameterized_value}' selected='selected' =humanized_value
     - else
