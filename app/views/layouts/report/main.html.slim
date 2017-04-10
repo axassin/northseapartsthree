@@ -16,14 +16,13 @@ html lang="en"
 
         // Header Display
         div.row
+          h1.report_title_display =@title_heading
 
-          // Title Display
-          h1.report_title_display ATTENDANCE REPORT
-
-          // Controls Display
-          ruby:
-            path_to_partial = controller_path + '/report_controls'
-          - if lookup_context.find_all(path_to_partial, [], true).any?
+        // Controls Display
+        ruby:
+          path_to_partial = controller_path + '/report_controls'
+        - if lookup_context.find_all(path_to_partial, [], true).any?
+          div.row
             div.report_controls
               form method='get'
                 = render path_to_partial

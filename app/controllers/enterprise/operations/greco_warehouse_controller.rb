@@ -17,14 +17,17 @@ class Enterprise::Operations::GrecoWarehouseController < GenericReportController
   end
 
   def greco_current_stock_report
+    @title_heading = 'CURRENT STOCK'
     @greco_items = GrecoItem.order('lower(name) ASC').all
   end
 
   def greco_out_of_stock_report
+    @title_heading = 'OUT OF STOCK'
     @greco_items = GrecoItem.order('lower(name) ASC').all.select { |m| m.get_current_stock <= 0 }
   end
 
   def greco_transaction_history
+    @title_heading = 'TRANSACTION HISTORY'
     @start_date = params[:start_date] || (Time.new - 6.days).strftime('%Y-%m-%d')
     @end_date = params[:end_date] || Time.new.strftime('%Y-%m-%d')
     @greco_item_id = params[:greco_item_id] || GrecoItem.order("RAND()").first

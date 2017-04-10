@@ -2,7 +2,8 @@ class Enterprise::HumanResources::AttendanceController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_attendance_path,
-                     @@routes.enterprise_human_resources_path)
+                     @@routes.enterprise_human_resources_path,
+                     'Attendance Report')
 
     @branch_id = params[:branch_id] || Branch.order('RAND()').first.id
 
