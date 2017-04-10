@@ -1,5 +1,4 @@
-hr
-div.report_controls
+div.report_controls.col-md-12
   form method='get'
     div.control_cell
       = report_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
@@ -9,26 +8,25 @@ div.report_controls
     div.control_cell
       span &nbsp; to : &nbsp;
       = report_date_input('end_date', @end_date)
-    div.control_celld
+    div.control_cell
       span &nbsp; | &nbsp;
       = report_submit_button
 
-div.float-clearing
-hr
+div.float-clearing.col-md-12
+  a.btn.btn-default.greco_csv EXPORT TO CSV
 
-h3 TRANSACTION HISTORY
-a.btn.btn-default.greco_csv EXPORT TO CSV
-table.greco_report_table
-  thead
-    tr
-      th DATE
-      th TYPE
-      th QTY
-      th ITEM
-  tbody
-    - @greco_transactions.each do |greco_transaction|
+div.col-md-12
+  table.greco_report_table
+    thead
       tr
-        td = greco_transaction.implemented_on
-        td = greco_transaction.transaction_type
-        td = greco_transaction.quantity
-        td = greco_transaction.item_involved
+        th DATE
+        th TYPE
+        th QTY
+        th ITEM
+    tbody
+      - @greco_transactions.each do |greco_transaction|
+        tr
+          td = greco_transaction.implemented_on
+          td = greco_transaction.transaction_type
+          td = greco_transaction.quantity
+          td = greco_transaction.item_involved
