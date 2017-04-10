@@ -5,9 +5,11 @@ ruby:
   tardiness = 0
   overtime = 0
 
-
-div.attendance_grid
-  form method='get'
+form method='get' action='#{enterprise_human_resources_attendance_process_attendance_grid_path}'
+  input type='hidden' name='branch_id' value='#{@branch_id}'
+  input type='hidden' name='start_attendance' value='#{@start_attendance}'
+  input type='hidden' name='end_attendance' value='#{@end_attendance}'
+  div.attendance_grid
     table
       thead
         tr
@@ -43,15 +45,26 @@ div.attendance_grid
                   attendance_class_name = 'attendance ' + attendance_status
 
                 td class='#{attendance_class_name}'
-                  - AttendanceRecord.where(employee_id: employee.id, implemented_on: current_attendance.strftime('%Y-%m-%d')).each do |record|
-                    div.attendance_cell
-                      a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
+                  - unless attendance_status == 'no_record'
+                    - AttendanceRecord.where(employee_id: employee.id, implemented_on: current_attendance.strftime('%Y-%m-%d')).each do |record|
+                        div.attendance_cell
+                          a.btn.btn-default.little_button href='#{record.show_path}' target='_new' =record.attendance_period
+                  - else
+                    ruby:
+                      selector_details = ',' + employee.id + ',' + current_attendance.strftime('%Y%m%d').to_s
+                    div.attendance_cell = report_selector([['no_record','No Record'],['whole_day' + selector_details,'Whole Day'],['half_day' + selector_details,'Half Day']],'quick_attendance[]')
 
                 ruby:
                   current_attendance = current_attendance + 1.day
 
         - else
           div.statement No Employees for Branch
+
+  br
+  div.float-clearing
+  button.btn.btn-default.btn-xs.report_submit type='submit' Add Quick Attendance
+  div.float-clearing
+  br
 
 // colored legends for different table cells
 div.attendance_legend

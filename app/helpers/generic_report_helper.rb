@@ -35,7 +35,7 @@ module GenericReportHelper
     }
   end
 
-  def report_selector(selection_array, name, selected)
+  def report_selector(selection_array, name, selected = nil)
     render partial: 'common/report/report_selector', locals: {
         selection_array: selection_array,
         name: name,

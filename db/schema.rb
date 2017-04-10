@@ -222,7 +222,7 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.string   "vendor_id",           limit: 36
     t.string   "expense_category_id", limit: 36
     t.date     "due_date"
-    t.string   "requesting_party_id",  limit: 36
+    t.string   "requesting_party_id", limit: 36
     t.string   "reference_number"
     t.integer  "amount_centavos",                 default: 0,     null: false
     t.string   "amount_currency",                 default: "PHP", null: false
