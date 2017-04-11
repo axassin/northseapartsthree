@@ -17,6 +17,7 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
     - if ApplicationController.current.class < GenericResourceController
       form.form-inline.col-md-4 method='get' action='#{@main_resource_path}'
         input.form-control.typeahead.generic_resource_search_bar id='search_query' name='search_query' type='text' placeholder='#{ '&#x25ba;'.html_safe } LOOK FOR #{controller_name.humanize.titleize} '
+        input.hidden_submit type="submit"
         = javascript_include_tag 'generic_resource/search_suggestions'
     - else
       div.col-md-4 &nbsp;
