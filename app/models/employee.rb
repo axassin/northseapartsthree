@@ -69,7 +69,7 @@ class Employee < ApplicationRecord
       puts daily_emp_work_hours
       puts reg_work_hours
 
-      iddddddddddddf daily_emp_work_hours == reg_work_hours
+      if daily_emp_work_hours == reg_work_hours
 
         all_time_in = []
         all_time_out = []
