@@ -49,4 +49,11 @@ module GenericReportHelper
     }
   end
 
+  def percentage_display(name,value)
+    render partial: 'common/report/percentage_display', locals: {
+        name: name,
+        value: value
+    }
+  end
+
 end

@@ -5,28 +5,37 @@ ruby:
   tardiness = 0
   overtime = 0
 
-form method='get' action='#{enterprise_human_resources_attendance_process_attendance_grid_path}'
-  input type='hidden' name='branch_id' value='#{@branch_id}'
-  input type='hidden' name='start_attendance' value='#{@start_attendance}'
-  input type='hidden' name='end_attendance' value='#{@end_attendance}'
-  div.attendance_grid
-    table
-      thead
-        tr
-          th
-            div.title_attendance EMPLOYEE
-            ruby:
-              current_attendance = my_start_attendance
-          - while (current_attendance <= my_end_attendance)
+- unless @employee_set.count == 0
+  form method='get' action='#{enterprise_human_resources_attendance_process_attendance_grid_path}' style='width:100%'
+    input type='hidden' name='branch_id' value='#{@branch_id}'
+    input type='hidden' name='start_attendance' value='#{@start_attendance}'
+    input type='hidden' name='end_attendance' value='#{@end_attendance}'
+
+    div.attendance_grid
+      table
+        thead
+          tr
             th
-              div.title_attendance = current_attendance.strftime('%m/%d/%Y') + ', ' + current_attendance.strftime('%A')
-            ruby:
-              current_attendance = current_attendance + 1.day
+              div.title_attendance EMPLOYEE NAME
+              ruby:
+                current_attendance = my_start_attendance
 
-      tbody
-        - unless @employee_set.count == 0
+            - while current_attendance <= my_end_attendance
+              th
+                div.title_attendance
+                  div = current_attendance.strftime('%m/%d/%Y')
+                  div = current_attendance.strftime('%A')
+                  ruby:
+                    current_holiday = nil
+                    current_holiday = Holiday.get_holiday(current_attendance)
+                  - if current_holiday.present?
+                    div = current_holiday.first.name
+
+              ruby:
+                current_attendance = current_attendance + 1.day
+
+        tbody
           - @employee_set.each do |employee|
-
             tr
               td.employee_cell
                 a.btn.btn-default.little_button href='#{employee.system_account.show_path}' target='_new'
@@ -35,9 +44,10 @@ form method='get' action='#{enterprise_human_resources_attendance_process_attend
                 ruby:
                   current_attendance = my_start_attendance
 
-              - while (current_attendance <= my_end_attendance)
+              - while current_attendance <= my_end_attendance
 
                 ruby:
+                  attendance_status = 'no_record'
                   attendance_status = employee.attendance_status(current_attendance)
                   absences += 1 if attendance_status == 'no_record'
                   overtime += 1 if attendance_status == 'overtime'
@@ -57,23 +67,22 @@ form method='get' action='#{enterprise_human_resources_attendance_process_attend
                 ruby:
                   current_attendance = current_attendance + 1.day
 
-        - else
-          div.statement No Employees for Branch
+    div align='center' style='padding: 0.5em'
+      button.btn.btn-default.btn-xs.report_submit type='submit' style='width: 100%' Add Quick Attendance
 
-  br
-  div.float-clearing
-  button.btn.btn-default.btn-xs.report_submit type='submit' Add Quick Attendance
-  div.float-clearing
-  br
+- else
+  div.statement No Employees for Branch
 
 // colored legends for different table cells
-div.attendance_legend
-  span.legend_label LEGEND :
-  span.legend.exact Exact Present
-  span.legend.shifted Shifted Present
-  span.legend.undertime Undertime
-  span.legend.overtime Overtime
-  span.legend.no_record No Record Exists
+div.legend_table
+  table
+    tr
+      td.legend align='center' LEGEND
+      td.exact align='center' Exact Present
+      td.shifted align='center' Shifted Present
+      td.undertime align='center' Undertime
+      td.overtime align='center' Overtime
+      td.no_record align='center' No Record Exists
 
 // statistics per attendance per branch
 div.branch_statistics
@@ -83,6 +92,7 @@ div.branch_statistics
     presence_ratio = ((presence.to_f / days.to_f ) * 100).round(2)
     tardiness_ratio = ((tardiness.to_f / presence.to_f ) * 100).round(2)
     overtime_ratio = ((overtime.to_f / presence.to_f) * 100).round(2)
-  span.stat Presence : #{presence_ratio.to_s + '%'}
-  span.stat Tardiness : #{tardiness_ratio.to_s + '%'}
-  span.stat Overtime : #{overtime_ratio.to_s + '%'}
+
+  = percentage_display('Presence', presence_ratio)
+  = percentage_display('Tardiness', tardiness_ratio)
+  = percentage_display('Overtime', overtime_ratio)

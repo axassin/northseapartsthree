@@ -2,17 +2,20 @@
 
 div.attendance_grid
   overflow-x: auto
+  width: 100%
   table
+    width: 100%
     thead
       tr
         th
-          div.title_attendance
-            font-size: 0.75em
-            text-transform: uppercase
-            border-bottom: solid $QUATERNARY_COLOR thin
-            padding: 0.5em
-            color: black
-            background-color: $QUATERNARY_COLOR
+          background-color: darkgray
+          color: white
+          font-size: 1em
+          text-transform: uppercase
+          border: thin solid white
+          border-left: solid $QUATERNARY_COLOR thin
+          padding: 1em
+          font-weight: normal
     tbody
       tr
         td.employee_cell
@@ -34,29 +37,28 @@ div.attendance_grid
         div.attendance_cell
           color: white
 
-div.attendance_legend
-  width: 100%
-  border-left: darkgray solid thick
+div.legend_table
+  margin-top: 0.5em
   padding-left: 0.5em
-  margin: 0.5em
-  span.legend
-    padding-right: 0.5em
-    padding-left: 0.5em
-    color: black
-  span.exact
-    background: lightgreen
-  span.shifted
-    background: cyan
-  span.undertime
-    background: violet
-  span.overtime
-    background: gold
-  span.no_record
-    background: indianred
+  width: 100%
+  table
+    width: 50%
+    color: white
+    tr
+      td
+        padding: 0.5em
+      td.legend
+        background: darkgray
+      td.exact
+        background: lightgreen
+      td.shifted
+        background: cyan
+      td.undertime
+        background: violet
+      td.overtime
+        background: gold
+      td.no_record
+        background: indianred
 
 div.branch_statistics
-  margin: 0.5em
-  span.stat
-    padding-left: 0.5em
-    padding-right: 0.5em
-    border-left: darkgray solid thick
+  margin-top: 0.5em

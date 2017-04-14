@@ -10,6 +10,8 @@ class Holiday < ApplicationRecord
   validates_presence_of :name
   validates :implemented_on, presence: true, uniqueness: true
 
+  scope :get_holiday, -> (given_date) { where('implemented_on = ?', given_date) }
+
   setup_model('slack',
               'name',
               @@routes.enterprise_human_resources_attendance_holidays_path,
