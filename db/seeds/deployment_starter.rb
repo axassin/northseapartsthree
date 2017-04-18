@@ -78,3 +78,14 @@ ExpenseCategory.create!(name: 'Broker', remark: nil, parent: professional_fees)
 
 taxes = ExpenseCategory.create!(name: 'Taxes', remark: nil)
 miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil)
+
+ #---------------------- Storage Unit ----------------------
+boxes = StorageUnit.create!(code: 'Box Supplies', remark: nil)
+StorageUnit.create!(parent_storage: 'Box A', remark: nil, parent: boxes)
+StorageUnit.create!(parent_storage: 'Box B', remark: nil, parent: boxes)
+StorageUnit.create!(parent_storage: 'Box C', remark: nil, parent: boxes)
+
+
+bottles = StorageUnit.create!(parent_storage: 'Bottle Supplies', remark: nil)
+StorageUnit.create!(parent_storage: 'Bottle B', remark: nil, parent: bottles)
+StorageUnit.create!(parent_storage: 'Bottle C', remark: nil, parent: bottles)

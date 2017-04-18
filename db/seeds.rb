@@ -441,4 +441,15 @@ if Rails.env.development? || Rails.env.test?
     end
   }
 
+   # Storage units Temporary 
+  no_of_parts = 20
+  no_of_parts.times {
+    storage_unit = StorageUnit.new
+    storage_unit.code = Faker::Code.isbn
+    storage_unit.remark = Faker::Commerce.product_name
+    storage_unit.parent_storage = Faker::Name.name
+    storage_unit.save!
+  }
+
+
 end
