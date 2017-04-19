@@ -1,5 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  devise_for :users
   namespace :enterprise do
     resources :branches
   end
@@ -119,6 +120,7 @@ Rails.application.routes.draw do
       namespace :attendance do
         generate_action_url('employee_attendance_report','get_regular_work_period')
         generate_action_url('employee_attendance_report','get_attendance_records')
+        generate_action_url('employee_attendance_report','get_full_calendar_data')
         define_index( 'employee_attendance_report' )
         generate_action_url('rest_days','unique_rest_day_per_employee')
         generate_logic_unit( :rest_days )

@@ -1,7 +1,7 @@
 meta charset="utf-8"
 meta name="viewport" content="width=device-width, initial-scale=1.0"
 
-title == content_for?(:title) ? yield(:title) : 'North Sea Parts'
+title == content_for?(:title) ? yield(:title) : 'North Sea Parts - ' + totally_humanize(controller_name)
 
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
 = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'

@@ -212,4 +212,7 @@ gem 'jstree-rails-4'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
 
+# an asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
+gem 'fullcalendar-rails'
+
 # gem 'puma'

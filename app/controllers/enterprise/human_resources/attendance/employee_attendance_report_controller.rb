@@ -2,7 +2,7 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_human_resources_attendance_employee_attendance_report_path,
-                     @@routes.enterprise_human_resources_attendance_path)
+                     @@routes.enterprise_human_resources_attendance_path, 'Employee Attendance Report')
 
     @employee_id = params[:employee_id] || Employee.order("RAND()").first.id
     @employee = Employee.find_by_id(@employee_id)
@@ -32,6 +32,26 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
     puts RegularWorkPeriod.current_work_period(attendance_date, employee_id)
 
     render json: RegularWorkPeriod.current_work_period(attendance_date, employee_id)
+  end
+
+  def get_full_calendar_data
+
+    employee_id = params[:employee_id]
+    attendance_array = []
+    AttendanceRecord.where(employee_id: employee_id).each do |attendance_record|
+      implemented_on = attendance_record.implemented_on.to_s
+      time_in = attendance_record.time_in.strftime('%H:%M:%S').to_s
+      time_out = attendance_record.time_out.strftime('%H:%M:%S').to_s
+      start_time = implemented_on + 'T' + time_in
+      end_time =  implemented_on + 'T' + time_out
+      title = '[' + time_in + ',' + time_out + ']'
+
+      current_array = {id: attendance_record.id, title: title, start_time: start_time, end_time: end_time, allDay: false}
+      attendance_array.push(current_array)
+    end
+
+    puts attendance_array
+    render plain: attendance_array
   end
 
 end
