@@ -319,6 +319,17 @@ ActiveRecord::Schema.define(version: 20170417031716) do
     t.index ["deleted_at"], name: "index_rest_days_on_deleted_at", using: :btree
   end
 
+  create_table "storage_units", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "remark",     limit: 256
+    t.string   "code"
+    t.string   "ancestry"
+    t.index ["ancestry"], name: "index_storage_units_on_ancestry", using: :btree
+    t.index ["deleted_at"], name: "index_storage_units_on_deleted_at", using: :btree
+  end
+
   create_table "system_accounts", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
     t.datetime "created_at"

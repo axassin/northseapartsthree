@@ -6,8 +6,11 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
 
     @employee_id = params[:employee_id] || Employee.order("RAND()").first.id
     @employee = Employee.find_by_id(@employee_id)
-    @start_attendance = params[:start_attendance] || (Time.new - 3.days).strftime('%Y-%m-%d')
+    @start_attendance = params[:start_attendance] || (Time.new - 30.days).strftime('%Y-%m-%d')
     @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
+    @absence_ratio = @employee.absence(Date.parse(@start_attendance),Date.parse(@end_attendance))
+    @presence_ratio = @employee.presence(Date.parse(@start_attendance),Date.parse(@end_attendance))
+    @tardiness_ratio = @employee.tardiness(Date.parse(@start_attendance),Date.parse(@end_attendance))
 
   end
 
@@ -46,7 +49,22 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
       end_time =  implemented_on + 'T' + time_out
       title = '[ ' + time_in + ',' + time_out + ' ]'
 
-      current_array = {title: title, start: start_time, end: end_time, allDay: 'false'}
+      attendance_status = Employee.find_by_id(employee_id).attendance_status(implemented_on)
+      background_color = ''
+      case attendance_status
+        when 'exact'
+          background_color = 'lightgreen'
+        when 'shifted'
+          background_color = 'cyan'
+        when 'overtime'
+          background_color = 'violet'
+        when 'undertime'
+          background_color = 'gold'
+        when 'no_record'
+          background_color = 'indianred'
+      end
+
+      current_array = {title: title, start: start_time, end: end_time, allDay: 'false', backgroundColor: background_color}
       attendance_array.push(current_array)
     end
 

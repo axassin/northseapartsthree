@@ -1,3 +1,26 @@
-div.col-md-8
+div.col-md-9
   div id='calendar'
-div.col-md-2
+div.col-md-3
+
+  = percentage_display('Presence',@presence_ratio)
+  = percentage_display('Absence',@absence_ratio)
+  = percentage_display('Tardiness',@tardiness_ratio)
+
+  br
+  div.float-clearing
+  br
+
+  div.legend_table
+    table style='width: 100%'
+      tr
+        td.legend align='left' LEGEND
+      tr
+        td.exact align='left' Exact Present
+      tr
+        td.shifted align='left' Shifted Present
+      tr
+        td.undertime align='left' Undertime
+      tr
+        td.overtime align='left' Overtime
+      tr
+        td.no_record align='left' No Record Exists (white)

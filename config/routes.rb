@@ -142,14 +142,22 @@ Rails.application.routes.draw do
 
     define_index( 'operations' )
     namespace :operations do
+
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )
       generate_action_url( 'greco_warehouse','greco_current_stock_report' )
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
+
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
+      end
+
+      define_index('storage_management')
+      namespace :storage_management do
+        generate_action_url( 'storage_management','generate_storage_units' )
+        generate_logic_unit( :storage_units )
       end
 
     end
