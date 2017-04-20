@@ -44,14 +44,13 @@ class Enterprise::HumanResources::Attendance::EmployeeAttendanceReportController
       time_out = attendance_record.time_out.strftime('%H:%M:%S').to_s
       start_time = implemented_on + 'T' + time_in
       end_time =  implemented_on + 'T' + time_out
-      title = '[' + time_in + ',' + time_out + ']'
+      title = '[ ' + time_in + ',' + time_out + ' ]'
 
-      current_array = {id: attendance_record.id, title: title, start_time: start_time, end_time: end_time, allDay: false}
+      current_array = {title: title, start: start_time, end: end_time, allDay: 'false'}
       attendance_array.push(current_array)
     end
 
-    puts attendance_array
-    render plain: attendance_array
+    render json: attendance_array
   end
 
 end

@@ -10,10 +10,12 @@ $(document).on 'turbolinks:load', ->
 
   $('#calendar').fullCalendar({
     eventSources: [{
-      url: 'employee_attendance_report/get_full_calendar_data',
+      # url: 'employee_attendance_report/get_full_calendar_data',
+      url: 'http://localhost:3000/enterprise/human_resources/attendance/employee_attendance_report/get_full_calendar_data',
       data: {
         employee_id: current_employee_id
       },
-      allDayDefault: false
+      error: -> (alert 'dfsad'),
+      allDay: false
     }]
   });
