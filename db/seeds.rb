@@ -151,7 +151,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Vehicles
-  NO_OF_VEHICLES = 25
+  NO_OF_VEHICLES = 10
   NO_OF_VEHICLES.times {
     current_vehicle = Vehicle.new
     current_vehicle.color = Faker::Color.color_name
@@ -175,7 +175,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Banks
-  no_of_banks = 10
+  no_of_banks = 3
   no_of_banks.times {
     bank = Bank.new
     bank.system_account_id = generate_system_account('GROUP').id
@@ -340,7 +340,7 @@ if Rails.env.development? || Rails.env.test?
   end
 
   # Greco Items Temporary Inventory
-  no_of_parts = 20
+  no_of_parts = 10
   no_of_parts.times {
     greco_item = GrecoItem.new
     greco_item.name = Faker::Commerce.product_name
@@ -360,7 +360,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Vendor
-  no_of_exchange_mediums = 25
+  no_of_exchange_mediums = 20
   no_of_exchange_mediums.times {
     vendor = Vendor.new
     vendor.system_account = generate_system_account('GROUP')
@@ -368,7 +368,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Expense Entries
-  no_of_expense_entries = 25
+  no_of_expense_entries = 20
   no_of_expense_entries.times {
     expense_entry = ExpenseEntry.new
     expense_entry.vendor_id = Vendor.order("RAND()").first.id
@@ -389,7 +389,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Expense Assignment
-  no_of_expense_assignment = 25
+  no_of_expense_assignment = 20
   no_of_expense_assignment.times {
     expense_assignment = ExpenseAssignment.new
     expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
@@ -401,7 +401,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Exchange Medium
-  no_of_exchange_mediums = 50
+  no_of_exchange_mediums = 20
   no_of_exchange_mediums.times {
 
     exchange_medium = ExchangeMedium.new
@@ -453,6 +453,20 @@ if Rails.env.development? || Rails.env.test?
     storage_unit.remark = Faker::Commerce.product_name
     storage_unit.parent = StorageUnit.order("RAND()").first
     storage_unit.save!
+  }
+
+
+  # Users
+  number_of_users = 20
+  number_of_users.times {
+    user = User.new
+    user.system_account = generate_system_account('INDIVIDUAL')
+    user.email = Faker::Internet.email
+    user.password = Devise.friendly_token.first(8)
+    generated_password = Faker::Internet.password(8)
+    user.password = generated_password
+    user.password_confirmation = generated_password
+    user.save!
   }
 
 end
