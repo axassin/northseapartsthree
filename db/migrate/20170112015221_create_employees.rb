@@ -1,4 +1,5 @@
-class CreateEmployees < MainMigration
+class CreateEmployees < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :employees, id: false do |t|
       common_set(t)

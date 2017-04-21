@@ -1,4 +1,5 @@
-class CreateDaySchemes < MainMigration
+class CreateDaySchemes < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :day_schemes, id: false do |t|
       common_set(t)

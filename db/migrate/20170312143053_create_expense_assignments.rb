@@ -1,4 +1,5 @@
-class CreateExpenseAssignments < MainMigration
+class CreateExpenseAssignments < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :expense_assignments, id: false do |t|
       common_set(t)

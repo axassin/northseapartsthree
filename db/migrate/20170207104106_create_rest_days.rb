@@ -1,4 +1,5 @@
-class CreateRestDays < MainMigration
+class CreateRestDays < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :rest_days, id: false do |t|
       common_set(t)

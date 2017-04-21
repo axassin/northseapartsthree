@@ -1,4 +1,5 @@
-class CreateHolidays < MainMigration
+class CreateHolidays < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :holidays, id: false do |t|
       common_set(t)

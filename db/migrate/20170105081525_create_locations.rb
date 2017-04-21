@@ -1,4 +1,5 @@
-class CreateLocations < MainMigration
+class CreateLocations < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :locations, id: false do |t|
       common_set(t)

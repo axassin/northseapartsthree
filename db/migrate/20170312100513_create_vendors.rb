@@ -1,4 +1,5 @@
-class CreateVendors < MainMigration
+class CreateVendors < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :vendors, id: false do |t|
       common_set(t)

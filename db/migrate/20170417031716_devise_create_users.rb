@@ -1,4 +1,5 @@
-class DeviseCreateUsers < MainMigration
+class DeviseCreateUsers < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :users, id: false do |t|
 
