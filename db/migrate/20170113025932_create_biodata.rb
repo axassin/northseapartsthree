@@ -1,4 +1,5 @@
-class CreateBiodata < MainMigration
+class CreateBiodata < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :biodata, id: false do |t|
       common_set(t)

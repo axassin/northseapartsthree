@@ -1,4 +1,5 @@
-class CreateCashes < MainMigration
+class CreateCashes < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :cashes, id: false do |t|
       common_set(t)

@@ -1,4 +1,5 @@
-class CreateGrecoItems < MainMigration
+class CreateGrecoItems < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :greco_items, id: false do |t|
       common_set(t)
