@@ -402,6 +402,7 @@ PLATFORMS
 DEPENDENCIES
   activemodel-serializers-xml
   ancestry
+  bcrypt (~> 3.1.11)
   better_errors
   bootstrap (~> 4.0.0.alpha5)
   bootstrap-kaminari-views

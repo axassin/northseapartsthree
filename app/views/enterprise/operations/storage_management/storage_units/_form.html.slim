@@ -3,4 +3,4 @@ div.col-md-6
   = input_remark(f)
   
 div.col-md-6
-  = model_selector(f, StorageUnit.all, :parent_id, current_instance.parent_id, 'code')
+  = model_selector(f, StorageUnit.all, :parent_id, current_instance.parent, 'code')
