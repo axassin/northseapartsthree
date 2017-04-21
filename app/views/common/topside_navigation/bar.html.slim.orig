@@ -27,11 +27,7 @@ nav.navbar.navbar-default.navigation
 
     // Login Placeholder
     div.col-md-2
-<<<<<<< HEAD
-      span = "[LOGIN PLACEHOLDER]"
-=======
       span = "[ LOGIN PLACEHOLDER ]"
->>>>>>> 2f12a3bd1806c620d1343f6b6eb596ca2896683c
 
 div.main_menu
 
