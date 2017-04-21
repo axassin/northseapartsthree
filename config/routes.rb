@@ -61,12 +61,14 @@ Rails.application.routes.draw do
 
     define_index( 'general_management' )
     namespace :general_management do
+
       namespace :contact_details do
         wizard('contact_wizard')
         generate_logic_unit( :telephone_numbers )
         generate_logic_unit( :links )
         generate_logic_unit( :locations )
       end
+
       generate_action_url('contact_details','contactable')
       generate_logic_unit( :contact_details )
       generate_logic_unit( :vehicles )
@@ -75,6 +77,8 @@ Rails.application.routes.draw do
       generate_logic_unit( :system_constants )
       generate_logic_unit( :associated_files )
       generate_logic_unit( :associated_images )
+      generate_logic_unit( :users )
+
     end
 
     define_index( 'accounting_and_finance' )
