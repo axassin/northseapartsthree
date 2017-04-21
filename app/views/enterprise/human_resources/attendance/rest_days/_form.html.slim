@@ -1,6 +1,8 @@
 div.col-md-6
   = employee_selector(f, current_instance)
 div.col-md-6
-  = selector(f, :day, ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'], current_instance.day, false)
-  = f.input :implemented_on, required: true, as: :date, html5: true
-  = input_word(f, :remark)
+  ruby:
+    day_of_the_week = current_instance.day || 'SUNDAY'
+  = selector(f, :day, ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'], day_of_the_week, false)
+  = input_date(f, :implemented_on)
+  = input_remark(f)

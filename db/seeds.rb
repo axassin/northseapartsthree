@@ -372,8 +372,15 @@ if Rails.env.development? || Rails.env.test?
   no_of_expense_entries.times {
     expense_entry = ExpenseEntry.new
     expense_entry.vendor_id = Vendor.order("RAND()").first.id
-    expense_entry.receiving_party_id = Employee.order("RAND()").first.id
-    expense_entry.expense_category_id = ExpenseCategory.order("RAND()").first.id
+    expense_entry.requesting_party_id = Employee.order("RAND()").first.id
+    has_children_flag = true
+    while has_children_flag
+      current_expense_category = ExpenseCategory.order("RAND()").first
+      unless current_expense_category.has_children?
+        expense_entry.expense_category_id = current_expense_category.id
+        has_children_flag = false
+      end
+    end
     expense_entry.amount_centavos = Faker::Commerce.price*100.00
     expense_entry.amount_currency = ['USD','PHP','NTD'].sample
     expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)
@@ -386,7 +393,7 @@ if Rails.env.development? || Rails.env.test?
   no_of_expense_assignment.times {
     expense_assignment = ExpenseAssignment.new
     expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
-    expense_assignment.approving_party_id = Employee.order("RAND()").first.id
+    expense_assignment.remark = Faker::Lorem.sentence(3, false, 0)
     expensable_type = ['Vehicle','Employee','Branch'].sample
     expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
     expense_assignment.expensable_type = expensable_type
@@ -432,6 +439,20 @@ if Rails.env.development? || Rails.env.test?
         bank_transfer.exchange_medium = exchange_medium
         bank_transfer.save!
     end
+  }
+
+  # Storage Units
+
+  # creates a root Storage Unit to be the main parent
+  StorageUnit.create!(code: 'ROOT SAMPLE', remark: Faker::Commerce.product_name, parent: nil)
+
+  number_of_storage_units = 20
+  number_of_storage_units.times {
+    storage_unit = StorageUnit.new
+    storage_unit.code = Faker::Code.isbn
+    storage_unit.remark = Faker::Commerce.product_name
+    storage_unit.parent = StorageUnit.order("RAND()").first
+    storage_unit.save!
   }
 
 end

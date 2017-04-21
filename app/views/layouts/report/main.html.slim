@@ -1,0 +1,40 @@
+doctype html
+html lang="en"
+  head
+    = render template: 'common/generic_head'
+    = render template: 'common/generic_resource_head'
+    = stylesheet_link_tag 'report', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'generic_report', 'data-turbolinks-track' => 'reload'
+  body
+
+    = render template: 'common/main_notification'
+    = render template: 'common/topside_navigation/bar'
+
+    // Main Display
+    div.container-fluid
+      div.report_main_content
+
+        // Header Display
+        div.row
+          h1.report_title_display =@title_heading
+
+        // Controls Display
+        ruby:
+          path_to_partial = controller_path + '/report_controls'
+        - if lookup_context.find_all(path_to_partial, [], true).any?
+          div.row
+            div.report_controls
+              form method='get'
+                = render path_to_partial
+          hr
+            
+        // Report Display
+        div.row
+          == yield
+
+        // Buttons to other Modules
+        hr
+        div.float-clearing
+        div.row
+          - if @button_set.present?
+            = button_set(@button_set)

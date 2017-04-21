@@ -1,0 +1,15 @@
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+/home/jcgofredo/.rvm/rubies/ruby-2.4.0/bin/ruby -r ./siteconf20170311-7130-1akidhe.rb extconf.rb
+creating Makefile
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" clean
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR="
+compiling debug_inspector.c
+linking shared-object debug_inspector.so
+
+current directory: /home/jcgofredo/Desktop/Projects/james_new/northseapartsthree/vendor/bundle/ruby/2.4.0/gems/debug_inspector-0.0.2/ext/debug_inspector
+make "DESTDIR=" install
+/usr/bin/install -m 0755 debug_inspector.so ./.gem.20170311-7130-1vvze8p

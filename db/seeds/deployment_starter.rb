@@ -1,5 +1,15 @@
 puts 'Initializing Database with Starter Data'
 
+# ---------------------- Branch --------------------
+
+north_sea_parts = Branch.create!(name: 'North Sea Parts')
+
+# ---------------------- System Accounts -----------------------
+
+developer_one_system_account = SystemAccount.create!(name: 'developer_one', account_type: 'INDIVIDUAL')
+Employee.create!(system_account: developer_one_system_account, branch: north_sea_parts)
+
+# ---------------------- System Constants ----------------------
 SystemConstant.create!(category_type: 'hr.allowable_work_hours_per_day',
                        label: 'Allowable Work Hours per Day',
                        value: 8, implemented_on: DateTime.new(2000,1,1,1,1,1)).save!
@@ -16,6 +26,7 @@ SystemConstant.create!(category_type: 'hr.allowable_grace_period_late_minutes',
                        label: 'Allowable Grace Period Late Minutes',
                        value: '5', implemented_on: DateTime.new(2000,1,1,1,1,1)).save!
 
+# ---------------------- Holiday ----------------------
 regular_day = DayScheme.create!(type_name: 'Regular Day', base_multiplier: 1, overtime_multiplier: 1.25, rest_day_multiplier: 1.3, overtime_rest_day_multiplier: 1.69, implemented_on: Date.new(2012,1,1))
 regular_holiday = DayScheme.create!(type_name: 'Regular Holiday', base_multiplier: 2, overtime_multiplier: 2.6, rest_day_multiplier: 2.6, overtime_rest_day_multiplier: 3.38, implemented_on: Date.new(2012,1,1))
 special_non_working = DayScheme.create!(type_name: 'Special Non-Working Holiday', base_multiplier: 1.3, overtime_multiplier: 1.69, rest_day_multiplier: 1.5, overtime_rest_day_multiplier: 1.95, implemented_on: Date.new(2012,1,1))
@@ -41,26 +52,29 @@ Holiday.create!(name: 'additional special (non-working) day', implemented_on: Da
 Holiday.create!(name: 'All Saints Day', implemented_on: Date.new(2017,11,1), day_scheme: special_non_working)
 Holiday.create!(name: 'Last day of the year', implemented_on: Date.new(2017,12,31), day_scheme: special_non_working)
 
-utilities = ExpenseCategory.create!(name: 'Utilities', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Water', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Electricity', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Telephone', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Internet', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Gas', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
-ExpenseCategory.create!(name: 'Cable', remark: Faker::Lorem.sentence(3, false, 0), parent_id: utilities.id)
+# ---------------------- Expenses ----------------------
+utilities = ExpenseCategory.create!(name: 'Utilities', remark: nil)
+ExpenseCategory.create!(name: 'Water', remark: nil, parent: utilities)
+ExpenseCategory.create!(name: 'Electricity', remark: nil, parent: utilities)
+ExpenseCategory.create!(name: 'Telephone', remark: nil, parent: utilities)
+ExpenseCategory.create!(name: 'Internet', remark: nil, parent: utilities)
+ExpenseCategory.create!(name: 'Gas', remark: nil, parent: utilities)
+ExpenseCategory.create!(name: 'Cable', remark: nil, parent: utilities)
 
-maintenance_expenses = ExpenseCategory.create!(name: 'Maintenance Expenses', remark: Faker::Lorem.sentence(3, false, 0))
+maintenance_expenses = ExpenseCategory.create!(name: 'Maintenance Expenses', remark: nil)
 
-business_insurance = ExpenseCategory.create!(name: 'Business Insurance', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Car', remark: Faker::Lorem.sentence(3, false, 0), parent_id: business_insurance.id)
-ExpenseCategory.create!(name: 'Employee', remark: Faker::Lorem.sentence(3, false, 0), parent_id: business_insurance.id)
+business_insurance = ExpenseCategory.create!(name: 'Business Insurance', remark: nil)
+ExpenseCategory.create!(name: 'Car', remark: nil, parent: business_insurance)
+ExpenseCategory.create!(name: 'Employee', remark: nil, parent: business_insurance)
 
-auxiliary_supplies = ExpenseCategory.create!(name: 'Auxiliary Supplies', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Office', remark: Faker::Lorem.sentence(3, false, 0), parent_id: auxiliary_supplies.id)
+auxiliary_supplies = ExpenseCategory.create!(name: 'Auxiliary Supplies', remark: nil)
+office = ExpenseCategory.create!(name: 'Office', remark: nil, parent: auxiliary_supplies)
+ExpenseCategory.create!(name: 'Ballpens', remark: nil, parent: office)
+ExpenseCategory.create!(name: 'Paper', remark: nil, parent: office)
 
-professional_fees = ExpenseCategory.create!(name: 'Professional Fees', remark: Faker::Lorem.sentence(3, false, 0))
-ExpenseCategory.create!(name: 'Accountant', remark: Faker::Lorem.sentence(3, false, 0), parent_id: professional_fees.id)
-ExpenseCategory.create!(name: 'Broker', remark: Faker::Lorem.sentence(3, false, 0), parent_id: professional_fees.id)
+professional_fees = ExpenseCategory.create!(name: 'Professional Fees', remark: nil)
+ExpenseCategory.create!(name: 'Accountant', remark: nil, parent: professional_fees)
+ExpenseCategory.create!(name: 'Broker', remark: nil, parent: professional_fees)
 
-taxes = ExpenseCategory.create!(name: 'Taxes', remark: Faker::Lorem.sentence(3, false, 0))
-miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: Faker::Lorem.sentence(3, false, 0))
+taxes = ExpenseCategory.create!(name: 'Taxes', remark: nil)
+miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil)

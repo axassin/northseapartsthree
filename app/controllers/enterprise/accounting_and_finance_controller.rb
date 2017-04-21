@@ -1,8 +1,12 @@
-class Enterprise::AccountingAndFinanceController < GenericDashboardController
+class Enterprise::AccountingAndFinanceController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_accounting_and_finance_path,
                      @@routes.enterprise_path)
+  end
+
+  def index
+
   end
 
 end

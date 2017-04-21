@@ -1,26 +1,36 @@
-nav.navbar.navbar-default.navigation
-  div.navbar-header.navigation-logo.col-md-2
-    a href='#{root_path}' =image_tag('nav_bar_header.png')
+// Main Navigation Bar
+// followed Bootstrap 4 documentation on how to implement a navigation bar
+nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navigation_bar
 
-  - if @class_model != nil
-    div.input_group.navigation-search.col-md-6
-      form method="get" action="#{@main_resource_path}"
-        input.form-control.navigation-search-input.typeahead id="search_query" name="search_query" type="text" placeholder="#{ '&#x1f50e;'.html_safe } Search for #{controller_name.humanize.titleize} "
+  // default button if screen is too small
+  button.navbar-toggler type='button' data-toggle='collapse' data-target='#main_navigation_bar' aria-controls='main_navigation_bar'
+    span.navbar-toggler-icon
+
+  // collapsible portion
+  div.collapse.navbar-collapse id='main_navigation_bar'
+
+    // logo (2 columns)
+    a.navbar-brand.col-md-2 href='#{root_path}'
+      = image_tag('nav_bar_header.png')
+
+    // search bar if logic unit controller (4 columns)
+    - if ApplicationController.current.class < GenericResourceController
+      form.form-inline.col-md-4 method='get' action='#{@main_resource_path}'
+        input.form-control.typeahead.generic_resource_search_bar id='search_query' name='search_query' type='text' placeholder='#{ '&#x25ba;'.html_safe } LOOK FOR #{controller_name.humanize.titleize} '
         input.hidden_submit type="submit"
-  - else
-    div.col-md-6
+        = javascript_include_tag 'generic_resource/search_suggestions'
+    - else
+      div.col-md-4 &nbsp;
 
-  div.navigation-menu-button.col-md-2
-    button.btn.btn-default.menu_button
-      i.fa.fa-modx aria-hidden="true"
-      span &nbsp; ENTERPRISE MENU &nbsp;
-    span.main_menu_arrow &#9660
-  div.navigation-login-indicator.col-md-2
-    span Login Placeholder
+    // enterprise menu button
+    div.col-md-3
+    div.enterprise_menu_button.col-md-2
+      button.btn.btn-default.menu_button
+        i.fa.fa-modx aria-hidden="true"
+        span &nbsp; ENTERPRISE MENU
+    div.col-md-1
 
-- if action_name == 'index' || rest_action?
-  = javascript_include_tag 'generic_resource/search_suggestions'
-
+// Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
 
   // Enterprise Main
@@ -34,6 +44,7 @@ div.main_menu
   // Accounting and Finance
   div.menu_category.accounting_and_finance data-parent-category='enterprise'
     = enterprise_menu_cell('university', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true)
+    = enterprise_menu_cell('etsy', enterprise_accounting_and_finance_expenses_path, 'expenses', true)
     = enterprise_menu_cell(ExchangeMedium.glyphicon, enterprise_accounting_and_finance_exchange_media_path, 'exchange_media', true)
     = enterprise_menu_cell_model(Vendor)
     = enterprise_menu_cell_model(Payment)
@@ -55,13 +66,18 @@ div.main_menu
   // Operations
   div.menu_category.operations data-parent-category='enterprise'
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_path,'greco_warehouse',true)
-
+  div.menu_category.operations data-parent-category='enterprise'  
+    = enterprise_menu_cell('info-circle',enterprise_operations_greco_warehouse_path,'storage_management',true)
+  
   div.menu_category.greco_warehouse data-parent-category='operations'
     = enterprise_menu_cell_model(GrecoItem)
     = enterprise_menu_cell_model(GrecoTransaction)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false)
 
+  div.menu_category.storage_management data-parent-category='operations'
+    = enterprise_menu_cell_model(StorageUnit)
+ 
   // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'
     = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)

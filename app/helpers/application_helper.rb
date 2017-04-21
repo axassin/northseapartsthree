@@ -53,4 +53,8 @@ module ApplicationHelper
     enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized.pluralize)
   end
 
+  def render_if_exists(path_to_partial)
+    render path_to_partial if lookup_context.find_all(path_to_partial,[],true).any?
+  end
+
 end

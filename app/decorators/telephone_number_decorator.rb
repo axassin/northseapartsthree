@@ -13,7 +13,6 @@ class TelephoneNumberDecorator < ApplicationDecorator
       digit_link_display = telephone_number.slice(0,15) + '...'
     end
 
-
     main_element = mab do
       a :class => 'btn btn-default index-data-button', :href => href_link do
         digit_link_display

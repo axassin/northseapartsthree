@@ -2,9 +2,9 @@ source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '5.0.2'
 # Use mysql as the database for Active Record
-gem 'mysql2', '>= 0.3.18', '< 0.5'
+gem 'mysql2', '>= 0.4.5'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -18,6 +18,8 @@ gem 'coffee-script-source', '1.8.0'
 # For Bootstrap JS Runtime; See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer'
 # gem 'execjs'
+
+gem 'json', '~> 2'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -71,16 +73,19 @@ group :development do
   gem 'web-console'
 
   # Guard is a command line tool to easily handle events on file system modifications.
-  gem 'guard', '>= 2.2.2', :require => false
-  gem 'guard-livereload',  :require => false
-  gem 'rack-livereload'
-  gem 'rb-fsevent',        :require => false
+  # gem 'guard', '>= 2.2.2', :require => false
+  # gem 'guard-livereload',  :require => false
+  # gem 'rack-livereload'
+  # gem 'rb-fsevent',        :require => false
 
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+# Gemfile
 
+platform :mswin, :mingw, :x64_mingw do
+  gem 'tzinfo-data'
+end
 # Slim is a fast, lightweight templating engine
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
@@ -188,3 +193,26 @@ gem 'validates_timeliness', '~> 4.0'
 
 # A dynamic, browser based visualization library.
 gem 'visjs-rails'
+
+# DEPLOYMENT
+group :development do
+  gem 'capistrano',         require: false
+  gem 'capistrano-rvm',     require: false
+  gem 'capistrano-rails',   require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano3-puma',   require: false
+end
+
+# Nokogiri (鋸) is an HTML, XML, SAX, and Reader parser. Among Nokogiri's many features is the ability to search documents via XPath or CSS3 selectors.
+gem 'nokogiri'
+
+# The jstree-rails-4 gem integrates the jsTree jQuery plugin with the Rails asset pipeline.
+gem 'jstree-rails-4'
+
+# Devise is a flexible authentication solution for Rails based on Warden
+gem 'devise'
+
+# an asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
+gem 'fullcalendar-rails'
+
+# gem 'puma'

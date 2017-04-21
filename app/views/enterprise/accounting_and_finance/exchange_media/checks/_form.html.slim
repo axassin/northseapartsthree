@@ -7,6 +7,6 @@ div.col-md-6
   = input_word(f, :check_number)
   = date_selector(f, current_instance, :dated)
 div.col-md-6
-  = model_selector(f, BankAccount, :bank_account_id, current_instance.bank_account, 'account_number')
-  = model_selector(f, SystemAccount, :payee, SystemAccount.find_by_id(current_instance.payee), 'name')
-  = model_selector(f, SystemAccount, :signatory, SystemAccount.find_by_id(current_instance.signatory), 'name')
+  = model_selector(f, BankAccount.all, :bank_account_id, current_instance.bank_account, 'account_number')
+  = model_selector(f, SystemAccount.all, :payee, SystemAccount.find_by_id(current_instance.payee), 'name')
+  = model_selector(f, SystemAccount.all, :signatory, SystemAccount.find_by_id(current_instance.signatory), 'name')

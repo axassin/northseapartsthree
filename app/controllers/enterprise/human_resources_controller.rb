@@ -1,2 +1,13 @@
-class Enterprise::HumanResourcesController < ApplicationController
+class Enterprise::HumanResourcesController < GenericReportController
+
+  def setup_controller
+    setup_variables( @@routes.enterprise_human_resources_path,
+                     @@routes.enterprise_path)
+
+  end
+
+  def index
+
+  end
+
 end

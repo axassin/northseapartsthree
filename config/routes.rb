@@ -1,11 +1,12 @@
+# For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  devise_for :users
   namespace :enterprise do
     resources :branches
   end
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
 
   # ----------------------------- Concerns -----------------------------
-
   def declare_concern( concern_name )
     concern concern_name do
       collection do
@@ -18,21 +19,25 @@ Rails.application.routes.draw do
   declare_concern( :uniqueness_validation )
   declare_concern( :retrieve_resource )
 
-  # ----------------------------- Aggregated Functions -----------------------------
+  # ----------------------------- Helpers -----------------------------
 
+  # used for the generic CRUD interface as per model
   def generate_logic_unit( unit )
     resources unit, concerns: [:search_suggestion, :uniqueness_validation, :retrieve_resource]
   end
 
+  # used for generic report or dashboard
   def define_index( indexable_controller )
     get indexable_controller, to: indexable_controller + '#index'
   end
 
+  # used for wizards
   def wizard(indexable_controller)
     resources indexable_controller.to_sym
     get indexable_controller + '/restart_wizard', to: indexable_controller + '#restart_wizard'
   end
 
+  # used for custom actions in a controller
   def generate_action_url(main_controller, action_name)
     get main_controller + '/' + action_name, to: main_controller + '#' + action_name
   end
@@ -111,9 +116,11 @@ Rails.application.routes.draw do
       end
 
       define_index( 'attendance' )
+      generate_action_url('attendance','process_attendance_grid')
       namespace :attendance do
         generate_action_url('employee_attendance_report','get_regular_work_period')
         generate_action_url('employee_attendance_report','get_attendance_records')
+        generate_action_url('employee_attendance_report','get_full_calendar_data')
         define_index( 'employee_attendance_report' )
         generate_action_url('rest_days','unique_rest_day_per_employee')
         generate_logic_unit( :rest_days )
@@ -123,6 +130,7 @@ Rails.application.routes.draw do
         generate_logic_unit( :holidays )
         generate_action_url('attendance_records','validate_overlap')
         generate_logic_unit( :attendance_records )
+        define_index('printable_attendance_sheet')
       end
 
       define_index( 'payroll' )
@@ -134,14 +142,24 @@ Rails.application.routes.draw do
 
     define_index( 'operations' )
     namespace :operations do
+
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )
       generate_action_url( 'greco_warehouse','greco_current_stock_report' )
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
+
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
+        generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
       end
+
+      define_index('storage_management')
+      namespace :storage_management do
+        generate_action_url( 'storage_management','generate_storage_units' )
+        generate_logic_unit( :storage_units )
+      end
+
     end
 
     define_index( 'strategic_marketing' )
@@ -152,8 +170,14 @@ Rails.application.routes.draw do
 
   # ----------------------------- Developer Management and Testing -----------------------------
 
+  define_index( 'development' )
   namespace :development do
-    get 'documentation', to: 'documentation#index'
+
+    define_index( 'database_migration_initializer' )
+    generate_action_url( 'database_migration_initializer','initialize_greco_inventory' )
+    generate_action_url( 'database_migration_initializer','initialize_northseapartstwo_data' )
+
+    define_index('documentation')
   end
 
 end

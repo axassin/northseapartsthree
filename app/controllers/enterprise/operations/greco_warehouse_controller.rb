@@ -1,4 +1,4 @@
-class Enterprise::Operations::GrecoWarehouseController < GenericDashboardController
+class Enterprise::Operations::GrecoWarehouseController < GenericReportController
 
   def setup_controller
     setup_variables( @@routes.enterprise_operations_greco_warehouse_path,
@@ -17,18 +17,21 @@ class Enterprise::Operations::GrecoWarehouseController < GenericDashboardControl
   end
 
   def greco_current_stock_report
-    @greco_items = GrecoItem.all.order('name ASC')
+    @title_heading = 'CURRENT STOCK'
+    @greco_items = GrecoItem.order('lower(name) ASC').all
   end
 
   def greco_out_of_stock_report
-    @greco_items = GrecoItem.all.order('name ASC')
+    @title_heading = 'OUT OF STOCK'
+    @greco_items = GrecoItem.order('lower(name) ASC').all.select { |m| m.get_current_stock <= 0 }
   end
 
   def greco_transaction_history
-    @start_attendance = params[:start_attendance] || (Time.new - 6.days).strftime('%Y-%m-%d')
-    @end_attendance = params[:end_attendance] || Time.new.strftime('%Y-%m-%d')
-
-    @greco_transactions = GrecoTransaction.where(:implemented_on => @start_attendance..@end_attendance).order('implemented_on ASC')
+    @title_heading = 'TRANSACTION HISTORY'
+    @start_date = params[:start_date] || (Time.new - 6.days).strftime('%Y-%m-%d')
+    @end_date = params[:end_date] || Time.new.strftime('%Y-%m-%d')
+    @greco_item_id = params[:greco_item_id] || GrecoItem.order("RAND()").first
+    @greco_transactions = GrecoTransaction.where(:implemented_on => @start_date..@end_date, :greco_item_id => @greco_item_id).order('implemented_on ASC')
 
   end
 

@@ -2,32 +2,31 @@ ruby:
   humanized_name = camel_to_human(name)
   selected.present? ? selected_id = selected.id : selected = nil
   data_parsley_hash = Hash.new
+  prompt_text = 'Select ' + humanized_name
 
-- unless model.all.size <= 0
+// Available Models Check
+- if scoped_model.empty?
+  ruby:
+    prompt_text = 'No valid options available; consider making a valid ' + humanized_name + ' then refreshing'
 
-  div.model_selector_group
-    label.outside_label.string.required #{humanized_name.upcase}
-    = f.input name,
-            collection: model.all,
-            prompt: 'Select ' + humanized_name,
-            selected: selected_id,
-            label: false,
-            required: true,
-            label_method: label_method.to_sym,
-            value_method: value_method.to_sym,
-            disabled: disabled,
-            input_html: data_parsley_hash
+- if selected_id != nil && scoped_model.empty? == true
+  div.form_element_tip Currently Selected : #{scoped_model.model.find_by_id(selected_id).represent}
+  = f.input name, :as => :hidden, :input_html => { :value => selected_id }
 
-- else
-
-  - unless (action_name == 'index') || (action_name == 'add')
-    div.form_element_tip Currently Selected : #{selected.represent}
-    = f.input name, :as => :hidden, :input_html => { :value => selected_id }
-  - else
-    div.form_element_tip No options available; consider making #{humanized_name} then refreshing :
+div.model_selector_group
+  label.outside_label.string.required #{humanized_name.upcase}
+  = f.input name,
+          collection: scoped_model.all,
+          prompt: prompt_text,
+          selected: selected_id,
+          label: false,
+          required: true,
+          label_method: label_method.to_sym,
+          value_method: value_method.to_sym,
+          disabled: disabled,
+          input_html: data_parsley_hash
 
 div
-  a.btn.btn-default.add_model_select target='_new' href="#{ model.main_resource_path + '/new' }" #{'Add New ' + humanized_name}
+  a.btn.btn-default.add_model_select target='_new' href="#{ scoped_model.main_resource_path + '/new' }" #{'Add New ' + humanized_name}
 
-br
 br

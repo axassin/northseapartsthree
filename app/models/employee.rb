@@ -15,7 +15,7 @@ class Employee < ApplicationRecord
   has_many :employee_statuses, :dependent => :destroy
   has_many :associated_files, as: :fileable, :dependent => :destroy
   has_many :associated_images, as: :imageable, :dependent => :destroy
-  has_many :rest_days
+  has_many :rest_days, :dependent => :destroy
 
   validates_presence_of :branch
   validates_presence_of :system_account
@@ -23,9 +23,10 @@ class Employee < ApplicationRecord
   validates :branch, length: { in: 0..64 }, :allow_nil => true
 
   scope :active_branches, -> (branch_id, status) { where(['branch_id = ?', branch_id]).select { |employee| employee.employment_status == status }}
+  scope :active_employees, -> { select{|employee| employee.employment_status == 'ACTIVE'}}
 
   def designation
-    SystemAccount.find_by_id(system_account_id).name + ' (' + position + ') at ' + Branch.find_by_id(branch_id).name
+    SystemAccount.find_by_id(system_account_id).name + ' (' + position.to_s + ') at ' + Branch.find_by_id(branch_id).name
   end
 
   def mother_branch
@@ -43,13 +44,14 @@ class Employee < ApplicationRecord
     # extract attendance records
     attendance_records =  AttendanceRecord.where(['implemented_on = ? AND employee_id = ?', inquired_date, id])
     date_difference = SystemConstant.extract_constant(inquired_date, 'hr.allowable_work_hours_per_day')
+    current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
 
     # see if record exists
-    if attendance_records.count > 0
+    if (attendance_records.count > 0) && (current_work_period.present?)
 
       # set variables
       daily_emp_work_hours = 0
-      current_work_period = RegularWorkPeriod.current_work_period(inquired_date, id)
+
       reg_work_hours = current_work_period.number_of_hours
       work_period_time_in = current_work_period.time_in
       work_period_time_out = current_work_period.time_out
@@ -96,6 +98,32 @@ class Employee < ApplicationRecord
       'no_record'
     end
 
+  end
+
+  def rest_day(current_date)
+    current_date.strftime('%A') == RestDay.current_rest_day( id,current_date)
+  end
+
+  def absence(date_start, date_end)
+    total_days = (date_start..date_end).count
+    no_record_hits = 0
+    date_start.upto(date_end) do |current_date|
+      (no_record_hits = no_record_hits + 1) if 'no_record' == attendance_status(current_date)
+    end
+    ((no_record_hits.to_f/total_days.to_f)*100).round(2)
+  end
+
+  def tardiness(date_start, date_end)
+    total_days = (date_start..date_end).count
+    no_record_hits = 0
+    date_start.upto(date_end) do |current_date|
+      (no_record_hits = no_record_hits + 1) if 'undertime' == attendance_status(current_date)
+    end
+    ((no_record_hits.to_f/total_days.to_f)*100).round(2)
+  end
+
+  def presence(date_start, date_end)
+    100 - absence(date_start, date_end)
   end
 
   searchable_string(:account_name)

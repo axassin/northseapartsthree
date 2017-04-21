@@ -1,0 +1,5 @@
+div.col-md-6
+  = input_name(f)
+  = input_remark(f)
+div.col-md-6
+  = model_selector(f, ExpenseCategory.all, :parent, current_instance.parent_id, 'name')

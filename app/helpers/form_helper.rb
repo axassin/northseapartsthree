@@ -10,12 +10,30 @@ module FormHelper
   end
 
   # input type text with word default
-  def input_word(f, name, unique = false)
+  def input_word(f, name, unique = false, required = true)
     data_parsley_hash = { 'data-parsley-trigger': 'keyup',
                           'data-parsley-minlength': 3,
-                          'data-parsley-maxlength': 64,
+                          'data-parsley-maxlength': 128,
                           'data-parsley-validation-threshold': 0 }
-    f.input name, input_html: validation_modifiers(data_parsley_hash, name, unique)
+    f.input name, required: required, input_html: validation_modifiers(data_parsley_hash, name, unique)
+  end
+
+  # input type remark
+  def input_remark(f)
+    data_parsley_hash = { 'data-parsley-trigger': 'keyup',
+                          'data-parsley-minlength': 3,
+                          'data-parsley-maxlength': 256,
+                          'data-parsley-validation-threshold': 0 }
+    f.input :remark, required: false, input_html: validation_modifiers(data_parsley_hash, :remark, false)
+  end
+
+  # input type name
+  def input_name(f)
+    data_parsley_hash = { 'data-parsley-trigger': 'keyup',
+                          'data-parsley-minlength': 3,
+                          'data-parsley-maxlength': 128,
+                          'data-parsley-validation-threshold': 0 }
+    f.input :name, required: true, input_html: validation_modifiers(data_parsley_hash, :name, false)
   end
 
   # input type text with sentence default
@@ -45,8 +63,8 @@ module FormHelper
   end
 
   # date selector
-  def input_date(f, name)
-    f.input name, as: :date, html5: true, required: true
+  def input_date(f, name, required = true)
+    f.input name, as: :date, html5: true, required: required, :input_html => { :value => Date.today }
   end
 
   # simple Selector with explicit selection array
@@ -77,10 +95,10 @@ module FormHelper
   end
 
   # Selector for a single model
-  def model_selector(f, model, name, selected, label_method = nil, value_method = 'id', disabled = false)
+  def model_selector(f, scoped_model, name, selected, label_method = 'represent', value_method = 'id', disabled = false)
     render partial: 'common/form/model_selector', locals: {
         f: f,
-        model: model,
+        scoped_model: scoped_model,
         name: name,
         selected: selected,
         label_method: label_method,
@@ -165,6 +183,19 @@ module FormHelper
       currencies.push(currency[:iso_code].to_s)
     end
     currencies
+  end
+
+  def money_field(f, current_instance, amount_name = 'amount', currency_name = 'currency')
+    render partial: 'common/form/money_field', locals: {
+        f: f,
+        current_instance: current_instance,
+        amount_name: amount_name,
+        currency_name: currency_name
+    }
+  end
+
+  def input_quantity(f)
+    f.input :quantity, as: :integer, input_html: {min: 0}
   end
 
 end
