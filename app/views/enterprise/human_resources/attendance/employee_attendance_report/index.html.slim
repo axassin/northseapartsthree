@@ -1,40 +1,26 @@
-table.attendance_report_table
-  thead
-    tr
-      th style='width: 70%'
-        div.att_report_heading Timeline
-      th style='width: 15%'
-        div.att_report_heading Remarks
-      th style='width: 15%'
-        div.att_report_heading Summary
-  tbody
-    ruby:
-      my_start_attendance = Time.parse(@start_attendance)
-      my_end_attendance = Time.parse(@end_attendance)
-      absences = 0
-      tardiness = 0
-      overtime = 0
+div.col-md-9
+  div id='calendar'
+div.col-md-3
 
-      current_attendance = my_start_attendance
+  = percentage_display('Presence',@presence_ratio)
+  = percentage_display('Absence',@absence_ratio)
+  = percentage_display('Tardiness',@tardiness_ratio)
 
-    - while current_attendance < my_end_attendance
+  br
+  div.float-clearing
+  br
+
+  div.legend_table
+    table style='width: 100%'
       tr
-        td
-          ruby:
-            id_formatted_date = current_attendance.strftime('%Y-%m-%d')
-
-          div.timeline data-parsley-date='#{id_formatted_date}'
-
-        td
-          ruby: counter = 0
-          - AttendanceRecord.where(employee_id: @employee.id, implemented_on: current_attendance).each do |record|
-            div
-              a.btn.btn-default href='#{record.show_path}' = '[' + counter.to_s + '] ' + record.remark.to_s
-            br
-            ruby: counter = counter + 1
-
-        td
-          = @employee.attendance_status(current_attendance.strftime('%Y-%m-%d')).to_s.titleize
-
-      ruby:
-        current_attendance = current_attendance + 1.day
+        td.legend align='left' LEGEND
+      tr
+        td.exact align='left' Exact Present
+      tr
+        td.shifted align='left' Shifted Present
+      tr
+        td.undertime align='left' Undertime
+      tr
+        td.overtime align='left' Overtime
+      tr
+        td.no_record align='left' No Record Exists (white)

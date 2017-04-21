@@ -66,13 +66,18 @@ div.main_menu
   // Operations
   div.menu_category.operations data-parent-category='enterprise'
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_path,'greco_warehouse',true)
-
+  div.menu_category.operations data-parent-category='enterprise'  
+    = enterprise_menu_cell('info-circle',enterprise_operations_greco_warehouse_path,'storage_management',true)
+  
   div.menu_category.greco_warehouse data-parent-category='operations'
     = enterprise_menu_cell_model(GrecoItem)
     = enterprise_menu_cell_model(GrecoTransaction)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false)
 
+  div.menu_category.storage_management data-parent-category='operations'
+    = enterprise_menu_cell_model(StorageUnit)
+ 
   // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'
     = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)

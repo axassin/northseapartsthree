@@ -1,5 +1,6 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
+  devise_for :users
   namespace :enterprise do
     resources :branches
   end
@@ -60,12 +61,14 @@ Rails.application.routes.draw do
 
     define_index( 'general_management' )
     namespace :general_management do
+
       namespace :contact_details do
         wizard('contact_wizard')
         generate_logic_unit( :telephone_numbers )
         generate_logic_unit( :links )
         generate_logic_unit( :locations )
       end
+
       generate_action_url('contact_details','contactable')
       generate_logic_unit( :contact_details )
       generate_logic_unit( :vehicles )
@@ -74,6 +77,8 @@ Rails.application.routes.draw do
       generate_logic_unit( :system_constants )
       generate_logic_unit( :associated_files )
       generate_logic_unit( :associated_images )
+      generate_logic_unit( :users )
+
     end
 
     define_index( 'accounting_and_finance' )
@@ -119,6 +124,7 @@ Rails.application.routes.draw do
       namespace :attendance do
         generate_action_url('employee_attendance_report','get_regular_work_period')
         generate_action_url('employee_attendance_report','get_attendance_records')
+        generate_action_url('employee_attendance_report','get_full_calendar_data')
         define_index( 'employee_attendance_report' )
         generate_action_url('rest_days','unique_rest_day_per_employee')
         generate_logic_unit( :rest_days )
@@ -140,14 +146,22 @@ Rails.application.routes.draw do
 
     define_index( 'operations' )
     namespace :operations do
+
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )
       generate_action_url( 'greco_warehouse','greco_current_stock_report' )
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
+
       namespace :greco_warehouse do
         generate_logic_unit( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
+      end
+
+      define_index('storage_management')
+      namespace :storage_management do
+        generate_action_url( 'storage_management','generate_storage_units' )
+        generate_logic_unit( :storage_units )
       end
 
     end
