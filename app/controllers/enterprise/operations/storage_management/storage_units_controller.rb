@@ -3,9 +3,9 @@ class Enterprise::Operations::StorageManagement::StorageUnitsController < Generi
   def setup_controller
     setup_variables( StorageUnit,
                      'Storage Unit',
-                     'Temporary Storage Unit',
-                     [],
-                     [],
+                     'Storage Container',
+                     ['ancestry'],
+                     ['parent_code'],
                      @@routes.enterprise_operations_storage_management_storage_units_path)
   end
 
@@ -15,8 +15,7 @@ class Enterprise::Operations::StorageManagement::StorageUnitsController < Generi
     my_storage_unit_processing = Proc.new do   
     my_storage_unit.parent_id = current_params[:parent_id] 
     my_storage_unit.remark = current_params[:remark]
-    my_storage_unit.code = current_params[:code]   
-    my_storage_unit.parent_storage = current_params[:parent_storage]
+    my_storage_unit.code = current_params[:code]
     my_storage_unit.save!
     end
 

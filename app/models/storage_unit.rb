@@ -12,9 +12,13 @@ class StorageUnit < ApplicationRecord
   
   
   searchable_string(:code)
-  searchable_string(:parent_storage)
-  
-  def parent_representation
+
+  def complete_code
+
+  end
+
+  def parent_code
     parent.represent
   end
+
 end

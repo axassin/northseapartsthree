@@ -4,7 +4,6 @@ class CreateExpenseCategories < MainMigration
       common_set(t)
       name_column(t)
       remark_column(t)
-      t.timestamps
     end
     add_column :expense_categories, :ancestry, :string
     add_index :expense_categories, :ancestry

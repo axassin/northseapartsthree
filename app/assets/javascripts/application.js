@@ -34,4 +34,7 @@
 //= require jquery.func_toggle.js
 //= require vis
 //= require jstree
+//= require moment
+//= require fullcalendar
+
 //= //require_tree .

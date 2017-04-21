@@ -100,6 +100,32 @@ class Employee < ApplicationRecord
 
   end
 
+  def rest_day(current_date)
+    current_date.strftime('%A') == RestDay.current_rest_day( id,current_date)
+  end
+
+  def absence(date_start, date_end)
+    total_days = (date_start..date_end).count
+    no_record_hits = 0
+    date_start.upto(date_end) do |current_date|
+      (no_record_hits = no_record_hits + 1) if 'no_record' == attendance_status(current_date)
+    end
+    ((no_record_hits.to_f/total_days.to_f)*100).round(2)
+  end
+
+  def tardiness(date_start, date_end)
+    total_days = (date_start..date_end).count
+    no_record_hits = 0
+    date_start.upto(date_end) do |current_date|
+      (no_record_hits = no_record_hits + 1) if 'undertime' == attendance_status(current_date)
+    end
+    ((no_record_hits.to_f/total_days.to_f)*100).round(2)
+  end
+
+  def presence(date_start, date_end)
+    100 - absence(date_start, date_end)
+  end
+
   searchable_string(:account_name)
   searchable_string(:mother_branch)
   searchable_string(:position)
