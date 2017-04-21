@@ -193,7 +193,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Employees
-  NO_OF_EMPLOYEES = 30
+  NO_OF_EMPLOYEES = 15
   NO_OF_EMPLOYEES.times do
 
     current_employee = Employee.create!(system_account: generate_system_account('INDIVIDUAL'),
@@ -278,7 +278,7 @@ if Rails.env.development? || Rails.env.test?
     end
 
     # Attendance Records for Employee
-    rand(0..50).times do
+    rand(0..15).times do
 
       generated_date = Faker::Date.between(2.weeks.ago, Date.today)
       generated_year = generated_date.year
