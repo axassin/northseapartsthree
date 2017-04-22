@@ -23,12 +23,27 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
       div.col-md-4 &nbsp;
 
     // enterprise menu button
-    div.col-md-3
-    div.enterprise_menu_button.col-md-2
-      button.btn.btn-default.menu_button
-        i.fa.fa-modx aria-hidden="true"
-        span &nbsp; ENTERPRISE MENU
     div.col-md-1
+    - if user_signed_in?
+      div.enterprise_menu_button.col-md-2
+        button.btn.btn-default.menu_button
+          i.fa.fa-modx aria-hidden="true"
+          span &nbsp; ENTERPRISE MENU
+    - else
+      div.col-md-2
+
+
+    - if user_signed_in?
+    - else
+      div.col-md-1 align='right'
+        a.btn.btn-default
+          i.fa.fa-sign-in aria-hidden="true"
+          span &nbsp; SIGN-IN
+      div.col-md-1 align='left'
+        a.btn.btn-default href='#{new_user_registration_path}'
+          i.fa.fa-check aria-hidden="true"
+          span &nbsp; REGISTER
+
 
 // Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
@@ -40,6 +55,7 @@ div.main_menu
     = enterprise_menu_cell('maxcdn',enterprise_general_management_path,'general_management',true)
     = enterprise_menu_cell('codepen',enterprise_operations_path,'operations',true)
     = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'strategic_marketing',true)
+    = enterprise_menu_cell('ioxhost',enterprise_system_administration_path,'system_administration',true)
 
   // Accounting and Finance
   div.menu_category.accounting_and_finance data-parent-category='enterprise'

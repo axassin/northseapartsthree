@@ -1,10 +1,5 @@
 # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 Rails.application.routes.draw do
-  devise_for :users
-  namespace :enterprise do
-    resources :branches
-  end
-
 
   # ----------------------------- Concerns -----------------------------
   def declare_concern( concern_name )
@@ -50,6 +45,9 @@ Rails.application.routes.draw do
 
   end
 
+  # ---------------------- Devise Authentication System ----------------
+  devise_for :users, controllers: { sessions: 'users/registrations' }
+
   # ----------------------------- Enterprise Information System -----------------------------
   define_index( 'enterprise' )
   namespace :enterprise do
@@ -57,6 +55,10 @@ Rails.application.routes.draw do
     define_index( 'control_panel' )
     namespace :control_panel do
 
+    end
+
+    define_index('system_administration')
+    namespace :system_administration do
     end
 
     define_index( 'general_management' )

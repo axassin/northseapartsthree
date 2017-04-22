@@ -462,7 +462,6 @@ if Rails.env.development? || Rails.env.test?
     user = User.new
     user.system_account = generate_system_account('INDIVIDUAL')
     user.email = Faker::Internet.email
-    user.password = Devise.friendly_token.first(8)
     generated_password = Faker::Internet.password(8)
     user.password = generated_password
     user.password_confirmation = generated_password
