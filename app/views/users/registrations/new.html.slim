@@ -1,1 +1,23 @@
-div dfasdfadsf
+h1.title_display ACCOUNT REGISTRATION
+div.sub_heading
+  = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' Application for an account'
+div.float-clearing
+
+= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+
+  input type='text' name='system_account[name]' id='system_account_name' placeholder='#{ '&#x25ba;'.html_safe } INDIVIDUAL OR COMPANY NAME' required='required'
+  textarea name='system_account[description]' id='system_account_description' placeholder='#{ '&#x25ba;'.html_safe } REMARKS ABOUT APPLICATION'
+  div.selection_input
+    span Type of Account :
+    span
+      input type='radio' name='system_account[account_type]' value='INDIVIDUAL'  id='system_account_type_2' required='required'
+      label for='system_account_type_2' INDIVIDUAL
+    span
+      input type='radio' name='system_account[account_type]' value='GROUP' id='system_account_type_1'
+      label for='system_account_type_1' GROUP
+  input type='email' name='user[email]' id='user_email' placeholder='#{ '&#x25ba;'.html_safe } VALID EMAIL ADDRESS' required='required'
+  input type='password' autocomplete='off' name='user[password]' id='user_password' placeholder='#{ '&#x25ba;'.html_safe } PASSWORD' required='required'
+  input type='password' autocomplete='off' name='user[password_confirmation]' id='user_password_confirmation' placeholder='#{ '&#x25ba;'.html_safe } PASSWORD CONFIRMATION' required='required'
+
+  div.actions
+    = f.submit 'SIGN UP'

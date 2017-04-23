@@ -1,0 +1,13 @@
+h1.title_display SIGN-IN
+div.sub_heading = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' System Access for Enterprise Users'
+
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  input type='email' name='user[email]' id='user_email' placeholder='#{ '&#x25ba;'.html_safe } VALID SYSTEM EMAIL ADDRESS' required='true'
+  input type='password' autocomplete='off' name='user[password]' id='user_password' placeholder='#{ '&#x25ba;'.html_safe } PASSWORD' required='true'
+  - if devise_mapping.rememberable?
+    div.checkbox_input
+      input.boolean.optional type='checkbox' name='user[remember_me]' id='user_remember_me'
+      label for='user_remember_me' Remember Me
+
+  div.actions
+    = f.submit 'SIGN UP'

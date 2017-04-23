@@ -1,6 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
 
-  layout 'layouts/front_end'
+  layout 'layouts/devise_authentication'
 
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
@@ -11,9 +11,19 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+  def create
+
+    begin
+      system_account_name = params[:system_account][:name]
+      system_account_description = params[:system_account][:description]
+      system_account_account_type = params[:system_account][:account_type]
+      SystemAccount.create!(name: system_account_name, description: system_account_description, account_type: system_account_account_type)
+      super
+    rescue => ex
+      redirect_to new_user_registration_path, :flash => { :main_notification => ex }
+    end
+
+  end
 
   # GET /resource/edit
   # def edit

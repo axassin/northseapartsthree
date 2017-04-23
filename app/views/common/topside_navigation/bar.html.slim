@@ -34,9 +34,14 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
 
 
     - if user_signed_in?
+      div.col-md-1
+      div.col-md-1
+        a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}'
+          i.fa.fa-sign-out aria-hidden="true"
+          span &nbsp; SIGN-OUT
     - else
       div.col-md-1 align='right'
-        a.btn.btn-default
+        a.btn.btn-default href='#{new_user_session_path}'
           i.fa.fa-sign-in aria-hidden="true"
           span &nbsp; SIGN-IN
       div.col-md-1 align='left'

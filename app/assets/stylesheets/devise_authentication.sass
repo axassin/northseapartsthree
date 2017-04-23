@@ -1,0 +1,74 @@
+@import 'constants'
+
+body
+  background-image: url(image_path('warehouse_background_one.png'))
+  background-position: center
+  background-repeat: no-repeat
+
+div.authorization_panel
+
+  padding: 1em
+  margin: 1em
+  border: 1.5em solid #f7f7f7
+
+  span.help-block
+    margin: 0.7em
+    border-left: solid medium $NORTH_SEA_PARTS_RED
+    padding-left: 0.5em
+
+  div.sub_heading
+    text-transform: uppercase
+    font-size: 1em
+    color: #8e8e8e
+    margin-bottom: 0.25em
+
+  input, textarea
+    width: 50%
+    padding: 0.5em
+    font-size: 1.25em
+    border: solid medium gainsboro
+    margin: 0.5em
+    margin-bottom: 0.1em
+
+  div.selection_input, div.checkbox_input
+    padding: 0.5em
+    border: solid medium gainsboro
+    width: 50%
+    margin: 0.6em
+    margin-bottom: 0.1em
+
+    input[type='checkbox']
+      width: auto
+    label
+      color: #8e8e8e
+
+  div.additional_button_option
+    margin: 1em
+    a
+      width: 50%
+      text-transform: uppercase
+
+
+  input[type='radio']
+    width: auto
+
+  input[type='submit']
+    background-color: #666666
+    border: 0
+    color: white
+
+  /* Chrome/Opera/Safari */
+  ::-webkit-input-placeholder
+    @include placeholder_text
+
+  /* Firefox 19+ */
+  ::-moz-placeholder
+    @include placeholder_text
+
+  /* IE 10+ */
+  :-ms-input-placeholder
+    @include placeholder_text
+
+  /* Firefox 18- */
+  :-moz-placeholder
+    @include placeholder_text

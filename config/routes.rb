@@ -46,7 +46,14 @@ Rails.application.routes.draw do
   end
 
   # ---------------------- Devise Authentication System ----------------
-  devise_for :users, controllers: { sessions: 'users/registrations' }
+  devise_for :users, controllers: {
+      sessions: 'users/sessions',
+      confirmations: 'users/confirmations',
+      mailer: 'users/mailer',
+      passwords: 'users/passwords',
+      registrations: 'users/registrations',
+      unlocks: 'users/unlocks'
+  }
 
   # ----------------------------- Enterprise Information System -----------------------------
   define_index( 'enterprise' )
