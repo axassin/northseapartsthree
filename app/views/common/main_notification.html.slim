@@ -1,10 +1,9 @@
-- if flash[:main_notification] || (devise_error_messages! != '')
+- if flash[:main_notification]
   div.modal.hide.alert_modal role='dialog' id='main_notification'
     div.modal-content
       div.modal-alert-content
         span.alert_message
           = flash[:main_notification]
-          = devise_error_messages!
           br
           button.btn.btn-default.alert_modal_button.btn-sm type='button' data-dismiss="modal" data-animation="false" &#10006;
           br

@@ -9,6 +9,9 @@ div.float-clearing
   - if devise_mapping.confirmable? && resource.pending_reconfirmation?
     p Currently waiting confirmation for: = resource.unconfirmed_email
 
+  div.file_input
+    = f.input :picture, as: :file, wrapper: false, label: false
+      
   = f.input :password, autocomplete: "off", required: false, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' New Password; Leave blank for old password' }
   = f.input :password_confirmation, required: false, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' New Password Confirmation' }
   = f.input :current_password, required: true, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' current password to confirm your changes' }

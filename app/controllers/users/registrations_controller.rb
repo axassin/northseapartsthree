@@ -26,9 +26,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  def edit
+    begin
+
+      super
+    rescue => ex
+      redirect_to edit_user_registration_path, :flash => { :main_notification => ex }
+    end
+  end
 
   # PUT /resource
   # def update

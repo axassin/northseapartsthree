@@ -10,4 +10,6 @@ div.sub_heading = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe +
       label for='user_remember_me' Remember Me
 
   div.actions
-    = f.submit 'SIGN UP'
+    = f.submit 'SIGN IN'
+
+= render 'users/shared/links'

@@ -32,13 +32,13 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
     - else
       div.col-md-2
 
-
     - if user_signed_in?
-      div.col-md-1
-      div.col-md-1
-        a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}'
+      div.col-md-2
+        a.btn.btn-default href='#{edit_user_registration_path}'
+          = current_user.system_account.name
+        a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}' title="Sign Out"
           i.fa.fa-sign-out aria-hidden="true"
-          span &nbsp; SIGN-OUT
+
     - else
       div.col-md-1 align='right'
         a.btn.btn-default href='#{new_user_session_path}'

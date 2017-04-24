@@ -80,4 +80,6 @@ taxes = ExpenseCategory.create!(name: 'Taxes', remark: nil)
 miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil)
 
 # Development Login
-User.create!(system_account: developer_one_system_account, email: 'developer_one@gmail.com', password: 'ilovetess', password_confirmation: 'ilovetess')
+developer_one = User.new(system_account: developer_one_system_account, email: 'developer_one@gmail.com', password: 'ilovetess', password_confirmation: 'ilovetess')
+developer_one.skip_confirmation!
+developer_one.save!

@@ -9,7 +9,7 @@ class Enterprise::Operations::StorageManagementController < GenericReportControl
   end
 
   def index
-
+    @sample = StorageUnit.order("RAND()").first.complete_code
   end
 
 end
