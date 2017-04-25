@@ -27,18 +27,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   # GET /resource/edit
   def edit
-    begin
+    super
+  end
 
+  # PUT /resource
+  def update
+    begin
+      puts '----------------------- - - ---------'
+      current_system_account = current_user.system_account
+      if (params[:system_account]).has_key?(:picture)
+        puts params[:system_account][:picture]
+        current_system_account.primary_image = params[:system_account][:picture]
+        current_system_account.save!
+      end
       super
     rescue => ex
       redirect_to edit_user_registration_path, :flash => { :main_notification => ex }
     end
   end
-
-  # PUT /resource
-  # def update
-  #   super
-  # end
 
   # DELETE /resource
   # def destroy

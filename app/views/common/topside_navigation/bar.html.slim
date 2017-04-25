@@ -33,18 +33,17 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
       div.col-md-2
 
     - if user_signed_in?
-      div.col-md-2
+      div.col-md-3.user_navigation_elements
         a.btn.btn-default href='#{edit_user_registration_path}'
           = current_user.system_account.name
         a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}' title="Sign Out"
           i.fa.fa-sign-out aria-hidden="true"
 
     - else
-      div.col-md-1 align='right'
+      div.col-md-3.user_navigation_elements
         a.btn.btn-default href='#{new_user_session_path}'
           i.fa.fa-sign-in aria-hidden="true"
           span &nbsp; SIGN-IN
-      div.col-md-1 align='left'
         a.btn.btn-default href='#{new_user_registration_path}'
           i.fa.fa-check aria-hidden="true"
           span &nbsp; REGISTER
