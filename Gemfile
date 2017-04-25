@@ -88,7 +88,7 @@ end
 # Slim is a fast, lightweight templating engine
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
