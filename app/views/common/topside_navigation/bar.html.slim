@@ -116,6 +116,10 @@ div.main_menu
 
   div.menu_category.payroll data-parent-category='human_resources'
     = enterprise_menu_cell_model(DayScheme)
+    = enterprise_menu_cell('info', enterprise_human_resources_payroll_vales_management_path, 'vales_management', nil)
+
+  div.menu_category.payroll data-parent-category='payroll'
+    = enterprise_menu_cell_model(Vale)
 
   // General Management
   div.menu_category.general_management data-parent-category='enterprise'

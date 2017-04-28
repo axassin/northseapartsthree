@@ -469,4 +469,16 @@ if Rails.env.development? || Rails.env.test?
     user.save!
   }
 
+  # Vale
+  number_of_vale = 20
+  number_of_vale.times {
+    vale = Vale.new
+    vale.employee = Employee.order("RAND()").first
+    vale.amount_centavos = Faker::Commerce.price*100.00
+    vale.amount_currency = ['USD','PHP','NTD'].sample
+    vale.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
+    vale.remark = Faker::Commerce.product_name
+    vale.save!
+  }
+
 end
