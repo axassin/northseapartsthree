@@ -1,6 +1,5 @@
 source 'http://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.2'
 # Use mysql as the database for Active Record
@@ -30,7 +29,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.11'
+gem 'bcrypt', '~> 3.1.11', platforms: :ruby
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -89,7 +88,7 @@ end
 # Slim is a fast, lightweight templating engine
 gem 'slim'
 # HTML, CSS, and JS framework for developing responsive, mobile first projects on the web
-gem 'bootstrap', '~> 4.0.0.alpha5'
+gem 'bootstrap', '~> 4.0.0.alpha6'
 
 # Tooltips and popovers depend on tether for positioning. If you use them, add tether to the Gemfile:
 gem 'rails-assets-tether', '>= 1.1.0'
@@ -214,5 +213,11 @@ gem 'devise'
 
 # an asset gem containing Adam Shaw's excellent fullcalendar jquery plugin
 gem 'fullcalendar-rails'
+
+# OmniAuth: Standardized Multi-Provider Authentication
+gem 'omniauth'
+
+# mailgun_rails is an Action Mailer adapter for using Mailgun in Rails apps. It uses the Mailgun HTTP API internally.
+gem 'mailgun_rails'
 
 # gem 'puma'

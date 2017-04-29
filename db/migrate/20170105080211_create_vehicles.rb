@@ -1,4 +1,4 @@
-class CreateVehicles < ActiveRecord::Migration
+class CreateVehicles < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :vehicles, id: false do |t|

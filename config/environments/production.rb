@@ -86,4 +86,13 @@ Rails.application.configure do
 
   # Carrierwave does not serve files in production
   config.serve_static_assets = true
+
+  # Devise Configuration
+  config.action_mailer.default_url_options = {:host => 'localhost'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "127.0.0.1",
+      :port    => 25,
+      :domain  => 'yourdomain.com'
+  }
 end

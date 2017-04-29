@@ -1,0 +1,28 @@
+h1.title_display EDIT USER ACCOUNT
+div.sub_heading
+  = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' Change Account Settings'
+div.float-clearing
+
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f|
+  = f.input :email, required: true, autofocus: true, label: false, input_html: { class: 'string email required' }
+
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    p Currently waiting confirmation for: = resource.unconfirmed_email
+
+  div.form_comment Picture or Logo :
+  div.form_comment
+    img src='#{current_user.system_account.primary_image.url}'
+  input.file.optional type='file' name='system_account[picture]' id='system_account_picture'
+  = f.input :password, autocomplete: "off", required: false, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' New Password; Leave blank for old password' }
+  = f.input :password_confirmation, required: false, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' New Password Confirmation' }
+  = f.input :current_password, required: true, label: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' current password to confirm your changes' }
+
+  div.actions
+    = f.submit 'UPDATE ACCOUNT SETTINGS'
+
+div.float-clearing
+br
+div.additional_button_option
+  = link_to 'Delete Account', registration_path(resource_name), data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-default'
+div.additional_button_option
+  = link_to 'Back', :back, class: 'btn btn-default'

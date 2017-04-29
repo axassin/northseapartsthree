@@ -27,7 +27,7 @@ Rails.application.configure do
   end
 
   # Don't care if the mailer can't send.
-  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = true
 
   config.action_mailer.perform_caching = false
 
@@ -57,7 +57,12 @@ Rails.application.configure do
 
   config.serve_static_assets = true
 
-  # Devise COnfiguration
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-
+  # Devise Configuration
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.delivery_method = :mailgun
+  config.action_mailer.mailgun_settings = {
+      api_key: 'key-dbe834cdea4e1d20b82489ec20b0f424',
+      domain: 'sandbox6a7249fb157144c394b65569d6d72cb1.mailgun.org'
+  }
 end

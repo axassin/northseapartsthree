@@ -7,10 +7,10 @@ div.col-md-6
   - else
     = selector(f, :account_type, ['INDIVIDUAL','GROUP'], current_instance.account_type)
 
-  = associated_files_section(f, @current_instance)
 div.col-md-6
   = image_upload_input(f, params, @current_instance)
   = associated_images_section(f, @current_instance)
+  = associated_files_section(f, @current_instance)
 
 - if @wizard_steps.present?
   input type='hidden' name='wizard_model' value='new_system_account'

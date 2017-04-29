@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170417031716) do
+ActiveRecord::Schema.define(version: 20170428101350) do
 
   create_table "associated_files", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -391,10 +391,22 @@ ActiveRecord::Schema.define(version: 20170417031716) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
   end
 
+  create_table "vales", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.string   "remark",          limit: 256
+    t.integer  "amount_centavos",             default: 0,     null: false
+    t.string   "amount_currency",             default: "PHP", null: false
+    t.date     "implemented_on"
+    t.string   "employee_id",     limit: 36
+    t.index ["deleted_at"], name: "index_vales_on_deleted_at", using: :btree
+  end
+
   create_table "vehicles", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.string   "color",                limit: 64
     t.string   "make",                 limit: 64
     t.string   "brand",                limit: 64

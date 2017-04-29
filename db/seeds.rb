@@ -462,11 +462,23 @@ if Rails.env.development? || Rails.env.test?
     user = User.new
     user.system_account = generate_system_account('INDIVIDUAL')
     user.email = Faker::Internet.email
-    user.password = Devise.friendly_token.first(8)
     generated_password = Faker::Internet.password(8)
     user.password = generated_password
     user.password_confirmation = generated_password
+    user.skip_confirmation!
     user.save!
+  }
+
+  # Vale
+  number_of_vale = 20
+  number_of_vale.times {
+    vale = Vale.new
+    vale.employee = Employee.order("RAND()").first
+    vale.amount_centavos = Faker::Commerce.price*100.00
+    vale.amount_currency = ['USD','PHP','NTD'].sample
+    vale.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
+    vale.remark = Faker::Commerce.product_name
+    vale.save!
   }
 
 end
