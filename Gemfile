@@ -54,14 +54,8 @@ group :development, :test do
   # Capybara helps you test web applications by simulating how a real user would interact with your app.
   gem 'capybara'
 
-  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
-  gem 'shoulda-matchers', '~> 3.1'
-
   # Cucumber-Rails brings Cucumber to Rails 3.x, 4.x and 5.x.
   gem 'cucumber-rails', :require => false
-
-  # database_cleaner is not required, but highly recommended
-  gem 'database_cleaner'
 
   # This gem brings back assigns to your controller tests as well as assert_template to both controller and integration tests.
   gem 'rails-controller-testing'
@@ -77,6 +71,17 @@ group :development do
   # gem 'guard-livereload',  :require => false
   # gem 'rack-livereload'
   # gem 'rb-fsevent',        :require => false
+
+end
+
+# Testing integrators and db data truncator
+group :test do
+
+  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
+  gem 'shoulda-matchers', '~> 3.1'
+
+  # database_cleaner is not required, but highly recommended
+  gem 'database_cleaner'
 
 end
 
