@@ -449,7 +449,7 @@ if Rails.env.development? || Rails.env.test?
   number_of_storage_units = 20
   number_of_storage_units.times {
     storage_unit = StorageUnit.new
-    storage_unit.code = Faker::Code.isbn
+    storage_unit.code = Faker::Pokemon.unique.location
     storage_unit.remark = Faker::Commerce.product_name
     storage_unit.parent = StorageUnit.order("RAND()").first
     storage_unit.save!

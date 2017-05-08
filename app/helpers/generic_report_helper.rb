@@ -13,6 +13,13 @@ module GenericReportHelper
     main_element.html_safe
   end
 
+  def report_number_input(name, default_value = 0)
+    main_element = mab do
+      input :type => 'number', :name => name, :id => name, :max => '1000', :min => '0', :value => default_value
+    end
+    main_element.html_safe
+  end
+
   def report_submit_button
     main_element = mab do
       span do

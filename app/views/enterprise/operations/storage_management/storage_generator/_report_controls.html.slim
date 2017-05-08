@@ -1,0 +1,15 @@
+div.control_cell
+  span Current Code
+  = report_model_selector(StorageUnit.all, 'code', @storage_unit_id)
+div.control_cell
+  span from depth
+  = report_number_input('start_depth',@start_depth)
+div.control_cell
+  span to 
+  = report_number_input('end_depth',@end_depth)
+div.control_cell
+  span
+  = report_submit_button
+
+
+

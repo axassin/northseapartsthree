@@ -159,9 +159,11 @@ Rails.application.routes.draw do
       end
 
       define_index('storage_management')
-      namespace :storage_management do
+        namespace :storage_management do
         generate_action_url( 'storage_management','generate_storage_units' )
         generate_logic_unit( :storage_units )
+        define_index( 'storage_structure_report' )
+        define_index( 'storage_generator' )
       end
       
     end
