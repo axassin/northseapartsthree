@@ -1,17 +1,48 @@
 div.col-md-3
   
   br
-  | code : 
+  | current code : 
   = @storage_unit.code
   br
-  | depth : 
+  br
+  | current code's breadth : 
   = @storage_unit.depth
+  br
   br
   | parent code : 
   = @storage_unit.parent_code
   br
-  | complete_code :  
+  br
+  |ancestors code or complete code :  
   = @storage_unit.complete_code
-  br 
-
-
+  br
+  br
+  | last possible breadth :
+  = @storage_unit.last_breadth
+  br
+  br
+  | descendants code :  
+  = @storage_unit.descendant_code
+  br
+  br  
+  br  
+  | selected start_breadth :  
+  = @start_breadth
+  br  
+  | selected end_breadth :  
+  = @end_breadth
+  br
+  br
+  | Descendant Result:
+  br
+  -@storage_unit.descendants.each do |result|    
+    -if result.depth.to_i <= @end_breadth.to_i
+      =result.depth 
+      br
+      =result.code
+      br
+      =result.remark
+      br   
+    |
+    end
+  end

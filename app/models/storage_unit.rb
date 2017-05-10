@@ -30,13 +30,27 @@ class StorageUnit < ApplicationRecord
   def parent_code
     parent.represent if parent.present?
   end
-
-  def depth_code
-    depth
-  end
-
-  def p_depth_code
-    parent.depth if parent.present?
-  end
  
+  def descendant_code     
+    sample_chain = ''
+    delimiter=':'
+    StorageUnit.where(code: code).each do |storage_unit|
+      storage_unit.descendants.each do |descendant|
+        unless sample_chain.present?
+          sample_chain = descendant.code.to_s  
+        else
+          sample_chain = sample_chain + delimiter + descendant.code.to_s  
+        end 
+      end
+    end
+    sample_chain
+  end
+
+  def last_breadth
+    if child_ids.empty?
+      return depth
+    else
+      return children.map{|c| c.last_breadth}.max
+    end
+  end
 end

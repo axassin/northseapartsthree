@@ -5,8 +5,8 @@ class Enterprise::Operations::StorageManagement::StorageGeneratorController  < G
 
     @storage_unit_id = params[:code] || StorageUnit.order("RAND()").first.id
     @storage_unit = StorageUnit.find_by_id(@storage_unit_id)
-    @start_depth = @storage_unit.root.depth 
-    @end_depth=  @storage_unit.depth
+    @start_breadth = params[:start_breadth] || @storage_unit.root.depth 
+    @end_breadth=  params[:end_breadth] || @storage_unit.depth
   end
 
    def index
