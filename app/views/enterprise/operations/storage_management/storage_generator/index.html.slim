@@ -32,6 +32,19 @@ div.col-md-3
   | selected end_breadth :  
   = @end_breadth
   br
+  | Ancestor Result:
+  br
+  -@storage_unit.ancestors.each do |result|    
+    -if result.depth.to_i >= @start_breadth.to_i
+      =result.depth 
+      br
+      =result.code
+      br
+      =result.remark
+      br   
+    |
+    end
+  end
   br
   | Descendant Result:
   br
