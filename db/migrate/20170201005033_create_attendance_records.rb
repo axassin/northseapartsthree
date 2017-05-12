@@ -1,4 +1,5 @@
-class CreateAttendanceRecords < MainMigration
+class CreateAttendanceRecords < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :attendance_records, id: false do |t|
       common_set(t)

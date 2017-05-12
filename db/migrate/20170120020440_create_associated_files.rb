@@ -1,4 +1,5 @@
-class CreateAssociatedFiles < MainMigration
+class CreateAssociatedFiles < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :associated_files, id: false do |t|
       common_set(t)

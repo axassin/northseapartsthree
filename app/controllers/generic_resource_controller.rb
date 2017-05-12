@@ -1,5 +1,6 @@
 class GenericResourceController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :setup_controller
 
   def setup_variables( class_model, resource_title_heading, resource_sub_heading, omitted_attributes , admitted_attributes , parent_controller_path, wizard_model_path = nil)
@@ -143,12 +144,16 @@ class GenericResourceController < ApplicationController
     setup_index
   end
 
+  # process the model for create and update actions
   def setup_process( model_instance, process_block, wizard_mode = nil )
 
+    # setup variables
     modal_message = 'Invalid input detected. Please contact Administrator.'
     @wizard_response = nil
 
+    # fail-safe statements
     begin
+
       ActiveRecord::Base.transaction do
         process_block.call
         @wizard_response = model_instance.id
@@ -241,12 +246,14 @@ class GenericResourceController < ApplicationController
     instance_file.send("#{attributable}=", current_params[attributable]) if wizard_mode
   end
 
+  # for processing type and id
   def polymorphic_reference_process(polymorphic_instance,polymorphic_attribute,current_params)
     raw_polymorphic_array = current_params[polymorphic_attribute.to_sym].to_s.split(",")
     polymorphic_instance.send("#{polymorphic_attribute + '_type='}", raw_polymorphic_array[0])
     polymorphic_instance.send("#{polymorphic_attribute + '_id='}", raw_polymorphic_array[1])
   end
 
+  # for processing field with currency
   def process_money(model_instance, amount, currency = 'PHP', prefix = 'amount')
     actual_amount = (prefix + '_centavos').to_sym
     actual_currency = (prefix + '_currency').to_sym

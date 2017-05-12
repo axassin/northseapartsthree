@@ -16,7 +16,8 @@ Rails.application.configure do
 
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
-  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  # config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.enabled = true
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = :uglifier
@@ -86,4 +87,13 @@ Rails.application.configure do
 
   # Carrierwave does not serve files in production
   config.serve_static_assets = true
+
+  # Devise Configuration
+  config.action_mailer.default_url_options = {:host => 'localhost'}
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :address => "127.0.0.1",
+      :port    => 25,
+      :domain  => 'yourdomain.com'
+  }
 end

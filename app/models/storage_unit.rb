@@ -14,7 +14,9 @@ class StorageUnit < ApplicationRecord
   searchable_string(:code)
 
   def complete_code
-
+    'dfasdnfaskldjfhdklfh '
+    puts '----------------- --- ---'
+    puts 'dfasdfas'
   end
 
   def parent_code

@@ -1,0 +1,12 @@
+h1.title_display UNLOCK ACCOUNT
+div.sub_heading = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' Resend Instructions to Unlock'
+
+= simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
+  = f.error_notification
+  = f.full_error :unlock_token
+  = f.input :email, required: true, autofocus: true, label: false, wrapper: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' EMAIL ' }
+
+  div.actions
+    = f.submit 'RESEND UNLOCK INSTRUCTIONS'
+
+= render 'users/shared/links'

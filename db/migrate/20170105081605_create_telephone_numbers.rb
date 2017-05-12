@@ -1,4 +1,5 @@
-class CreateTelephoneNumbers < MainMigration
+class CreateTelephoneNumbers < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :telephone_numbers, id: false do |t|
       common_set(t)

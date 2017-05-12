@@ -9,7 +9,7 @@ class Enterprise::Operations::StorageManagementController < GenericReportControl
   end
 
   def index
-
+    @root_storage_nodes = StorageUnit.roots
   end
 
 end

@@ -1,6 +1,6 @@
-class CreateVehicles < MainMigration
+class CreateVehicles < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
-
     create_table :vehicles, id: false do |t|
       common_set(t)
       t.string :color, :limit => 64, :required => true

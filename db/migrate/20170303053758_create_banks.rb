@@ -1,4 +1,5 @@
-class CreateBanks < MainMigration
+class CreateBanks < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :banks, id: false do |t|
       common_set(t)

@@ -16,7 +16,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         :setup_associated_file,
         :end
 
-  def setup_wizard_controller
+  def setup_controller
     setup_variables(@@routes.enterprise_human_resources_employee_accounts_management_path,
                     @@routes.enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path)
   end

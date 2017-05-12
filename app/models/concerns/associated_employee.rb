@@ -11,7 +11,9 @@ module AssociatedEmployee extend ActiveSupport::Concern
     end
 
     def employee_name
-      Employee.find_by_id(employee_id).system_account.name
+      if Employee.find_by_id(employee_id).present?
+        Employee.find_by_id(employee_id).represent
+      end
     end
 
   end

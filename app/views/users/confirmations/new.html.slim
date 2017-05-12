@@ -1,0 +1,14 @@
+h1.title_display Resend confirmation instructions
+div.sub_heading
+  = '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' Application for an account'
+div.float-clearing
+
+= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f|
+  = f.error_notification
+  = f.full_error :confirmation_token
+  = f.input :email, required: true, autofocus: true, label: false, wrapper: false, input_html: { placeholder: '&#x25ba;'.html_safe + ' EMAIL ' }
+
+  div.actions
+    = f.submit 'RESEND'
+
+= render 'users/shared/links'

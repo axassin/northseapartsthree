@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: northseapartsthree_production
-  username: northseapartsthree
-  password: <%= ENV['NORTHSEAPARTSTHREE_DATABASE_PASSWORD'] %>
+  database: northseapartsthree_development
+  username: root
+  password: ilovetess

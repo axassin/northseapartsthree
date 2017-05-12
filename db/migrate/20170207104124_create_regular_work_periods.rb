@@ -1,4 +1,5 @@
-class CreateRegularWorkPeriods < MainMigration
+class CreateRegularWorkPeriods < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :regular_work_periods, id: false do |t|
       common_set(t)
