@@ -1,6 +1,11 @@
-ul
-  - account_array.each do |account|
-    li
-      = account.name
-      - if account.has_children?
-        = render_expense_category_sub_accounts(account.children)
+- account_array.each do |account|
+  - if account.root?
+    div.expense_cell.root
+      a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+  - else
+    div.expense_cell
+
+  - if account.has_children?
+    = render_expense_category_sub_accounts(account.children)
+
+// U+021B3 corner right arrow
