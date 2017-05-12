@@ -1,4 +1,4 @@
-class CreateExpenseCategories < ActiveRecord::Migration
+class CreateExpenseCategories < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :expense_categories, id: false do |t|

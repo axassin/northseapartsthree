@@ -1,4 +1,4 @@
-class CreateSystemAccounts < ActiveRecord::Migration
+class CreateSystemAccounts < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :system_accounts, id: false do |t|

@@ -1,4 +1,4 @@
-class CreateBranches < ActiveRecord::Migration
+class CreateBranches < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :branches, id: false do |t|

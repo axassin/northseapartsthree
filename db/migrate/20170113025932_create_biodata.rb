@@ -1,4 +1,4 @@
-class CreateBiodata < ActiveRecord::Migration
+class CreateBiodata < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :biodata, id: false do |t|

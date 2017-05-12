@@ -1,4 +1,4 @@
-class CreateAssociatedImages < ActiveRecord::Migration
+class CreateAssociatedImages < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :associated_images, id: false do |t|

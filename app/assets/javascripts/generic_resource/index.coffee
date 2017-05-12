@@ -67,4 +67,3 @@ remove_all_params = (url) ->
 # Delete Button Behaviour
 $('.generic_item_option_delete').click ->
   e.preventDefault()
-  alert 'great allied nation'

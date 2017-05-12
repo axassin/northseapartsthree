@@ -1,4 +1,4 @@
-class CreateGrecoTransactions < ActiveRecord::Migration
+class CreateGrecoTransactions < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :greco_transactions, id: false do |t|

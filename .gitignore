@@ -82,3 +82,5 @@ solr/hsperfdata_james
 workspace.xml
 
 database.yml
+
+env_provider.yml

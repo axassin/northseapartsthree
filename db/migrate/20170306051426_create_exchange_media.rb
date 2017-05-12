@@ -1,4 +1,4 @@
-class CreateExchangeMedia < ActiveRecord::Migration
+class CreateExchangeMedia < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :exchange_media, id: false do |t|

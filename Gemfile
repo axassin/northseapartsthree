@@ -220,4 +220,7 @@ gem 'omniauth'
 # mailgun_rails is an Action Mailer adapter for using Mailgun in Rails apps. It uses the Mailgun HTTP API internally.
 gem 'mailgun_rails'
 
+# CanCan is an authorization library for Ruby on Rails which restricts what resources a given user is allowed to access.
+gem 'cancan'
+
 # gem 'puma'
