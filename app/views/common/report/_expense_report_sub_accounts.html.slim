@@ -1,28 +1,64 @@
 - account_array.each do |account|
 
-  - if account.root?
-    tr.expense_cell.root
-      td
-        a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
-      td
-        div dfasdfa
-      td
-        div dfasdfa
-      td
-        div dfasdfa
-  - else
-    tr.expense_cell
-      td
-        - account.depth.times
-          span &nbsp; &nbsp;
-        span &#8627; &nbsp;
-        a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
-      td
-        div dfasdfa
-      td
-        div dfasdfa
-      td
-        div dfasdfa
+  ruby:
+    node_class = 'expense_cell'
+    account_parent_id = 0
+    if account.root?
+      node_class = node_class + ' root'
+    end
+
+    if account.has_children?
+      node_class = node_class + ' parent'
+    end
+
+    if account.parent
+      account_parent_id = account.parent.id
+    end
+
+  tr class='#{node_class}' data-parent_id='#{account_parent_id}'
+    td
+      - account.depth.times
+        span &nbsp; &nbsp;
+      span &#8627; &nbsp;
+      input type='checkbox'
+      span &nbsp;
+      a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+      span &nbsp;
+      button.btn.btn-default.btn-xs.display_option_button &#9872;
+      - if account.has_children?
+        span &nbsp;
+        button.btn.btn-default.btn-xs.hierarchy_option_button data-account_id='#{account.id}' &#9654;
 
   - if account.has_children?
     = render_expense_category_sub_accounts(account.children)
+
+javascript:
+  var chart = c3.generate({
+    data: {
+      x: 'x',
+      //        xFormat: '%Y%m%d', // 'xFormat' can be used as custom format of 'x'
+      columns: [
+        ['x', '2013-01-01', '2013-01-02', '2013-01-03', '2013-01-04', '2013-01-05', '2013-01-06'],
+        //            ['x', '20130101', '20130102', '20130103', '20130104', '20130105', '20130106'],
+        ['data1', 30, 200, 100, 400, 150, 250],
+        ['data2', 130, 340, 200, 500, 250, 350]
+      ]
+    },
+    axis: {
+      x: {
+        type: 'timeseries',
+        tick: {
+          format: '%Y-%m-%d'
+        }
+      }
+    }
+  });
+
+  setTimeout(function () {
+    chart.load({
+      columns: [
+        ['data3', 400, 500, 450, 700, 600, 500]
+      ]
+    });
+  }, 1000);
+

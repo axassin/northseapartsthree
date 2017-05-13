@@ -223,4 +223,10 @@ gem 'mailgun_rails'
 # CanCan is an authorization library for Ruby on Rails which restricts what resources a given user is allowed to access.
 gem 'cancan'
 
+# D3.js is a JavaScript library for manipulating documents based on data. D3 helps you bring data to life using HTML, SVG and CSS.
+gem 'd3-rails'
+
+# c3 is a D3-based reusable chart library that enables deeper integration of charts into web applications.
+gem 'c3-rails'
+
 # gem 'puma'

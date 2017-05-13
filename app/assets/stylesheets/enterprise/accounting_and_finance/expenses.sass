@@ -14,7 +14,13 @@ div.expense_category_tree
 
   .expense_cell
     margin: 0.2em
-    a.btn
+    display: none
+    button, a
       padding: 0.2em
+      color: white
 
-  .expense_cell.root
+    &.root
+      display: block
+
+    &.parent
+      

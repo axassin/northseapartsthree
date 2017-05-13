@@ -1,16 +1,23 @@
 div.col-md-4.expense_category_tree
   table
-    tr.header_row
-      td
-        div Accounts
-      td
-        div NRML
-      td
-        div 3-PT
-      td
-        div AMAZING
-    tr
-      = render_expense_category_sub_accounts(@root_expenses)
+    = render_expense_category_sub_accounts(@root_expenses)
+div.col-md-8
+  div id='visualization'
 
-div.col-md-4
-div.col-md-4
+javascript:
+  var container = document.getElementById('visualization');
+  var items = [
+    {x: '2014-06-11', y: 10},
+    {x: '2014-06-12', y: 25},
+    {x: '2014-06-13', y: 30},
+    {x: '2014-06-14', y: 10},
+    {x: '2014-06-15', y: 15},
+    {x: '2014-06-16', y: 30}
+  ];
+
+  var dataset = new vis.DataSet(items);
+  var options = {
+    start: '2014-06-10',
+    end: '2014-06-18'
+  };
+  var graph2d = new vis.Graph2d(container, dataset, options);

@@ -2,7 +2,7 @@ class Enterprise::AccountingAndFinance::ExpensesController < GenericReportContro
 
   def setup_controller
     setup_variables( @@routes.enterprise_accounting_and_finance_expenses_path,
-                     @@routes.enterprise_accounting_and_finance_path)
+                     @@routes.enterprise_accounting_and_finance_path, 'Expense Report')
   end
 
   def index

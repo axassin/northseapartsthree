@@ -3,4 +3,13 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('div#expense_tree').jstree();
+  $('.hierarchy_option_button').funcToggle( 'click',
+    ->
+      $(this).html('&#9660;')
+      account_id = $(this).data( "account_id" )
+      $(".expense_cell[data-parent_id='" + account_id + "']").show()
+    ->
+      $(this).html('&#9654;')
+      account_id = $(this).data( "account_id" )
+      $(".expense_cell[data-parent_id='" + account_id + "']").hide()
+  )

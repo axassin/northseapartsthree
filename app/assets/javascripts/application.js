@@ -36,5 +36,7 @@
 //= require jstree
 //= require moment
 //= require fullcalendar
+//= require d3
+//= require c3
 
 //= //require_tree .
