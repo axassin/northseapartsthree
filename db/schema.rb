@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510032820) do
+ActiveRecord::Schema.define(version: 20170510005313) do
 
   create_table "access_permissions", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -291,18 +291,6 @@ ActiveRecord::Schema.define(version: 20170510032820) do
     t.string   "address",           limit: 512
     t.string   "contact_detail_id", limit: 36
     t.index ["deleted_at"], name: "index_locations_on_deleted_at", using: :btree
-  end
-
-  create_table "logic_unit_preferences", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "deleted_at"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "user_id",    limit: 36
-    t.string   "resource"
-    t.string   "view_mode"
-    t.string   "order_by"
-    t.string   "sort_by"
-    t.index ["deleted_at"], name: "index_logic_unit_preferences_on_deleted_at", using: :btree
   end
 
   create_table "payments", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

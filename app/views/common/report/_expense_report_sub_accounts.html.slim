@@ -1,11 +1,28 @@
 - account_array.each do |account|
+
   - if account.root?
-    div.expense_cell.root
-      a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+    tr.expense_cell.root
+      td
+        a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+      td
+        div dfasdfa
+      td
+        div dfasdfa
+      td
+        div dfasdfa
   - else
-    div.expense_cell
+    tr.expense_cell
+      td
+        - account.depth.times
+          span &nbsp; &nbsp;
+        span &#8627; &nbsp;
+        a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+      td
+        div dfasdfa
+      td
+        div dfasdfa
+      td
+        div dfasdfa
 
   - if account.has_children?
     = render_expense_category_sub_accounts(account.children)
-
-// U+021B3 corner right arrow

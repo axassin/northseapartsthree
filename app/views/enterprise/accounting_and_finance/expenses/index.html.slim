@@ -1,4 +1,16 @@
-div.col-md-4 id='expense_category_tree'
-  = render_expense_category_sub_accounts(@root_expenses)
+div.col-md-4.expense_category_tree
+  table
+    tr.header_row
+      td
+        div Accounts
+      td
+        div NRML
+      td
+        div 3-PT
+      td
+        div AMAZING
+    tr
+      = render_expense_category_sub_accounts(@root_expenses)
+
 div.col-md-4
 div.col-md-4
