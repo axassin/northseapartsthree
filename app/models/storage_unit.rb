@@ -105,19 +105,18 @@ class StorageUnit < ApplicationRecord
           end
         end 
      sample_chain
-  end
+  end 
  
- def last_child
-   sample_chain = ''
-    delimiter=':'
+  def last_child_code
+    sample_chain = ''
     StorageUnit.where(code: code).each do |storage_unit|
       storage_unit.descendants.each do |descendant|
-        if storage_unit.last_breadth == descendant.depth
-          sample_chain = sample_chain + delimiter + descendant.code.to_s  + descendant.depth.to_s  
+        if storage_unit.last_breadth.to_i == descendant.depth.to_i
+          sample_chain = sample_chain.to_s + " " + descendant.code.to_s  + " depth: "+ descendant.depth.to_s  
         end
       end
     end
     sample_chain
- end
+  end
 
 end
