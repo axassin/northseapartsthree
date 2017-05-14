@@ -1,23 +1,24 @@
-div.col-md-4.expense_category_tree
+ruby:
+  start_date = Time.parse(@start_date)
+  end_date = Time.parse(@end_date)
+  current_attendance = start_date
+  time_format_string = ''
+
+div.col-md-12.expense_category_tree.generic_table_container
   table
-    = render_expense_category_sub_accounts(@root_expenses)
-div.col-md-8
-  div id='visualization'
+    thead
+      tr
+        th
+          div.header_expense_cell Expense Category
 
-javascript:
-  var container = document.getElementById('visualization');
-  var items = [
-    {x: '2014-06-11', y: 10},
-    {x: '2014-06-12', y: 25},
-    {x: '2014-06-13', y: 30},
-    {x: '2014-06-14', y: 10},
-    {x: '2014-06-15', y: 15},
-    {x: '2014-06-16', y: 30}
-  ];
+        - while current_attendance <= end_date
+          th
+            div.header_expense_cell = current_attendance.strftime(convert_interval_to_time_string(@interval))
 
-  var dataset = new vis.DataSet(items);
-  var options = {
-    start: '2014-06-10',
-    end: '2014-06-18'
-  };
-  var graph2d = new vis.Graph2d(container, dataset, options);
+          ruby:
+            current_attendance = current_attendance + 1.send(@interval)
+
+    tbody
+      ruby:
+        current_attendance = start_date
+      = render_expense_category_sub_accounts(@root_expenses, current_attendance, start_date, end_date)

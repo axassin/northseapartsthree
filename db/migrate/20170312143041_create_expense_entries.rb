@@ -10,7 +10,6 @@ class CreateExpenseEntries < ActiveRecord::Migration[5.0]
       t.string :reference_number
       t.monetize :amount
       remark_column(t)
-      t.timestamps
     end
   end
 end

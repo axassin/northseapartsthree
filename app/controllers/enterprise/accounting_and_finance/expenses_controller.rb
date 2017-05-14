@@ -7,13 +7,16 @@ class Enterprise::AccountingAndFinance::ExpensesController < GenericReportContro
 
   def index
 
-    @start_expenses = params[:start_expenses] || '2001-01-01'
-    @end_expenses = params[:end_expenses] || Time.new.strftime('%Y-%m-%d')
+    @end_date = params[:end_date] || Time.new.strftime('%Y-%m-%d')
+    @start_date = params[:start_date] || (Time.new - 12.months).strftime('%Y-%m-%d')
+
     @root_expenses = ExpenseCategory.roots
+    @interval = params[:interval] || 'month'
 
     @button_set = [[enterprise_accounting_and_finance_expenses_expense_assignments_path,'EXPENSE ASSIGNMENTS'],
                    [enterprise_accounting_and_finance_expenses_expense_categories_path,'EXPENSE CATEGORIES'],
-                   [enterprise_accounting_and_finance_expenses_expense_entries_path,'EXPENSE ENTRIES']]
+                   [enterprise_accounting_and_finance_expenses_expense_entries_path,'EXPENSE ENTRIES'],
+                   [enterprise_accounting_and_finance_expenses_expense_authorization_index_path,'EXPENSE AUTHORIZATION']]
 
   end
 

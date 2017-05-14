@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
+
+  $('.expense_cell').hide()
+  $('.expense_cell.root').show()
+
   $('.hierarchy_option_button').funcToggle( 'click',
     ->
       $(this).html('&#9660;')

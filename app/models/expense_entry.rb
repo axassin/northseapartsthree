@@ -10,6 +10,7 @@ class ExpenseEntry < ApplicationRecord
 
   belongs_to :vendor
   belongs_to :expense_category
+  has_one :expense_authorization
 
   validates_presence_of :requesting_party_id
   validates_presence_of :vendor_id
@@ -39,6 +40,10 @@ class ExpenseEntry < ApplicationRecord
 
   def requesting_party_summary
     Employee.find_by_id(requesting_party_id).represent
+  end
+
+  def expense_per_period(expense_category, start_date, end_date)
+    ExpenseEntry.where('','','')
   end
 
   searchable_string(:vendor_summary)
