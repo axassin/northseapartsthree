@@ -32,6 +32,18 @@ module GenericReportHelper
     main_element.html_safe
   end
 
+  def report_add_button
+    main_element = mab do
+      span do
+        '&nbsp;'
+      end
+      button :type => 'submit', :class => 'btn btn-default btn-xs report_submit' do
+        span :class => 'fa fa-plus-circle'
+      end
+    end
+    main_element.html_safe
+  end
+
   def report_model_selector(scoped_class_model, name, selected, value_method = 'id', label_method = 'represent')
     render partial: 'common/report/report_model_selector', locals: {
         scoped_class_model: scoped_class_model,

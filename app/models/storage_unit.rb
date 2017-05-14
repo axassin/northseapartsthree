@@ -4,7 +4,7 @@ class StorageUnit < ApplicationRecord
   include Remark
 
   has_ancestry 
-  
+
   setup_model('info-circle',
               'code',
               @@routes.enterprise_operations_storage_management_storage_units_path,
@@ -39,7 +39,7 @@ class StorageUnit < ApplicationRecord
         unless sample_chain.present?
           sample_chain = descendant.code.to_s  
         else
-          sample_chain = sample_chain + delimiter + descendant.code.to_s  
+          sample_chain = sample_chain + delimiter + descendant.code.to_s  + descendant.depth.to_s  
         end 
       end
     end
@@ -47,10 +47,77 @@ class StorageUnit < ApplicationRecord
   end
 
   def last_breadth
-    if child_ids.empty?
-      return depth
-    else
-      return children.map{|c| c.last_breadth}.max
+    sample_chain = '0'
+    delimiter=':'
+    StorageUnit.where(code: code).each do |storage_unit|
+      if has_children?
+        storage_unit.descendants.each do |descendant|
+          if descendant.depth.to_i > sample_chain.to_i
+            sample_chain = descendant.depth
+          end
+        end
+      elsif is_childless?    
+            sample_chain = storage_unit.depth
+          end
     end
+    sample_chain
+
+   # if child_ids.empty?
+ #    return depth
+  #  else
+  #    return children.map{|c| c.last_breadth}.max
+ #   end
   end
+
+  def siblings_code
+    sample_chain = ''
+    delimiter = ':'
+    StorageUnit.where(code: code).each do |storage_unit|
+      if storage_unit.is_only_child? 
+          sample_chain="Only child"
+      elsif siblings.present?
+          storage_unit.siblings.each do |sibling| 
+            unless sample_chain.present?
+              sample_chain = sibling.represent
+            else       
+              sample_chain = sample_chain + delimiter + sibling.represent
+            end
+          end
+      end 
+    end
+    sample_chain
+  end
+
+  def child_code
+    sample_chain = ''
+    delimiter = ':'
+    StorageUnit.where(code: code).each do |storage_unit|
+          if has_children?
+            storage_unit.children.each do |child|                                    
+                unless sample_chain.present?
+                 sample_chain = child.represent 
+                else       
+                   sample_chain = sample_chain + delimiter + child.represent 
+                end
+              end
+          elsif is_childless?    
+            sample_chain = 'No Child'
+          end
+        end 
+     sample_chain
+  end
+ 
+ def last_child
+   sample_chain = ''
+    delimiter=':'
+    StorageUnit.where(code: code).each do |storage_unit|
+      storage_unit.descendants.each do |descendant|
+        if storage_unit.last_breadth == descendant.depth
+          sample_chain = sample_chain + delimiter + descendant.code.to_s  + descendant.depth.to_s  
+        end
+      end
+    end
+    sample_chain
+ end
+
 end
