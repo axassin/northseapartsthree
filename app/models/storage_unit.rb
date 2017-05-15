@@ -10,7 +10,6 @@ class StorageUnit < ApplicationRecord
               @@routes.enterprise_operations_storage_management_storage_units_path,
               Enterprise::Operations::StorageManagement::StorageUnitsController)
 
-<<<<<<< HEAD
   searchable_string(:code)
 
   def complete_code    
@@ -26,12 +25,6 @@ class StorageUnit < ApplicationRecord
       end
     end
     sample_chain
-=======
-  def complete_code
-    'dfasdnfaskldjfhdklfh '
-    puts '----------------- --- ---'
-    puts 'dfasdfas'
->>>>>>> 2933f22628a08817e60f9a403095c372fbff96b4
   end
 
   def parent_code
