@@ -1,4 +1,5 @@
-class CreateContactDetails < MainMigration
+class CreateContactDetails < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :contact_details, id: false do |t|
       common_set(t)

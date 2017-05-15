@@ -1,4 +1,5 @@
-class CreateChecks < MainMigration
+class CreateChecks < ActiveRecord::Migration
+  include CommonColumns
   def change
     create_table :checks, id: false do |t|
       common_set(t)

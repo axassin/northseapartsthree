@@ -1,4 +1,5 @@
-class CreateStorageUnits < MainMigration
+class CreateStorageUnits < ActiveRecord::Migration[5.0]
+  include CommonColumns
   def change
     create_table :storage_units, id: false do |t|
      common_set(t)

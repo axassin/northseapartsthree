@@ -9,7 +9,7 @@ class Enterprise::GeneralManagement::ContactDetails::ContactWizardController < W
         :setup_location,
         :end
 
-  def setup_wizard_controller
+  def setup_controller
     setup_variables(@@routes.enterprise_general_management_contact_details_path,
                     @@routes.enterprise_general_management_contact_details_contact_wizard_index_path)
   end

@@ -79,3 +79,11 @@ ExpenseCategory.create!(name: 'Broker', remark: nil, parent: professional_fees)
 taxes = ExpenseCategory.create!(name: 'Taxes', remark: nil)
 miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil)
 
+StorageUnit.create!(code: 'NS')
+StorageUnit.create!(code: 'GR')
+
+# Development Login
+developer_one = User.new(system_account: developer_one_system_account, email: 'developer_one@gmail.com', password: 'ilovetess', password_confirmation: 'ilovetess')
+developer_one.skip_confirmation!
+developer_one.save!
+

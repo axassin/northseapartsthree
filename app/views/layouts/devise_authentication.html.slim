@@ -1,0 +1,16 @@
+doctype html
+html lang="en"
+  == render template: 'common/generic_head'
+  = stylesheet_link_tag 'devise_authentication', media: 'all', 'data-turbolinks-track' => 'reload'
+  body
+    == render template: 'common/topside_navigation/bar'
+    == render template: 'common/main_notification'
+    div.row
+      div.col-md-2
+      div.col-md-8
+        div.authorization_panel
+          div.row
+            div.col-md-6
+              == yield
+            div.col-md-6
+      div.col-md-2

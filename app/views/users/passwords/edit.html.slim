@@ -1,0 +1,17 @@
+h1.title_display CHANGE PASSWORD
+div.sub_heading
+= '&nbsp;'.html_safe + '&nbsp;'.html_safe + '&#9724'.html_safe + '&nbsp;'.html_safe + ' Password Reset'
+div.float-clearing
+
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  = f.input :reset_password_token, as: :hidden
+  = f.full_error :reset_password_token
+
+  = f.input :password, autocomplete: 'off', required: false, label: false, input_html: {placeholder: '&#x25ba;'.html_safe + ' New Password'}
+  = f.input :password_confirmation, required: false, label: false, input_html: {placeholder: '&#x25ba;'.html_safe + ' New Password Confirmation'}
+
+  div.actions
+    = f.submit 'CHANGE MY PASSWORD'
+
+= render 'users/shared/links'

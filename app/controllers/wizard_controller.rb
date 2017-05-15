@@ -1,7 +1,8 @@
 class WizardController < ApplicationController
 
   layout 'wizard/main'
-  before_action :setup_wizard_controller
+  before_action :setup_controller
+  before_action :authenticate_user!
 
   def setup_variables(parent_path, current_path)
     @wizard_steps = wizard_steps
@@ -10,7 +11,6 @@ class WizardController < ApplicationController
     @mother_parameters = Hash.new
     @current_resource_id = 'new'
     @restart = false
-
   end
 
   def setup_step(class_model = nil, skippable = false, repeatable = false, choice = false)
