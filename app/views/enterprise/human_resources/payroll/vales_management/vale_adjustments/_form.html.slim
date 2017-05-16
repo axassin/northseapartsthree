@@ -1,4 +1,5 @@
 div.col-md-6
   = employee_selector(f, current_instance)
+  = selector(f, :transaction_type, ['ADDITION','DEDUCTION'], current_instance.transaction_type)
 div.col-md-6
   = money_field(f, current_instance)

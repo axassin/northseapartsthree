@@ -10,5 +10,15 @@ class Enterprise::HumanResources::Payroll::ValesManagement::ValesController < Ge
   end
 
 
+   def process_form(my_vale, current_params, wizard_mode = nil)
+
+    my_vale_processing = Proc.new do   
+      my_vale.employee = Employee.find(current_params[:employee_id])
+      process_money(my_vale_adjustment, current_params[:amount], current_params[:currency])
+      my_vale.save!
+    end
+
+    setup_process(my_vale, my_vale_processing, wizard_mode)
+  end
 
 end

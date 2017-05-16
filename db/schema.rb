@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510032820) do
+ActiveRecord::Schema.define(version: 20170516031529) do
 
   create_table "access_permissions", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -293,18 +293,6 @@ ActiveRecord::Schema.define(version: 20170510032820) do
     t.index ["deleted_at"], name: "index_locations_on_deleted_at", using: :btree
   end
 
-  create_table "logic_unit_preferences", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "deleted_at"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
-    t.string   "user_id",    limit: 36
-    t.string   "resource"
-    t.string   "view_mode"
-    t.string   "order_by"
-    t.string   "sort_by"
-    t.index ["deleted_at"], name: "index_logic_unit_preferences_on_deleted_at", using: :btree
-  end
-
   create_table "payments", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
     t.datetime "created_at",                     null: false
@@ -353,7 +341,6 @@ ActiveRecord::Schema.define(version: 20170510032820) do
     t.datetime "updated_at",             null: false
     t.string   "remark",     limit: 256
     t.string   "code"
-    t.integer  "ancestry_depth",             default: 0
     t.string   "ancestry"
     t.index ["ancestry"], name: "index_storage_units_on_ancestry", using: :btree
     t.index ["deleted_at"], name: "index_storage_units_on_deleted_at", using: :btree
@@ -418,6 +405,19 @@ ActiveRecord::Schema.define(version: 20170510032820) do
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
+  end
+
+  create_table "vale_adjustments", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+    t.string   "employee_id",      limit: 36
+    t.string   "remark",           limit: 256
+    t.string   "transaction_type"
+    t.integer  "amount_centavos",              default: 0,     null: false
+    t.string   "amount_currency",              default: "PHP", null: false
+    t.date     "implemented_on"
+    t.index ["deleted_at"], name: "index_vale_adjustments_on_deleted_at", using: :btree
   end
 
   create_table "vales", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

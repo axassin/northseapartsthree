@@ -9,6 +9,8 @@ class Vale < ApplicationRecord
   include Remark
   include AssociatedEmployee
 
+  #scope :employees_with_vale, -> (employee_id) { where(['employee_id = ?', employee_id]).name }
+   
   def get_balance
 
   end

@@ -159,7 +159,7 @@ Rails.application.routes.draw do
         define_index( 'vales_management' )
         namespace :vales_management do
           generate_logic_unit( :vales )
-          generate_logic_unit( :vale_adjustments )
+          generate_logic_unit( :vale_adjustments)
         end
       end
 
