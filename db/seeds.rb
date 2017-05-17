@@ -407,7 +407,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Expense Entries
-  no_of_expense_entries = 50
+  no_of_expense_entries = 20
   no_of_expense_entries.times {
 
     expense_entry = ExpenseEntry.new
@@ -416,6 +416,7 @@ if Rails.env.development? || Rails.env.test?
     expense_entry.requesting_party_id = Employee.order("RAND()").first.id
     has_children_flag = true
 
+    # makes sure that expense_category is a end - child node; not a parent node
     while has_children_flag
       current_expense_category = ExpenseCategory.order("RAND()").first
       unless current_expense_category.has_children?
@@ -425,12 +426,12 @@ if Rails.env.development? || Rails.env.test?
     end
 
     expense_entry.amount_centavos = Faker::Commerce.price*100.00
-    expense_entry.amount_currency = ['USD','PHP','NTD'].sample
-    expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)
+    expense_entry.amount_currency = ['USD','PHP','TWD'].sample
+    expense_entry.due_date = Faker::Date.between(6.months.ago, Date.today)
     expense_entry.reference_number = Faker::Code.isbn
     expense_entry.save!
 
-    5.in(10) do
+    10.in(10) do
       expense_authorization = ExpenseAuthorization.new
       expense_authorization.employee = Employee.order("RAND()").first
       expense_authorization.expense_entry = expense_entry
@@ -444,7 +445,7 @@ if Rails.env.development? || Rails.env.test?
         payment.employee = Employee.order("RAND()").first
         payment.system_account = current_vendor.system_account
         amount = Faker::Commerce.price*100.00
-        currency = ['NTD','PHP','USD'].sample
+        currency = ['TWD','PHP','USD'].sample
         payment.exchange_medium = generate_exchange_medium(amount,currency)
         payment.save!
       end
@@ -494,7 +495,7 @@ if Rails.env.development? || Rails.env.test?
     vale = Vale.new
     vale.employee = Employee.order("RAND()").first
     vale.amount_centavos = Faker::Commerce.price*100.00
-    vale.amount_currency = ['USD','PHP','NTD'].sample
+    vale.amount_currency = ['USD','PHP','TWD'].sample
     vale.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
     vale.remark = Faker::Commerce.product_name
     vale.save!
