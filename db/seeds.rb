@@ -53,6 +53,45 @@ if Rails.env.development? || Rails.env.test?
     end
   end
 
+  def generate_exchange_medium(amount, currency)
+
+    exchange_medium = ExchangeMedium.new
+    exchange_medium.amount_centavos = amount
+    exchange_medium.amount_currency = currency
+    exchange_medium.remark = Faker::Commerce.product_name
+    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
+    exchange_medium.save!
+
+    exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample
+    case exchange_medium_type
+      when 'CASH'
+        cash = Cash.new
+        cash.denomination = Faker::Lorem.sentence(3, false, 0)
+        cash.reference_number = Faker::Code.isbn
+        cash.exchange_medium = exchange_medium
+        cash.save!
+      when 'CHECK'
+        check = Check.new
+        check.bank_account = BankAccount.order("RAND()").first
+        check.check_number = Faker::Code.isbn
+        check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
+        check.payee = random_system_account.id
+        check.signatory = random_system_account.id
+        check.exchange_medium = exchange_medium
+        check.save!
+      when 'BANK_TRANSFER'
+        bank_transfer = BankTransfer.new
+        bank_transfer.from_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.to_bank_account_number_id = BankAccount.order("RAND()").first.id
+        bank_transfer.transaction_number = Faker::Code.isbn
+        bank_transfer.exchange_medium = exchange_medium
+        bank_transfer.save!
+    end
+
+    exchange_medium
+
+  end
+
   def establish_file(model, id)
 
     current_file = ['sample_file_01.txt',
@@ -370,10 +409,14 @@ if Rails.env.development? || Rails.env.test?
   # Expense Entries
   no_of_expense_entries = 20
   no_of_expense_entries.times {
+
     expense_entry = ExpenseEntry.new
-    expense_entry.vendor_id = Vendor.order("RAND()").first.id
+    current_vendor = Vendor.order("RAND()").first
+    expense_entry.vendor_id = current_vendor.id
     expense_entry.requesting_party_id = Employee.order("RAND()").first.id
     has_children_flag = true
+
+    # makes sure that expense_category is a end - child node; not a parent node
     while has_children_flag
       current_expense_category = ExpenseCategory.order("RAND()").first
       unless current_expense_category.has_children?
@@ -381,11 +424,32 @@ if Rails.env.development? || Rails.env.test?
         has_children_flag = false
       end
     end
+
     expense_entry.amount_centavos = Faker::Commerce.price*100.00
-    expense_entry.amount_currency = ['USD','PHP','NTD'].sample
-    expense_entry.due_date = Faker::Date.between(2.weeks.ago, Date.today)
+    expense_entry.amount_currency = ['USD','PHP','TWD'].sample
+    expense_entry.due_date = Faker::Date.between(6.months.ago, Date.today)
     expense_entry.reference_number = Faker::Code.isbn
     expense_entry.save!
+
+    10.in(10) do
+      expense_authorization = ExpenseAuthorization.new
+      expense_authorization.employee = Employee.order("RAND()").first
+      expense_authorization.expense_entry = expense_entry
+      expense_authorization.implemented_on = Faker::Time.between(2.months.ago, Date.today, :all)
+      expense_authorization.save!
+    end
+
+    1..3.times do
+      5.in(10) do
+        payment = Payment.new
+        payment.employee = Employee.order("RAND()").first
+        payment.system_account = current_vendor.system_account
+        amount = Faker::Commerce.price*100.00
+        currency = ['TWD','PHP','USD'].sample
+        payment.exchange_medium = generate_exchange_medium(amount,currency)
+        payment.save!
+      end
+    end
   }
 
   # Expense Assignment
@@ -400,52 +464,9 @@ if Rails.env.development? || Rails.env.test?
     expense_assignment.save!
   }
 
-  # Exchange Medium
-  no_of_exchange_mediums = 20
-  no_of_exchange_mediums.times {
-
-    exchange_medium = ExchangeMedium.new
-    exchange_medium.amount_centavos = Faker::Commerce.price*100.00
-    exchange_medium.amount_currency = ['USD','PHP','NTD'].sample
-    exchange_medium.remark = Faker::Commerce.product_name
-    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
-    # Change when expenses come online
-    exchange_medium.transaction_type = 'EXPENSE'
-    exchange_medium.transaction_id = Faker::Code.isbn
-    exchange_medium.save!
-
-    exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample
-    case exchange_medium_type
-      when 'CASH'
-        cash = Cash.new
-        cash.denomination = Faker::Lorem.sentence(3, false, 0)
-        cash.reference_number = Faker::Code.isbn
-        cash.exchange_medium = exchange_medium
-        cash.save!
-      when 'CHECK'
-        check = Check.new
-        check.bank_account = BankAccount.order("RAND()").first
-        check.check_number = Faker::Code.isbn
-        check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
-        check.payee = random_system_account.id
-        check.signatory = random_system_account.id
-        check.exchange_medium = exchange_medium
-        check.save!
-      when 'BANK_TRANSFER'
-        bank_transfer = BankTransfer.new
-        bank_transfer.from_bank_account_number_id = BankAccount.order("RAND()").first.id
-        bank_transfer.to_bank_account_number_id = BankAccount.order("RAND()").first.id
-        bank_transfer.transaction_number = Faker::Code.isbn
-        bank_transfer.exchange_medium = exchange_medium
-        bank_transfer.save!
-    end
-  }
-
   # Storage Units
-
   # creates a root Storage Unit to be the main parent
   StorageUnit.create!(code: 'ROOT SAMPLE', remark: Faker::Commerce.product_name, parent: nil)
-
   number_of_storage_units = 20
   number_of_storage_units.times {
     storage_unit = StorageUnit.new
@@ -454,7 +475,6 @@ if Rails.env.development? || Rails.env.test?
     storage_unit.parent = StorageUnit.order("RAND()").first
     storage_unit.save!
   }
-
 
   # Users
   number_of_users = 20
@@ -475,7 +495,7 @@ if Rails.env.development? || Rails.env.test?
     vale = Vale.new
     vale.employee = Employee.order("RAND()").first
     vale.amount_centavos = Faker::Commerce.price*100.00
-    vale.amount_currency = ['USD','PHP','NTD'].sample
+    vale.amount_currency = ['USD','PHP','TWD'].sample
     vale.implemented_on = Faker::Date.between(2.weeks.ago, Date.today)
     vale.remark = Faker::Commerce.product_name
     vale.save!

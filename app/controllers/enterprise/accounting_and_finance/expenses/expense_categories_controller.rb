@@ -15,11 +15,10 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController < 
       my_expense_category.parent_id = current_params[:parent_id]
       my_expense_category.name = current_params[:name]
       my_expense_category.remark = current_params[:remark]
-      my_expense_category.save!
+      my_expense_category.save!dd
     end
 
     setup_process(my_expense_category, expense_category_processing, wizard_mode)
   end
-
 
 end

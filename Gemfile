@@ -148,6 +148,12 @@ gem 'money'
 # This library provides integration of the money gem with Rails.
 gem 'money-rails'
 
+# This gem downloads the exchange rates from the European Central Bank.
+gem 'eu_central_bank'
+
+# Google finance provides currency conversion functionality
+gem 'goog_currency'
+
 # Markup as Ruby; fast, concise and feature-rich
 gem 'mab'
 

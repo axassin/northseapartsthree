@@ -10,6 +10,7 @@ class ExpenseEntry < ApplicationRecord
 
   belongs_to :vendor
   belongs_to :expense_category
+  has_one :expense_authorization
 
   validates_presence_of :requesting_party_id
   validates_presence_of :vendor_id
@@ -40,6 +41,30 @@ class ExpenseEntry < ApplicationRecord
   def requesting_party_summary
     Employee.find_by_id(requesting_party_id).represent
   end
+
+  def self.total(expense_category, start_date, end_date)
+
+    if expense_category.has_children?
+      sum = 0
+      expense_category.children.each do |category|
+        sum = sum + total(category, start_date, end_date)
+      end
+    else
+      total = 0
+      expense_entries = ExpenseEntry.where(:due_date => start_date..end_date, :expense_category => expense_category)
+      expense_entries.each do |expense_entry|
+        if expense_entry.expense_authorization.present?
+          current_amount = goog_currency_php_converter(expense_entry.amount, expense_entry.amount_currency)
+          total = total + current_amount
+        end
+      end
+      sum = total
+    end
+    sum
+
+  end
+
+
 
   searchable_string(:vendor_summary)
   searchable_string(:expense_category_summary)
