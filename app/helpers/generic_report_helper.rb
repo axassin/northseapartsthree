@@ -20,13 +20,15 @@ module GenericReportHelper
     main_element.html_safe
   end
 
-  def report_submit_button
+  def report_submit_button(default_class = 'fa fa-search', default_text = '')
     main_element = mab do
       span do
         '&nbsp;'
       end
       button :type => 'submit', :class => 'btn btn-default btn-xs report_submit' do
-        span :class => 'fa fa-search'
+        span :class => default_class do
+          default_text
+        end
       end
     end
     main_element.html_safe
@@ -62,9 +64,12 @@ module GenericReportHelper
     }
   end
 
-  def render_expense_category_sub_accounts(account_array)
+  def render_expense_category_sub_accounts(account_array, current_attendance, start_date, end_date)
     render partial: 'common/report/expense_report_sub_accounts', locals: {
-        account_array: account_array
+        account_array: account_array,
+        current_attendance: current_attendance,
+        start_date: start_date,
+        end_date: end_date
     }
   end
 

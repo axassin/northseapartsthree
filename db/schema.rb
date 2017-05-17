@@ -10,7 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516031529) do
+
+ActiveRecord::Schema.define(version: 20170514075457) do
+
 
   create_table "access_permissions", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -188,16 +190,13 @@ ActiveRecord::Schema.define(version: 20170516031529) do
 
   create_table "exchange_media", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
-    t.datetime "created_at",                                   null: false
-    t.datetime "updated_at",                                   null: false
-    t.integer  "amount_centavos",              default: 0,     null: false
-    t.string   "amount_currency",              default: "PHP", null: false
-    t.string   "remark",           limit: 256
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.integer  "amount_centavos",             default: 0,     null: false
+    t.string   "amount_currency",             default: "PHP", null: false
+    t.string   "remark",          limit: 256
     t.datetime "implemented_at"
-    t.string   "transaction_type"
-    t.integer  "transaction_id"
     t.index ["deleted_at"], name: "index_exchange_media_on_deleted_at", using: :btree
-    t.index ["transaction_type", "transaction_id"], name: "index_exchange_media_on_transaction_type_and_transaction_id", using: :btree
   end
 
   create_table "expense_assignments", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -210,6 +209,17 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_expense_assignments_on_deleted_at", using: :btree
     t.index ["expensable_type", "expensable_id"], name: "index_expense_assignments_on_expensable_type_and_expensable_id", using: :btree
+  end
+
+  create_table "expense_authorizations", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
+    t.string   "expense_entry_id", limit: 36
+    t.string   "employee_id",      limit: 36
+    t.date     "implemented_on"
+    t.string   "remark",           limit: 256
+    t.index ["deleted_at"], name: "index_expense_authorizations_on_deleted_at", using: :btree
   end
 
   create_table "expense_categories", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -298,6 +308,7 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.datetime "created_at",                     null: false
     t.datetime "updated_at",                     null: false
     t.string   "system_account_id",  limit: 36
+    t.string   "employee_id",        limit: 36
     t.string   "exchange_medium_id", limit: 36
     t.string   "remark",             limit: 256
     t.index ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree

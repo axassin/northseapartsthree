@@ -1,0 +1,11 @@
+div.control_cell
+  span Get expenses from period
+  = report_date_input('start_date',@start_date)
+div.control_cell
+  span to
+  = report_date_input('end_date',@end_date)
+div.control_cell
+  span at an interval of
+  = report_selector([['day','Day'],['week','Week'],['month','Month'],['year','Year']], 'interval' , @interval)
+div.control_cell
+  = report_submit_button('','Generate Report')

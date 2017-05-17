@@ -1,6 +1,46 @@
-ul
-  - account_array.each do |account|
-    li
-      = account.name
+- account_array.each do |account|
+
+  ruby:
+    node_class = 'expense_row'
+
+    if account.root?
+      node_class = node_class + ' root'
+    end
+
+    if account.has_children?
+      node_class = node_class + ' parent'
+    end
+
+    account_parent_id = 0
+    if account.parent
+      account_parent_id = account.parent.id
+    end
+
+    parent_string = ''
+    account.ancestor_ids.each do |ancestor_id|
+      parent_string = parent_string + ','+ ancestor_id
+    end
+
+  tr class='#{node_class}' data-immediate_parent='#{account_parent_id}' data-ancestor_ids='#{parent_string}' data-account_id='#{account.id}'
+    td
+      - account.depth.times
+        span &nbsp; &nbsp;
+      span &#8627; &nbsp;
+      span &nbsp;
+      a.btn.btn-default.btn-xs target='_blank' href='#{account.show_path}' =account.name
+      span &nbsp;
+      button.btn.btn-default.btn-xs.display_option_button &#9872;
       - if account.has_children?
-        = render_expense_category_sub_accounts(account.children)
+        span &nbsp;
+        button.btn.btn-default.btn-xs.hierarchy_option_button data-account_id='#{account.id}' &#9654;
+
+    - while current_attendance <= end_date
+      td align='center'
+        = ExpenseEntry.total(account, current_attendance, (current_attendance + 1.send(@interval))).round(2)
+      ruby:
+        current_attendance = current_attendance + 1.send(@interval)
+
+  ruby:
+    current_attendance = start_date
+  - if account.has_children?
+    = render_expense_category_sub_accounts(account.children, current_attendance, start_date, end_date)

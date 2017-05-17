@@ -121,6 +121,11 @@ Rails.application.routes.draw do
         generate_logic_unit( :expense_categories )
         generate_logic_unit( :expense_entries )
         generate_logic_unit( :expense_assignments )
+        generate_logic_unit( :expense_authorization )
+        define_index( 'expense_report' )
+        define_index( 'expense_forecasting' )
+        define_index( 'expense_authorization_wizard' )
+        define_index( 'expense_payment' )
       end
 
     end

@@ -2,6 +2,7 @@ class Payment < ApplicationRecord
 
   include GenericResourceCommon
   include SystemAccountable
+  include AssociatedEmployee
   include Remark
 
   setup_model('get-pocket',

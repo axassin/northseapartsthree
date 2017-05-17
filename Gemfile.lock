@@ -144,6 +144,9 @@ GEM
       request_store (~> 1.0)
     dry_require_spec_helper (0.5.0)
     erubis (2.7.0)
+    eu_central_bank (1.1.2)
+      money (~> 6.8.0)
+      nokogiri (>= 1.6.3, < 2.0)
     execjs (2.7.0)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
@@ -165,6 +168,7 @@ GEM
     gherkin (4.1.1)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
+    goog_currency (1.1.0)
     hashie (3.5.5)
     highline (1.7.8)
     http-cookie (1.0.3)
@@ -461,11 +465,13 @@ DEPENDENCIES
   devise
   drape (~> 1.0.0.beta1)
   dry_require_spec_helper
+  eu_central_bank
   factory_girl
   faker
   file_validators
   font-awesome-rails (~> 4.7.0.1)
   fullcalendar-rails
+  goog_currency
   jbuilder (~> 2.5)
   jquery-rails
   jquery-turbolinks

@@ -3,4 +3,3 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $('div#expense_tree').jstree();

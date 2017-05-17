@@ -11,6 +11,8 @@ class ExpenseCategory < ApplicationRecord
               @@routes.enterprise_accounting_and_finance_expenses_expense_categories_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController )
 
+  validates_uniqueness_of :name
+
   def get_end_sub_accounts
   end
 

@@ -6,8 +6,6 @@ class CreateExchangeMedia < ActiveRecord::Migration[5.0]
       t.monetize :amount
       remark_column(t)
       implemented_at(t)
-      t.references :transaction, polymorphic: true, index: true
-      t.timestamps
     end
   end
 end
