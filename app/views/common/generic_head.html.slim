@@ -5,10 +5,10 @@ title == content_for?(:title) ? yield(:title) : 'North Sea Parts - ' + totally_h
 
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
 = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'
+= stylesheet_link_tag 'shared', media: 'all', 'data-turbolinks-track' => 'reload'
+
 = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-= javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag controller_path, 'data-turbolinks-track' => 'reload'
-= stylesheet_link_tag 'main_partials/base', media: 'all', 'data-turbolinks-track' => 'reload'
 
 = favicon_link_tag 'favicon.ico'
 = csrf_meta_tag
