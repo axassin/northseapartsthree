@@ -16,13 +16,12 @@ class ExpenseCategory < ApplicationRecord
   def get_end_sub_accounts
   end
 
-  def total_amount(date_start = '2000-01-01', date_end = '2100-01-01', interval = 'day')
-    amount = 0
-    ExpenseEntry.where()
-  end
-
   def parent_representation
     parent.represent
+  end
+
+  def self.end_nodes
+    ExpenseCategory.all.reject { |expense_category| expense_category.has_children? }
   end
 
 end

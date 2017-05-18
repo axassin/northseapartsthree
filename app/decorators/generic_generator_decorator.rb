@@ -1,4 +1,4 @@
-class Enterprise::Operations::StorageManagementDecorator < ApplicationDecorator
+class GenericGeneratorDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

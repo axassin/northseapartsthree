@@ -78,40 +78,47 @@ Holiday.create!(name: 'Last day of the year', implemented_on: Date.new(2017,12,3
 
 # ---------------------- Expenses ----------------------
 
-main_expenses = ExpenseCategory.create!(name: 'Expenses', remark: nil)
+if ExpenseCategory.where(name: 'General Expenses').blank?
+  general_expenses = ExpenseCategory.create!(name: 'General Expenses', remark: nil)
 
-utilities = ExpenseCategory.create!(name: 'Utilities', remark: nil)
-ExpenseCategory.create!(name: 'Water', remark: nil, parent: utilities)
-ExpenseCategory.create!(name: 'Electricity', remark: nil, parent: utilities)
-ExpenseCategory.create!(name: 'Telephone', remark: nil, parent: utilities)
-ExpenseCategory.create!(name: 'Internet', remark: nil, parent: utilities)
-ExpenseCategory.create!(name: 'Gas', remark: nil, parent: utilities)
-ExpenseCategory.create!(name: 'Cable', remark: nil, parent: utilities)
+  utilities = ExpenseCategory.create!(name: 'Utilities', remark: nil, parent: general_expenses)
+  ExpenseCategory.create!(name: 'Water', remark: nil, parent: utilities)
+  ExpenseCategory.create!(name: 'Electricity', remark: nil, parent: utilities)
+  ExpenseCategory.create!(name: 'Telephone', remark: nil, parent: utilities)
+  ExpenseCategory.create!(name: 'Internet', remark: nil, parent: utilities)
+  ExpenseCategory.create!(name: 'Gas', remark: nil, parent: utilities)
+  ExpenseCategory.create!(name: 'Cable', remark: nil, parent: utilities)
 
-maintenance_expenses = ExpenseCategory.create!(name: 'Maintenance Expenses', remark: nil)
+  maintenance = ExpenseCategory.create!(name: 'Maintenance Expenses', remark: nil, parent: general_expenses)
 
-business_insurance = ExpenseCategory.create!(name: 'Business Insurance', remark: nil)
-ExpenseCategory.create!(name: 'Car', remark: nil, parent: business_insurance)
-ExpenseCategory.create!(name: 'Employee', remark: nil, parent: business_insurance)
+  business_insurance = ExpenseCategory.create!(name: 'Business Insurance', remark: nil, parent: general_expenses)
+  ExpenseCategory.create!(name: 'Car', remark: nil, parent: business_insurance)
+  ExpenseCategory.create!(name: 'Employee', remark: nil, parent: business_insurance)
 
-auxiliary_supplies = ExpenseCategory.create!(name: 'Auxiliary Supplies', remark: nil)
-office = ExpenseCategory.create!(name: 'Office', remark: nil, parent: auxiliary_supplies)
-ExpenseCategory.create!(name: 'Ballpens', remark: nil, parent: office)
-ExpenseCategory.create!(name: 'Paper', remark: nil, parent: office)
+  auxiliary_supplies = ExpenseCategory.create!(name: 'Auxiliary Supplies', remark: nil, parent: general_expenses)
 
-professional_fees = ExpenseCategory.create!(name: 'Professional Fees', remark: nil)
-ExpenseCategory.create!(name: 'Accountant', remark: nil, parent: professional_fees)
-ExpenseCategory.create!(name: 'Broker', remark: nil, parent: professional_fees)
+  professional_fees = ExpenseCategory.create!(name: 'Professional Fees', remark: nil, parent: general_expenses)
+  ExpenseCategory.create!(name: 'Bookeeping Fee', remark: nil, parent: professional_fees)
+  ExpenseCategory.create!(name: 'Broker', remark: nil, parent: professional_fees)
 
-taxes = ExpenseCategory.create!(name: 'Taxes', remark: nil)
-miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil)
+  taxes_and_licenses = ExpenseCategory.create!(name: 'Taxes and Licenses', remark: nil, parent: general_expenses)
+  ExpenseCategory.create!(name: 'Vehicle Registration', remark: nil, parent: taxes_and_licenses)
+  ExpenseCategory.create!(name: 'Local Taxes', remark: nil, parent: taxes_and_licenses)
+  ExpenseCategory.create!(name: 'Residence Certificate', remark: nil, parent: taxes_and_licenses)
+  ExpenseCategory.create!(name: 'Barangay Clearance', remark: nil, parent: taxes_and_licenses)
+  national_taxes = ExpenseCategory.create!(name: 'National Taxes', remark: nil, parent: taxes_and_licenses)
+  ExpenseCategory.create!(name: 'Annual Registration Fee', remark: nil, parent: national_taxes)
+
+  miscellaneous = ExpenseCategory.create!(name: 'Miscellaneous', remark: nil, parent: general_expenses)
+end
+
 
 StorageUnit.create!(code: 'NORTHSEA')
 StorageUnit.create!(code: 'GRECO')
 
 # Development Login
 
-if Holiday.where(email: 'developer_one@gmail.com').blank?
+if User.where(email: 'developer_one@gmail.com').blank?
   developer_one = User.new(system_account: developer_one_system_account, email: 'developer_one@gmail.com', password: 'ilovetess', password_confirmation: 'ilovetess')
   developer_one.skip_confirmation!
   developer_one.save!
