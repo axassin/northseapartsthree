@@ -5,7 +5,7 @@ class Enterprise::Operations::StorageManagement::StorageUnitsController < Generi
                      'Storage Unit',
                      'Storage Container',
                      ['ancestry'],
-                     ['parent_code'],
+                     ['parent_code','complete_code'],
                      @@routes.enterprise_operations_storage_management_storage_units_path)
   end
 

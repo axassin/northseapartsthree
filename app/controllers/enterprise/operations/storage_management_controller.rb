@@ -3,8 +3,9 @@ class Enterprise::Operations::StorageManagementController < GenericReportControl
   def setup_controller
     setup_variables( @@routes.enterprise_operations_storage_management_path,
                      @@routes.enterprise_operations_path, 'Storage Structure')
-
-    @button_set = [[enterprise_operations_storage_management_storage_units_path,'STORAGE UNITS']]
+    
+    @button_set = [[enterprise_operations_storage_management_storage_units_path,'STORAGE UNITS'],
+    [enterprise_operations_storage_management_storage_generator_path,'STORAGE GENERATOR']]
 
   end
 

@@ -1,4 +1,4 @@
-class ValesAdjustmentDecorator < ApplicationDecorator
+class Enterprise::Operations::StorageManagement::StorageUnitDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through
