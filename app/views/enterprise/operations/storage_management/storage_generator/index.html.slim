@@ -1,0 +1,19 @@
+form method='get' action='#{enterprise_operations_storage_management_storage_generator_create_path}' style='width:50%'
+  input type='hidden' name='code' value='#{@storage_unit.code}'
+  input type='hidden' name='start_breadth' value='#{@storage_unit.depth}'
+  input type='hidden' name='end_breadth' value='#{@storage_unit.last_breadth}'
+  input type='hidden' name='parent_code' value='#{@storage_unit.parent_code}'
+  input type='hidden' name='complete_code' value='#{@storage_unit.complete_code}'
+
+  div.control_cell
+    span Current Code
+    = report_model_selector(StorageUnit.all, 'code', @storage_unit_id)
+  div.control_cell
+    span from breadth
+    = report_number_input('start_breadth',@start_breadth)
+  div.control_cell
+    span to
+    = report_number_input('end_breadth',@end_breadth)
+  div.control_cell
+    span
+    = report_add_button

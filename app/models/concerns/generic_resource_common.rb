@@ -114,6 +114,10 @@ module GenericResourceCommon
       self.class_variable_get(:@@resource_path)
     end
 
+    def self.main_resource_path
+      self.class_variable_get(:@@resource_path)
+    end
+
     def associated_controller
       self.class_variable_get(:@@associated_controller)
     end

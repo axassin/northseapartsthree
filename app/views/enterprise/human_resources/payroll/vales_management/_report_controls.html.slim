@@ -1,0 +1,6 @@
+div.control_cell
+  span Vale Management Report for
+  = report_model_selector(Employee.all, 'employee_id', @employee_id)
+div.control_cell
+  span
+  = report_submit_button

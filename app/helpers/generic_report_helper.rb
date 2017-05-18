@@ -13,6 +13,13 @@ module GenericReportHelper
     main_element.html_safe
   end
 
+  def report_number_input(name, default_value = 0)
+    main_element = mab do
+      input :type => 'number', :name => name, :id => name, :max => '1000', :min => '0', :value => default_value
+    end
+    main_element.html_safe
+  end
+
   def report_submit_button(default_class = 'fa fa-search', default_text = '')
     main_element = mab do
       span do
@@ -22,6 +29,18 @@ module GenericReportHelper
         span :class => default_class do
           default_text
         end
+      end
+    end
+    main_element.html_safe
+  end
+
+  def report_add_button
+    main_element = mab do
+      span do
+        '&nbsp;'
+      end
+      button :type => 'submit', :class => 'btn btn-default btn-xs report_submit' do
+        span :class => 'fa fa-plus-circle'
       end
     end
     main_element.html_safe
