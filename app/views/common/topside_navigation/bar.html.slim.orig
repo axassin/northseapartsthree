@@ -27,11 +27,7 @@ nav.navbar.navbar-default.navigation
 
     // Login Placeholder
     div.col-md-2
-<<<<<<< HEAD
-      span = "[LOGIN PLACEHOLDER]"
-=======
       span = "[ LOGIN PLACEHOLDER ]"
->>>>>>> 2f12a3bd1806c620d1343f6b6eb596ca2896683c
 
 div.main_menu
 
@@ -74,6 +70,11 @@ div.main_menu
     = enterprise_menu_cell_model(GrecoTransaction)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false)
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false)
+
+  div.menu_category.storage_management data-parent-category='operations'
+    = enterprise_menu_cell_model(StorageUnit)
+    = enterprise_menu_cell('info',enterprise_operations_storage_management_storage_generator_path,'Storage Generator',nil)
+    = enterprise_menu_cell('info',enterprise_operations_storage_management_storage_structure_report_path,'Storage Structure Report',nil)
 
   // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'

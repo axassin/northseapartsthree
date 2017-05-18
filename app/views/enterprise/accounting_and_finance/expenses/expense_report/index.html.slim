@@ -1,0 +1,28 @@
+ruby:
+  start_date = Time.parse(@start_date)
+  end_date = Time.parse(@end_date)
+  current_attendance = start_date
+  time_format_string = ''
+
+div.col-md-12.expense_category_tree.generic_table_container
+  table
+    thead
+      tr
+        th
+          div.header_expense_cell.account_category_name_cell Expense Category
+
+        - while current_attendance <= end_date
+          th align=''
+            div.header_expense_cell = current_attendance.strftime('%m/%d/%Y')
+
+          ruby:
+            current_attendance = current_attendance + 1.send(@interval)
+
+    tbody
+      ruby:
+        current_attendance = start_date
+      = render_expense_category_sub_accounts(@root_expenses, current_attendance, start_date, end_date)
+
+div.col-md-12
+  div.note Only Authorized Expenses are shown *
+  div.note All Prices in PHP **

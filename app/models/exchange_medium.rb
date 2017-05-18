@@ -13,9 +13,6 @@ class ExchangeMedium < ApplicationRecord
   has_one :bank_transfer, :dependent => :destroy
   has_one :check, :dependent => :destroy
 
-  validates_presence_of :transaction_id
-  validates_presence_of :transaction_type
-
   monetize :amount_centavos, with_model_currency: :currency
 
   def transaction

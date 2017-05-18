@@ -1,4 +1,4 @@
-class CreateLocations < ActiveRecord::Migration
+class CreateLocations < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :locations, id: false do |t|

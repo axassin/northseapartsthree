@@ -66,6 +66,13 @@ Rails.application.routes.draw do
 
     define_index('system_administration')
     namespace :system_administration do
+
+      define_index('permissions')
+      namespace :permissions do
+        generate_logic_unit( :access_permissions )
+        generate_logic_unit( :resource_permissions )
+      end
+
     end
 
     define_index( 'general_management' )
@@ -114,6 +121,11 @@ Rails.application.routes.draw do
         generate_logic_unit( :expense_categories )
         generate_logic_unit( :expense_entries )
         generate_logic_unit( :expense_assignments )
+        generate_logic_unit( :expense_authorization )
+        define_index( 'expense_report' )
+        define_index( 'expense_forecasting' )
+        define_index( 'expense_authorization_wizard' )
+        define_index( 'expense_payment' )
       end
 
     end
@@ -170,10 +182,13 @@ Rails.application.routes.draw do
         generate_logic_unit( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
         generate_logic_unit( :greco_transactions )
+
       end
 
       define_index('storage_management')
       namespace :storage_management do
+        define_index('storage_generator')
+        generate_action_url( 'storage_generator','create' )
         generate_action_url( 'storage_management','generate_storage_units' )
         generate_logic_unit( :storage_units )
       end

@@ -1,4 +1,4 @@
-class CreateLinks < ActiveRecord::Migration
+class CreateLinks < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :links, id: false  do |t|

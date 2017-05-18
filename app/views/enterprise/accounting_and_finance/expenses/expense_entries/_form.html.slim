@@ -1,7 +1,7 @@
 div.col-md-6
-  = model_selector(f, ExpenseCategory.all, :expense_category_id, current_instance.expense_category_id)
-  = model_selector(f, Vendor.all, :vendor_id, current_instance.vendor_id)
-  = model_selector(f, Employee.all, :requesting_party_id, current_instance.requesting_party_id)
+  = model_selector(f, ExpenseCategory.end_nodes, :expense_category_id, current_instance.expense_category)
+  = model_selector(f, Vendor.all, :vendor_id, current_instance.vendor)
+  = model_selector(f, Employee.all, :requesting_party_id, Employee.find_by_id(current_instance.requesting_party_id))
 div.col-md-6
   = input_date(f, :due_date)
   = input_word(f, :reference_number)

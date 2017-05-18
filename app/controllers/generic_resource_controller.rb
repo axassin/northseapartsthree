@@ -1,5 +1,6 @@
 class GenericResourceController < ApplicationController
 
+  before_action :authenticate_user!
   before_action :setup_controller
 
   def setup_variables( class_model, resource_title_heading, resource_sub_heading, omitted_attributes , admitted_attributes , parent_controller_path, wizard_model_path = nil)

@@ -182,13 +182,8 @@ ActiveRecord::Schema.define(version: 20170312143150) do
     t.datetime "deleted_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-<<<<<<< HEAD
-    t.string   "amount",           limit: 64
-    t.string   "currency",         limit: 64
-=======
     t.integer  "amount_centavos",             default: 0,     null: false
     t.string   "amount_currency",             default: "PHP", null: false
->>>>>>> 7007b984595cd59a53ae5e369dfdea1ee7832f11
     t.string   "remark",           limit: 64
     t.datetime "implemented_at"
     t.string   "transaction_type"

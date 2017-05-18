@@ -1,4 +1,4 @@
-class CreateExpenseEntries < ActiveRecord::Migration
+class CreateExpenseEntries < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :expense_entries, id: false do |t|
@@ -10,7 +10,6 @@ class CreateExpenseEntries < ActiveRecord::Migration
       t.string :reference_number
       t.monetize :amount
       remark_column(t)
-      t.timestamps
     end
   end
 end

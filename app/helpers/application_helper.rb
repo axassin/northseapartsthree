@@ -2,6 +2,21 @@ module ApplicationHelper
 
   require 'mab/kernel_method'
 
+  def convert_interval_to_time_string(time_format_string = nil)
+    time_format_string
+    case @interval
+      when 'day'
+        time_format_string = '%m-%d-%Y'
+      when 'week'
+        time_format_string = '%m-%G-%Y'
+      when 'month'
+        time_format_string = '%B, %Y'
+      when 'year'
+        time_format_string = '%Y'
+    end
+    time_format_string
+  end
+
   def output_html_structure(html_structure)
     html_structure.to_s.html_safe
   end

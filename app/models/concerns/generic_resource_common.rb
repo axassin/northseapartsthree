@@ -16,8 +16,9 @@ module GenericResourceCommon
       time :created_at
       time :updated_at
     end
-
   end
+
+
 
   def represent
     self.send(self.class.class_variable_get(:@@representative_attribute))
@@ -59,6 +60,18 @@ module GenericResourceCommon
 
   module ClassMethods
 
+    def goog_currency_php_converter(amount, amount_currency)
+      result = 0
+      formatted_amount_currency = amount_currency.downcase.to_s
+      conversion_method = formatted_amount_currency + '_to_php'
+      if conversion_method == 'php_to_php'
+        result = amount.to_f
+      else
+        result = GoogCurrency.send(conversion_method, amount.to_f)
+      end
+      result
+    end
+
     def searchable_string(attribute)
       searchable do
         string attribute
@@ -98,6 +111,10 @@ module GenericResourceCommon
     end
 
     def main_resource_path
+      self.class_variable_get(:@@resource_path)
+    end
+
+    def self.main_resource_path
       self.class_variable_get(:@@resource_path)
     end
 

@@ -1,4 +1,4 @@
-class CreateSystemConstants < ActiveRecord::Migration
+class CreateSystemConstants < ActiveRecord::Migration[5.0]
   include CommonColumns
   def change
     create_table :system_constants, id: false do |t|

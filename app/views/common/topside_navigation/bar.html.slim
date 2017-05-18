@@ -79,6 +79,11 @@ div.main_menu
     = enterprise_menu_cell_model(ExpenseAssignment)
     = enterprise_menu_cell_model(ExpenseCategory)
     = enterprise_menu_cell_model(ExpenseEntry)
+    = enterprise_menu_cell_model(ExpenseAuthorization)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_report_path,'Expense Report',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_forecasting_path,'Expense Forecasting',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_authorization_wizard_path,'Expense Authorization Wizard',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_payment_path,'Expense Payment',false)
 
   // Operations
   div.menu_category.operations data-parent-category='enterprise'
@@ -93,7 +98,8 @@ div.main_menu
 
   div.menu_category.storage_management data-parent-category='operations'
     = enterprise_menu_cell_model(StorageUnit)
- 
+    = enterprise_menu_cell('info',enterprise_operations_storage_management_storage_generator_path,'Storage Generator',nil)
+
   // Human Resources
   div.menu_category.human_resources data-parent-category='enterprise'
     = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)
@@ -119,6 +125,7 @@ div.main_menu
 
   div.menu_category.payroll data-parent-category='payroll'
     = enterprise_menu_cell_model(Vale)
+    = enterprise_menu_cell_model(ValeAdjustment)
 
   // General Management
   div.menu_category.general_management data-parent-category='enterprise'
