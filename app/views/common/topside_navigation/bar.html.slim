@@ -88,7 +88,8 @@ div.main_menu
   // Operations
   div.menu_category.operations data-parent-category='enterprise'
     = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_path,'greco_warehouse',true)
-    = enterprise_menu_cell('info-circle',enterprise_operations_storage_management_path,'storage_management',true)
+    = enterprise_menu_cell('info',enterprise_operations_storage_management_path,'storage_management',true)
+    = enterprise_menu_cell('info',enterprise_operations_temporary_label_sticker_path,'temporary_label_sticker',nil)
   
   div.menu_category.greco_warehouse data-parent-category='operations'
     = enterprise_menu_cell_model(GrecoItem)

@@ -192,6 +192,8 @@ Rails.application.routes.draw do
         generate_logic_unit( :storage_units )
         define_index( 'storage_structure_report' )
       end
+
+      define_index('temporary_label_sticker')
       
     end
 
