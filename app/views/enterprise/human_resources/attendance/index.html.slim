@@ -62,7 +62,7 @@ ruby:
                   - else
                     ruby:
                       selector_details = ',' + employee.id + ',' + current_attendance.strftime('%Y%m%d').to_s
-                    div.attendance_cell = report_selector([['no_record','No Record'],['whole_day' + selector_details,'Whole Day'],['half_day' + selector_details,'Half Day']],'quick_attendance[]')
+                    div.attendance_cell = generic_selector([['no_record','No Record'],['whole_day' + selector_details,'Whole Day'],['half_day' + selector_details,'Half Day']],'quick_attendance[]')
 
                 ruby:
                   current_attendance = current_attendance + 1.day

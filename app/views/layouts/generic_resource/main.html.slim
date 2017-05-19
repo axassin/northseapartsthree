@@ -2,7 +2,7 @@ doctype html
 html lang="en"
 
   head
-    = render template: 'common/generic_head'
+    = render template: 'shared/generic_head'
 
     = stylesheet_link_tag 'generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
 
@@ -35,8 +35,8 @@ html lang="en"
       @current_resource_id = params[:id] if params.has_key?(:id)
 
   body
-    = render template: 'common/main_notification'
-    = render template: 'common/topside_navigation/bar'
+    = render template: 'shared/main_notification'
+    = render template: 'shared/topside_navigation/bar'
 
     div.container-fluid.main_display
       div.row
@@ -54,6 +54,6 @@ html lang="en"
             = render template: 'layouts/generic_resource/index'
           - elsif rest_action?
             div.pl-2
-              = render template: 'layouts/generic_resource/form'
+              = render template: 'layouts/generic_resource/resource_form'
           - else
             div align='center' NO CONTENT AVAILABLE

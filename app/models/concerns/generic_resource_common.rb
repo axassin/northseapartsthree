@@ -103,7 +103,7 @@ module GenericResourceCommon
     end
 
     def form_path
-      view_path + '/form'
+      view_path + '/resource_form'
     end
 
     def cell_path

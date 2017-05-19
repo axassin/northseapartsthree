@@ -431,6 +431,9 @@ if Rails.env.development? || Rails.env.test?
     expense_entry.reference_number = Faker::Code.isbn
     expense_entry.save!
 
+    establish_image(ExpenseEntry, expense_entry.id)
+    establish_file(ExpenseEntry, expense_entry.id)
+
     10.in(10) do
       expense_authorization = ExpenseAuthorization.new
       expense_authorization.employee = Employee.order("RAND()").first

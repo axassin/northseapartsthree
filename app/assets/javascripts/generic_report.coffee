@@ -5,6 +5,6 @@
 $(document).on 'turbolinks:load', ->
 
   # Report Model Selector
-  $('.report_selector_group').each (index, element) ->
+  $('.generic_selector_group').each (index, element) ->
     main_select = $(element).find('select')
     main_select.selectize();

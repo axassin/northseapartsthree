@@ -1,4 +1,4 @@
-module FormHelper
+module ResourceFormHelper
 
   # support function for input_*
   def validation_modifiers(hash, name, unique)
@@ -96,7 +96,7 @@ module FormHelper
 
   # Selector for a single model
   def model_selector(f, scoped_model, name, selected, label_method = 'represent', value_method = 'id', disabled = false)
-    render partial: 'common/form/model_selector', locals: {
+    render partial: 'shared/resource_form/model_selector', locals: {
         f: f,
         scoped_model: scoped_model,
         name: name,
@@ -109,7 +109,7 @@ module FormHelper
 
   # multiple model selector for polymorphic types - manual render partial due to complicated logic
   def polymorphic_selector(f, selected, polymorphic_name, polymorphic_hash, disabled = false)
-    render partial: 'common/form/polymorphic_selector', locals: {
+    render partial: 'shared/resource_form/polymorphic_selector', locals: {
         f: f,
         selected: selected,
         polymorphic_name: polymorphic_name,
@@ -120,7 +120,7 @@ module FormHelper
 
   # Contact Detail Selector for Contact Articles; incorporates wizard functionality
   def contact_detail_selector(f, current_instance)
-    render partial: 'common/form/contact_detail_selector', locals: {
+    render partial: 'shared/resource_form/contact_detail_selector', locals: {
         f: f,
         current_instance: current_instance
     }
@@ -141,28 +141,28 @@ module FormHelper
   end
 
   def employee_selector(f, current_instance)
-    render partial: 'common/form/employee_selector', locals: {
+    render partial: 'shared/resource_form/employee_selector', locals: {
         f: f,
         current_instance: current_instance
     }
   end
 
   def associated_files_section(f, current_instance)
-    render partial: 'common/form/associated_files_section', locals: {
+    render partial: 'shared/resource_form/associated_files_section', locals: {
         f: f,
         current_instance: current_instance
     }
   end
 
   def associated_images_section(f, current_instance)
-    render partial: 'common/form/associated_images_section', locals: {
+    render partial: 'shared/resource_form/associated_images_section', locals: {
         f: f,
         current_instance: current_instance
     }
   end
 
   def date_time_selector(f, current_instance, attribute_name = 'implemented_at')
-    render partial: 'common/form/implemented_at_selector', locals: {
+    render partial: 'shared/resource_form/implemented_at_selector', locals: {
         f: f,
         current_instance: current_instance,
         attribute_name: attribute_name
@@ -170,7 +170,7 @@ module FormHelper
   end
 
   def date_selector(f, current_instance, attribute_name = 'implemented_on')
-    render partial: 'common/form/implemented_on_selector', locals: {
+    render partial: 'shared/resource_form/implemented_on_selector', locals: {
         f: f,
         current_instance: current_instance,
         attribute_name: attribute_name
@@ -186,7 +186,7 @@ module FormHelper
   end
 
   def money_field(f, current_instance, amount_name = 'amount', currency_name = 'currency')
-    render partial: 'common/form/money_field', locals: {
+    render partial: 'shared/resource_form/money_field', locals: {
         f: f,
         current_instance: current_instance,
         amount_name: amount_name,

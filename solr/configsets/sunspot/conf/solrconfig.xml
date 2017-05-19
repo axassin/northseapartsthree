@@ -356,7 +356,7 @@
          Multipart File Uploads that Solr will allow in a Request.
          
          formdataUploadLimitInKB - specifies the max size (in KiB) of
-         form data (application/x-www-form-urlencoded) sent via
+         resource_form data (application/x-www-resource_form-urlencoded) sent via
          POST. You can use POST to pass request parameters not
          fitting into the URL.
          
