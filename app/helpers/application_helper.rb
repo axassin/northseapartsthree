@@ -56,7 +56,7 @@ module ApplicationHelper
   end
 
   def enterprise_menu_cell(icon, path, text, sub_dir = nil)
-    render partial: 'common/topside_navigation/enterprise_menu_cell', locals: {
+    render partial: 'shared/topside_navigation/enterprise_menu_cell', locals: {
         icon: icon,
         text: text,
         path: path,

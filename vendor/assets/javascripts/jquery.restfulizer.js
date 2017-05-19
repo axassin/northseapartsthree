@@ -55,22 +55,22 @@
 
                 if (options.method == 'GET' || options.method == 'POST') {
                     var form = "\n" +
-                        "<form action='" + options.target + "' method='" + options.method + "' style='display:none'>\n" +
+                        "<resource_form action='" + options.target + "' method='" + options.method + "' style='display:none'>\n" +
                         inputs +
-                        "</form>\n";
+                        "</resource_form>\n";
                 }
                 else {
                     var form = "\n" +
-                        "<form action='" + options.target + "' method='POST' style='display:none'>\n" +
+                        "<resource_form action='" + options.target + "' method='POST' style='display:none'>\n" +
                         "	<input type='hidden' name='_method' value='" + options.method + "'>\n" +
                         inputs +
-                        "</form>\n";
+                        "</resource_form>\n";
                 }
 
                 self.append(form)
                     .removeAttr('href')
                     .attr('style', 'cursor:pointer;')
-                    .attr('onclick', '$(this).find("form").submit();');
+                    .attr('onclick', '$(this).find("resource_form").submit();');
             });
         }
     });
