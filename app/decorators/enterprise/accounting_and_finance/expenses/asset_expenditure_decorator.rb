@@ -1,4 +1,4 @@
-class Enterprise::Operations::StorageManagement::StorageUnitDecorator < ApplicationDecorator
+class Enterprise::AccountingAndFinance::Expenses::AssetExpenditureDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

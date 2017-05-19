@@ -2,12 +2,41 @@ doctype html
 html lang="en"
 
   head
-    = render template: 'common/generic_head'
-    = render template: 'common/generic_resource_head'
+    = render template: 'shared/generic_head'
+
+    = stylesheet_link_tag 'generic_resource/main', media: 'all', 'data-turbolinks-track' => 'reload'
+
+    - if action_name == 'index'
+      = stylesheet_link_tag 'generic_resource/index', media: 'all', 'data-turbolinks-track' => 'reload'
+      = javascript_include_tag 'generic_resource/index', 'data-turbolinks-track' => 'reload'
+    - elsif rest_action?
+      = stylesheet_link_tag 'generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
+    - else
+
+    = stylesheet_link_tag 'generic_resource/side_bar_options', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
+
+    = javascript_include_tag 'generic_resource/form', 'data-turbolinks-track' => 'reload'
+
+    - if params.has_key?(:printable)
+      javascript:
+        var printable = true
+    - else
+      javascript:
+        var printable = false
+
+    javascript:
+      var class_model = '#{@class_model.to_s}';
+      var main_resource_path = '#{@main_resource_path.to_s}';
+      var current_id = '#{params[:id].to_s}';
+
+    ruby:
+      @current_resource_id = 'new'
+      @current_resource_id = params[:id] if params.has_key?(:id)
 
   body
-    = render template: 'common/main_notification'
-    = render template: 'common/topside_navigation/bar'
+    = render template: 'shared/main_notification'
+    = render template: 'shared/topside_navigation/bar'
 
     div.container-fluid.main_display
       div.row
@@ -25,6 +54,6 @@ html lang="en"
             = render template: 'layouts/generic_resource/index'
           - elsif rest_action?
             div.pl-2
-              = render template: 'layouts/generic_resource/form'
+              = render template: 'layouts/generic_resource/resource_form'
           - else
             div align='center' NO CONTENT AVAILABLE

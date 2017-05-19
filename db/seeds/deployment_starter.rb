@@ -113,8 +113,8 @@ if ExpenseCategory.where(name: 'General Expenses').blank?
 end
 
 
-StorageUnit.create!(code: 'NORTHSEA')
-StorageUnit.create!(code: 'GRECO')
+StorageUnit.create!(code: 'NORTHSEA') if StorageUnit.where(code: 'NORTHSEA').blank?
+StorageUnit.create!(code: 'GRECO') if StorageUnit.where(code: 'GRECO').blank?
 
 # Development Login
 

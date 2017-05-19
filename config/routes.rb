@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     resources unit, concerns: [:search_suggestion, :uniqueness_validation, :retrieve_resource]
   end
 
-  # used for generic report or dashboard
+  # used for generic generic_field or dashboard
   def define_index( indexable_controller )
     get indexable_controller, to: indexable_controller + '#index'
   end
@@ -124,8 +124,10 @@ Rails.application.routes.draw do
         generate_logic_unit( :expense_authorization )
         define_index( 'expense_report' )
         define_index( 'expense_forecasting' )
-        define_index( 'expense_authorization_wizard' )
-        define_index( 'expense_payment' )
+        define_index( 'asset_expenditures' )
+        wizard( 'authorize_expense_wizard' )
+        wizard( 'request_expense_wizard' )
+        wizard( 'express_expense_wizard' )
       end
 
     end

@@ -1,12 +1,12 @@
 doctype html
 html lang="en"
   head
-    = render template: 'common/generic_head'
+    = render template: 'shared/generic_head'
     = stylesheet_link_tag 'wizard', media: 'all', 'data-turbolinks-track' => 'reload'
-    = stylesheet_link_tag 'main_partials/generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
+    = stylesheet_link_tag 'generic_resource/form', media: 'all', 'data-turbolinks-track' => 'reload'
   body
-    = render template: 'common/topside_navigation/bar'
-    = render template: 'common/main_notification'
+    = render template: 'shared/topside_navigation/bar'
+    = render template: 'shared/main_notification'
     div.main_display
       div.wizard_head
         h1.wizard_heading = totally_humanize(controller_name)

@@ -80,10 +80,15 @@ div.main_menu
     = enterprise_menu_cell_model(ExpenseCategory)
     = enterprise_menu_cell_model(ExpenseEntry)
     = enterprise_menu_cell_model(ExpenseAuthorization)
+
     = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_report_path,'Expense Report',false)
     = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_forecasting_path,'Expense Forecasting',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_authorization_wizard_path,'Expense Authorization Wizard',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_payment_path,'Expense Payment',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_asset_expenditures_path,'Asset Expenditures',false)
+
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_authorize_expense_wizard_index_path,'Authorize Expenses',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_request_expense_wizard_index_path,'Request for Expense',false)
+    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_express_expense_wizard_index_path,'Express Expense',false)
+    // Payment
 
   // Operations
   div.menu_category.operations data-parent-category='enterprise'

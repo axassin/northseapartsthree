@@ -1,4 +1,4 @@
-span.report_selector_group
+span.generic_selector_group
   select name='#{name}' id='#{name}'
     - scoped_class_model.each do |model_instance|
       - if selected == model_instance.send(value_method)
