@@ -1,15 +1,15 @@
 require 'rails_helper'
 
 # Specs in this file have access to a helper object that includes
-# the Enterprise::AccountingAndFinance::Expenses::ExpenseForecastingHelper. For example:
+# the Enterprise::AccountingAndFinance::Expenses::SpecificExpenseReportHelper. For example:
 #
-# describe Enterprise::AccountingAndFinance::Expenses::ExpenseForecastingHelper do
+# describe Enterprise::AccountingAndFinance::Expenses::SpecificExpenseReportHelper do
 #   describe "string concat" do
 #     it "concats two strings with spaces" do
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-RSpec.describe Enterprise::AccountingAndFinance::Expenses::ExpenseForecastingHelper, type: :helper do
+RSpec.describe Enterprise::AccountingAndFinance::Expenses::SpecificExpenseReportHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
