@@ -1,3 +1,5 @@
+# these helpers require a 'resource' or model in the form to function; use for general logic units
+
 module ResourceFormHelper
 
   # support function for input_*
