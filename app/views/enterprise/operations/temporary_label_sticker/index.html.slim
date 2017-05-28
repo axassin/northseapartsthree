@@ -1,0 +1,11 @@
+ = form_tag enterprise_operations_temporary_label_sticker_path, method: 'get' , multipart: true do 
+
+  | Picture:
+  = file_field_tag :image , :accept => 'image/png,image/gif,image/jpeg'
+
+  = submit_tag :Submit
+
+  -if !@image.nil?
+    = image_tag @image 
+
+ end 

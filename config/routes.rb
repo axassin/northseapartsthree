@@ -197,7 +197,7 @@ Rails.application.routes.draw do
       end
 
       define_index('temporary_label_sticker')
-      
+        generate_action_url( 'temporary_label_sticker','create' )
     end
 
     define_index( 'strategic_marketing' )

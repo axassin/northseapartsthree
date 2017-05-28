@@ -5,5 +5,11 @@ class Enterprise::Operations::TemporaryLabelStickerController < GenericGenerator
   end
 
   def index
+  	uploader = PrimaryImageUploader.new
+	image = params[:image]  
+	uploader.store!(image)
+	@image = params[ :image ]
+    uploader.retrieve_from_store!(image)
   end
+
  end

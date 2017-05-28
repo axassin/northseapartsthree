@@ -10,8 +10,12 @@ class Enterprise::HumanResources::Payroll::ValesManagementController < GenericRe
 
   def index
     @employee_id = params[:employee_id] || Employee.order("RAND()").first.id
-    @vale = Vale.where(employee_id: @employee_id).to_s
-   # @vales = Vale.where(employee_id: @employee_id)
+    @vales = Vale.where(employee_id: @employee_id) 
+    @vale_adjustments = ValeAdjustment.where(employee_id: @employee_id)
+    vale_sum = Vale.all.get_sum(@employee_id)
+    vale_adjustment_sum_add = ValeAdjustment.all.get_sum_add(@employee_id)
+    vale_adjustment_sum_deduct = ValeAdjustment.all.get_sum_deduct(@employee_id)
+    @vale_total= vale_sum + vale_adjustment_sum_add - vale_adjustment_sum_deduct
   end
 
 end

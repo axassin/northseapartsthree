@@ -1,2 +1,48 @@
-
- 
+div.col-md-12
+  table.vale_management_report_table
+    thead
+      tr
+        th align='center' DATE
+        th align='center' DEBIT AMOUNT
+        th align='center' CREDIT AMOUNT
+        th align='center' TRANSACTION TYPE
+        th align='center' TOTAL
+    tbody
+      - @vales.each do |vale|
+        tr
+          td
+            =vale.created_at
+          td
+            =humanized_money_with_symbol vale.amount_centavos
+          td
+            | 
+          td
+           | NEW VALE
+          td
+      - @vale_adjustments.each do |vale_adjustment|
+        tr
+          td
+            =vale_adjustment.created_at
+          -if vale_adjustment.transaction_type == 'ADDITION'
+	          td
+	            =humanized_money_with_symbol vale_adjustment.amount_centavos
+	          td
+	          	|
+	      -if vale_adjustment.transaction_type == 'DEDUCTION'
+	          td
+	            |
+	          td
+	          	=humanized_money_with_symbol vale_adjustment.amount_centavos
+          td
+            =vale_adjustment.transaction_type
+          td
+    
+      footer
+        td 
+        td
+        td
+        td
+        td 
+          =humanized_money_with_symbol @vale_total
+    		
+  a.btn.btn-default.vale_management_csv EXPORT TO CSV
