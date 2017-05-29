@@ -196,9 +196,6 @@ gem 'momentjs-rails'
 # Complete validation of dates, times and datetimes for Rails 4.x and ActiveModel.
 gem 'validates_timeliness', '~> 4.0'
 
-# A dynamic, browser based visualization library.
-gem 'visjs-rails'
-
 # DEPLOYMENT
 group :development do
   gem 'capistrano',         require: false
@@ -228,5 +225,8 @@ gem 'mailgun_rails'
 
 # CanCan is an authorization library for Ruby on Rails which restricts what resources a given user is allowed to access.
 gem 'cancan'
+
+# Integrate Chart.js into Rails Asset Pipeline (current version is 2.5.0)
+gem 'chart-js-rails'
 
 # gem 'puma'

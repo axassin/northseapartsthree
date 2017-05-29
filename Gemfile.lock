@@ -98,6 +98,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    chart-js-rails (0.1.2)
+      railties (> 3.1)
     coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
@@ -417,7 +419,6 @@ GEM
       rails (>= 3.0.0)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
-    visjs-rails (4.16.1.0)
     warden (1.2.7)
       rack (>= 1.0)
     web-console (3.4.0)
@@ -458,6 +459,7 @@ DEPENDENCIES
   capistrano3-puma
   capybara
   carrierwave (>= 1.0.0.beta, < 2.0)
+  chart-js-rails
   coffee-rails (~> 4.2)
   coffee-script-source (= 1.8.0)
   cucumber-rails
@@ -514,7 +516,6 @@ DEPENDENCIES
   uuidtools
   validates_overlap
   validates_timeliness (~> 4.0)
-  visjs-rails
   web-console
   wicked
 
