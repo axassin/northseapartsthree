@@ -20,8 +20,11 @@ div.main_display
       margin-bottom: 0.75em
       font-family: "Roboto Medium", "Arial"
       color: $title_group_base_color
-      word-break: normal
-      word-wrap: break-word
+      word-break: break-all
+      hyphens: auto
+      -ms-hyphens: auto
+      -moz-hyphens: auto
+      // word-wrap: break-word
 
       h1.title_heading
         text-transform: uppercase

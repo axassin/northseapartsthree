@@ -1,3 +1,4 @@
+# helper functions for logic unit view-indexes
 module GenericResourceHelper
 
   def image_preview(result, name = 'primary_image')
