@@ -64,8 +64,6 @@ class ExpenseEntry < ApplicationRecord
 
   end
 
-
-
   searchable_string(:vendor_summary)
   searchable_string(:expense_category_summary)
   searchable_string(:requesting_party_summary)
