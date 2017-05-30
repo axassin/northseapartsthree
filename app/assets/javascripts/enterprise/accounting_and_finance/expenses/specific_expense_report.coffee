@@ -12,64 +12,42 @@ $(document).ready ->
   $.ajax url,
     type: 'GET'
     async: false
-    dataType: 'text'
+    dataType: 'json'
     error: (jqXHR, textStatus, errorThrown) ->
       alert errorThrown
       event.preventDefault()
       $('div#error_message').html(' Error has Occurred ')
-    success: (data, textStatus, jqXHR) ->
+    success: (result, textStatus, jqXHR) ->
+      alert result.original
 
-      alert data
+      start_date = moment(start_date)
+      current_date = start_date
+      end_date = moment(end_date)
 
-      # Process Data
-      # original_points = []
-      # for key, value of data
-        # alert value
-        # point = {x: key, y: value}
-        # original_points.push(point)
+      original_array = []
+      index = 0
+      while current_date < end_date
+        original_value = result.original[index]
+        original_array.push({x: current_date.format(), y: original_value})
+        current_date.add(1, interval)
+        index++
 
       # Initialize Chart
       ctx = $('#specific_expense_chart')[0]
       ctx.height = 400
 
-      newDateString = (days) ->
-        moment().add(days, 'd').format()
-
-      randomScalingFactor = () ->
-        Math.round(Math.random() * 100 * (Math.random() > 0.5 ? -1 : 1))
-
-      alert newDateString(0)
-      alert randomScalingFactor()
-
       myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          datasets: [{
-            label: 'Original',
-            lineTension: 0,
-            data: [{
-              x: newDateString(0),
-              y: randomScalingFactor()
-            }, {
-              x: newDateString(2),
-              y: randomScalingFactor()
-            }, {
-              x: newDateString(4),
-              y: randomScalingFactor()
-            }, {
-              x: newDateString(5),
-              y: randomScalingFactor()
-            }],
-            fill: false
-          }]
+          datasets: [{ label: 'Original', lineTension: 0, data: original_array, fill: false }]
         },
         options: {
           scales: {
             xAxes: [{
               type: "time",
               time: {
-                unit: 'day',
-                round: 'day',
+                unit: interval,
+                round: interval,
                 displayFormats: {
                   day: 'MMM D'
                 }

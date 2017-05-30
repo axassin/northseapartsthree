@@ -28,18 +28,17 @@ class ExpenseCategory < ApplicationRecord
 
     start_date_literal = Date.parse(start_date)
     end_date_literal = Date.parse(end_date)
-    sum_array = []
+    main_array = []
     current_attendance = start_date_literal
+
     while current_attendance <= end_date_literal
       start_range = current_attendance
       end_range = start_range + 1.send(interval)
       current_value = ExpenseEntry.total(ExpenseCategory.find_by_id(id),start_range , end_range)
-      puts '----------- --------- --'
-      puts current_attendance.to_s+'T00:00:00+00:00'
-      sum_array.push(current_value)
+      main_array.push(current_value.round(2))
       current_attendance = current_attendance + 1.send(interval)
     end
-    sum_array
+    main_array
   end
 
 end

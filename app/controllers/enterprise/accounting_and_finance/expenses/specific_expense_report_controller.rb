@@ -20,9 +20,10 @@ class Enterprise::AccountingAndFinance::Expenses::SpecificExpenseReportControlle
     @interval = params[:interval]
     @expense_category_id = params[:expense_category_id]
 
-    puts
+    main_hash = Hash.new
+    main_hash[:original] = ExpenseCategory.find_by_id(@expense_category_id).graph_data(@start_date, @end_date, @interval )
 
-    render json: ExpenseCategory.find_by_id(@expense_category_id).graph_data(@start_date, @end_date, @interval )
+    render json: main_hash
   end
 
 end
