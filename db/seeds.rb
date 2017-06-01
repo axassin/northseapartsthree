@@ -407,7 +407,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Expense Entries
-  no_of_expense_entries = 20
+  no_of_expense_entries = 50
   no_of_expense_entries.times {
 
     expense_entry = ExpenseEntry.new
