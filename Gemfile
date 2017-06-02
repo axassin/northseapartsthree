@@ -226,7 +226,7 @@ gem 'mailgun_rails'
 # CanCan is an authorization library for Ruby on Rails which restricts what resources a given user is allowed to access.
 gem 'cancan'
 
-# Integrate Chart.js into Rails Asset Pipeline (current version is 2.5.0)
-gem 'chart-js-rails'
+# Create beautiful JavaScript charts with one line of Ruby
+gem 'chartkick'
 
 # gem 'puma'

@@ -35,6 +35,6 @@
 //= require jstree
 //= require moment
 //= require fullcalendar
-//= require Chart
+//= require chartkick
 
 //= //require_tree .

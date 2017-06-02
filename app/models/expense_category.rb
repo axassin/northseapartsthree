@@ -29,21 +29,24 @@ class ExpenseCategory < ApplicationRecord
 
     start_date = Date.parse(start_date)
     end_date = Date.parse(end_date)
-    main_hash = Hash.new
-    original_array = []
+    line_chart_array = Array.new
+    original = Hash.new
+    original_data = Hash.new
     current_date = start_date
 
     while current_date <= end_date
       start_range = current_date
       end_range = start_range + 1.send(interval)
-      current_value = ExpenseEntry.total(ExpenseCategory.find_by_id(id), start_range, end_range)
-      original_array.push(current_value.round(2))
+      current_value = ExpenseEntry.total(ExpenseCategory.find_by_id(id), start_range, end_range).round(2)
+      original_data[(current_date)] = current_value
       current_date = current_date + 1.send(interval)
     end
 
-    main_hash[:original] = original_array
-    main_hash[:three_point_moving_average] = three_point_moving_average(original_array)
-    main_hash
+    original[:name] = 'Original'
+    original[:data] = original_data
+    line_chart_array.push(original)
+
+    line_chart_array
   end
 
 end

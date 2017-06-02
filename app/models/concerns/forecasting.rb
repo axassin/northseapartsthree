@@ -19,7 +19,7 @@ module Forecasting
             value = ((first_dividend + second_dividend + third_dividend)/divisor).round(2)
             forecast_array.push(value)
           else
-            forecast_array.push(0)
+            forecast_array.push(nil)
           end
           index = index + 1
         end

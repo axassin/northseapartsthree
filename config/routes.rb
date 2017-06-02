@@ -123,7 +123,6 @@ Rails.application.routes.draw do
         generate_logic_unit( :expense_assignments )
         generate_logic_unit( :expense_authorization )
         define_index( 'expense_report' )
-        generate_action_url('examine_expense','get_graph_data')
         define_index( 'examine_expense' )
         define_index( 'asset_expenditures' )
         wizard( 'authorize_expense_wizard' )
