@@ -3,6 +3,7 @@ class ExpenseCategory < ApplicationRecord
   include GenericResourceCommon
   include Remark
   include Name
+  include Forecasting
 
   has_ancestry
 
@@ -26,20 +27,26 @@ class ExpenseCategory < ApplicationRecord
 
   def graph_data(start_date, end_date, interval)
 
-    start_date_literal = Date.parse(start_date)
-    end_date_literal = Date.parse(end_date)
-    sum_array = []
-    current_attendance = start_date_literal
-    while current_attendance <= end_date_literal
-      start_range = current_attendance
+    start_date = Date.parse(start_date)
+    end_date = Date.parse(end_date)
+    line_chart_array = Array.new
+    original = Hash.new
+    original_data = Hash.new
+    current_date = start_date
+
+    while current_date <= end_date
+      start_range = current_date
       end_range = start_range + 1.send(interval)
-      current_value = ExpenseEntry.total(ExpenseCategory.find_by_id(id),start_range , end_range)
-      puts '----------- --------- --'
-      puts current_attendance.to_s+'T00:00:00+00:00'
-      sum_array.push(current_value)
-      current_attendance = current_attendance + 1.send(interval)
+      current_value = ExpenseEntry.total(ExpenseCategory.find_by_id(id), start_range, end_range).round(2)
+      original_data[(current_date)] = current_value
+      current_date = current_date + 1.send(interval)
     end
-    sum_array
+
+    original[:name] = 'Original'
+    original[:data] = original_data
+    line_chart_array.push(original)
+
+    line_chart_array
   end
 
 end
