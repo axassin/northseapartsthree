@@ -1,5 +1,8 @@
-module GenericResourceCommon
-  extend ActiveSupport::Concern
+# ------------------------------------
+# Module setups a model for CRUD or a Generic Resource Type.
+# ------------------------------------
+
+module GenericResourceCommon extend ActiveSupport::Concern
 
   include Rails.application.routes.url_helpers
   @@routes = Rails.application.routes.url_helpers

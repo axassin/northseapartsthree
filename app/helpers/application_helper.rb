@@ -56,12 +56,27 @@ module ApplicationHelper
   end
 
   def enterprise_menu_cell(icon, path, text, sub_dir = nil)
-    render partial: 'shared/topside_navigation/enterprise_menu_cell', locals: {
-        icon: icon,
-        text: text,
-        path: path,
-        sub_dir: sub_dir
-    }
+
+    main_element = mab do
+
+      div :class => 'menu_cell', :'data-text-label' => '#{text.to_s.humanize.downcase}' do
+
+        i :class => 'fa fa-' + icon
+        br
+        a :class => 'cell_text', :href => path do
+          text.to_s.humanize
+        end
+        br
+        if sub_dir
+          button :class => 'btn btn-default sub_menu_button', :unhide => text do
+            i :class => 'fa fa-chevron-down'
+          end
+        end
+      end
+    end
+
+    main_element.html_safe
+
   end
 
   def enterprise_menu_cell_model(model)
