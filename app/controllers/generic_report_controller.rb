@@ -1,3 +1,7 @@
+# ------------------
+# Generic Report is a controller for showing information given a set of params
+# ------------------
+
 class GenericReportController < ApplicationController
 
   layout 'report/main'

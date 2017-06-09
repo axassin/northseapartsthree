@@ -1,2 +1,4 @@
-class Enterprise::AccountingAndFinance::Expenses::ExpressExpenseWizardController < ApplicationController
+class Enterprise::AccountingAndFinance::Expenses::ExpressExpenseWizardController < WizardController
+  include Wicked::Wizard
+
 end

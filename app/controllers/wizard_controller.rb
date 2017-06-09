@@ -13,6 +13,13 @@ class WizardController < ApplicationController
     @restart = false
   end
 
+  # -----------------
+  # Setups the variables and actions for the step
+  # 'class_model' for the model to be used in the step
+  # 'skippable' if inclusion of the model is optional
+  # 'repeatable' if model is part of :has_many or can be many for the main model
+  # 'choice' if the step is part of a choice that is mutually exclusive
+  # -----------------
   def setup_step(class_model = nil, skippable = false, repeatable = false, choice = false)
     @skippable = skippable
     @form = class_model.form_path if class_model
@@ -57,9 +64,14 @@ class WizardController < ApplicationController
     @restart == true ? (redirect_to @main_resource_path + '/start') : (render_step(params[:id]))
   end
 
+  # -----------------
+  # Processes a step after setting it up.
+  # 'current_model' is the model to be processed using its corresponding controller
+  # 'wizard_model' to declare if it is the main model for the wizard; declare most frequently used model
+  # 'finish_step' if 'end' view
+  # declare 'next_step' if there is a step afterward
+  # ------------------
   def process_step(current_model, wizard_model = false, finish_step = false, next_step = nil)
-
-    puts '------------ request went through ----------------- '
 
     # Process request through respective Resource Controller
     unless finish_step
@@ -87,11 +99,9 @@ class WizardController < ApplicationController
       @next_step = next_step unless next_step.nil?
 
     end
-
-
-
   end
 
+  # ending method for every wizard process step
   def update_finish
 
     # check for errors

@@ -215,6 +215,7 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.datetime "updated_at",                   null: false
     t.string   "expense_entry_id", limit: 36
     t.string   "employee_id",      limit: 36
+    t.string   "status",           limit: 64
     t.date     "implemented_on"
     t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_expense_authorizations_on_deleted_at", using: :btree

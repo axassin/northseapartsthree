@@ -106,7 +106,7 @@ module GenericResourceCommon extend ActiveSupport::Concern
     end
 
     def form_path
-      view_path + '/resource_form'
+      view_path + '/form'
     end
 
     def cell_path

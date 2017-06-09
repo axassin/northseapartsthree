@@ -5,6 +5,7 @@ class CreateExpenseAuthorizations < ActiveRecord::Migration[5.0]
       common_set(t)
       foreign_key_id(t, 'expense_entry')
       foreign_key_id(t, 'employee')
+      t.string :status, :limit => 64, :required => true
       implemented_on(t)
       remark_column(t)
     end

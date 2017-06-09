@@ -1,7 +1,12 @@
 div.col-md-4
   = model_selector(f, ExpenseCategory.end_nodes, :expense_category_id, current_instance.expense_category)
   = model_selector(f, Vendor.all, :vendor_id, current_instance.vendor)
-  = model_selector(f, Employee.all, :requesting_party_id, Employee.find_by_id(current_instance.requesting_party_id))
+
+  - if controller_name == 'request_expense_wizard'
+    = f.input :requesting_party_id, :as => :hidden, :input_html => { :value => current_user.system_account.employee.id }
+  - else
+    = model_selector(f, Employee.all, :requesting_party_id, Employee.find_by_id(current_instance.requesting_party_id))
+
 div.col-md-4
   = input_date(f, :due_date)
   = input_word(f, :reference_number)

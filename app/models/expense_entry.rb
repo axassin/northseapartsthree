@@ -11,6 +11,9 @@ class ExpenseEntry < ApplicationRecord
   belongs_to :vendor
   belongs_to :expense_category
   has_one :expense_authorization
+  has_many :expense_assignments
+  has_many :associated_files, as: :fileable, :dependent => :destroy
+  has_many :associated_images, as: :imageable, :dependent => :destroy
 
   validates_presence_of :requesting_party_id
   validates_presence_of :vendor_id
@@ -27,7 +30,11 @@ class ExpenseEntry < ApplicationRecord
   end
 
   def summary
-    amount.to_s + ' ' + amount_currency.to_s + ' from ' + vendor_summary
+    amount.to_s + ' ' + amount_currency.to_s + ' for ' + vendor_summary
+  end
+
+  def amount_summary
+    amount.to_s + ' ' + amount_currency.to_s
   end
 
   def vendor_summary
@@ -62,6 +69,26 @@ class ExpenseEntry < ApplicationRecord
     end
     sum
 
+  end
+
+  def self.unprocessed(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where(expense_authorizations: {id: nil}, due_date: start_date..end_date)
+        .order(due_date: :asc)
+  end
+
+  def self.approved(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where('expense_authorizations.status = ?', 'APPROVED')
+        .where(due_date: start_date..end_date)
+        .order(due_date: :asc)
+  end
+
+  def self.denied(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where('expense_authorizations.status = ?', 'DENIED')
+        .where(due_date: start_date..end_date)
+        .order(due_date: :asc)
   end
 
   searchable_string(:vendor_summary)

@@ -7,6 +7,9 @@ class ExpenseAuthorization < ApplicationRecord
 
   belongs_to :expense_entry
 
+  validates :status, length: { in: 0..64 }, inclusion: {in: ['DENIED','APPROVED']}
+  validates_uniqueness_of :expense_entry, if: :expense_entry
+
   setup_model('etsy',
               'employee_name',
               @@routes.enterprise_accounting_and_finance_expenses_expense_authorization_index_path,

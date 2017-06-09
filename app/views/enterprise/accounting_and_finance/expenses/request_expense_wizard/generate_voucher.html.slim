@@ -1,0 +1,28 @@
+div.voucher_button_set align='center'
+  a.btn.btn-default id='generate_printable_voucher' href="javascript:;" Generate Printable Voucher
+  a.btn.btn-default href='#{next_wizard_path}' Finish Wizard
+hr
+
+div.printable_expense_voucher
+  h1 EXPENSE VOUCHER
+  h4 Paid to #{@wizard_model_instance.vendor.account_name}
+  h4 Amount of #{@wizard_model_instance.decorate.amount} for #{@wizard_model_instance.expense_category.name} ( #{@wizard_model_instance.remark} )
+  br
+  br
+  table
+    tr
+      td
+        div Requested By :
+        br
+        div ___________________________
+        div = current_user.system_account.name
+      td
+        div Authorized By :
+        br
+        div ___________________________
+        div &nbsp;
+      td
+        div Distributed By :
+        br
+        div ___________________________
+        div &nbsp;

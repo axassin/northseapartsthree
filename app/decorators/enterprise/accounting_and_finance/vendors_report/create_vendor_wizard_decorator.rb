@@ -1,4 +1,4 @@
-class Enterprise::AccountingAndFinance::Expenses::ExpenseReportDecorator < ApplicationDecorator
+class Enterprise::AccountingAndFinance::VendorsReport::CreateVendorWizardDecorator < ApplicationDecorator
   delegate_all
 
   # Define presentation-specific methods here. Helpers are accessed through

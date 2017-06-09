@@ -1,3 +1,7 @@
+# ------------------
+# Generic Resource is a controller for itemizing the model into manageable parts
+# ------------------
+
 class GenericResourceController < ApplicationController
 
   before_action :authenticate_user!

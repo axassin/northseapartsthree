@@ -1,0 +1,82 @@
+form method='get' action='authorization_desk/process_index'
+
+  input type='hidden' name='start_date' value='#{@start_date}'
+  input type='hidden' name='end_date' value='#{@end_date}'
+
+  div.row
+    div.col-md-3.item_bin
+      div.item_bin_title Unprocessed
+      - @unprocessed_expense_entry.each do |expense_entry|
+        br
+        div.item
+          a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
+          ul
+            li = expense_entry.expense_category.represent
+            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_summary
+            li = expense_entry.remark
+          div.button_set
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'deny')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_deny').to_sym, 'DENY')
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'approve')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_approve'), 'APPROVE')
+        br
+
+    div.col-md-3.item_bin
+      div.item_bin_title Denied
+
+      - @denied_expense_entry.each do |expense_entry|
+        br
+        div.item
+          a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
+          ul
+            li = expense_entry.expense_category.represent
+            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_summary
+            li = expense_entry.remark
+            li = 'by ' + expense_entry.expense_authorization.employee_name + ' on ' + expense_entry.expense_authorization.implemented_on.strftime('%m/%d/%Y')
+          div.button_set
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'reinstate')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_reinstate').to_sym, 'REINSTATE')
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'approve')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_approve'), 'APPROVE')
+        br
+
+    div.col-md-3.item_bin
+      div.item_bin_title Approved
+
+      - @approved_expense_entry.each do |expense_entry|
+        br
+        div.item
+          a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
+          ul
+            li = expense_entry.expense_category.represent
+            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_summary
+            li = expense_entry.remark
+            li = 'by ' + expense_entry.expense_authorization.employee_name + ' on ' + expense_entry.expense_authorization.implemented_on.strftime('%m/%d/%Y')
+          div.button_set
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'reinstate')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_reinstate').to_sym, 'REINSTATE')
+            div.selection
+              = radio_button_tag(('status[' + expense_entry.id + ']').to_sym, 'deny')
+              = ' '
+              = label_tag(('status[' + expense_entry.id + ']_deny'), 'DENY')
+        br
+
+    div.col-md-2.item_bin
+      div.item_bin_title Actions
+      br
+      = generic_submit_button(nil,' Process Declarations ')
+      br
+
