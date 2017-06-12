@@ -72,6 +72,21 @@ module Forecasting extend ActiveSupport::Concern
       forecast
     end
 
+    private
+    def moving_average
+
+    end
+
+    private
+    def exponential_smoothing
+
+    end
+
+    private
+    def holt_winter
+
+    end
+
     # Determines Forecasting Accuracy . Higher the Value, the larger the error.
     private
     def smape(original, forecast, interval)
