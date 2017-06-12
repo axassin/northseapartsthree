@@ -1,0 +1,17 @@
+= render :partial => 'enterprise/general_management/contact_details/contact_wizard/associated_models'
+
+ruby:
+  vendor = @wizard_model_instance.vendor
+
+- if vendor.present?
+  = associated_wizard_section(vendor)
+
+  ruby:
+    associated_files = vendor.associated_files
+    associated_images = vendor.associated_images
+
+  - if associated_files.present?
+    = associated_wizard_section(associated_files)
+
+  - if associated_images.present?
+    = associated_wizard_section(associated_images)

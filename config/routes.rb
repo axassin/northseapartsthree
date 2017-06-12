@@ -112,16 +112,18 @@ Rails.application.routes.draw do
 
       report( 'vendors_report' )
       namespace :vendors_report do
-        generic_resource( :vendors )
         wizard('create_vendor_wizard')
+        generic_resource( :vendors )
       end
 
       report( 'financial_institutions' )
       namespace :financial_institutions do
+        wizard('create_bank_wizard')
         generic_resource( :banks )
         generic_resource( :bank_accounts )
       end
 
+      report('due_checks')
       generic_resource( :exchange_media )
       namespace :exchange_media do
         generic_resource(:cashes)
@@ -129,11 +131,10 @@ Rails.application.routes.draw do
         generic_resource(:bank_transfers)
       end
 
-      define_index('payments')
-      namespace :payments do
+      define_index('payments_report')
+      namespace :payments_report do
         generic_resource( :payments )
-        control_desk('balance_desk')
-        wizard('accounts_payable')
+        wizard('accounts_payable_wizard')
       end
 
       define_index( 'expenses' )

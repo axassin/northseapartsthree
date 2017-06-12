@@ -1,4 +1,4 @@
-class Enterprise::AccountingAndFinance::VendorsReport::CreateVendorWizardController < WizardController
+class Enterprise::AccountingAndFinance::FinancialInstitutions::CreateBankWizardController < WizardController
   include Wicked::Wizard
 
   steps :start,
@@ -12,15 +12,15 @@ class Enterprise::AccountingAndFinance::VendorsReport::CreateVendorWizardControl
         :end
 
   def setup_controller
-    setup_variables(@@routes.enterprise_accounting_and_finance_vendors_report_path,
-                    @@routes.enterprise_accounting_and_finance_vendors_report_create_vendor_wizard_index_path)
+    setup_variables(@@routes.enterprise_accounting_and_finance_financial_institutions_path,
+                    @@routes.enterprise_accounting_and_finance_financial_institutions_create_bank_wizard_index_path)
   end
 
   def show
 
     set_associated_parameters = Proc.new do
-      @associated_class_model = 'Vendor'
-      @associated_id = Vendor.where(system_account_id: params[:wizard_model_id]).last.id
+      @associated_class_model = 'Bank'
+      @associated_id = Bank.where(system_account_id: params[:wizard_model_id]).last.id
     end
 
     set_contact_detail_id = Proc.new do
@@ -66,9 +66,9 @@ class Enterprise::AccountingAndFinance::VendorsReport::CreateVendorWizardControl
         process_step(SystemAccount, true)
 
         begin
-          vendor = Vendor.new
-          vendor.system_account = SystemAccount.find_by_id(@mother_parameters['wizard_model_id'])
-          vendor.save!
+          bank = Bank.new
+          bank.system_account = SystemAccount.find_by_id(@mother_parameters['wizard_model_id'])
+          bank.save!
         rescue => ex
           puts ' --------- PROCESS ERROR START --------- '
           puts ex

@@ -80,6 +80,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
   end
 
   def update
+
     case step
       when :start
       when :setup_system_account
