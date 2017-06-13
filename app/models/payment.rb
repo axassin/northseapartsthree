@@ -3,6 +3,7 @@ class Payment < ApplicationRecord
   include GenericResourceCommon
   include SystemAccountable
   include AssociatedEmployee
+  include AssociatedExchangeMedium
   include Remark
 
   setup_model('get-pocket',
