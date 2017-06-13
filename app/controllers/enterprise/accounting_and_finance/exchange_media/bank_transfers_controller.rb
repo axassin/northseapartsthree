@@ -4,8 +4,8 @@ class Enterprise::AccountingAndFinance::ExchangeMedia::BankTransfersController <
     setup_variables( BankTransfer,
                      'Bank Transfer',
                      'Transfers from Financial Institutions',
-                     ['exchange_medium_id'],
-                     ['exchange_summary'],
+                     ['exchange_medium_id','to_bank_account_number_id','from_bank_account_number_id'],
+                     ['amount','from_bank_acct','to_bank_acct'],
                      @@routes.enterprise_accounting_and_finance_exchange_media_path)
   end
 

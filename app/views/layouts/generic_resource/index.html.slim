@@ -27,10 +27,10 @@ div.fade.modal.add_form_modal id='add_form_modal' data-animation='false'
           tr
             - result.attribute_names.each_with_index do |attribute, index|
               - unless @omitted_attributes.include?(attribute)
-                td = result.decorate.send(attribute)
+                td = result.send(attribute)
             - if @admitted_attributes.present?
               - @admitted_attributes.each do |attribute|
-                td = result.decorate.send(attribute)
+                td = result.send(attribute)
             td = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
 
   - else

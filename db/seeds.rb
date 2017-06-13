@@ -59,7 +59,6 @@ if Rails.env.development? || Rails.env.test?
     exchange_medium.amount_centavos = amount
     exchange_medium.amount_currency = currency
     exchange_medium.remark = Faker::Commerce.product_name
-    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
     exchange_medium.save!
 
     exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample

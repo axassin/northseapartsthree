@@ -22,7 +22,11 @@ class ContactDetail < ApplicationRecord
     contactable_type.constantize.find_by_id(contactable_id).represent + ' | ' + label
   end
 
-  def contactable_representative
+  def contactable
+    self.contactable_type.constantize.find_by_id(contactable_id)
+  end
+
+  def contactable_name
     self.contactable_type.constantize.find_by_id(contactable_id).represent
   end
 

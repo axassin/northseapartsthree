@@ -88,13 +88,13 @@ Rails.application.routes.draw do
     define_index( 'general_management' )
     namespace :general_management do
 
-      generic_resource( :contact_details )
       namespace :contact_details do
         wizard('contact_wizard')
         generic_resource( :telephone_numbers )
         generic_resource( :links )
         generic_resource( :locations )
       end
+      generic_resource( :contact_details )
 
       generate_action_url('contact_details','contactable')
       generic_resource( :vehicles )
@@ -124,12 +124,12 @@ Rails.application.routes.draw do
       end
 
       report('due_checks')
-      generic_resource( :exchange_media )
       namespace :exchange_media do
         generic_resource(:cashes)
         generic_resource(:checks)
         generic_resource(:bank_transfers)
       end
+      generic_resource( :exchange_media )
 
       define_index('payments_report')
       namespace :payments_report do
