@@ -36,12 +36,6 @@ module GenericResourceHelper
     }
   end
 
-  def resource_cell_link(resource)
-
-
-
-  end
-
   def money_display(result_amount, result_currency)
 
     amount_str = result_amount

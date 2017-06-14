@@ -5,11 +5,15 @@ title == content_for?(:title) ? yield(:title) : 'North Sea Parts - ' + totally_h
 
 = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
 = stylesheet_link_tag 'shared', media: 'all', 'data-turbolinks-track' => 'reload'
-= stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload' if stylesheet_exists?(controller_path)
+
+- if stylesheet_exists?(controller_path)
+  = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'
 
 = javascript_include_tag 'https://www.gstatic.com/charts/loader.js', 'data-turbolinks-track' => 'reload'
 = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
-= javascript_include_tag controller_path, 'data-turbolinks-track' => 'reload'
+
+- if javascript_exists?(controller_path)
+  = javascript_include_tag controller_path, 'data-turbolinks-track' => 'reload'
 
 = favicon_link_tag 'favicon.ico'
 = csrf_meta_tag

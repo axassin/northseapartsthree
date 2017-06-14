@@ -5,7 +5,7 @@ class Enterprise::AccountingAndFinance::ExchangeMedia::CashesController < Generi
                      'Cash',
                      'Cash Transfers',
                      ['exchange_medium_id'],
-                     ['exchange_summary'],
+                     ['amount'],
                      @@routes.enterprise_accounting_and_finance_exchange_media_cashes_path)
   end
 
