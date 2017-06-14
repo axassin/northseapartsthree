@@ -4,8 +4,8 @@ class Enterprise::HumanResources::Attendance::HolidaysController < GenericResour
     setup_variables( Holiday,
                      'Holiday',
                      'Days of Celebration',
-                     [],
-                     [],
+                     ['day_scheme_id'],
+                     ['associated_day_scheme'],
                      @@routes.enterprise_human_resources_attendance_holidays_path)
   end
 

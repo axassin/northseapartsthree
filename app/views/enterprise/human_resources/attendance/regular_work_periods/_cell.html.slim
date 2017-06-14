@@ -1,6 +1,6 @@
-div = resource_cell_link(result.employee)
-div = ' at ' + result.decorate.implemented_on.to_s
-div = result.decorate.time_in.to_s + ' to ' +  result.decorate.time_out.to_s
+div = instance_link(result.employee)
+div = ' at ' + result.implemented_on
+div = result.work_period
 - if result.one_hour_break
   span = 'with one hour break'
 div = result.remark

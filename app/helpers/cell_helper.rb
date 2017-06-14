@@ -8,6 +8,10 @@ module CellHelper
     result_implemented_on.strftime('%m/%d/%Y')
   end
 
+  def format_time(result_implemented_on)
+    result_implemented_on.strftime('%r')
+  end
+
   def instance_link(instance)
 
     unless instance == nil
