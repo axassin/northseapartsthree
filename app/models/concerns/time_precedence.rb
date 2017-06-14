@@ -22,4 +22,9 @@ module TimePrecedence extend ActiveSupport::Concern
     end
 
   end
+
+  def time_period
+    time_in.strftime('%R') + ' to ' + time_out.strftime('%R')
+  end
+
 end

@@ -15,8 +15,8 @@ class Enterprise::AccountingAndFinance::ExchangeMedia::ChecksController < Generi
       my_check.check_number = current_params[:check_number]
       my_check.dated = current_params[:dated]
       my_check.exchange_medium = ExchangeMedium.find_by_id(current_params[:exchange_medium_id])
-      my_check.signatory = current_params[:signatory]
-      my_check.payee = current_params[:payee]
+      my_check.signatory_id = current_params[:signatory_id]
+      my_check.payee_id = current_params[:payee_id]
       my_check.bank_account = BankAccount.find_by_id(current_params[:bank_account_id])
       my_check.save!
     end

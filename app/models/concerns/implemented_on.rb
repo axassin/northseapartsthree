@@ -12,8 +12,4 @@ module ImplementedOn extend ActiveSupport::Concern
 
   end
 
-  def implemented_on
-    self[:implemented_on].strftime('%m/%d/%Y')
-  end
-
 end
