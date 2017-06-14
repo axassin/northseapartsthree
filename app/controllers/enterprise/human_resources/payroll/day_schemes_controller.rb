@@ -13,7 +13,7 @@ class Enterprise::HumanResources::Payroll::DaySchemesController < GenericResourc
   def process_form(my_day_scheme, current_params, wizard_mode = nil)
 
     attendance_records_processing = Proc.new do
-      my_day_scheme.type_name = Employee.find(current_params[:type_name])
+      my_day_scheme.type_name = current_params[:type_name]
       my_day_scheme.implemented_on = current_params[:implemented_on]
       my_day_scheme.base_multiplier = current_params[:base_multiplier]
       my_day_scheme.overtime_multiplier = current_params[:overtime_multiplier]
