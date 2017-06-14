@@ -30,10 +30,6 @@ class ContactDetail < ApplicationRecord
     self.contactable_type.constantize.find_by_id(contactable_id).represent
   end
 
-  def contactable_link
-    self.contactable_type.constantize.class_variable_get(:@@resource_path) + '/' + contactable_id
-  end
-
   def associated_telephone_numbers
     TelephoneNumber.where(contact_detail_id: id)
   end

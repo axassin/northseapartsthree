@@ -1,8 +1,8 @@
-div = resource_cell_link(result.employee)
+div = instance_link(result.employee)
 
 hr
 
-div #{result.decorate.date_of_birth}
+div #{format_date_on(result.date_of_birth)}
 
 hr
 
