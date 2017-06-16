@@ -14,14 +14,11 @@ div.fade.modal.add_form_modal id='add_form_modal' data-animation='false'
         tr
           - @result_set.first.class.attribute_names.each do |attribute|
             - unless @omitted_attributes.include?(attribute)
-              th
-                div = attribute.humanize.upcase
+              td = attribute.humanize.upcase
           - if @admitted_attributes.present?
             - @admitted_attributes.each do |attribute|
-              th
-                div = attribute.humanize.upcase
-          th
-
+              td = attribute.humanize.upcase
+        tr
       tbody
         - @result_set.each do |result|
           tr

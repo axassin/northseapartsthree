@@ -12,8 +12,8 @@ form method='get' action='authorization_desk/process_index'
           a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
           ul
             li = expense_entry.expense_category.represent
-            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
-            li = expense_entry.requesting_party_summary
+            li = expense_entry.cost + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_name
             li = expense_entry.remark
           div.button_set
             div.selection
@@ -35,8 +35,8 @@ form method='get' action='authorization_desk/process_index'
           a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
           ul
             li = expense_entry.expense_category.represent
-            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
-            li = expense_entry.requesting_party_summary
+            li = expense_entry.cost + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_name
             li = expense_entry.remark
             li = 'by ' + expense_entry.expense_authorization.employee_name + ' on ' + expense_entry.expense_authorization.implemented_on.strftime('%m/%d/%Y')
           div.button_set
@@ -59,8 +59,8 @@ form method='get' action='authorization_desk/process_index'
           a.btn.btn-default target='_new' href=expense_entry.show_path = expense_entry.reference_number + ' : ' + expense_entry.vendor.represent
           ul
             li = expense_entry.expense_category.represent
-            li = expense_entry.amount_summary + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
-            li = expense_entry.requesting_party_summary
+            li = expense_entry.cost + ' due on ' + expense_entry.due_date.strftime('%m/%d/%Y')
+            li = expense_entry.requesting_party_name
             li = expense_entry.remark
             li = 'by ' + expense_entry.expense_authorization.employee_name + ' on ' + expense_entry.expense_authorization.implemented_on.strftime('%m/%d/%Y')
           div.button_set

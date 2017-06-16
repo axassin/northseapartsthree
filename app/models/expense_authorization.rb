@@ -15,4 +15,8 @@ class ExpenseAuthorization < ApplicationRecord
               @@routes.enterprise_accounting_and_finance_expenses_expense_authorization_index_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseAuthorizationController )
 
+  def expense_entry_summary
+    ExpenseEntry.find_by_id(expense_entry_id).represent
+  end
+
 end

@@ -35,12 +35,20 @@ module CellHelper
 
   end
 
-  def associated_file_link()
-
+  def associated_file_link(file_identifier, file_path )
+    if file_path.present?
+      link_to(file_path, file_identifier, class: 'btn btn-default', target: '_new')
+    else
+      'N/A'
+    end
   end
 
-  def associated_image_link()
-
+  def associated_image_link(image_path)
+    if image_path.present?
+      image_tag(image_path, class: 'primary_image', target: '_new')
+    else
+      'N/A'
+    end
   end
 
 

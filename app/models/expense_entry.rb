@@ -29,23 +29,23 @@ class ExpenseEntry < ApplicationRecord
     errors.add(:expense_category, 'Expense Category must have no sub accounts') if expense_category.has_children?
   end
 
-  def summary
-    amount.to_s + ' ' + amount_currency.to_s + ' for ' + vendor_summary
-  end
-
-  def amount_summary
+  def cost
     amount.to_s + ' ' + amount_currency.to_s
   end
 
-  def vendor_summary
+  def vendor_name
     Vendor.find_by_id(vendor_id).represent
   end
 
-  def expense_category_summary
+  def summary
+    cost + ' for ' + vendor_name
+  end
+
+  def expense_category_name
     ExpenseCategory.find_by_id(expense_category_id).represent
   end
 
-  def requesting_party_summary
+  def requesting_party_name
     Employee.find_by_id(requesting_party_id).represent
   end
 
@@ -91,9 +91,9 @@ class ExpenseEntry < ApplicationRecord
         .order(due_date: :asc)
   end
 
-  searchable_string(:vendor_summary)
-  searchable_string(:expense_category_summary)
-  searchable_string(:requesting_party_summary)
+  searchable_string(:vendor_name)
+  searchable_string(:expense_category_name)
+  searchable_string(:requesting_party_name)
   searchable_date(:due_date)
   searchable_string(:reference_number)
 

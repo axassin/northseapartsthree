@@ -14,12 +14,8 @@ class AssociatedFile < ApplicationRecord
 
   validates :file, file_size: { less_than_or_equal_to: 1.gigabytes }
 
-  def related
-    fileable_type.constantize.find(fileable_id).represent
-  end
-
-  def file_link
-    self.file.identifier
+  def fileable
+    fileable_type.constantize.find(fileable_id)
   end
 
   searchable_string(:description)

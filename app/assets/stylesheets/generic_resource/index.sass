@@ -28,19 +28,18 @@ div.main_content
     @import "grid_item"
 
   table.resource_table
-    width: 100%
+    width: auto
+    margin: 0.5em
+    margin-left: 1.5em
+    table-layout: fixed
     thead
       tr
-        th
-          overflow: hidden
-          white-space: nowrap
-          word-break: break-all
-          div
-            border-bottom: solid $TERTIARY_COLOR medium
-            margin-right: 0.5em
-            word-break: break-all
-            word-wrap: break-word
-            overflow-wrap: break-word
+        td
+          word-wrap: break-word
+          border-bottom: solid $TERTIARY_COLOR medium
+          border-right: solid white medium
+          font-weight: bold
+          vertical-align: text-top
     tbody
       tr
         &:hover
