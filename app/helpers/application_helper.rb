@@ -77,6 +77,18 @@ module ApplicationHelper
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
+  def render_menu_array(enterprise_menu_array)
+    output_html = ''
+    enterprise_menu_array.each do |element|
+      if element.class == Class
+        output_html += 'sherwin'
+      elsif element.kind_of?(Array)
+        output_html += 'hueh hueh'
+      end
+    end
+    output_html
+  end
+
   def enterprise_menu_cell(icon, path, text, sub_dir = nil)
 
     main_element = mab do
