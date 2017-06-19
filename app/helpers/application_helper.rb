@@ -1,3 +1,5 @@
+# these helpers general for the entire application
+
 module ApplicationHelper
 
   require 'mab/kernel_method'
@@ -79,26 +81,21 @@ module ApplicationHelper
 
   def render_menu_array(enterprise_menu_array)
 
-    output_html = content_tag :div, 'data-parent-category': 'enterprise' do
-      'dfasdf'
-    end
-
     enterprise_menu_array.each do |element|
       if element.class == Class
-
+        concat(enterprise_menu_cell_model(element))
       elsif element.kind_of?(Array)
-
+        concat(enterprise_menu_cell(element[0],element[1],element[2],element[3]))
+        concat(render_menu_array(element[4])) if element[4].present?
       end
     end
-    output_html
+
   end
 
   def enterprise_menu_cell(icon, path, text, sub_dir = nil)
 
-    main_element = mab do
-
+    str = mab do
       div :class => 'menu_cell', :'data-text-label' => text.to_s.humanize.downcase do
-
         i :class => 'fa fa-' + icon
         br
         a :class => 'cell_text', :href => path do
@@ -112,8 +109,7 @@ module ApplicationHelper
         end
       end
     end
-
-    main_element.html_safe
+    str.html_safe
 
   end
 

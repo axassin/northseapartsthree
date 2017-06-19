@@ -53,7 +53,8 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
 // Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
 
-  = render_menu_array(@enterprise_menu_array)
+  div.menu_category data-category='enterprise'
+    = render_menu_array(@enterprise_menu_array)
 
   div.float-clearing
   br
