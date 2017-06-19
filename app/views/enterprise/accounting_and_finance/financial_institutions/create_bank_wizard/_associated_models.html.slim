@@ -1,0 +1,17 @@
+= render :partial => 'enterprise/general_management/contact_details/contact_wizard/associated_models'
+
+ruby:
+  bank = @wizard_model_instance.bank
+
+- if bank.present?
+  = associated_wizard_section(bank)
+
+  ruby:
+    associated_files = bank.associated_files
+    associated_images = bank.associated_images
+
+  - if associated_files.present?
+    = associated_wizard_section(associated_files)
+
+  - if associated_images.present?
+    = associated_wizard_section(associated_images)

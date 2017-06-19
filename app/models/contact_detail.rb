@@ -22,12 +22,12 @@ class ContactDetail < ApplicationRecord
     contactable_type.constantize.find_by_id(contactable_id).represent + ' | ' + label
   end
 
-  def contactable_representative
-    self.contactable_type.constantize.find_by_id(contactable_id).represent
+  def contactable
+    self.contactable_type.constantize.find_by_id(contactable_id)
   end
 
-  def contactable_link
-    self.contactable_type.constantize.class_variable_get(:@@resource_path) + '/' + contactable_id
+  def contactable_name
+    self.contactable_type.constantize.find_by_id(contactable_id).represent
   end
 
   def associated_telephone_numbers

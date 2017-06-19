@@ -1,7 +1,7 @@
-= resource_cell_link(result.parent)
+= instance_link(result.parent)
 div = result.name
 div = result.remark
 div
   span PARENT : &nbsp;
-  span = resource_cell_link(ExpenseCategory.find_by_id(result.parent))
+  span = instance_link(ExpenseCategory.find_by_id(result.parent))
 

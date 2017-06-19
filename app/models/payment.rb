@@ -3,12 +3,13 @@ class Payment < ApplicationRecord
   include GenericResourceCommon
   include SystemAccountable
   include AssociatedEmployee
+  include AssociatedExchangeMedium
   include Remark
 
   setup_model('get-pocket',
               'summary',
-              @@routes.enterprise_accounting_and_finance_payments_path,
-              Enterprise::AccountingAndFinance::PaymentsController)
+              @@routes.enterprise_accounting_and_finance_payments_report_payments_path,
+              Enterprise::AccountingAndFinance::PaymentsReport::PaymentsController)
 
   belongs_to :exchange_medium
 

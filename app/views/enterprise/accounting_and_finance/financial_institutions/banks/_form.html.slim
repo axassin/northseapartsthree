@@ -1,7 +1,14 @@
-
-div.col-md-6
-  ruby:
-    selector_model = SystemAccount.left_outer_joins(:bank).where( banks: { id: nil }).where( account_type: 'GROUP')
-  = model_selector(f, selector_model, :system_account_id, current_instance.system_account, 'name')
-div.col-md-6
-  = input_remark(f)
+- unless @wizard_steps.present?
+  div.col-md-6
+    div.form_element_tip Create a Bank from a corresponding System Account
+    ruby:
+      selected_models = SystemAccount.left_outer_joins(:bank).where( banks: { id: nil })
+    = model_selector(f, selected_models, :system_account_id, current_instance.system_account, 'name')
+    br
+    = associated_files_section(f, @current_instance.system_account)
+    = associated_images_section(f, @current_instance.system_account)
+- else
+  div.col-md-6
+    = f.input :system_account_id,
+            :as => :hidden,
+            :input_html => {:value => params[:wizard_model_id]}

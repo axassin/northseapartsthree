@@ -1,3 +1,8 @@
+# ------------------
+# Generic Report is a controller for showing a summary without any given set of parameters
+# ------------------
+
+
 class GenericDashboardController < ApplicationController
 
   layout 'report/main'

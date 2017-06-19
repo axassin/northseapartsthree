@@ -59,7 +59,6 @@ if Rails.env.development? || Rails.env.test?
     exchange_medium.amount_centavos = amount
     exchange_medium.amount_currency = currency
     exchange_medium.remark = Faker::Commerce.product_name
-    exchange_medium.implemented_at = Faker::Time.between(2.months.ago, Date.today, :all)
     exchange_medium.save!
 
     exchange_medium_type = ['CASH','CHECK', 'BANK_TRANSFER'].sample
@@ -75,8 +74,8 @@ if Rails.env.development? || Rails.env.test?
         check.bank_account = BankAccount.order("RAND()").first
         check.check_number = Faker::Code.isbn
         check.dated = Faker::Time.between(2.months.ago, Date.today, :all)
-        check.payee = random_system_account.id
-        check.signatory = random_system_account.id
+        check.payee_id = random_system_account.id
+        check.signatory_id = random_system_account.id
         check.exchange_medium = exchange_medium
         check.save!
       when 'BANK_TRANSFER'
@@ -427,19 +426,31 @@ if Rails.env.development? || Rails.env.test?
 
     expense_entry.amount_centavos = Faker::Commerce.price*100.00
     expense_entry.amount_currency = ['USD','PHP','TWD'].sample
-    expense_entry.due_date = Faker::Date.between(6.months.ago, Date.today)
+    expense_entry.due_date = Faker::Date.between(Date.today, Date.today + 3.months )
     expense_entry.reference_number = Faker::Code.isbn
+    expense_entry.remark = Faker::Commerce.product_name
     expense_entry.save!
 
     establish_image(ExpenseEntry, expense_entry.id)
     establish_file(ExpenseEntry, expense_entry.id)
 
-    10.in(10) do
+    7.in(10) do
       expense_authorization = ExpenseAuthorization.new
       expense_authorization.employee = Employee.order("RAND()").first
       expense_authorization.expense_entry = expense_entry
+      expense_authorization.status = ['DENIED','APPROVED'].sample
       expense_authorization.implemented_on = Faker::Time.between(2.months.ago, Date.today, :all)
       expense_authorization.save!
+    end
+
+    7.in(10) do
+      expense_assignment = ExpenseAssignment.new
+      expense_assignment.expense_entry_id = expense_entry.id
+      expense_assignment.remark = Faker::Lorem.sentence(3, false, 0)
+      expensable_type = ['Vehicle','Employee','Branch'].sample
+      expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
+      expense_assignment.expensable_type = expensable_type
+      expense_assignment.save!
     end
 
     1..3.times do
@@ -453,18 +464,6 @@ if Rails.env.development? || Rails.env.test?
         payment.save!
       end
     end
-  }
-
-  # Expense Assignment
-  no_of_expense_assignment = 20
-  no_of_expense_assignment.times {
-    expense_assignment = ExpenseAssignment.new
-    expense_assignment.expense_entry_id = ExpenseEntry.order("RAND()").first.id
-    expense_assignment.remark = Faker::Lorem.sentence(3, false, 0)
-    expensable_type = ['Vehicle','Employee','Branch'].sample
-    expense_assignment.expensable_id = expensable_type.constantize.order("RAND()").first.id
-    expense_assignment.expensable_type = expensable_type
-    expense_assignment.save!
   }
 
   # Storage Units

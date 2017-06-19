@@ -14,23 +14,20 @@ div.fade.modal.add_form_modal id='add_form_modal' data-animation='false'
         tr
           - @result_set.first.class.attribute_names.each do |attribute|
             - unless @omitted_attributes.include?(attribute)
-              th
-                div = attribute.humanize.titleize.upcase
+              td = attribute.humanize.upcase
           - if @admitted_attributes.present?
             - @admitted_attributes.each do |attribute|
-              th
-                div = attribute.humanize.titleize.upcase
-          th
-
+              td = attribute.humanize.upcase
+        tr
       tbody
         - @result_set.each do |result|
           tr
             - result.attribute_names.each_with_index do |attribute, index|
               - unless @omitted_attributes.include?(attribute)
-                td = result.decorate.send(attribute)
+                td = result.send(attribute)
             - if @admitted_attributes.present?
               - @admitted_attributes.each do |attribute|
-                td = result.decorate.send(attribute)
+                td = result.send(attribute)
             td = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
 
   - else

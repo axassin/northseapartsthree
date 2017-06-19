@@ -1,3 +1,5 @@
+# these helpers general for the entire application
+
 module ApplicationHelper
 
   require 'mab/kernel_method'
@@ -29,6 +31,28 @@ module ApplicationHelper
     end
   end
 
+  def asset_exists?(subdirectory, filename)
+    File.exists?(File.join(Rails.root, 'app', 'assets', subdirectory, filename))
+  end
+
+  def image_exists?(image)
+    asset_exists?('images', image)
+  end
+
+  def javascript_exists?(script)
+    extensions = %w(.coffee .erb .coffee.erb) + [""]
+    extensions.inject(false) do |truth, extension|
+      truth || asset_exists?('javascripts', "#{script}#{extension}")
+    end
+  end
+
+  def stylesheet_exists?(stylesheet)
+    extensions = %w(.scss .erb .scss.erb .sass) + [""]
+    extensions.inject(false) do |truth, extension|
+      truth || asset_exists?('stylesheets', "#{stylesheet}#{extension}")
+    end
+  end
+
   def public_file_exists?(path)
     current_path = Rails.root.to_s + '/public' + path
     File.exists?(current_path)
@@ -55,17 +79,60 @@ module ApplicationHelper
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
-  def enterprise_menu_cell(icon, path, text, sub_dir = nil)
-    render partial: 'shared/topside_navigation/enterprise_menu_cell', locals: {
-        icon: icon,
-        text: text,
-        path: path,
-        sub_dir: sub_dir
-    }
-  end
+  def render_menu(menu_array)
 
-  def enterprise_menu_cell_model(model)
-    enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized.pluralize)
+    str = ''
+    str = mab do
+      menu_array.each do |menu_category_set|
+
+        key = menu_category_set[0].keys[0]
+        value = menu_category_set[0].values[0]
+
+        div :class => 'menu_category ' + key.to_s , :'data-parent-category' => value.to_s do
+          menu_category_set[1].each do |menu_object|
+
+            icon = ''
+            path = ''
+            text = ''
+            sub_dir = nil
+
+            if menu_object.kind_of?(Array)
+
+              icon = menu_object[0]
+              path = menu_object[1]
+              text = menu_object[2]
+              sub_dir = menu_object[3]
+
+            elsif menu_object.kind_of?(Class)
+
+              icon = menu_object.glyphicon
+              path = menu_object.view_path
+              text = menu_object.humanized.pluralize
+              sub_dir = nil
+
+            end
+
+            div :class => 'menu_cell', :'data-text-label' => text.to_s.humanize.downcase do
+              i :class => 'fa fa-' + icon
+              br
+              a :class => 'cell_text', :href => path do
+                text.to_s.humanize
+              end
+              br
+              if sub_dir
+                button :class => 'btn btn-default sub_menu_button', :unhide => text do
+                  i :class => 'fa fa-chevron-down'
+                end
+              end
+            end
+
+          end
+        end
+
+      end
+    end
+    str.html_safe
+
   end
 
   def render_if_exists(path_to_partial)

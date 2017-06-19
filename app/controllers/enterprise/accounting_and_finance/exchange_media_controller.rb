@@ -21,7 +21,6 @@ class Enterprise::AccountingAndFinance::ExchangeMediaController < GenericResourc
       my_exchange_medium.transaction_type = 'SAMPLE'
       my_exchange_medium.transaction_id = 'SAMPLE'
 
-      my_exchange_medium.implemented_at = current_params[:implemented_at]
       my_exchange_medium.remark = current_params[:remark]
       process_money(my_exchange_medium, current_params[:amount], current_params[:currency])
       my_exchange_medium.save!

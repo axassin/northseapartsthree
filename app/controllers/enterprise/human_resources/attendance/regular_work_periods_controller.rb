@@ -4,8 +4,8 @@ class Enterprise::HumanResources::Attendance::RegularWorkPeriodsController < Gen
     setup_variables( RegularWorkPeriod,
                      'Regular Work Period',
                      'Work Period per Employee',
-                     ['employee_id'],
-                     ['employee_name'],
+                     ['employee_id','time_in','time_out'],
+                     ['employee_name','work_period'],
                      @@routes.enterprise_human_resources_attendance_regular_work_periods_path)
   end
 

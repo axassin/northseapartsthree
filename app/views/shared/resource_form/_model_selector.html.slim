@@ -27,6 +27,9 @@ div.model_selector_group
           input_html: data_parsley_hash
 
 div
-  a.btn.btn-default.add_model_select target='_new' href="#{ scoped_model.first.class.main_resource_path + '/new' }" #{'Add New ' + humanized_name}
+  - if scoped_model.count > 0
+    a.btn.btn-default.add_model_select target='_new' href="#{ scoped_model.first.class.main_resource_path + '/new' }" #{'Add New ' + humanized_name}
+  - else
+    a.btn.btn-default.add_model_select target='_new' href="#{ scoped_model.main_resource_path + '/new' }" #{'Add New ' + humanized_name}
 
 br

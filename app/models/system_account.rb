@@ -20,6 +20,7 @@ class SystemAccount < ApplicationRecord
   has_one :employee, :dependent => :destroy
   has_one :bank, :dependent => :destroy
   has_one :user, :dependent => :destroy
+  has_one :vendor, :dependent => :destroy
 
   validates :account_type, presence: true, inclusion: { in: %w( INDIVIDUAL GROUP ) }
   searchable_string(:account_type)

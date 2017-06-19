@@ -1,19 +1,23 @@
 $(document).on 'turbolinks:load', ->
 
+  # hide all main menu elements
   $('.main_menu').hide()
   $('span.main_menu_arrow').hide()
 
+  # show depending on toggle
   $('.menu_button').funcToggle( 'click',
     ->
       $('.menu_button').css('background-color','#660000')
       $('.main_menu').velocity("fadeIn", { duration: 250 })
       $('.main_menu_arrow').velocity("fadeIn", { duration: 250 })
       $('.main_display').velocity({ opacity: 0.25 }, { duration: 250 })
+      $('html, body').css({ overflow: 'hidden',height: '100%' });
     ->
       $('.menu_button').css('background-color','#666666')
       $('.main_menu').velocity("fadeOut", { duration: 250 })
       $('.main_menu_arrow').velocity("fadeOut", { duration: 250 })
       $('.main_display').velocity({ opacity: 1 }, { duration: 250 })
+      $('html, body').css({ overflow: 'auto', height: 'auto' });
   )
 
   # --------------------- Main Menu Behaviour ---------------------

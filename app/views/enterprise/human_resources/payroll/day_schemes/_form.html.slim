@@ -1,2 +1,9 @@
 div.col-md-6
+  = input_word(f, :type_name)
+  = input_long_decimal(f, :base_multiplier)
+  = input_long_decimal(f, :overtime_multiplier)
+  = input_long_decimal(f, :rest_day_multiplier)
+  = input_long_decimal(f, :overtime_rest_day_multiplier)
 div.col-md-6
+  = date_selector(f, current_instance)
+  = input_remark(f)

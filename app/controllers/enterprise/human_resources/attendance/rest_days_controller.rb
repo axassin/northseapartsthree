@@ -4,8 +4,8 @@ class Enterprise::HumanResources::Attendance::RestDaysController < GenericResour
     setup_variables( RestDay,
                      'Rest Days',
                      'One Day of the Week for Rest according to Law',
-                     [],
-                     [],
+                     ['employee_id'],
+                     ['employee_name'],
                      @@routes.enterprise_human_resources_attendance_rest_days_path)
   end
 

@@ -36,5 +36,6 @@
 //= require moment
 //= require fullcalendar
 //= require chartkick
+//= require chart_kick_loader.js
 
 //= //require_tree .

@@ -58,7 +58,7 @@ module ResourceFormHelper
   # input type float
   def input_long_decimal(f, name, id = nil)
     f.input name, as: :float, input_html: { 'data-parsley-trigger': 'keyup',
-                                           'data-parsley-minlength': 3,
+                                           'data-parsley-minlength': 1,
                                            'data-parsley-maxlength': 512,
                                            'data-parsley-validation-threshold': 0,
                                             id: id}

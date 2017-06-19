@@ -37,7 +37,8 @@ html lang="en"
               input type='hidden' name='wizard_model' value='#{params[:wizard_model]}'
 
             div.form_proper
-              = render partial: @form, locals: {f: f, current_instance: @current_instance}
+              div.row
+                = render partial: @form, locals: {f: f, current_instance: @current_instance}
 
             div.col-md-12.footnote * Required
             div.float-clearing
@@ -47,8 +48,9 @@ html lang="en"
             $(form_id).parsley();
 
         - elsif step.to_s == 'end'
-          div.statement Operation Successful!
+          div.statement Wizard Successful!
           div.float-clearing
-          = render partial: 'layouts/wizard/footer'
+          div align='center'
+            = render partial: 'layouts/wizard/footer'
         - else
           == yield

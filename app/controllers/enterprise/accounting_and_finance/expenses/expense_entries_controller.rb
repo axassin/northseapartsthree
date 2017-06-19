@@ -4,8 +4,8 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController < Gen
     setup_variables( ExpenseEntry,
                      'Expense Entry',
                      'Entry into an Expense Account',
-                     ['vendor_id','expense_category_id','requesting_party_id'],
-                     ['vendor_summary','expense_category_summary','receiving_party_summary'],
+                     ['vendor_id','expense_category_id','requesting_party_id','amount_centavos','amount_currency'],
+                     ['vendor_name','expense_category_name','requesting_party_name','cost'],
                      @@routes.enterprise_accounting_and_finance_expenses_expense_entries_path)
   end
 

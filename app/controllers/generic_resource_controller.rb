@@ -1,3 +1,7 @@
+# ------------------
+# Generic Resource is a controller for itemizing the model into manageable parts
+# ------------------
+
 class GenericResourceController < ApplicationController
 
   before_action :authenticate_user!
@@ -9,8 +13,12 @@ class GenericResourceController < ApplicationController
     @resource_glyphicon = class_model.class_variable_get(:@@resource_glyphicon)
     @resource_title_heading = resource_title_heading
     @resource_sub_heading = resource_sub_heading
+
+    # Omit attributes such as those with _id and replace them with other methods
+    # that give the actual model through admitted_attributes
     @omitted_attributes = omitted_attributes.push('deleted_at')
     @admitted_attributes = admitted_attributes
+
     @parent_controller_path = parent_controller_path
     @main_resource_path = class_model.class_variable_get(:@@resource_path)
     @current_instance = class_model.new

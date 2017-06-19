@@ -193,7 +193,6 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.integer  "amount_centavos",             default: 0,     null: false
     t.string   "amount_currency",             default: "PHP", null: false
     t.string   "remark",          limit: 256
-    t.datetime "implemented_at"
     t.index ["deleted_at"], name: "index_exchange_media_on_deleted_at", using: :btree
   end
 
@@ -215,6 +214,7 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.datetime "updated_at",                   null: false
     t.string   "expense_entry_id", limit: 36
     t.string   "employee_id",      limit: 36
+    t.string   "status",           limit: 64
     t.date     "implemented_on"
     t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_expense_authorizations_on_deleted_at", using: :btree

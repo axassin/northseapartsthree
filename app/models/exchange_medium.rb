@@ -7,7 +7,6 @@ class ExchangeMedium < ApplicationRecord
               Enterprise::AccountingAndFinance::ExchangeMediaController )
 
   include Remark
-  include ImplementedAt
 
   has_one :cash, :dependent => :destroy
   has_one :bank_transfer, :dependent => :destroy

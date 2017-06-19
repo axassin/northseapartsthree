@@ -4,8 +4,8 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseAuthorizationController
     setup_variables( ExpenseAuthorization,
                      'Expense Authorization',
                      'Authorization Expenses',
-                     [],
-                     [],
+                     ['expense_entry_id','employee_id'],
+                     ['expense_entry_summary','employee_name'],
                      @@routes.enterprise_accounting_and_finance_expenses_expense_authorization_index_path)
   end
 

@@ -23,6 +23,11 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
 
   def show
 
+    set_associated_parameters = Proc.new do
+      @associated_class_model = 'Employee'
+      @associated_id = Employee.where(system_account_id: params[:wizard_model_id]).last.id
+    end
+
     set_employee_id = Proc.new do
       @employee_id = Employee.where(system_account_id: params[:wizard_model_id]).last.id
     end
@@ -63,10 +68,10 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
         set_employee_id.call
         setup_step(RestDay)
       when :setup_associated_image
-        set_employee_id.call
+        set_associated_parameters.call
         setup_step(AssociatedImage, true, true)
       when :setup_associated_file
-        set_employee_id.call
+        set_associated_parameters.call
         setup_step(AssociatedFile, true, true)
       when :end
         setup_step(nil)
@@ -75,6 +80,7 @@ class Enterprise::HumanResources::EmployeeAccountsManagement::NewEmployeeWizardC
   end
 
   def update
+
     case step
       when :start
       when :setup_system_account

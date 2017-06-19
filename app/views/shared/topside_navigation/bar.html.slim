@@ -1,32 +1,36 @@
-// Main Navigation Bar
-// followed Bootstrap 4 documentation on how to implement a navigation bar
+/ Main Navigation Bar
+
+/ followed Bootstrap 4 documentation on how to implement a navigation bar
 nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navigation_bar
 
-  // logo (2 columns)
+  / logo (2 columns)
   a.navbar-brand.col-md-2 href='#{root_path}'
     = image_tag('nav_bar_header.png')
 
-  // default button if screen is too small; collapses the collapsible portion
+  / default button if screen is too small; collapses the collapsible portion
   button.navbar-toggler type='button' data-toggle='collapse' data-target='#main_navigation_bar' aria-controls='main_navigation_bar'
     span.navbar-toggler-icon
 
+  / Search Bar for Generic Resource Controllers
   - if ApplicationController.current.class < GenericResourceController
     form.form-inline.col-md-4 method='get' action='#{@main_resource_path}'
       input.form-control.typeahead.generic_resource_search_bar id='search_query' name='search_query' type='text' placeholder='#{ '&#x25ba;'.html_safe } LOOK FOR #{controller_name.humanize.titleize} '
       input.hidden_submit type="submit"
       = javascript_include_tag 'generic_resource/search_suggestions'
 
-  // collapsible portion
+  / collapsible portion
   div.collapse.navbar-collapse id='main_navigation_bar'
 
   ul.nav.navbar-nav.user_navigation_elements
 
+    / enterprise menu button
     - if user_signed_in?
       div.enterprise_menu_button
         button.btn.btn-default.menu_button
           i.fa.fa-modx aria-hidden="true"
           span &nbsp; ENTERPRISE MENU
 
+    / log-in or log-out
     - if user_signed_in?
       li.nav-item.pull-xs-right.ml-2
         a.btn.btn-default href='#{edit_user_registration_path}'
@@ -35,6 +39,7 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
         a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}' title="Sign Out"
           i.fa.fa-sign-out aria-hidden="true"
 
+    / signup and registration
     - else
       li.nav-item.pull-xs-right.ml-2
         a.btn.btn-default href='#{new_user_session_path}'
@@ -45,108 +50,10 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
           i.fa.fa-check aria-hidden="true"
           span &nbsp; REGISTER
 
-
-// Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
+/ Dynamic Metro-Style Menu System; each segment corresponds to a state displayed onscreen
 div.main_menu
 
-  // Enterprise Main
-  div.menu_category.enterprise data-parent-category='enterprise'
-    = enterprise_menu_cell('universal-access',enterprise_human_resources_path,'human_resources',true)
-    = enterprise_menu_cell('building-o',enterprise_accounting_and_finance_path,'accounting_and_finance',true)
-    = enterprise_menu_cell('maxcdn',enterprise_general_management_path,'general_management',true)
-    = enterprise_menu_cell('codepen',enterprise_operations_path,'operations',true)
-    = enterprise_menu_cell('share-alt',enterprise_strategic_marketing_path,'strategic_marketing',true)
-    = enterprise_menu_cell('ioxhost',enterprise_system_administration_path,'system_administration',true)
-
-  // Accounting and Finance
-  div.menu_category.accounting_and_finance data-parent-category='enterprise'
-    = enterprise_menu_cell('university', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true)
-    = enterprise_menu_cell('etsy', enterprise_accounting_and_finance_expenses_path, 'expenses', true)
-    = enterprise_menu_cell(ExchangeMedium.glyphicon, enterprise_accounting_and_finance_exchange_media_path, 'exchange_media', true)
-    = enterprise_menu_cell_model(Vendor)
-    = enterprise_menu_cell_model(Payment)
-
-  div.menu_category.financial_institutions data-parent-category='accounting_and_finance'
-    = enterprise_menu_cell_model(Bank)
-    = enterprise_menu_cell_model(BankAccount)
-
-  div.menu_category.exchange_media data-parent-category='accounting_and_finance'
-    = enterprise_menu_cell_model(BankTransfer)
-    = enterprise_menu_cell_model(Cash)
-    = enterprise_menu_cell_model(Check)
-
-  div.menu_category.expenses data-parent-category='accounting_and_finance'
-    = enterprise_menu_cell_model(ExpenseAssignment)
-    = enterprise_menu_cell_model(ExpenseCategory)
-    = enterprise_menu_cell_model(ExpenseEntry)
-    = enterprise_menu_cell_model(ExpenseAuthorization)
-
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_expense_report_path,'Expense Report',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_examine_expense_path,'Specific Expense Report',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_asset_expenditures_path,'Asset Expenditures',false)
-
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_authorize_expense_wizard_index_path,'Authorize Expenses',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_request_expense_wizard_index_path,'Request for Expense',false)
-    = enterprise_menu_cell('etsy',enterprise_accounting_and_finance_expenses_express_expense_wizard_index_path,'Express Expense',false)
-    // Payment
-
-  // Operations
-  div.menu_category.operations data-parent-category='enterprise'
-    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_path,'greco_warehouse',true)
-    = enterprise_menu_cell('info-circle',enterprise_operations_storage_management_path,'storage_management',true)
-  
-  div.menu_category.greco_warehouse data-parent-category='operations'
-    = enterprise_menu_cell_model(GrecoItem)
-    = enterprise_menu_cell_model(GrecoTransaction)
-    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false)
-    = enterprise_menu_cell('info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false)
-
-  div.menu_category.storage_management data-parent-category='operations'
-    = enterprise_menu_cell_model(StorageUnit)
-    = enterprise_menu_cell('info',enterprise_operations_storage_management_storage_generator_path,'Storage Generator',nil)
-
-  // Human Resources
-  div.menu_category.human_resources data-parent-category='enterprise'
-    = enterprise_menu_cell('id-card', enterprise_human_resources_employee_accounts_management_path, 'employee_accounts_management', true)
-    = enterprise_menu_cell('twitch', enterprise_human_resources_attendance_path, 'attendance', true)
-    = enterprise_menu_cell('yelp', enterprise_human_resources_payroll_path, 'payroll', true)
-
-  div.menu_category.employee_accounts_management data-parent-category='human_resources'
-    = enterprise_menu_cell('vcard', enterprise_human_resources_employee_accounts_management_new_employee_wizard_index_path, 'new_employee_wizard', nil)
-    = enterprise_menu_cell_model(EmployeeStatus)
-    = enterprise_menu_cell_model(Employee)
-    = enterprise_menu_cell_model(Biodatum)
-
-  div.menu_category.attendance data-parent-category='human_resources'
-    = enterprise_menu_cell('user-circle', enterprise_human_resources_attendance_employee_attendance_report_path, 'employee_attendance_report', nil)
-    = enterprise_menu_cell_model(RestDay)
-    = enterprise_menu_cell_model(RegularWorkPeriod)
-    = enterprise_menu_cell_model(Holiday)
-    = enterprise_menu_cell_model(AttendanceRecord)
-
-  div.menu_category.payroll data-parent-category='human_resources'
-    = enterprise_menu_cell_model(DayScheme)
-    = enterprise_menu_cell('info', enterprise_human_resources_payroll_vales_management_path, 'vales_management', nil)
-
-  div.menu_category.payroll data-parent-category='payroll'
-    = enterprise_menu_cell_model(Vale)
-    = enterprise_menu_cell_model(ValeAdjustment)
-
-  // General Management
-  div.menu_category.general_management data-parent-category='enterprise'
-    = enterprise_menu_cell(ContactDetail.glyphicon, enterprise_general_management_contact_details_path, 'contact_details', true)
-    = enterprise_menu_cell_model(Vehicle)
-    = enterprise_menu_cell_model(Branch)
-    = enterprise_menu_cell_model(SystemAccount)
-    = enterprise_menu_cell_model(SystemConstant)
-    = enterprise_menu_cell_model(AssociatedFile)
-    = enterprise_menu_cell_model(AssociatedImage)
-
-  div.menu_category.contact_details data-parent-category='general_management'
-    = enterprise_menu_cell('gg', enterprise_general_management_contact_details_contact_wizard_index_path, 'contact_wizard', nil)
-    = enterprise_menu_cell_model(TelephoneNumber)
-    = enterprise_menu_cell_model(Location)
-    = enterprise_menu_cell_model(Link)
+  = render_menu(@main_enterprise_array)
 
   div.float-clearing
   br
@@ -157,10 +64,5 @@ div.main_menu
 
     button.btn.btn-default.toggle_modules = 'SHOW ALL'
     input.navigation_menu_search placeholder= ' Search for Modules '
-
-  div.float-clearing
-  br
-  br
-  br
 
 = javascript_include_tag 'navigation_bar', media: 'all'

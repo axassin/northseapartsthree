@@ -19,11 +19,11 @@ class Check < ApplicationRecord
   searchable_string(:signatory_name)
 
   def payee_name
-    SystemAccount.find_by_id(payee).represent
+    SystemAccount.find_by_id(payee_id).represent
   end
 
   def signatory_name
-    SystemAccount.find_by_id(signatory).represent
+    SystemAccount.find_by_id(signatory_id).represent
   end
 
 end

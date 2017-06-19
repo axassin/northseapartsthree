@@ -6,8 +6,8 @@ class CreateChecks < ActiveRecord::Migration
       foreign_key_id(t, 'bank_account')
       t.string :check_number, :limit => 36
       t.date :dated, :required => true
-      t.string :signatory, :limit => 36
-      t.string :payee, :limit => 36
+      t.string :signatory_id, :limit => 36
+      t.string :payee_id, :limit => 36
       foreign_key_id(t, 'exchange_medium')
       t.timestamps
     end

@@ -1,3 +1,8 @@
+# ------------------
+# Generic Generator is a controller for generating models through an efficient interface
+# ------------------
+
+
 class GenericGeneratorController < ApplicationController
 
   layout 'generator/main'

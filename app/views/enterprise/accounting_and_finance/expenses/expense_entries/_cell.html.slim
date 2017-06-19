@@ -1,7 +1,7 @@
-div = resource_cell_link(result.vendor)
-div = resource_cell_link(result.expense_category)
+div = instance_link(result.vendor)
+div = instance_link(result.expense_category)
 div = result.due_date
 div = result.reference_number
-div = resource_cell_link(SystemAccount.find_by_id(result.requesting_party_id))
+div = instance_link(SystemAccount.find_by_id(result.requesting_party_id))
 div = money_display(result.amount,result.amount_currency)
 div = result.remark
