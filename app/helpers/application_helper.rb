@@ -78,12 +78,16 @@ module ApplicationHelper
   end
 
   def render_menu_array(enterprise_menu_array)
-    output_html = ''
+
+    output_html = content_tag :div, 'data-parent-category': 'enterprise' do
+      'dfasdf'
+    end
+
     enterprise_menu_array.each do |element|
       if element.class == Class
-        output_html += 'sherwin'
+
       elsif element.kind_of?(Array)
-        output_html += 'hueh hueh'
+
       end
     end
     output_html
