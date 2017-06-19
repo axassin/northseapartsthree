@@ -79,42 +79,60 @@ module ApplicationHelper
     now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
   end
 
-  def render_menu_array(enterprise_menu_array)
+  def render_menu(menu_array)
 
-    enterprise_menu_array.each do |element|
-      if element.class == Class
-        concat(enterprise_menu_cell_model(element))
-      elsif element.kind_of?(Array)
-        concat(enterprise_menu_cell(element[0],element[1],element[2],element[3]))
-        concat(render_menu_array(element[4])) if element[4].present?
-      end
-    end
-
-  end
-
-  def enterprise_menu_cell(icon, path, text, sub_dir = nil)
-
+    str = ''
     str = mab do
-      div :class => 'menu_cell', :'data-text-label' => text.to_s.humanize.downcase do
-        i :class => 'fa fa-' + icon
-        br
-        a :class => 'cell_text', :href => path do
-          text.to_s.humanize
-        end
-        br
-        if sub_dir
-          button :class => 'btn btn-default sub_menu_button', :unhide => text do
-            i :class => 'fa fa-chevron-down'
+      menu_array.each do |menu_category_set|
+
+        key = menu_category_set[0].keys[0]
+        value = menu_category_set[0].values[0]
+
+        div :class => 'menu_category ' + key.to_s , :'data-parent-category' => value.to_s do
+          menu_category_set[1].each do |menu_object|
+
+            icon = ''
+            path = ''
+            text = ''
+            sub_dir = nil
+
+            if menu_object.kind_of?(Array)
+
+              icon = menu_object[0]
+              path = menu_object[1]
+              text = menu_object[2]
+              sub_dir = menu_object[3]
+
+            elsif menu_object.kind_of?(Class)
+
+              icon = menu_object.glyphicon
+              path = menu_object.view_path
+              text = menu_object.humanized.pluralize
+              sub_dir = nil
+
+            end
+
+            div :class => 'menu_cell', :'data-text-label' => text.to_s.humanize.downcase do
+              i :class => 'fa fa-' + icon
+              br
+              a :class => 'cell_text', :href => path do
+                text.to_s.humanize
+              end
+              br
+              if sub_dir
+                button :class => 'btn btn-default sub_menu_button', :unhide => text do
+                  i :class => 'fa fa-chevron-down'
+                end
+              end
+            end
+
           end
         end
+
       end
     end
     str.html_safe
 
-  end
-
-  def enterprise_menu_cell_model(model)
-    enterprise_menu_cell(model.glyphicon, model.view_path, model.humanized.pluralize)
   end
 
   def render_if_exists(path_to_partial)
