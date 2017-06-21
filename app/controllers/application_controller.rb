@@ -26,17 +26,20 @@ class ApplicationController < ActionController::Base
         [{:accounting_and_finance => 'enterprise'},[
             ['info', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true],
             ['info', enterprise_accounting_and_finance_expenses_path, 'expenses', true],
+            ['info', enterprise_accounting_and_finance_payments_report_path, 'payment_report', true],
             [ExchangeMedium.glyphicon, enterprise_accounting_and_finance_exchange_media_path, 'exchange_media', true],
-            Vendor,
-            Payment]],
+            Vendor]],
         [{:financial_institutions => 'accounting_and_finance'},[
             Bank,
             BankAccount]],
+        [{:payment_report => 'accounting_and_finance'},[
+            Payment,
+            ['info', enterprise_accounting_and_finance_payments_report_accounts_payable_wizard_index_path, 'accounts_payable_wizard', false]]],
         [{:exchange_media => 'accounting_and_finance'},[
             BankTransfer,
             Cash,
             Check]],
-        [{:exchange_media => 'accounting_and_finance'},[
+        [{:expenses => 'accounting_and_finance'},[
             ExpenseAssignment,
             ExpenseCategory,
             ExpenseEntry,

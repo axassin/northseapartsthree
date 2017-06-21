@@ -10,8 +10,8 @@ class Check < ApplicationRecord
 
   belongs_to :bank_account
 
-  validates_presence_of :signatory
-  validates_presence_of :payee
+  validates_presence_of :signatory_id
+  validates_presence_of :payee_id
   validates_presence_of :bank_account
   validates_presence_of :check_number
 

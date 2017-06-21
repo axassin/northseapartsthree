@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.string   "bank_account_id",    limit: 36
     t.string   "check_number",       limit: 36
     t.date     "dated"
-    t.string   "signatory",          limit: 36
-    t.string   "payee",              limit: 36
+    t.string   "signatory_id",       limit: 36
+    t.string   "payee_id",           limit: 36
     t.string   "exchange_medium_id", limit: 36
     t.index ["deleted_at"], name: "index_checks_on_deleted_at", using: :btree
   end
@@ -308,6 +308,9 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.string   "system_account_id",  limit: 36
     t.string   "employee_id",        limit: 36
     t.string   "exchange_medium_id", limit: 36
+    t.date     "disbursement_date"
+    t.string   "payable_id",         limit: 36
+    t.string   "payable_type"
     t.string   "remark",             limit: 256
     t.index ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree
   end

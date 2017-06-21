@@ -12,6 +12,8 @@ class ExchangeMedium < ApplicationRecord
   has_one :bank_transfer, :dependent => :destroy
   has_one :check, :dependent => :destroy
 
+  has_one :payment, :dependent => :destroy
+
   monetize :amount_centavos, with_model_currency: :currency
 
   def transaction
@@ -32,6 +34,10 @@ class ExchangeMedium < ApplicationRecord
 
   def summary
     amount.to_s + ' ' + amount_currency.to_s + ' '+ type_of_medium
+  end
+
+  def amount_php
+    goog_currency_php_converter(amount, currency)
   end
 
   def self.blank_exchange_mediums

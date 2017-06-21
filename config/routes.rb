@@ -131,6 +131,8 @@ Rails.application.routes.draw do
       end
       generic_resource( :exchange_media )
 
+      report('balance_of_accounts')
+
       define_index('payments_report')
       namespace :payments_report do
         generic_resource( :payments )
