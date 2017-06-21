@@ -21,8 +21,6 @@ module GenericResourceCommon extend ActiveSupport::Concern
     end
   end
 
-
-
   def represent
     self.send(self.class.class_variable_get(:@@representative_attribute))
   end
@@ -110,6 +108,11 @@ module GenericResourceCommon extend ActiveSupport::Concern
 
     def polymorphic_attribute
       self.class_variable_get(:@@associated_controller)
+    end
+
+    def is_not_associated_with(class_model)
+      pluralized_class_model = class_model.pluralize.to_s
+      self.left_outer_joins(class_model.to_sym).where( "#{pluralized_class_model}": { id: nil })
     end
 
   end
