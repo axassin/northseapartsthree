@@ -1,6 +1,4 @@
-# ------------------------------------
-# Module setups a model for CRUD or a Generic Resource Type.
-# ------------------------------------
+# this module sets up a model as a resource. automatically sets up for controller, model and instance
 
 module GenericResourceCommon extend ActiveSupport::Concern
 
@@ -44,6 +42,7 @@ module GenericResourceCommon extend ActiveSupport::Concern
       result
     end
 
+    # defines a searchable string for solr
     def searchable_string(attribute)
       searchable do
         string attribute
@@ -51,6 +50,7 @@ module GenericResourceCommon extend ActiveSupport::Concern
       end
     end
 
+    # defines a searchable date for solr
     def searchable_date(attribute)
       searchable do
         time attribute
@@ -58,11 +58,22 @@ module GenericResourceCommon extend ActiveSupport::Concern
       end
     end
 
+    # setups the model's class variables
     def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute = nil)
+
+      # pick a font-awesome based glyphicon for model; see font-awesome
       self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
+
+      # pick one method from model that will represent entire instance
       self.class_variable_set(:@@representative_attribute, representative_attribute)
+
+      # declare path in routes
       self.class_variable_set(:@@resource_path, resource_path)
+
+      # declare resource controller
       self.class_variable_set(:@@associated_controller, associated_controller)
+
+      # declare a polymorphic method if there is one
       self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
     end
 
