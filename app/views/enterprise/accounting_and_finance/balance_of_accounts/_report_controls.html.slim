@@ -1,0 +1,14 @@
+div.control_cell
+  span Get transactions from period
+  = generic_date_field('start_date',@start_date)
+div.control_cell
+  span to
+  = generic_date_field('end_date',@end_date)
+div.control_cell
+  span for
+  = generic_model_selector(SystemAccount.all,'system_account_id', @system_account_id)
+div.control_cell
+  span with an interval of
+  = generic_selector([['day','Day'],['week','Week'],['month','Month'],['year','Year']], 'interval' , @interval)
+div.control_cell
+  = generic_submit_button('','Generate Report')

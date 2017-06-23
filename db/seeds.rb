@@ -93,12 +93,7 @@ if Rails.env.development? || Rails.env.test?
 
   def establish_file(model, id)
 
-    current_file = ['sample_file_01.txt',
-                    'sample_file_02.txt',
-                    'sample_file_03.txt',
-                    'sample_file_04.txt',
-                    'sample_file_05.txt',
-                    ''].sample
+    current_file = %w(sample_file_01.txt sample_file_02.txt sample_file_03.txt sample_file_04.txt sample_file_05.txt).sample
 
     rand(0..2).times do
 
@@ -456,6 +451,17 @@ if Rails.env.development? || Rails.env.test?
     1..3.times do
       5.in(10) do
         payment = Payment.new
+        payment.disbursement_date = Faker::Date.between(Date.today - 3.months, Date.today)
+
+        payable_type_value = ['ExpenseEntry'].sample
+        payable_id_value = ''
+        case payable_type_value
+          when 'ExpenseEntry'
+            payable_id_value = ExpenseEntry.order("RAND()").first.id
+        end
+
+        payment.payable_type = payable_type_value
+        payment.payable_id = payable_id_value
         payment.employee = Employee.order("RAND()").first
         payment.system_account = current_vendor.system_account
         amount = Faker::Commerce.price*100.00

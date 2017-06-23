@@ -4,7 +4,7 @@ class ExpenseEntry < ApplicationRecord
   include Remark
 
   setup_model('etsy',
-              'summary',
+              'reference_number',
               @@routes.enterprise_accounting_and_finance_expenses_expense_entries_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController )
 

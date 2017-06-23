@@ -4,5 +4,5 @@ div.col-md-6
     selected_models = ExchangeMedium.blank_exchange_mediums
   = model_selector(f, selected_models, :exchange_medium_id, current_instance.exchange_medium, 'summary')
 div.col-md-6
-  = input_word(f, :denomination)
-  = input_word(f, :reference_number)
+  = input_word(f, :denomination, false, false)
+  = input_word(f, :reference_number, false, false)

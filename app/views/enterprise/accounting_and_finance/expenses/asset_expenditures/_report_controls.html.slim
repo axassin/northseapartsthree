@@ -1,0 +1,11 @@
+div.control_cell
+  span Get expenses from period
+  = generic_date_field('start_date',@start_date)
+div.control_cell
+  span to
+  = generic_date_field('end_date',@end_date)
+div.control_cell
+  span at an interval of
+  = generic_selector([['day','Day'],['week','Week'],['month','Month'],['year','Year']], 'interval' , @interval)
+div.control_cell
+  = generic_submit_button('','Generate Report')

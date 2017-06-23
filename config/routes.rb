@@ -131,6 +131,8 @@ Rails.application.routes.draw do
       end
       generic_resource( :exchange_media )
 
+      report('balance_of_accounts')
+
       define_index('payments_report')
       namespace :payments_report do
         generic_resource( :payments )
@@ -194,6 +196,8 @@ Rails.application.routes.draw do
 
     define_index( 'operations' )
     namespace :operations do
+
+      report('temporary_sticker_label')
 
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )

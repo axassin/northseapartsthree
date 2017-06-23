@@ -40,6 +40,7 @@ div.fade.modal.add_form_modal id='add_form_modal' data-animation='false'
       - @result_set.each do |result|
         div.grid-item
           = render partial: controller_path + '/cell', locals: {result: result}
+          br
           = render partial: 'layouts/generic_resource/item_options', locals: {result: result}
 
 

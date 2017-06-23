@@ -8,6 +8,8 @@ class Vendor < ApplicationRecord
               @@routes.enterprise_accounting_and_finance_vendors_report_vendors_path,
               Enterprise::AccountingAndFinance::VendorsReport::VendorsController)
 
+  has_many :expense_entries
+
   validates_uniqueness_of :system_account, if: :system_account
 
   belongs_to :system_account
