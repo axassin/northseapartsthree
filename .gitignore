@@ -74,13 +74,17 @@ solr/pids
 solr/hsperfdata_own
 solr/hsperfdata_james
 
-
+# IDE Preferences
 .idea/.generators
 .idea/.rakeTasks
 .idea/workspace.xml
-
 workspace.xml
 
+# for database preferences
 database.yml
 
+# Secret Key File
 env_provider.yml
+
+# For Bundler to stop Caching Gems
+vendor/bundle
