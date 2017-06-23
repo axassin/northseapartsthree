@@ -27,6 +27,7 @@ class ApplicationController < ActionController::Base
             ['info', enterprise_accounting_and_finance_financial_institutions_path, 'financial_institutions', true],
             ['info', enterprise_accounting_and_finance_expenses_path, 'expenses', true],
             ['info', enterprise_accounting_and_finance_payments_report_path, 'payment_report', true],
+            ['info', enterprise_accounting_and_finance_balance_of_accounts_path, 'balance_of_accounts', true],
             [ExchangeMedium.glyphicon, enterprise_accounting_and_finance_exchange_media_path, 'exchange_media', true],
             Vendor]],
         [{:financial_institutions => 'accounting_and_finance'},[

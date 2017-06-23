@@ -23,7 +23,7 @@ html lang="en"
         - if lookup_context.find_all(path_to_partial, [], true).any?
           div.row
             div.report_controls
-              form method='get'
+              form method='get' enctype="multipart/form-data"
                 = render path_to_partial
           hr
 

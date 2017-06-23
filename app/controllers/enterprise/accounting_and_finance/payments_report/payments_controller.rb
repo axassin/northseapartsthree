@@ -14,8 +14,13 @@ class Enterprise::AccountingAndFinance::PaymentsReport::PaymentsController < Gen
     payment_processing = Proc.new do
       my_payment.system_account = SystemAccount.find_by_id(current_params[:system_account_id])
       my_payment.employee = Employee.find_by_id(current_params[:employee_id])
-      my_payment.exchange_medium = ExchangeMedium.find_by_id(current_params[:exchange_medium])
+      my_payment.exchange_medium = ExchangeMedium.find_by_id(current_params[:exchange_medium_id])
+
+      my_payment.disbursement_date = current_params[:disbursement_date]
+      polymorphic_reference_process(my_payment,'payable',current_params)
+
       my_payment.remark = current_params[:remark]
+      my_payment.save!
     end
 
     setup_process(my_payment, payment_processing, wizard_mode)

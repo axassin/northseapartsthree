@@ -37,7 +37,7 @@ class ExchangeMedium < ApplicationRecord
   end
 
   def amount_php
-    goog_currency_php_converter(amount, currency)
+    ExchangeMedium.goog_currency_php_converter(amount, amount_currency)
   end
 
   def self.blank_exchange_mediums
