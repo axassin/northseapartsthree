@@ -69,6 +69,8 @@ Rails.application.routes.draw do
   define_index( 'enterprise' )
   namespace :enterprise do
 
+    generic_resource( :sample )
+
     define_index( 'control_panel' )
     namespace :control_panel do
 

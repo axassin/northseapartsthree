@@ -1,44 +1,74 @@
-div.container
-  h1 North Sea Parts Information System Documentation
-  hr
-  ul
-    li
-      h2 Technical Design
-      ul
-        li
-          h3 Migrations
-          ul
-            li Always include MainMigration Superclass
-            li For strings; always specify limit.
-            table
-              tr
-                th  TYPE
-                th  EXAMPLES
-                th  CHARACTER LIMIT
-              tr
-                td  Word
-                td  Names, Labels, Groups
-                td  2 to 64
-              tr
-                td  Sentence
-                td  Short Descriptions, Remarks
-                td  2 to 256
-              tr
-                td  Paragraph
-                td  Long Descriptions
-                td  2 to 512
+div.row
+  div.col-md-1
+  div.col-md-10
+    br
+    div
+      h1 DEVELOPER GUIDE
+      p This developer guide was made in order to assist developers for the North Sea Parts Information System. Take note that this developer guide is ALWAYS a work in progress; and if there are inconsistencies, it is imperative to inform head developer.
 
-        li
-          h3 Models
-          ul
-            li Order of Concerns
-            ul
-              li ActiveRecord Associations
-              li Validations
-              li Solr Searchable Block
-        li
-          h3 Controllers
-        li
-          h3 Views
-    li
-      h2 Style Guide
+    hr
+    div
+      h2 Training and Prerequisites
+      p The developer is expected to have good knowledge and principles in MVC (Model-View-Controller) Systems.
+      p Following are the basic technologies used and need to be learned in order to perform modifications and add features to the application
+      ul
+        li Ruby-on-Rails 5
+        li Coffeescript
+        li HTML.SLIM
+        li SASS
+      p These can be learned through the head developer; who should provide a tutorial on the Rails 5 Framework. Everything else should be learned through the internet.
+      p In addition the following skills should be considered as good starting points for those new to Rails or those coming from different languages
+      ul
+        li Ability to make a model with associations
+        li Ability to implement a Gem
+        li Ability to make models with polymorphic attributes and be able to properly do a CRUD with these types of models
+        li Ability to convert jquery / javascript code into coffeescript
+        li Ability to use Ruby Shortcuts in a fashionable and appropriate way
+        li Ability to use the Rails Command Line
+
+      p These are considered benchmarks in order to understand codebase well.
+
+    hr
+    div
+      h2 Getting Started in Running the Application
+      p Ask Head Developer to grant access to the [ #{link_to 'Github Repository','https://github.com/joojieman/northseapartsthree/'} ] and the [ #{link_to 'Trello Board','https://trello.com/b/ncleviyn/northseaparts'} ] for task assignment. Once you've downloaded from the Repository; Install the following:
+      ul
+        li MySQL
+        li IDE ( RubyMine )
+        li Ruby Version 2.3.1p112
+      p In order to run the application :
+      ul
+        li For Solr : rake sunspot:solr:run or sunspot:solr:start (linux)
+        li For DB : rake db:drop db:create db:migrate db:seed sunspot:reindex
+        li For Puma : rails s
+
+      p Ask the Secret Key from Head Developer; to be put in config/env_provider.yml
+      p Credentials for development are :
+      ul
+        li developer_one@gmail.com
+        li ilovetess
+
+    hr
+    div
+      h2 Migrations
+      p Follow the format in every migration. You will
+
+    hr
+    div
+      h2 Developing for the Application
+      p Given your assignment; you should know where to place it before executing orders. A sample of each kind of development asset can be found in the following directories:
+      div
+        h3 Routes File
+        p Examine the routes file. It is kept extremely DRY because of previous development conditions. Please follow the format throughout when making a new development module or functionality. You will find the 'Helpers' section particularly useful when declaring routes automatically
+        h3 Generating a Resource
+        p A resource is defined as a model which has a corresponding controller and view providing CRUD Functionality
+        h3 Generating a Report
+        p A report is defined as a mechanism for displaying model data, processing that data and outputting it either through a table or chart; through the use of inputs.
+        h3 Generating a Dashboard
+        p A dasbhoard is simply a set of preset reports. There should be no
+        h3 Generating a Control Desk
+        h3 Generating a Generic Form
+        h3 Generating a Wizard
+
+
+  div.col-md-1
