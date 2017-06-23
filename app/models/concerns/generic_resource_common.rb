@@ -2,14 +2,18 @@
 
 module GenericResourceCommon extend ActiveSupport::Concern
 
+  # make routes available to this module
   include Rails.application.routes.url_helpers
   @@routes = Rails.application.routes.url_helpers
 
   included do
+
+    # generate uuid as default id; must set id: false in migration in order to use
     before_create {
       self.id = UUIDTools::UUID.timestamp_create().to_s.downcase if id.blank?
     }
 
+    # search block for id
     searchable do
       string :id
       text :id
@@ -17,6 +21,7 @@ module GenericResourceCommon extend ActiveSupport::Concern
       time :created_at
       time :updated_at
     end
+
   end
 
   def represent
