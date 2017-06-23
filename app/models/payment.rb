@@ -20,12 +20,16 @@ class Payment < ApplicationRecord
     exchange_medium + ' for ' + system_account_name
   end
 
+  def self.payables(start_date, end_date, system_account_id)
+    Payment.where('disbursement_date >= ? AND disbursement_date < ? AND system_account_id = ?',start_date, end_date, system_account_id)
+  end
+
   def self.total(start_date, end_date, system_account_id)
     total = 0
-    Payment.where(disbursement_date: start_date..end_date, system_account_id: system_account_id).each do |element|
+    Payment.where('disbursement_date >= ? AND disbursement_date < ? AND system_account_id = ?',start_date, end_date, system_account_id).each do |element|
       total += element.exchange_medium.amount_php
     end
-    total
+    total.round(2)
   end
 
   def self.balance(current_date,system_account_id)
@@ -33,7 +37,7 @@ class Payment < ApplicationRecord
     Payment.where('disbursement_date < ? AND system_account_id = ?',current_date, system_account_id).each do |element|
       total += element.exchange_medium.amount_php
     end
-    total
+    total.round(2)
   end
 
 end

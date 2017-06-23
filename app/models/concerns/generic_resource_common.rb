@@ -21,8 +21,6 @@ module GenericResourceCommon extend ActiveSupport::Concern
     end
   end
 
-
-
   def represent
     self.send(self.class.class_variable_get(:@@representative_attribute))
   end
