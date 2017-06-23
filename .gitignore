@@ -86,5 +86,6 @@ database.yml
 # Secret Key File
 env_provider.yml
 
-# For Bundler to stop Caching Gems
+# For Bundler to stop Caching Gems in Project Folder
 vendor/bundle
+vendor/cache
