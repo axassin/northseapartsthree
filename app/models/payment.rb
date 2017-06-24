@@ -6,8 +6,7 @@ class Payment < ApplicationRecord
   include AssociatedExchangeMedium
   include Remark
 
-  setup_model('get-pocket',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_accounting_and_finance_payments_report_payments_path,
               Enterprise::AccountingAndFinance::PaymentsReport::PaymentsController)
 

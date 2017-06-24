@@ -13,7 +13,7 @@ puts " Initializing Database with Sample Data for Production and Development Env
 # Execute only in a Development Environment; This is "fake" sample data
 if Rails.env.development? || Rails.env.test?
 
-  # --------------------- Shorthand Functions ---------------------
+  # --------------------- Helper Methods ---------------------
   def establish_contact_details(model, id)
 
     rand(0..2).times do

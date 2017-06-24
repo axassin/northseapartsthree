@@ -3,8 +3,7 @@ class ExpenseEntry < ApplicationRecord
   include GenericResourceCommon
   include Remark
 
-  setup_model('etsy',
-              'reference_number',
+  setup_model('reference_number',
               @@routes.enterprise_accounting_and_finance_expenses_expense_entries_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController )
 

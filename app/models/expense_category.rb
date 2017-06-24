@@ -7,8 +7,7 @@ class ExpenseCategory < ApplicationRecord
 
   has_ancestry
 
-  setup_model('etsy',
-              'name',
+  setup_model('name',
               @@routes.enterprise_accounting_and_finance_expenses_expense_categories_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseCategoriesController )
 

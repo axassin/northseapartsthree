@@ -5,8 +5,7 @@ class StorageUnit < ApplicationRecord
 
   has_ancestry 
 
-  setup_model('info-circle',
-              'code',
+  setup_model('code',
               @@routes.enterprise_operations_storage_management_storage_units_path,
               Enterprise::Operations::StorageManagement::StorageUnitsController)
 

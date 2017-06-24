@@ -6,9 +6,8 @@ module GenericResourceCommon extend ActiveSupport::Concern
   include Rails.application.routes.url_helpers
   @@routes = Rails.application.routes.url_helpers
 
+  # generate uuid as default id; must set id: false in migration in order to use
   included do
-
-    # generate uuid as default id; must set id: false in migration in order to use
     before_create {
       self.id = UUIDTools::UUID.timestamp_create().to_s.downcase if id.blank?
     }
@@ -33,6 +32,26 @@ module GenericResourceCommon extend ActiveSupport::Concern
   end
 
   module ClassMethods
+
+    # setups the model's class variables
+    def setup_model(representative_attribute, resource_path, associated_controller, resource_glyphicon = 'info', polymorphic_attribute = nil)
+
+      # pick a font-awesome based glyphicon for model; see font-awesome
+      self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
+
+      # pick one method from model that will represent entire instance
+      self.class_variable_set(:@@representative_attribute, representative_attribute)
+
+      # declare path in routes
+      self.class_variable_set(:@@resource_path, resource_path)
+
+      # declare resource controller
+      self.class_variable_set(:@@associated_controller, associated_controller)
+
+      # declare a polymorphic method if there is one
+      self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
+
+    end
 
     def goog_currency_php_converter(amount, amount_currency)
       result = 0
@@ -60,25 +79,6 @@ module GenericResourceCommon extend ActiveSupport::Concern
         time attribute
         string attribute
       end
-    end
-
-    # setups the model's class variables
-    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute = nil)
-
-      # pick a font-awesome based glyphicon for model; see font-awesome
-      self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
-
-      # pick one method from model that will represent entire instance
-      self.class_variable_set(:@@representative_attribute, representative_attribute)
-
-      # declare path in routes
-      self.class_variable_set(:@@resource_path, resource_path)
-
-      # declare resource controller
-      self.class_variable_set(:@@associated_controller, associated_controller)
-
-      # declare a polymorphic method if there is one
-      self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
     end
 
     def glyphicon

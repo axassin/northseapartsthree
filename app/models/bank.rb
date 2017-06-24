@@ -4,8 +4,7 @@ class Bank < ApplicationRecord
   include SystemAccountable
   include Remark
 
-  setup_model('university',
-              'account_name',
+  setup_model('account_name',
               @@routes.enterprise_accounting_and_finance_financial_institutions_banks_path,
               Enterprise::AccountingAndFinance::FinancialInstitutions::BanksController)
 

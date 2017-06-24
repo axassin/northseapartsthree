@@ -3,8 +3,7 @@ class ExpenseAssignment < ApplicationRecord
   include GenericResourceCommon
   include Remark
 
-  setup_model('etsy',
-              'expensable',
+  setup_model('expensable',
               @@routes.enterprise_accounting_and_finance_expenses_expense_assignments_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseAssignmentsController )
 

@@ -1,8 +1,7 @@
 class BankAccount < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('bandcamp',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_accounting_and_finance_financial_institutions_bank_accounts_path,
               Enterprise::AccountingAndFinance::FinancialInstitutions::BankAccountsController)
 

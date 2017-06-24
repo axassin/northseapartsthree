@@ -1,8 +1,7 @@
 class ContactDetail < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('book',
-              'label',
+  setup_model('label',
               @@routes.enterprise_general_management_contact_details_path,
               Enterprise::GeneralManagement::ContactDetailsController )
 

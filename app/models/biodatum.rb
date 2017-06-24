@@ -3,8 +3,7 @@ class Biodatum < ApplicationRecord
   include GenericResourceCommon
   include AssociatedEmployee
 
-  setup_model('heart',
-              'employee_name',
+  setup_model('employee_name',
               @@routes.enterprise_human_resources_employee_accounts_management_biodata_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::BiodataController )
 

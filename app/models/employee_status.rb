@@ -3,8 +3,7 @@ class EmployeeStatus < ApplicationRecord
   include GenericResourceCommon
   include AssociatedEmployee
 
-  setup_model('fire',
-              'state',
+  setup_model('state',
               @@routes.enterprise_human_resources_employee_accounts_management_employee_statuses_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeeStatusesController )
 

@@ -1,8 +1,7 @@
 class GrecoTransaction < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('info',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_operations_greco_warehouse_greco_transactions_path,
               Enterprise::Operations::GrecoWarehouse::GrecoTransactionsController)
 
