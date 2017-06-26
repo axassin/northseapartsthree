@@ -6,6 +6,7 @@ module SystemAccountable
     belongs_to :system_account
 
     validates_presence_of :system_account
+    validates_uniqueness_of :system_account
 
     searchable do
       text :account_name

@@ -37,5 +37,6 @@
 //= require fullcalendar
 //= require chartkick
 //= require chart_kick_loader.js
+//= require cocoon
 
 //= //require_tree .

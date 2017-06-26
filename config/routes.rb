@@ -47,6 +47,11 @@ Rails.application.routes.draw do
     get indexable_controller + '/process_report', to: indexable_controller + '#process_report'
   end
 
+  def form(indexable_controller)
+    get indexable_controller, to: indexable_controller + '#index'
+    get indexable_controller + '/process_form', to: indexable_controller + '#process_report'
+  end
+
   # ----------------------------- Front-End Website -----------------------------
 
   # Home Page route
@@ -114,7 +119,6 @@ Rails.application.routes.draw do
 
       report( 'vendors_report' )
       namespace :vendors_report do
-        wizard('create_vendor_wizard')
         generic_resource( :vendors )
       end
 
@@ -125,7 +129,6 @@ Rails.application.routes.draw do
         generic_resource( :bank_accounts )
       end
 
-      report('due_checks')
       namespace :exchange_media do
         generic_resource(:cashes)
         generic_resource(:checks)

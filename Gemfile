@@ -229,4 +229,6 @@ gem 'cancan'
 # Create beautiful JavaScript charts with one line of Ruby
 gem 'chartkick'
 
+gem 'cocoon'
+
 # gem 'puma'

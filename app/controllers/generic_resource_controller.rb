@@ -29,19 +29,6 @@ class GenericResourceController < ApplicationController
       @omitted_attributes = omitted_attributes.push('primary_image')
     end
 
-    puts '------------ VARIABLES INITIALIZED ---------------- '
-    puts '@class_model: ' + @class_model.to_s
-    puts '@resource_glyphicon: ' + @resource_glyphicon.to_s
-    puts '@resource_title_heading: ' + @resource_title_heading.to_s
-    puts '@resource_sub_heading: ' + @resource_sub_heading.to_s
-    puts '@omitted_attributes: ' + @omitted_attributes.to_s
-    puts '@admitted_attributes: ' + @admitted_attributes.to_s
-    puts '@parent_controller_path: ' + @parent_controller_path.to_s
-    puts '@main_resource_path: ' + @main_resource_path.to_s
-    puts '@current_instance: ' + @current_instance.to_s
-    puts '@class_model_symbolized: ' + @class_model_symbolized.to_s
-    puts '--------------------------------------------------- '
-
   end
 
   def setup_index
