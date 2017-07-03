@@ -41,6 +41,7 @@ group :development, :test do
 
   # Better Errors replaces the standard Rails error page with a much better and more useful error page.
   gem 'better_errors'
+  gem 'binding_of_caller'
 
   # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
   gem 'rspec-rails', '~> 3.5'
@@ -228,5 +229,9 @@ gem 'cancan'
 
 # Create beautiful JavaScript charts with one line of Ruby
 gem 'chartkick'
+
+gem 'cocoon'
+
+
 
 # gem 'puma'

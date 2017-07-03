@@ -47,6 +47,11 @@ Rails.application.routes.draw do
     get indexable_controller + '/process_report', to: indexable_controller + '#process_report'
   end
 
+  def form(indexable_controller)
+    get indexable_controller, to: indexable_controller + '#index'
+    get indexable_controller + '/process_form', to: indexable_controller + '#process_report'
+  end
+
   # ----------------------------- Front-End Website -----------------------------
 
   # Home Page route
@@ -68,6 +73,8 @@ Rails.application.routes.draw do
   # ----------------------------- Enterprise Information System -----------------------------
   define_index( 'enterprise' )
   namespace :enterprise do
+
+    generic_resource( :sample )
 
     define_index( 'control_panel' )
     namespace :control_panel do
@@ -112,8 +119,8 @@ Rails.application.routes.draw do
 
       report( 'vendors_report' )
       namespace :vendors_report do
-        wizard('create_vendor_wizard')
         generic_resource( :vendors )
+        form( 'new_vendor_form')
       end
 
       report( 'financial_institutions' )
@@ -123,7 +130,6 @@ Rails.application.routes.draw do
         generic_resource( :bank_accounts )
       end
 
-      report('due_checks')
       namespace :exchange_media do
         generic_resource(:cashes)
         generic_resource(:checks)
@@ -208,7 +214,7 @@ Rails.application.routes.draw do
         generic_resource( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
         generic_resource( :greco_transactions )
-
+        generic_resource( :safety_stocks )
       end
 
       define_index('storage_management')

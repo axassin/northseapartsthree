@@ -1,14 +1,2 @@
-- unless @wizard_steps.present?
-  div.col-md-6
-    div.form_element_tip Create a Vendor from a corresponding System Account
-    ruby:
-      selected_models = SystemAccount.left_outer_joins(:vendor).where( vendors: { id: nil })
-    = model_selector(f, selected_models, :system_account_id, current_instance.system_account, 'name')
-    br
-    = associated_files_section(f, @current_instance.system_account)
-    = associated_images_section(f, @current_instance.system_account)
-- else
-  div.col-md-6
-    = f.input :system_account_id,
-            :as => :hidden,
-            :input_html => {:value => params[:wizard_model_id]}
+
+= system_accountable_form(f, current_instance)

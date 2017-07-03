@@ -3,8 +3,7 @@ class BankTransfer < ApplicationRecord
   include GenericResourceCommon
   include ExchangeableMedium
 
-  setup_model('google-wallet',
-              'transaction_number',
+  setup_model('transaction_number',
               @@routes.enterprise_accounting_and_finance_exchange_media_bank_transfers_path,
               Enterprise::AccountingAndFinance::ExchangeMedia::BankTransfersController )
 

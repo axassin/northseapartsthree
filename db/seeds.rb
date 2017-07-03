@@ -13,7 +13,7 @@ puts " Initializing Database with Sample Data for Production and Development Env
 # Execute only in a Development Environment; This is "fake" sample data
 if Rails.env.development? || Rails.env.test?
 
-  # --------------------- Shorthand Functions ---------------------
+  # --------------------- Helper Methods ---------------------
   def establish_contact_details(model, id)
 
     rand(0..2).times do
@@ -390,6 +390,14 @@ if Rails.env.development? || Rails.env.test?
       greco_transaction.remark = Faker::Commerce.product_name
       greco_transaction.save!
     }
+
+  }
+
+  20.times {
+    safety_stock = SafetyStock.new
+    safety_stock.amount = rand(5..200)
+    safety_stock.greco_item_id = GrecoItem.order("RAND()").first.id
+    safety_stock.save!
   }
 
   # Vendor

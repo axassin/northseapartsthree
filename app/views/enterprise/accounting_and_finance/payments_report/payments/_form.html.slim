@@ -6,7 +6,7 @@ div.col-md-6
 div.col-md-6
   div.form_element_tip Exchange Medium :
   ruby:
-    payments = ExchangeMedium.left_outer_joins(:payment).where( payments: { id: nil })
+    payments = ExchangeMedium.is_not_associated_with('payment')
   = model_selector(f, payments, :exchange_medium_id, current_instance.exchange_medium)
   br
   = input_date(f, :disbursement_date)

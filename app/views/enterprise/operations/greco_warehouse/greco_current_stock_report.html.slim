@@ -4,12 +4,19 @@ div.col-md-12
       tr
         th ITEM
         th align='center' QUANTITY
+        th SS Limit
     tbody
       - @greco_items.each do |greco_item|
         tr
           td
             a target='_blank' href='#{greco_item.show_path}' =greco_item.name
           td align='center' = greco_item.get_current_stock
+          - if greco_item.safety_stock
+            - if greco_item.safety_stock.amount > greco_item.get_current_stock
+              td align='center' style='background-color: yellow' = greco_item.safety_stock.amount
+            - else
+              td align='center' = greco_item.safety_stock.amount
+
 
 div.col-md-12
   a.btn.btn-default.greco_csv EXPORT TO CSV

@@ -1,0 +1,9 @@
+div.col-md-12
+  h4
+    input type="file" id="select-image-input" accept="image/x-png,image/gif,image/jpeg"
+    label Number of copies&nbsp;
+	input type="number" id="number-of-copies" placeholder="Default: 5"
+    button#print-button.btn-default.pull-right.disabled disabled="disabled" PRINT
+
+/ A placeholder container for images to be printed, doesn't need to be displayed. Instead will be displayed on a new tab upon calling print.
+#print-area style="display: none"

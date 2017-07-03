@@ -5,8 +5,7 @@ class AssociatedImage < ApplicationRecord
 
   belongs_to :imageable, polymorphic: true
 
-  setup_model('image',
-              'name',
+  setup_model('name',
               @@routes.enterprise_general_management_associated_images_path,
               Enterprise::GeneralManagement::AssociatedImagesController)
 

@@ -1,8 +1,7 @@
 class Link < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('external-link',
-              'url',
+  setup_model('url',
               @@routes.enterprise_general_management_contact_details_links_path,
               Enterprise::GeneralManagement::ContactDetails::LinksController)
 

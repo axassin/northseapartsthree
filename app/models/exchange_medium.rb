@@ -1,8 +1,7 @@
 class ExchangeMedium < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('exchange',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_accounting_and_finance_exchange_media_path,
               Enterprise::AccountingAndFinance::ExchangeMediaController )
 

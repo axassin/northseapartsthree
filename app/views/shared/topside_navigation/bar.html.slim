@@ -24,23 +24,25 @@ nav.navbar.navbar-light.navbar-toggleable-md.navbar-fixed-top.bg-faded.main_navi
   ul.nav.navbar-nav.user_navigation_elements
 
     / enterprise menu button
-    - if user_signed_in?
+    / - if user_signed_in?
+    - if true
       div.enterprise_menu_button
         button.btn.btn-default.menu_button
           i.fa.fa-modx aria-hidden="true"
           span &nbsp; ENTERPRISE MENU
 
     / log-in or log-out
-    - if user_signed_in?
+    / - if user_signed_in?
       li.nav-item.pull-xs-right.ml-2
         a.btn.btn-default href='#{edit_user_registration_path}'
-          = current_user.system_account.name
+          // = current_user.system_account.name
+          // = current_user.system_account.present?
       li.nav-item.pull-xs-right.ml-2
         a.btn.btn-default rel='nofollow' data-method="delete" href='#{destroy_user_session_path}' title="Sign Out"
           i.fa.fa-sign-out aria-hidden="true"
 
     / signup and registration
-    - else
+    / - else
       li.nav-item.pull-xs-right.ml-2
         a.btn.btn-default href='#{new_user_session_path}'
           i.fa.fa-sign-in aria-hidden="true"

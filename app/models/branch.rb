@@ -3,8 +3,7 @@ class Branch < ApplicationRecord
   include GenericResourceCommon
   include ContactableResource
 
-  setup_model('pagelines',
-              'name',
+  setup_model('name',
               @@routes.enterprise_general_management_branches_path,
               Enterprise::GeneralManagement::BranchesController)
 

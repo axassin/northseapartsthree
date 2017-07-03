@@ -33,9 +33,9 @@
 //= require velocity.ui.min.js
 //= require jquery.func_toggle.js
 //= require jstree
-//= require moment
 //= require fullcalendar
 //= require chartkick
 //= require chart_kick_loader.js
+//= require cocoon
 
 //= //require_tree .

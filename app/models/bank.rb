@@ -1,13 +1,12 @@
 class Bank < ApplicationRecord
 
   include GenericResourceCommon
-  include SystemAccountable
-  include Remark
-
-  setup_model('university',
-              'account_name',
+  setup_model('account_name',
               @@routes.enterprise_accounting_and_finance_financial_institutions_banks_path,
               Enterprise::AccountingAndFinance::FinancialInstitutions::BanksController)
+
+  include SystemAccountSubModel
+  include Remark
 
   has_many :bank_accounts, :dependent => :destroy
   has_many :associated_files, as: :fileable, :dependent => :destroy

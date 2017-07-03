@@ -6,8 +6,7 @@ class Enterprise::AccountingAndFinance::VendorsReport::VendorsController < Gener
                      'Suppliers of Auxiliary Services or Supplies',
                      ['system_account_id'],
                      ['account_name'],
-                     @@routes.enterprise_accounting_and_finance_vendors_report_path,
-                     @@routes.enterprise_accounting_and_finance_vendors_report_create_vendor_wizard_index_path)
+                     @@routes.enterprise_accounting_and_finance_vendors_report_path)
   end
 
   def process_form(my_vendor, current_params, wizard_mode = nil)

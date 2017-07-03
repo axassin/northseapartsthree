@@ -3,8 +3,7 @@ class Check < ApplicationRecord
   include GenericResourceCommon
   include ExchangeableMedium
 
-  setup_model('check-circle',
-              'check_number',
+  setup_model('check_number',
               @@routes.enterprise_accounting_and_finance_exchange_media_checks_path,
               Enterprise::AccountingAndFinance::ExchangeMedia::ChecksController )
 

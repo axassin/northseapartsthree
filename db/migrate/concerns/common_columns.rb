@@ -27,6 +27,7 @@ module CommonColumns
     t.string :remark, :limit => 256
   end
 
+  # for soft delete functionality
   def deleted_at(t)
     t.datetime :deleted_at, :required => true, :index => true
   end
