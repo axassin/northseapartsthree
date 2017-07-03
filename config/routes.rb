@@ -17,11 +17,11 @@ Rails.application.routes.draw do
   # ----------------------------- Helpers -----------------------------
 
   # used for the generic CRUD interface as per model
-  def generate_logic_unit( unit )
+  def generic_resource( unit )
     resources unit, concerns: [:search_suggestion, :uniqueness_validation, :retrieve_resource]
   end
 
-  # used for generic report or dashboard
+  # used for generic generic_field or dashboard
   def define_index( indexable_controller )
     get indexable_controller, to: indexable_controller + '#index'
   end
@@ -35,6 +35,21 @@ Rails.application.routes.draw do
   # used for custom actions in a controller
   def generate_action_url(main_controller, action_name)
     get main_controller + '/' + action_name, to: main_controller + '#' + action_name
+  end
+
+  def control_desk(indexable_controller)
+    get indexable_controller, to: indexable_controller + '#index'
+    get indexable_controller + '/process_index', to: indexable_controller + '#process_index'
+  end
+
+  def report(indexable_controller)
+    get indexable_controller, to: indexable_controller + '#index'
+    get indexable_controller + '/process_report', to: indexable_controller + '#process_report'
+  end
+
+  def form(indexable_controller)
+    get indexable_controller, to: indexable_controller + '#index'
+    get indexable_controller + '/process_form', to: indexable_controller + '#process_report'
   end
 
   # ----------------------------- Front-End Website -----------------------------
@@ -59,6 +74,8 @@ Rails.application.routes.draw do
   define_index( 'enterprise' )
   namespace :enterprise do
 
+    generic_resource( :sample )
+
     define_index( 'control_panel' )
     namespace :control_panel do
 
@@ -69,8 +86,8 @@ Rails.application.routes.draw do
 
       define_index('permissions')
       namespace :permissions do
-        generate_logic_unit( :access_permissions )
-        generate_logic_unit( :resource_permissions )
+        generic_resource( :access_permissions )
+        generic_resource( :resource_permissions )
       end
 
     end
@@ -80,52 +97,66 @@ Rails.application.routes.draw do
 
       namespace :contact_details do
         wizard('contact_wizard')
-        generate_logic_unit( :telephone_numbers )
-        generate_logic_unit( :links )
-        generate_logic_unit( :locations )
+        generic_resource( :telephone_numbers )
+        generic_resource( :links )
+        generic_resource( :locations )
       end
+      generic_resource( :contact_details )
 
       generate_action_url('contact_details','contactable')
-      generate_logic_unit( :contact_details )
-      generate_logic_unit( :vehicles )
-      generate_logic_unit( :branches )
-      generate_logic_unit( :system_accounts )
-      generate_logic_unit( :system_constants )
-      generate_logic_unit( :associated_files )
-      generate_logic_unit( :associated_images )
-      generate_logic_unit( :users )
+      generic_resource( :vehicles )
+      generic_resource( :branches )
+      generic_resource( :system_accounts )
+      generic_resource( :system_constants )
+      generic_resource( :associated_files )
+      generic_resource( :associated_images )
+      generic_resource( :users )
 
     end
 
     define_index( 'accounting_and_finance' )
     namespace :accounting_and_finance do
 
-      generate_logic_unit( :vendors )
-      generate_logic_unit( :payments )
+      report( 'vendors_report' )
+      namespace :vendors_report do
+        generic_resource( :vendors )
+        form( 'new_vendor_form')
+      end
 
-      define_index( 'financial_institutions' )
+      report( 'financial_institutions' )
       namespace :financial_institutions do
-        generate_logic_unit( :banks )
-        generate_logic_unit( :bank_accounts )
+        wizard('create_bank_wizard')
+        generic_resource( :banks )
+        generic_resource( :bank_accounts )
       end
 
       namespace :exchange_media do
-        generate_logic_unit(:cashes)
-        generate_logic_unit(:checks)
-        generate_logic_unit(:bank_transfers)
+        generic_resource(:cashes)
+        generic_resource(:checks)
+        generic_resource(:bank_transfers)
       end
-      generate_logic_unit( :exchange_media )
+      generic_resource( :exchange_media )
+
+      report('balance_of_accounts')
+
+      define_index('payments_report')
+      namespace :payments_report do
+        generic_resource( :payments )
+        wizard('accounts_payable_wizard')
+      end
 
       define_index( 'expenses' )
       namespace :expenses do
-        generate_logic_unit( :expense_categories )
-        generate_logic_unit( :expense_entries )
-        generate_logic_unit( :expense_assignments )
-        generate_logic_unit( :expense_authorization )
-        define_index( 'expense_report' )
-        define_index( 'expense_forecasting' )
-        define_index( 'expense_authorization_wizard' )
-        define_index( 'expense_payment' )
+        generic_resource( :expense_categories )
+        generic_resource( :expense_entries )
+        generic_resource( :expense_assignments )
+        generic_resource( :expense_authorization )
+        report( 'expense_report' )
+        report( 'examine_expense' )
+        report( 'asset_expenditures' )
+        control_desk( 'authorization_desk' )
+        wizard( 'request_expense_wizard' )
+        wizard( 'express_expense_wizard' )
       end
 
     end
@@ -135,36 +166,35 @@ Rails.application.routes.draw do
       define_index( 'employee_accounts_management' )
       namespace :employee_accounts_management do
         wizard('new_employee_wizard')
-        generate_logic_unit( :employee_statuses )
-        generate_logic_unit( :employees )
-        generate_logic_unit( :biodata )
+        generic_resource( :employee_statuses )
+        generic_resource( :employees )
+        generic_resource( :biodata )
       end
 
-      define_index( 'attendance' )
-      generate_action_url('attendance','process_attendance_grid')
+      report('attendance')
       namespace :attendance do
         generate_action_url('employee_attendance_report','get_regular_work_period')
         generate_action_url('employee_attendance_report','get_attendance_records')
         generate_action_url('employee_attendance_report','get_full_calendar_data')
         define_index( 'employee_attendance_report' )
         generate_action_url('rest_days','unique_rest_day_per_employee')
-        generate_logic_unit( :rest_days )
+        generic_resource( :rest_days )
         generate_action_url('regular_work_periods','validate_overlap')
-        generate_logic_unit( :regular_work_periods )
+        generic_resource( :regular_work_periods )
         generate_action_url('holidays','unique_holiday_date')
-        generate_logic_unit( :holidays )
+        generic_resource( :holidays )
         generate_action_url('attendance_records','validate_overlap')
-        generate_logic_unit( :attendance_records )
+        generic_resource( :attendance_records )
         define_index('printable_attendance_sheet')
       end
 
       define_index( 'payroll' )
       namespace :payroll do
-        generate_logic_unit( :day_schemes )
+        generic_resource( :day_schemes )
         define_index( 'vales_management' )
         namespace :vales_management do
-          generate_logic_unit( :vales )
-          generate_logic_unit( :vale_adjustments )
+          generic_resource( :vales )
+          generic_resource( :vale_adjustments )
         end
       end
 
@@ -173,16 +203,18 @@ Rails.application.routes.draw do
     define_index( 'operations' )
     namespace :operations do
 
+      report('temporary_sticker_label')
+
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )
       generate_action_url( 'greco_warehouse','greco_current_stock_report' )
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
 
       namespace :greco_warehouse do
-        generate_logic_unit( :greco_items )
+        generic_resource( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
-        generate_logic_unit( :greco_transactions )
-
+        generic_resource( :greco_transactions )
+        generic_resource( :safety_stocks )
       end
 
       define_index('storage_management')
@@ -190,7 +222,7 @@ Rails.application.routes.draw do
         define_index('storage_generator')
         generate_action_url( 'storage_generator','create' )
         generate_action_url( 'storage_management','generate_storage_units' )
-        generate_logic_unit( :storage_units )
+        generic_resource( :storage_units )
       end
 
     end

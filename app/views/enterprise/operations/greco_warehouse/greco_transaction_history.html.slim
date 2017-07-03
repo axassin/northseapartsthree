@@ -1,16 +1,16 @@
 div.report_controls.col-md-12
   form method='get'
     div.control_cell
-      = report_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
+      = generic_model_selector(GrecoItem.all, 'greco_item_id', @greco_item_id)
     div.control_cell
       span &nbsp; from : &nbsp;
-      = report_date_input('start_date', @start_date)
+      = generic_date_field('start_date', @start_date)
     div.control_cell
       span &nbsp; to : &nbsp;
-      = report_date_input('end_date', @end_date)
+      = generic_date_field('end_date', @end_date)
     div.control_cell
       span &nbsp; | &nbsp;
-      = report_submit_button
+      = generic_submit_button
 
 div.float-clearing.col-md-12
   a.btn.btn-default.greco_csv EXPORT TO CSV

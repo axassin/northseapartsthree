@@ -13,6 +13,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
 
+=begin
     begin
       system_account_name = params[:system_account][:name]
       system_account_description = params[:system_account][:description]
@@ -22,6 +23,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
     rescue => ex
       redirect_to new_user_registration_path, :flash => { :main_notification => ex }
     end
+=end
+
+    super
 
   end
 
@@ -81,4 +85,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # def after_inactive_sign_up_path_for(resource)
   #   super(resource)
   # end
+
+  def sign_up_params
+    params.require(:user).permit(:email, :password, :password_confirmation, system_account_attributes: [ :name, :description, :account_type])
+  end
+
+  def account_update_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :current_password, system_account_attributes: [ :id, :name, :description, :account_type])
+  end
+
 end

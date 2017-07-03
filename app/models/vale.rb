@@ -1,8 +1,7 @@
 class Vale < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('info',
-              'amount',
+  setup_model('amount',
               @@routes.enterprise_human_resources_payroll_vales_management_vales_path,
               Enterprise::HumanResources::Payroll::ValesManagement::ValesController )
 

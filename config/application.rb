@@ -20,5 +20,18 @@ module Northseapartsthree
     # Automatic Loading for Decorator Concerns
     config.autoload_paths += Dir["#{config.root}/app/decorators/concerns/**/"]
     config.assets.enabled = true
+
+    config.generators do |generators|
+      generators.javascripts false
+      generators.helper false
+      generators.view_specs false
+      generators.helper_specs false
+      generators.controller_specs false
+      generators.model_specs false
+      generators.stylesheets false
+      generators.decorator_specs false
+      generators.decorator false
+    end
+
   end
 end

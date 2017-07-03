@@ -12,8 +12,7 @@ class Holiday < ApplicationRecord
 
   scope :get_holiday, -> (given_date) { where('implemented_on = ?', given_date) }
 
-  setup_model('slack',
-              'name',
+  setup_model('name',
               @@routes.enterprise_human_resources_attendance_holidays_path,
               Enterprise::HumanResources::Attendance::HolidaysController )
 

@@ -1,0 +1,2 @@
+module Enterprise::AccountingAndFinance::PaymentsReport::AccountsPayableWizardHelper
+end

@@ -1,6 +1,10 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/
+
 $(document).ready ->
 
-  # Reloads Rows
+# Reloads Rows
   $('.expense_row').hide()
   $('.expense_row.root').show()
 

@@ -5,8 +5,7 @@ class AssociatedImage < ApplicationRecord
 
   belongs_to :imageable, polymorphic: true
 
-  setup_model('image',
-              'name',
+  setup_model('name',
               @@routes.enterprise_general_management_associated_images_path,
               Enterprise::GeneralManagement::AssociatedImagesController)
 
@@ -14,17 +13,17 @@ class AssociatedImage < ApplicationRecord
 
   mount_uploader :image, AssociatedImageUploader
 
-  def related
+  def imageable_name
     imageable_type.constantize.find(imageable_id).represent
   end
 
-  def file_link
+  def image_identifier
     self.image.identifier
   end
 
   searchable_string(:description)
   searchable_string(:name)
-  searchable_string(:related)
-  searchable_string(:file_link)
+  searchable_string(:imageable_name)
+  searchable_string(:image_identifier)
 
 end

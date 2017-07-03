@@ -5,6 +5,7 @@ class Enterprise::Operations::GrecoWarehouseController < GenericReportController
                      @@routes.enterprise_operations_path)
 
     @button_set = [[enterprise_operations_greco_warehouse_greco_items_path,'GRECO ITEMS'],
+                   [enterprise_operations_greco_warehouse_safety_stocks_path,'SAFETY STOCK'],
                    [enterprise_operations_greco_warehouse_greco_transactions_path,'GRECO TRANSACTIONS'],
                    [enterprise_operations_greco_warehouse_greco_current_stock_report_path,'GRECO CURRENT STOCK REPORT'],
                    [enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'GRECO OUT OF STOCK REPORT'],

@@ -1,0 +1,52 @@
+@import "constants"
+
+div.main_content
+  padding: 0em
+
+  div.loading_screen
+    position: absolute
+    top: 30%
+    left: 45%
+
+  div.resource_item_options
+    float: right
+    border: thin solid $QUATERNARY_COLOR
+    a
+      padding: 0.2em
+      margin: 0.2em
+
+  a.index-data-button
+    margin: 0.05em
+    padding: 0.25em
+    word-wrap: break-word
+    word-break: break-all
+
+  div.grid
+    visibility: hidden
+    padding: 0.5em
+
+    @import "grid_item"
+
+  table.resource_table
+    width: auto
+    margin: 0.5em
+    margin-left: 1.5em
+    table-layout: fixed
+    thead
+      tr
+        td
+          word-wrap: break-word
+          border-bottom: solid $TERTIARY_COLOR medium
+          border-right: solid white medium
+          font-weight: bold
+          vertical-align: text-top
+    tbody
+      tr
+        &:hover
+          background-color: #BBBBBB
+          color: white
+        td
+          padding: 0.5em
+          word-wrap: break-word
+  div.no_results_message
+

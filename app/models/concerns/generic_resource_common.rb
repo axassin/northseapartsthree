@@ -1,14 +1,18 @@
-module GenericResourceCommon
-  extend ActiveSupport::Concern
+# this module sets up a model as a resource. automatically sets up for controller, model and instance
 
+module GenericResourceCommon extend ActiveSupport::Concern
+
+  # make routes available to this module
   include Rails.application.routes.url_helpers
   @@routes = Rails.application.routes.url_helpers
 
+  # generate uuid as default id; must set id: false in migration in order to use
   included do
     before_create {
       self.id = UUIDTools::UUID.timestamp_create().to_s.downcase if id.blank?
     }
 
+    # search block for id
     searchable do
       string :id
       text :id
@@ -17,8 +21,6 @@ module GenericResourceCommon
       time :updated_at
     end
   end
-
-
 
   def represent
     self.send(self.class.class_variable_get(:@@representative_attribute))
@@ -29,36 +31,27 @@ module GenericResourceCommon
     resource_path + '/' + self.id
   end
 
-  def related
-    related = nil
-    self.class.reflect_on_all_associations(:belongs_to).each do |association|
-      unless association.options[:polymorphic]
-
-        # Normal Belongs To
-        owning_class = association.klass
-        foreign_key_name = association.foreign_key
-        foreign_key_value = object.send(foreign_key_name)
-        owning_object = owning_class.find(foreign_key_value)
-        related = owning_object.represent
-
-      else
-
-        # Polymorphic Belongs To
-        polymorphic_key = association.name.to_s
-        column_id = polymorphic_key + '_id'
-        column_type = polymorphic_key + '_type'
-        main_class = self.send(column_type).constantize
-        polymorphic_key_id = object.send(column_id)
-        owning_object = main_class.find(polymorphic_key_id)
-        related = owning_object.represent
-
-      end
-    end
-
-    related
-  end
-
   module ClassMethods
+
+    # setups the model's class variables
+    def setup_model(representative_attribute, resource_path, associated_controller, resource_glyphicon = 'info', polymorphic_attribute = nil)
+
+      # pick a font-awesome based glyphicon for model; see font-awesome
+      self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
+
+      # pick one method from model that will represent entire instance
+      self.class_variable_set(:@@representative_attribute, representative_attribute)
+
+      # declare path in routes
+      self.class_variable_set(:@@resource_path, resource_path)
+
+      # declare resource controller
+      self.class_variable_set(:@@associated_controller, associated_controller)
+
+      # declare a polymorphic method if there is one
+      self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
+
+    end
 
     def goog_currency_php_converter(amount, amount_currency)
       result = 0
@@ -72,6 +65,7 @@ module GenericResourceCommon
       result
     end
 
+    # defines a searchable string for solr
     def searchable_string(attribute)
       searchable do
         string attribute
@@ -79,19 +73,12 @@ module GenericResourceCommon
       end
     end
 
+    # defines a searchable date for solr
     def searchable_date(attribute)
       searchable do
         time attribute
         string attribute
       end
-    end
-
-    def setup_model(resource_glyphicon, representative_attribute, resource_path, associated_controller, polymorphic_attribute = nil)
-      self.class_variable_set(:@@resource_glyphicon, resource_glyphicon)
-      self.class_variable_set(:@@representative_attribute, representative_attribute)
-      self.class_variable_set(:@@resource_path, resource_path)
-      self.class_variable_set(:@@associated_controller, associated_controller)
-      self.class_variable_set(:@@polymorphic_attribute, polymorphic_attribute)
     end
 
     def glyphicon
@@ -136,6 +123,11 @@ module GenericResourceCommon
 
     def polymorphic_attribute
       self.class_variable_get(:@@associated_controller)
+    end
+
+    def is_not_associated_with(class_model)
+      pluralized_class_model = class_model.pluralize.to_s
+      self.left_outer_joins(class_model.to_sym).where( "#{pluralized_class_model}": { id: nil })
     end
 
   end

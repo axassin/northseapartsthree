@@ -1,0 +1,16 @@
+div.col-md-6
+  div.form_element_tip Paid to :
+  = model_selector(f, SystemAccount.all, :system_account_id, current_instance.system_account)
+  div.form_element_tip Disbursed by :
+  = model_selector(f, Employee.all, :employee_id, current_instance.employee)
+div.col-md-6
+  div.form_element_tip Exchange Medium :
+  ruby:
+    payments = ExchangeMedium.is_not_associated_with('payment')
+  = model_selector(f, payments, :exchange_medium_id, current_instance.exchange_medium)
+  br
+  = input_date(f, :disbursement_date)
+  br
+  = polymorphic_selector(f, current_instance, 'payable', [[ExpenseEntry, 'represent']], false)
+  br
+  = input_remark(f)

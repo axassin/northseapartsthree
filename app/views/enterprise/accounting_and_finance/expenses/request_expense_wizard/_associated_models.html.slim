@@ -1,0 +1,15 @@
+ruby:
+  expense_entry = @wizard_model_instance
+
+- if expense_entry.present?
+  = associated_wizard_section(expense_entry)
+
+  ruby:
+    associated_files = expense_entry.associated_files
+    associated_images = expense_entry.associated_images
+
+  - if associated_files.present?
+    = associated_wizard_section(associated_files)
+
+  - if associated_images.present?
+    = associated_wizard_section(associated_images)

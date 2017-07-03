@@ -4,14 +4,18 @@ module ContactArticulation
   included do
 
     def label
-      ContactDetail.find_by_id(contact_detail_id).label
+      ContactDetail.find_by_id(contact_detail_id).represent
     end
 
-    def owner
+    def contact_detail_owner
       contact_detail = ContactDetail.find_by_id(contact_detail_id)
       contact_type = contact_detail.contactable_type.constantize
       contact_id = contact_detail.contactable_id.to_s
-      contact_type.find_by_id(contact_id).represent
+      contact_type.find_by_id(contact_id)
+    end
+
+    def owner
+      contact_detail_owner.represent
     end
 
     searchable do

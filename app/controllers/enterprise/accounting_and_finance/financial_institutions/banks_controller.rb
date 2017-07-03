@@ -2,10 +2,10 @@ class Enterprise::AccountingAndFinance::FinancialInstitutions::BanksController <
 
   def setup_controller
     setup_variables( Bank,
-                     'Bank',
+                     'Banks',
                      'Financial Services Provider',
                      ['system_account_id'],
-                     ['bank_name'],
+                     ['account_name'],
                      @@routes.enterprise_accounting_and_finance_financial_institutions_banks_path)
   end
 

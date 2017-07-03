@@ -1,14 +1,14 @@
 class GrecoItem < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('info',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_operations_greco_warehouse_greco_items_path,
               Enterprise::Operations::GrecoWarehouse::GrecoItemsController)
 
   include Remark
 
   has_many :greco_transactions, :dependent => :destroy
+  has_one :safety_stock, :dependent => :destroy
 
   validates :name, presence: true, length: { in: 2..256 }, uniqueness: true
   searchable_string(:name)

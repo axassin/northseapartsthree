@@ -5,7 +5,7 @@ class Enterprise::GeneralManagement::ContactDetailsController < GenericResourceC
                      'Contact Details',
                      'Communication Assets',
                      ['contactable_id','contactable_type'],
-                     [],
+                     ['contactable_name'],
                      @@routes.enterprise_general_management_path,
                      @@routes.enterprise_general_management_contact_details_contact_wizard_index_path)
   end

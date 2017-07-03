@@ -10,14 +10,10 @@ class RegularWorkPeriod < ApplicationRecord
   validate :exact_work_period
   validates :one_hour_break, inclusion: {in: [true,false]}
 
-  setup_model('play',
-              'work_period',
+  setup_model('work_period',
               @@routes.enterprise_human_resources_attendance_regular_work_periods_path,
               Enterprise::HumanResources::Attendance::RegularWorkPeriodsController )
 
-  def work_period
-    time_in.strftime('%R') + ' to ' + time_out.strftime('%R')
-  end
 
   def exact_work_period
     allowable_work_hours_per_day = (SystemConstant.extract_constant(implemented_on, 'hr.allowable_work_hours_per_day')).to_f

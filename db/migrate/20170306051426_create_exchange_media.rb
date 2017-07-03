@@ -5,7 +5,6 @@ class CreateExchangeMedia < ActiveRecord::Migration[5.0]
       common_set(t)
       t.monetize :amount
       remark_column(t)
-      implemented_at(t)
     end
   end
 end

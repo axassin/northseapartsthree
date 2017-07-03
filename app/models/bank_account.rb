@@ -1,8 +1,7 @@
 class BankAccount < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('bandcamp',
-              'account_number',
+  setup_model('summary',
               @@routes.enterprise_accounting_and_finance_financial_institutions_bank_accounts_path,
               Enterprise::AccountingAndFinance::FinancialInstitutions::BankAccountsController)
 
@@ -12,6 +11,10 @@ class BankAccount < ApplicationRecord
   belongs_to :bank
 
   validates_presence_of :account_number
+
+  def summary
+    bank_name.to_s + ' ' + account_number.to_s
+  end
 
   def account_owner
     SystemAccount.find_by_id(system_account_id).name

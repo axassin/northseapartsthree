@@ -1,0 +1,94 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch james_development
+# Your branch is up-to-date with 'origin/james_development'.
+#
+# Changes to be committed:
+#	modified:   Gemfile
+#	new file:   app/assets/javascripts/enterprise/accounting_and_finance/expenses/asset_expenditures.coffee
+#	modified:   app/assets/javascripts/enterprise/accounting_and_finance/expenses/expense_forecasting.coffee
+#	new file:   app/assets/javascripts/enterprise/accounting_and_finance/expenses/express_expense_wizard.coffee
+#	modified:   app/assets/javascripts/generic_report.coffee
+#	modified:   app/assets/javascripts/generic_resource/form.coffee
+#	new file:   app/controllers/enterprise/accounting_and_finance/expenses/asset_expenditures_controller.rb
+#	new file:   app/controllers/enterprise/accounting_and_finance/expenses/expense_forecasting_controller.rb
+#	modified:   app/controllers/enterprise/accounting_and_finance/expenses/expense_report_controller.rb
+#	new file:   app/controllers/enterprise/accounting_and_finance/expenses/express_expense_wizard_controller.rb
+#	modified:   app/controllers/generic_dashboard_controller.rb
+#	modified:   app/controllers/generic_generator_controller.rb
+#	modified:   app/controllers/generic_report_controller.rb
+#	new file:   app/decorators/enterprise/accounting_and_finance/expenses/asset_expenditure_decorator.rb
+#	new file:   app/decorators/enterprise/accounting_and_finance/expenses/expense_forecasting_decorator.rb
+#	new file:   app/decorators/enterprise/accounting_and_finance/expenses/express_expense_wizard_decorator.rb
+#	modified:   app/helpers/application_helper.rb
+#	new file:   app/helpers/enterprise/accounting_and_finance/expenses/asset_expenditures_helper.rb
+#	new file:   app/helpers/enterprise/accounting_and_finance/expenses/expense_forecasting_helper.rb
+#	new file:   app/helpers/enterprise/accounting_and_finance/expenses/express_expense_wizard_helper.rb
+#	renamed:    app/helpers/generic_report_helper.rb -> app/helpers/generic_field_helper.rb
+#	renamed:    app/helpers/form_helper.rb -> app/helpers/resource_form_helper.rb
+#	modified:   app/models/concerns/generic_resource_common.rb
+#	modified:   app/views/enterprise/accounting_and_finance/expenses/expense_entries/_form.html.slim
+#	renamed:    app/views/common/generic_resource_head.html.slim -> app/views/enterprise/accounting_and_finance/expenses/expense_forecasting/_report_controls.html.slim
+#	renamed:    app/views/common/setup_process_modal.html.slim -> app/views/enterprise/accounting_and_finance/expenses/expense_forecasting/index.html.slim
+#	modified:   app/views/enterprise/accounting_and_finance/expenses/expense_report/_report_controls.html.slim
+#	modified:   app/views/enterprise/human_resources/attendance/_report_controls.html.slim
+#	modified:   app/views/enterprise/human_resources/attendance/employee_attendance_report/_report_controls.html.slim
+#	modified:   app/views/enterprise/human_resources/attendance/index.html.slim
+#	modified:   app/views/enterprise/human_resources/employee_accounts_management/_report_controls.html.slim
+#	modified:   app/views/enterprise/human_resources/payroll/vales_management/_report_controls.html.slim
+#	modified:   app/views/enterprise/operations/greco_warehouse/greco_transaction_history.html.slim
+#	modified:   app/views/enterprise/operations/storage_management/storage_generator/index.html.slim
+#	modified:   app/views/layouts/application.html.slim
+#	modified:   app/views/layouts/dashboard/main.html.slim
+#	modified:   app/views/layouts/devise_authentication.html.slim
+#	modified:   app/views/layouts/generator/main.html.slim
+#	modified:   app/views/layouts/generic_resource/main.html.slim
+#	modified:   app/views/layouts/report/main.html.slim
+#	modified:   app/views/layouts/wizard/main.html.slim
+#	renamed:    app/views/common/report/_button_set.html.slim -> app/views/shared/generic_field/_button_set.html.slim
+#	renamed:    app/views/common/report/_expense_report_sub_accounts.html.slim -> app/views/shared/generic_field/_expense_report_sub_accounts.html.slim
+#	renamed:    app/views/common/report/_report_model_selector.html.slim -> app/views/shared/generic_field/_generic_model_selector.html.slim
+#	renamed:    app/views/common/report/_report_selector.html.slim -> app/views/shared/generic_field/_generic_selector.html.slim
+#	renamed:    app/views/common/report/_percentage_display.html.slim -> app/views/shared/generic_field/_percentage_display.html.slim
+#	renamed:    app/views/common/generic_head.html.slim -> app/views/shared/generic_head.html.slim
+#	new file:   app/views/shared/generic_resource_head.html.slim
+#	renamed:    app/views/common/main_notification.html.slim -> app/views/shared/main_notification.html.slim
+#	renamed:    app/views/common/form/_associated_files_section.html.slim -> app/views/shared/resource_form/_associated_files_section.html.slim
+#	renamed:    app/views/common/form/_associated_images_section.html.slim -> app/views/shared/resource_form/_associated_images_section.html.slim
+#	renamed:    app/views/common/form/_contact_detail_selector.html.slim -> app/views/shared/resource_form/_contact_detail_selector.html.slim
+#	renamed:    app/views/common/form/_employee_selector.html.slim -> app/views/shared/resource_form/_employee_selector.html.slim
+#	renamed:    app/views/common/form/_implemented_at_selector.html.slim -> app/views/shared/resource_form/_implemented_at_selector.html.slim
+#	renamed:    app/views/common/form/_implemented_on_selector.html.slim -> app/views/shared/resource_form/_implemented_on_selector.html.slim
+#	renamed:    app/views/common/form/_model_selector.html.slim -> app/views/shared/resource_form/_model_selector.html.slim
+#	renamed:    app/views/common/form/_money_field.html.slim -> app/views/shared/resource_form/_money_field.html.slim
+#	renamed:    app/views/common/form/_polymorphic_selector.html.slim -> app/views/shared/resource_form/_polymorphic_selector.html.slim
+#	new file:   app/views/shared/setup_process_modal.html.slim
+#	renamed:    app/views/common/topside_navigation/_enterprise_menu_cell.html.slim -> app/views/shared/topside_navigation/_enterprise_menu_cell.html.slim
+#	renamed:    app/views/common/topside_navigation/bar.html.slim -> app/views/shared/topside_navigation/bar.html.slim
+#	renamed:    app/views/common/topside_navigation/bar.html.slim.orig -> app/views/shared/topside_navigation/bar.html.slim.orig
+#	modified:   config/initializers/new_framework_defaults.rb
+#	modified:   config/initializers/simple_form.rb
+#	modified:   config/initializers/simple_form_bootstrap.rb
+#	modified:   config/routes.rb
+#	modified:   db/seeds.rb
+#	new file:   public/uploads/primary_image/vehicle/8850a26d-30f2-4574-ba11-751317c9553e.jpg
+#	modified:   solr/configsets/sunspot/conf/currency.xml
+#	modified:   solr/configsets/sunspot/conf/solrconfig.xml
+#	new file:   spec/controllers/enterprise/accounting_and_finance/expenses/asset_expenditures_controller_spec.rb
+#	new file:   spec/controllers/enterprise/accounting_and_finance/expenses/expense_forecasting_controller_spec.rb
+#	new file:   spec/controllers/enterprise/accounting_and_finance/expenses/express_expense_wizard_controller_spec.rb
+#	new file:   spec/decorators/enterprise/accounting_and_finance/expenses/asset_expenditure_decorator_spec.rb
+#	new file:   spec/decorators/enterprise/accounting_and_finance/expenses/expense_forecasting_decorator_spec.rb
+#	new file:   spec/decorators/enterprise/accounting_and_finance/expenses/express_expense_wizard_decorator_spec.rb
+#	new file:   spec/helpers/enterprise/accounting_and_finance/expenses/asset_expenditures_helper_spec.rb
+#	new file:   spec/helpers/enterprise/accounting_and_finance/expenses/expense_forecasting_helper_spec.rb
+#	new file:   spec/helpers/enterprise/accounting_and_finance/expenses/express_expense_wizard_helper_spec.rb
+#	modified:   spec/helpers/generic_report_helper_spec.rb
+#	modified:   vendor/assets/javascripts/jquery.restfulizer.js
+#
+# Changes not staged for commit:
+#	modified:   app/controllers/enterprise/accounting_and_finance/expenses/expense_forecasting_controller.rb
+#	modified:   app/views/enterprise/accounting_and_finance/expenses/expense_forecasting/_report_controls.html.slim
+#
+

@@ -1,0 +1,8 @@
+div = instance_link(result.system_account)
+div
+  span Disbursed by : &nbsp;
+  span = instance_link(result.employee)
+div
+  span Disbursed on : &nbsp;
+  span = format_date_on(result.disbursement_date)
+div = instance_link(result.exchange_medium)

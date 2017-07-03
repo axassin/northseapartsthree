@@ -1,10 +1,10 @@
 doctype html
 html lang="en"
-  == render template: 'common/generic_head'
+  == render template: 'shared/generic_head'
   = stylesheet_link_tag 'devise_authentication', media: 'all', 'data-turbolinks-track' => 'reload'
   body
-    == render template: 'common/topside_navigation/bar'
-    == render template: 'common/main_notification'
+    == render template: 'shared/topside_navigation/bar'
+    == render template: 'shared/main_notification'
     div.row
       div.col-md-2
       div.col-md-8

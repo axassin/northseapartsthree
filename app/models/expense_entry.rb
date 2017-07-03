@@ -3,14 +3,16 @@ class ExpenseEntry < ApplicationRecord
   include GenericResourceCommon
   include Remark
 
-  setup_model('etsy',
-              'summary',
+  setup_model('reference_number',
               @@routes.enterprise_accounting_and_finance_expenses_expense_entries_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseEntriesController )
 
   belongs_to :vendor
   belongs_to :expense_category
   has_one :expense_authorization
+  has_many :expense_assignments
+  has_many :associated_files, as: :fileable, :dependent => :destroy
+  has_many :associated_images, as: :imageable, :dependent => :destroy
 
   validates_presence_of :requesting_party_id
   validates_presence_of :vendor_id
@@ -26,19 +28,23 @@ class ExpenseEntry < ApplicationRecord
     errors.add(:expense_category, 'Expense Category must have no sub accounts') if expense_category.has_children?
   end
 
-  def summary
-    amount.to_s + ' ' + amount_currency.to_s + ' from ' + vendor_summary
+  def cost
+    amount.to_s + ' ' + amount_currency.to_s
   end
 
-  def vendor_summary
+  def vendor_name
     Vendor.find_by_id(vendor_id).represent
   end
 
-  def expense_category_summary
+  def summary
+    cost + ' for ' + vendor_name
+  end
+
+  def expense_category_name
     ExpenseCategory.find_by_id(expense_category_id).represent
   end
 
-  def requesting_party_summary
+  def requesting_party_name
     Employee.find_by_id(requesting_party_id).represent
   end
 
@@ -64,11 +70,29 @@ class ExpenseEntry < ApplicationRecord
 
   end
 
+  def self.unprocessed(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where(expense_authorizations: {id: nil}, due_date: start_date..end_date)
+        .order(due_date: :asc)
+  end
 
+  def self.approved(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where('expense_authorizations.status = ?', 'APPROVED')
+        .where(due_date: start_date..end_date)
+        .order(due_date: :asc)
+  end
 
-  searchable_string(:vendor_summary)
-  searchable_string(:expense_category_summary)
-  searchable_string(:requesting_party_summary)
+  def self.denied(start_date, end_date)
+    ExpenseEntry.left_outer_joins(:expense_authorization)
+        .where('expense_authorizations.status = ?', 'DENIED')
+        .where(due_date: start_date..end_date)
+        .order(due_date: :asc)
+  end
+
+  searchable_string(:vendor_name)
+  searchable_string(:expense_category_name)
+  searchable_string(:requesting_party_name)
   searchable_date(:due_date)
   searchable_string(:reference_number)
 

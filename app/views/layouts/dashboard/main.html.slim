@@ -1,14 +1,13 @@
 doctype html
 html lang="en"
   head
-    = render template: 'common/generic_head'
-    = render template: 'common/generic_resource_head'
+    = render template: 'shared/generic_head'
     = stylesheet_link_tag 'dashboard', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'generic_dashboard', 'data-turbolinks-track' => 'reload'
   body
 
-    = render template: 'common/main_notification'
-    = render template: 'common/topside_navigation/bar'
+    = render template: 'shared/main_notification'
+    = render template: 'shared/topside_navigation/bar'
 
     // Main Display
     div.container-fluid

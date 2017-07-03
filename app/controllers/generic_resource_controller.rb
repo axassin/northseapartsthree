@@ -1,6 +1,10 @@
+# ------------------
+# Generic Resource is a controller for itemizing the model into manageable parts
+# ------------------
+
 class GenericResourceController < ApplicationController
 
-  before_action :authenticate_user!
+  # before_action :authenticate_user!
   before_action :setup_controller
 
   def setup_variables( class_model, resource_title_heading, resource_sub_heading, omitted_attributes , admitted_attributes , parent_controller_path, wizard_model_path = nil)
@@ -9,8 +13,12 @@ class GenericResourceController < ApplicationController
     @resource_glyphicon = class_model.class_variable_get(:@@resource_glyphicon)
     @resource_title_heading = resource_title_heading
     @resource_sub_heading = resource_sub_heading
+
+    # Omit attributes such as those with _id and replace them with other methods
+    # that give the actual model through admitted_attributes
     @omitted_attributes = omitted_attributes.push('deleted_at')
     @admitted_attributes = admitted_attributes
+
     @parent_controller_path = parent_controller_path
     @main_resource_path = class_model.class_variable_get(:@@resource_path)
     @current_instance = class_model.new
@@ -20,19 +28,6 @@ class GenericResourceController < ApplicationController
     if @class_model.attribute_names.include? 'primary_image'
       @omitted_attributes = omitted_attributes.push('primary_image')
     end
-
-    puts '------------ VARIABLES INITIALIZED ---------------- '
-    puts '@class_model: ' + @class_model.to_s
-    puts '@resource_glyphicon: ' + @resource_glyphicon.to_s
-    puts '@resource_title_heading: ' + @resource_title_heading.to_s
-    puts '@resource_sub_heading: ' + @resource_sub_heading.to_s
-    puts '@omitted_attributes: ' + @omitted_attributes.to_s
-    puts '@admitted_attributes: ' + @admitted_attributes.to_s
-    puts '@parent_controller_path: ' + @parent_controller_path.to_s
-    puts '@main_resource_path: ' + @main_resource_path.to_s
-    puts '@current_instance: ' + @current_instance.to_s
-    puts '@class_model_symbolized: ' + @class_model_symbolized.to_s
-    puts '--------------------------------------------------- '
 
   end
 

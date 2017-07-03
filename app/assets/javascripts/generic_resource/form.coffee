@@ -2,9 +2,9 @@ $(document).on 'turbolinks:load', ->
 
   # Disables all fields for 'show' action
   if action_name == 'show'
-    $('.main_content form input').prop('disabled', true);
-    $('.main_content form textarea').prop('disabled', true);
-    $('.main_content form select').prop('disabled', true);
+    $('.main_content .simple_form input').prop('disabled', true);
+    $('.main_content .simple_form textarea').prop('disabled', true);
+    $('.main_content .simple_form select').prop('disabled', true);
 
   # Polymorphic Selector
   $('.polymorphic_selector_group').each( (index, element) ->

@@ -9,5 +9,6 @@ class User < ApplicationRecord
          :confirmable, :lockable, :timeoutable, :omniauthable
 
   belongs_to :system_account
+  accepts_nested_attributes_for :system_account
 
 end

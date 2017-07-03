@@ -1,0 +1,25 @@
+meta charset="utf-8"
+meta name="viewport" content="width=device-width, initial-scale=1.0"
+
+title == content_for?(:title) ? yield(:title) : 'North Sea Parts - ' + totally_humanize(controller_name)
+
+= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload'
+= stylesheet_link_tag 'shared', media: 'all', 'data-turbolinks-track' => 'reload'
+
+- if stylesheet_exists?(controller_path)
+  = stylesheet_link_tag controller_path, media: 'all', 'data-turbolinks-track' => 'reload'
+
+= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+
+- if javascript_exists?(controller_path)
+  = javascript_include_tag controller_path, 'data-turbolinks-track' => 'reload'
+
+= favicon_link_tag 'favicon.ico'
+= csrf_meta_tag
+
+javascript:
+  var controller_path = "#{controller_path}";
+  var controller_name = "#{controller_name}";
+  var action_name = "#{action_name}";
+  var base_url = "#{request.base_url}";
+  var main_resource_path = "#{@main_resource_path}";

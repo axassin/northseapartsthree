@@ -1,1 +1,0 @@
-//= require ./ekko-lightbox.min

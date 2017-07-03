@@ -3,8 +3,7 @@ class ExpenseAssignment < ApplicationRecord
   include GenericResourceCommon
   include Remark
 
-  setup_model('etsy',
-              'summary',
+  setup_model('expensable',
               @@routes.enterprise_accounting_and_finance_expenses_expense_assignments_path,
               Enterprise::AccountingAndFinance::Expenses::ExpenseAssignmentsController )
 
@@ -13,10 +12,6 @@ class ExpenseAssignment < ApplicationRecord
 
   validates_presence_of :expense_entry_id
   validates :expensable_type, inclusion: {in: ['Vehicle','Employee','Branch']}
-
-  def summary
-    ExchangeMedium.find_by_id(exchange_medium_id).amount + ' of ' + SystemAccount.find_by_id(system_account_id).name
-  end
 
   def expense_entry_summary
     ExpenseEntry.find_by_id(expense_entry_id).represent

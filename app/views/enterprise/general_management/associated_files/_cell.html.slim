@@ -1,4 +1,4 @@
-div =result.name
-div =result.description
-div =result.decorate.file_link
-div =result.decorate.related
+div = result.name
+div = result.description
+div = associated_file_link(result.file.url, result.file_identifier)
+div = instance_link(result.fileable)

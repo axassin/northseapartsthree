@@ -1,0 +1,8 @@
+div.control_cell
+  span With a due date ranging from
+  = generic_date_field('start_date',@start_date)
+div.control_cell
+  span to
+  = generic_date_field('end_date',@end_date)
+div.control_cell
+  = generic_submit_button

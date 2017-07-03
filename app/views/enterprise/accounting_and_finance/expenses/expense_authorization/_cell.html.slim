@@ -1,4 +1,4 @@
-div = result.decorate.employee
-div = result.decorate.expense_entry
+div = instance_link(result.employee)
+div = instance_link(result.expense_entry)
 div = result.remark
-div = result.decorate.implemented_on
+div = format_date_on(result.implemented_on)

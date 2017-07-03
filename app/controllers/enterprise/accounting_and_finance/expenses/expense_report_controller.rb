@@ -13,10 +13,7 @@ class Enterprise::AccountingAndFinance::Expenses::ExpenseReportController < Gene
     @root_expenses = ExpenseCategory.roots
     @interval = params[:interval] || 'month'
 
-    @button_set = [[enterprise_accounting_and_finance_expenses_expense_assignments_path,'EXPENSE ASSIGNMENTS'],
-                   [enterprise_accounting_and_finance_expenses_expense_categories_path,'EXPENSE CATEGORIES'],
-                   [enterprise_accounting_and_finance_expenses_expense_entries_path,'EXPENSE ENTRIES'],
-                   [enterprise_accounting_and_finance_expenses_expense_authorization_index_path,'EXPENSE AUTHORIZATION']]
+    @button_set = [[enterprise_accounting_and_finance_expenses_path,'EXPENSE DASHBOARD']]
 
   end
 

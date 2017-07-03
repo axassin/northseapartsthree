@@ -5,8 +5,7 @@ class AssociatedFile < ApplicationRecord
 
   belongs_to :fileable, polymorphic: true
 
-  setup_model('file',
-              'name',
+  setup_model('name',
               @@routes.enterprise_general_management_associated_files_path,
               Enterprise::GeneralManagement::AssociatedFilesController)
 
@@ -14,17 +13,21 @@ class AssociatedFile < ApplicationRecord
 
   validates :file, file_size: { less_than_or_equal_to: 1.gigabytes }
 
-  def related
+  def fileable_name
     fileable_type.constantize.find(fileable_id).represent
   end
 
-  def file_link
+  def fileable
+    fileable_type.constantize.find(fileable_id)
+  end
+
+  def file_identifier
     self.file.identifier
   end
 
   searchable_string(:description)
   searchable_string(:name)
-  searchable_string(:related)
-  searchable_string(:file_link)
+  searchable_string(:fileable_name)
+  searchable_string(:file_identifier)
 
 end

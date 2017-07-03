@@ -1,17 +1,17 @@
 class ExchangeMedium < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('exchange',
-              'summary',
+  setup_model('summary',
               @@routes.enterprise_accounting_and_finance_exchange_media_path,
               Enterprise::AccountingAndFinance::ExchangeMediaController )
 
   include Remark
-  include ImplementedAt
 
   has_one :cash, :dependent => :destroy
   has_one :bank_transfer, :dependent => :destroy
   has_one :check, :dependent => :destroy
+
+  has_one :payment, :dependent => :destroy
 
   monetize :amount_centavos, with_model_currency: :currency
 
@@ -33,6 +33,10 @@ class ExchangeMedium < ApplicationRecord
 
   def summary
     amount.to_s + ' ' + amount_currency.to_s + ' '+ type_of_medium
+  end
+
+  def amount_php
+    ExchangeMedium.goog_currency_php_converter(amount, amount_currency)
   end
 
   def self.blank_exchange_mediums

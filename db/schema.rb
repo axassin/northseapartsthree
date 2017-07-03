@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170516031529) do
+ActiveRecord::Schema.define(version: 20170630031851) do
 
   create_table "access_permissions", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.datetime "deleted_at"
@@ -134,8 +134,8 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.string   "bank_account_id",    limit: 36
     t.string   "check_number",       limit: 36
     t.date     "dated"
-    t.string   "signatory",          limit: 36
-    t.string   "payee",              limit: 36
+    t.string   "signatory_id",       limit: 36
+    t.string   "payee_id",           limit: 36
     t.string   "exchange_medium_id", limit: 36
     t.index ["deleted_at"], name: "index_checks_on_deleted_at", using: :btree
   end
@@ -193,7 +193,6 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.integer  "amount_centavos",             default: 0,     null: false
     t.string   "amount_currency",             default: "PHP", null: false
     t.string   "remark",          limit: 256
-    t.datetime "implemented_at"
     t.index ["deleted_at"], name: "index_exchange_media_on_deleted_at", using: :btree
   end
 
@@ -215,6 +214,7 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.datetime "updated_at",                   null: false
     t.string   "expense_entry_id", limit: 36
     t.string   "employee_id",      limit: 36
+    t.string   "status",           limit: 64
     t.date     "implemented_on"
     t.string   "remark",           limit: 256
     t.index ["deleted_at"], name: "index_expense_authorizations_on_deleted_at", using: :btree
@@ -308,6 +308,9 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.string   "system_account_id",  limit: 36
     t.string   "employee_id",        limit: 36
     t.string   "exchange_medium_id", limit: 36
+    t.date     "disbursement_date"
+    t.string   "payable_id",         limit: 36
+    t.string   "payable_type"
     t.string   "remark",             limit: 256
     t.index ["deleted_at"], name: "index_payments_on_deleted_at", using: :btree
   end
@@ -342,6 +345,15 @@ ActiveRecord::Schema.define(version: 20170516031529) do
     t.date     "implemented_on"
     t.string   "day"
     t.index ["deleted_at"], name: "index_rest_days_on_deleted_at", using: :btree
+  end
+
+  create_table "safety_stocks", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "deleted_at"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.string   "greco_item_id", limit: 36
+    t.integer  "amount"
+    t.index ["deleted_at"], name: "index_safety_stocks_on_deleted_at", using: :btree
   end
 
   create_table "storage_units", id: :string, limit: 36, force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

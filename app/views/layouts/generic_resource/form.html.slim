@@ -1,4 +1,6 @@
-= render partial: 'layouts/generic_resource/form_title'
+- unless controller.action_name == 'index'
+  div.header_modal #{ (controller.action_name + ' ' + controller_name.humanize.to_s.singularize.capitalize + ' Form').upcase }
+  hr
 
 ruby:
   method = ''
@@ -43,9 +45,3 @@ ruby:
 
     - elsif action_name == 'index' || action_name == 'new'
       input.btn.btn-default.modal_submit type='submit' value='SUBMIT'
-
-div
-br
-br
-br
-br

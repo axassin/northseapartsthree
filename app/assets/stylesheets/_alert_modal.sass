@@ -1,0 +1,26 @@
+@import 'constants'
+
+div.alert_modal
+
+  width: 25%
+  left: 37.5%
+  top: 15%
+
+  .modal-dialog
+  .modal-content
+    padding: 1em
+    border: 0
+    border-radius: 0
+    background-color: transparent
+    border: white thin solid
+    .modal-alert-content
+      word-wrap: break-word
+      padding: 1em
+      background-color: white
+      border-left: thick solid $PRIMARY_COLOR
+      .alert_message
+        font-size: 1em
+        h2
+          font-size: 1em
+      .alert_modal_button
+        float: right

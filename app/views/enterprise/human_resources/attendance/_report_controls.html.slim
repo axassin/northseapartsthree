@@ -1,11 +1,11 @@
 div.control_cell
   span Employees from
-  = report_model_selector(Branch.all, 'branch_id', @branch_id)
+  = generic_model_selector(Branch.all, 'branch_id', @branch_id)
 div.control_cell
   span spanning a period from
-  = report_date_input('start_attendance',@start_attendance)
+  = generic_date_field('start_attendance',@start_attendance)
 div.control_cell
   span to
-  = report_date_input('end_attendance',@end_attendance)
+  = generic_date_field('end_attendance',@end_attendance)
 div.control_cell
-  = report_submit_button
+  = generic_submit_button

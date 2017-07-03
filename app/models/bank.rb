@@ -1,20 +1,17 @@
 class Bank < ApplicationRecord
 
   include GenericResourceCommon
-  setup_model('university',
-              'bank_name',
+  setup_model('account_name',
               @@routes.enterprise_accounting_and_finance_financial_institutions_banks_path,
               Enterprise::AccountingAndFinance::FinancialInstitutions::BanksController)
 
+  include SystemAccountSubModel
   include Remark
 
-  belongs_to :system_account
   has_many :bank_accounts, :dependent => :destroy
+  has_many :associated_files, as: :fileable, :dependent => :destroy
+  has_many :associated_images, as: :imageable, :dependent => :destroy
 
-  def bank_name
-    SystemAccount.find_by_id(system_account_id).name
-  end
-
-  searchable_string(:bank_name)
+  searchable_string(:account_name)
 
 end

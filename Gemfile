@@ -41,6 +41,7 @@ group :development, :test do
 
   # Better Errors replaces the standard Rails error page with a much better and more useful error page.
   gem 'better_errors'
+  gem 'binding_of_caller'
 
   # rspec-rails is a testing framework for Rails 3.x, 4.x and 5.0.
   gem 'rspec-rails', '~> 3.5'
@@ -53,7 +54,7 @@ group :development, :test do
   # Capybara helps you test web applications by simulating how a real user would interact with your app.
   gem 'capybara'
 
-  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test common Rails functionality.
+  # Shoulda Matchers provides RSpec- and Minitest-compatible one-liners that test shared Rails functionality.
   gem 'shoulda-matchers', '~> 3.1'
 
   # Cucumber-Rails brings Cucumber to Rails 3.x, 4.x and 5.x.
@@ -163,7 +164,7 @@ gem 'twitter-typeahead-rails'
 # Rails forms made easy.
 gem 'simple_form'
 
-# Parsley.js is an awesome form validation library (documentation). This gem makes it easy to use it with Rails Asset Pipeline.
+# Parsley.js is an awesome resource_form validation library (documentation). This gem makes it easy to use it with Rails Asset Pipeline.
 gem 'parsley-rails'
 
 # Utilizes Bootstraps modal plugin to implement a lightbox gallery
@@ -196,9 +197,6 @@ gem 'momentjs-rails'
 # Complete validation of dates, times and datetimes for Rails 4.x and ActiveModel.
 gem 'validates_timeliness', '~> 4.0'
 
-# A dynamic, browser based visualization library.
-gem 'visjs-rails'
-
 # DEPLOYMENT
 group :development do
   gem 'capistrano',         require: false
@@ -228,5 +226,12 @@ gem 'mailgun_rails'
 
 # CanCan is an authorization library for Ruby on Rails which restricts what resources a given user is allowed to access.
 gem 'cancan'
+
+# Create beautiful JavaScript charts with one line of Ruby
+gem 'chartkick'
+
+gem 'cocoon'
+
+
 
 # gem 'puma'

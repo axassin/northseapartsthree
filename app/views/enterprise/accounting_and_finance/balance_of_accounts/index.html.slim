@@ -1,0 +1,55 @@
+div.col-md-12.generic_table_container
+  table
+    thead
+      tr
+        th Date
+        th Debits
+        th Receivable
+        th Received By
+        th Credits
+        th Payable
+        th Disbursed By
+        th Balance
+    tbody
+      tr
+        td = ' < ' + Date.parse(@start_date).strftime('%m/%d/%Y')
+        td N/A
+        td N/A
+        td N/A
+        td = Payment.balance(@start_date, @system_account_id)
+        td N/A
+        td N/A
+        td = @starting_balance.round(2)
+
+      ruby:
+        start_date = Date.parse(@start_date)
+        current_date = Date.parse(@start_date)
+        end_date = Date.parse(@end_date)
+        current_balance = @starting_balance
+
+      - while current_date < end_date
+        ruby:
+          next_date = current_date + 1.send(@interval)
+          payable_value = Payment.total(current_date, next_date, @system_account_id)
+          receivable_value = 0
+          current_balance += (receivable_value - payable_value)
+
+        - if payable_value > 0
+          tr
+            td = current_date.strftime('%m/%d/%Y')
+            td N/A
+            td N/A
+            td N/Ab
+            td = payable_value
+            - Payment.payables(current_date, next_date, @system_account_id).each do |payable|
+              ruby:
+                payable_element = payable.payable_type.constantize.find_by_id(payable.payable_id)
+              - if payable_element.present?
+                td = instance_link(payable_element)
+                td = instance_link(payable.employee)
+            td = current_balance.round(2)
+
+        ruby:
+          current_date += 1.send(@interval)
+
+div.statement All Amounts in PHP
