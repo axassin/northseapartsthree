@@ -1,7 +1,6 @@
 class Payment < ApplicationRecord
 
   include GenericResourceCommon
-  include SystemAccountable
   include AssociatedEmployee
   include AssociatedExchangeMedium
   include Remark
@@ -11,7 +10,10 @@ class Payment < ApplicationRecord
               Enterprise::AccountingAndFinance::PaymentsReport::PaymentsController)
 
   belongs_to :exchange_medium
+  belongs_to :system_account
+
   validates_uniqueness_of :exchange_medium
+  validates_presence_of :system_account
 
   def summary
     exchange_medium = ExchangeMedium.find_by_id(exchange_medium_id).represent

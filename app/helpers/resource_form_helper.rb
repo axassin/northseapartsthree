@@ -200,4 +200,11 @@ module ResourceFormHelper
     f.input :quantity, as: :integer, input_html: {min: 0}
   end
 
+  def system_accountable_form(f, current_instance)
+    f.simple_fields_for current_instance.system_account do |f_system_account|
+      render partial: 'enterprise/general_management/system_accounts/form',
+             locals: {f: f_system_account, current_instance: current_instance.system_account}
+    end
+  end
+
 end

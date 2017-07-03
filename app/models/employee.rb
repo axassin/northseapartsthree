@@ -1,11 +1,12 @@
 class Employee < ApplicationRecord
 
   include GenericResourceCommon
-  include SystemAccountable
 
   setup_model('designation',
               @@routes.enterprise_human_resources_employee_accounts_management_employees_path,
               Enterprise::HumanResources::EmployeeAccountsManagement::EmployeesController)
+
+  include SystemAccountSubModel
 
   belongs_to :branch
 

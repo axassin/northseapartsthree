@@ -35,7 +35,7 @@ appendImages = (data) ->
     numOfCopies = 5
 
   for i in [1..numOfCopies] by 1
-    img = $('<img class="sticker=item" style="border: 1px solid; margin: 5px">')
+    img = $('<img class="sticker=item" style="border: 1px solid;">')
     img.attr 'src', data
     img.appendTo '#print-area'
   return

@@ -8,6 +8,7 @@ class GrecoItem < ApplicationRecord
   include Remark
 
   has_many :greco_transactions, :dependent => :destroy
+  has_one :safety_stock, :dependent => :destroy
 
   validates :name, presence: true, length: { in: 2..256 }, uniqueness: true
   searchable_string(:name)

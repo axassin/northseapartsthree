@@ -390,6 +390,14 @@ if Rails.env.development? || Rails.env.test?
       greco_transaction.remark = Faker::Commerce.product_name
       greco_transaction.save!
     }
+
+  }
+
+  20.times {
+    safety_stock = SafetyStock.new
+    safety_stock.amount = rand(5..200)
+    safety_stock.greco_item_id = GrecoItem.order("RAND()").first.id
+    safety_stock.save!
   }
 
   # Vendor

@@ -1,4 +1,7 @@
-module SystemAccountable
+# System Accountable module declares the model as a sub-model of System Account;
+# which is a base model for every entity described as a user of the system
+
+module SystemAccountSubModel
   extend ActiveSupport::Concern
 
   included do

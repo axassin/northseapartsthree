@@ -1,0 +1,6 @@
+div.col-md-6
+  ruby:
+    selected_models = GrecoItem.is_not_associated_with('safety_stock')
+  = model_selector(f, selected_models, :greco_item_id, current_instance.greco_item_id, 'represent')
+div.col-md-6
+  = input_long_decimal(f, :amount)

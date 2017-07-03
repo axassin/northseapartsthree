@@ -57,8 +57,10 @@ class ApplicationController < ActionController::Base
         [{:greco_warehouse => 'operations'},[
             GrecoItem,
             GrecoTransaction,
+            SafetyStock,
             ['info',enterprise_operations_greco_warehouse_greco_current_stock_report_path,'Current Stock Report',false],
-            ['info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false]]],
+            ['info',enterprise_operations_greco_warehouse_greco_out_of_stock_report_path,'Out of Stock Report',false],
+            ['info',enterprise_operations_greco_warehouse_greco_transaction_history_path,'Transaction History',false]]],
         [{:operations => 'enterprise'},[
             ['info',enterprise_operations_temporary_sticker_label_path,'temporary_sticker_label',false]]],            
         [{:human_resources => 'enterprise'},[

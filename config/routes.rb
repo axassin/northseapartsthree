@@ -120,6 +120,7 @@ Rails.application.routes.draw do
       report( 'vendors_report' )
       namespace :vendors_report do
         generic_resource( :vendors )
+        form( 'new_vendor_form')
       end
 
       report( 'financial_institutions' )
@@ -213,7 +214,7 @@ Rails.application.routes.draw do
         generic_resource( :greco_items )
         generate_action_url( 'greco_transactions','last_transactions' )
         generic_resource( :greco_transactions )
-
+        generic_resource( :safety_stocks )
       end
 
       define_index('storage_management')
