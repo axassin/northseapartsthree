@@ -22,6 +22,13 @@ class Enterprise::Operations::GrecoWarehouseController < GenericReportController
     @greco_items = GrecoItem.order('lower(name) ASC').all
   end
 
+  def process_greco_current_stock_report
+    params[:safety_stock].each do |greco_item_id, value|
+      SafetyStock.create!(greco_item_id: greco_item_id, amount: value) if value.present?
+    end
+    redirect_to :back
+  end
+
   def greco_out_of_stock_report
     @title_heading = 'OUT OF STOCK'
     @greco_items = GrecoItem.order('lower(name) ASC').all.select { |m| m.get_current_stock <= 0 }

@@ -208,6 +208,7 @@ Rails.application.routes.draw do
       define_index('greco_warehouse')
       generate_action_url( 'greco_warehouse','greco_transaction_history' )
       generate_action_url( 'greco_warehouse','greco_current_stock_report' )
+      generate_action_url( 'greco_warehouse','process_greco_current_stock_report' )
       generate_action_url( 'greco_warehouse','greco_out_of_stock_report' )
 
       namespace :greco_warehouse do

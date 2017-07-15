@@ -311,7 +311,7 @@ if Rails.env.development? || Rails.env.test?
     end
 
     # Attendance Records for Employee
-    rand(0..15).times do
+    rand(0..5).times do
 
       generated_date = Faker::Date.between(2.weeks.ago, Date.today)
       generated_year = generated_date.year
@@ -373,12 +373,19 @@ if Rails.env.development? || Rails.env.test?
   end
 
   # Greco Items Temporary Inventory
-  no_of_parts = 10
+  no_of_parts = 25
   no_of_parts.times {
     greco_item = GrecoItem.new
     greco_item.name = Faker::Commerce.product_name
     greco_item.remark = Faker::Commerce.product_name
     greco_item.save!
+
+    5.in(10) do
+      safety_stock = SafetyStock.new
+      safety_stock.amount = rand(5..200)
+      safety_stock.greco_item_id = greco_item.id
+      safety_stock.save!
+    end
 
     5.times {
       greco_transaction = GrecoTransaction.new
@@ -393,15 +400,8 @@ if Rails.env.development? || Rails.env.test?
 
   }
 
-  20.times {
-    safety_stock = SafetyStock.new
-    safety_stock.amount = rand(5..200)
-    safety_stock.greco_item_id = GrecoItem.order("RAND()").first.id
-    safety_stock.save!
-  }
-
   # Vendor
-  no_of_exchange_mediums = 20
+  no_of_exchange_mediums = 5
   no_of_exchange_mediums.times {
     vendor = Vendor.new
     vendor.system_account = generate_system_account('GROUP')
@@ -409,7 +409,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Expense Entries
-  no_of_expense_entries = 50
+  no_of_expense_entries = 5
   no_of_expense_entries.times {
 
     expense_entry = ExpenseEntry.new
@@ -483,7 +483,7 @@ if Rails.env.development? || Rails.env.test?
   # Storage Units
   # creates a root Storage Unit to be the main parent
   StorageUnit.create!(code: 'ROOT SAMPLE', remark: Faker::Commerce.product_name, parent: nil)
-  number_of_storage_units = 20
+  number_of_storage_units = 5
   number_of_storage_units.times {
     storage_unit = StorageUnit.new
     storage_unit.code = Faker::Pokemon.unique.location
@@ -493,7 +493,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Users
-  number_of_users = 20
+  number_of_users = 5
   number_of_users.times {
     user = User.new
     user.system_account = generate_system_account('INDIVIDUAL')
@@ -506,7 +506,7 @@ if Rails.env.development? || Rails.env.test?
   }
 
   # Vale
-  number_of_vale = 20
+  number_of_vale = 5
   number_of_vale.times {
     vale = Vale.new
     vale.employee = Employee.order("RAND()").first

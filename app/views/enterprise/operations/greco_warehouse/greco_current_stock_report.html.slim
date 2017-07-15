@@ -1,22 +1,32 @@
-div.col-md-12
-  table.greco_report_table
-    thead
-      tr
-        th ITEM
-        th align='center' QUANTITY
-        th SS Limit
-    tbody
-      - @greco_items.each do |greco_item|
+form method='GET' enctype="multipart/form-data" action='process_greco_current_stock_report'
+  div.col-md-12
+    table.greco_report_table
+      thead
         tr
-          td
-            a target='_blank' href='#{greco_item.show_path}' =greco_item.name
-          td align='center' = greco_item.get_current_stock
-          - if greco_item.safety_stock
-            - if greco_item.safety_stock.amount > greco_item.get_current_stock
-              td align='center' style='background-color: yellow' = greco_item.safety_stock.amount
+          th ITEM
+          th align='center' QUANTITY
+          th SS Limit
+      tbody
+        - @greco_items.each do |greco_item|
+          tr
+            td
+              a target='_blank' href='#{greco_item.show_path}' =greco_item.name
+            td align='center' = greco_item.get_current_stock
+            - if greco_item.safety_stock
+              - if greco_item.safety_stock.amount > greco_item.get_current_stock
+                td align='center' style='background-color: yellow' = greco_item.safety_stock.amount
+              - else
+                td align='center' = greco_item.safety_stock.amount
             - else
-              td align='center' = greco_item.safety_stock.amount
+              td
+                input name='safety_stock[#{greco_item.id}]' type='number' min=0
 
+  div.col-md-12
+    br
+    button type='submit' class='btn btn-default btn-xs report_submit' SUBMIT
+    br
 
-div.col-md-12
-  a.btn.btn-default.greco_csv EXPORT TO CSV
+  div.col-md-12
+    br
+    a.btn.btn-default.greco_csv EXPORT TO CSV
+    br
